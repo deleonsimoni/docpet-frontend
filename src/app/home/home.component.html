@@ -1,0 +1,270 @@
+
+<!-- Home Banner -->
+<section class="section-search-3">
+    <div class="container">
+        <div class="banner-info">
+            <div class="row align-items-center">
+                <div class="col-lg-4">
+                    <div class="header-banner">
+                        <h2>Pesquise o veterinário, <br> <span class="header-highlight">agende uma consulta para o seu PET.</span></h2>
+                        <p>Descubra os melhores médicos, clínicas e Pet Shops da cidade mais próxima de você.</p>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="doctor-search">
+                        <div class="doctor-form">
+                            <form action="#" class="doctor-search-form trans">
+                                <div class="row">
+
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-custom">
+                                            <input type="text" class="form-control" value="" placeholder="Especialidade">
+                                            <i class="fas fa-user-check"></i>
+                                        </div>
+                                    </div>
+                                  </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-custom">
+                                                <input type="text" class="form-control" value="Rio de Janeiro" placeholder="Estado">
+                                                <i class="far fa-compass"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7"></div>
+                                    <div class="col-md-5">
+                                        <a [routerLink]="'/patients/search-doctor'" class="btn banner-btn"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</a>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Home Banner -->
+
+<!-- category select-->
+<section class="doctor-category">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="pop-box">
+                    <div class="top-section">
+                        <div class="cat-icon">
+                            <i class="fas fa-procedures"></i>
+                        </div>
+                    </div>
+                    <div class="body-section">
+                        <h3>Visit a Doctor</h3>
+                        <p>250 +  Doctors</p>
+                        <a [routerLink]="'/patients/booking'" class="btn book-btn" tabindex="0">Book Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pop-box">
+                    <div class="top-section two">
+                        <div class="cat-icon">
+                            <i class="fas fa-plus-square"></i>
+                        </div>
+                    </div>
+                    <div class="body-section">
+                        <h3>Find a Pharmacy</h3>
+                        <p>2560 +  Pharmacy</p>
+                        <a [routerLink]="'/patients/booking'" class="btn book-btn" tabindex="0">Book Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pop-box">
+                    <div class="top-section three">
+                        <div class="cat-icon">
+                            <i class="fas fa-city"></i>
+                        </div>
+                    </div>
+                    <div class="body-section">
+                        <h3>Find a Lab</h3>
+                        <p>250 +  Testing Labs</p>
+                        <a [routerLink]="'/patients/booking'" class="btn book-btn" tabindex="0">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /category select-->
+
+<!-- Clinic Section -->
+<section class="clinic-specialities">
+    <div class="container">
+        <div class="section-header-three text-center">
+                        <h2>Clinic & Specialities</h2>
+                        <p class="sub-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="special-box text-center">
+                    <div class="special-body">
+                        <img src="assets/img/shapes/spec.png" alt=""/>
+                        <h4>Orthopedic</h4>
+                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                    </div>
+                    <div class="row row-sm special-footer">
+                        <div class="col-6 text-left">
+                            <a href="#" class="doc-count">124 <span>Doctors</span></a>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="#" class="clin-count">24 <span>Clinics</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="special-box text-center">
+                    <div class="special-body">
+                        <img src="assets/img/shapes/spec-01.png" alt=""/>
+                        <h4>Laboratry</h4>
+                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                    </div>
+                    <div class="row row-sm special-footer">
+                        <div class="col-6 text-left">
+                            <a href="#" class="doc-count">124 <span>Doctors</span></a>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="#" class="clin-count">24 <span>Clinics</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="special-box text-center">
+                    <div class="special-body">
+                        <img src="assets/img/shapes/spec-02.png" alt=""/>
+                        <h4>Neurology</h4>
+                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                    </div>
+                    <div class="row row-sm special-footer">
+                        <div class="col-6 text-left">
+                            <a href="#" class="doc-count">124 <span>Doctors</span></a>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="#" class="clin-count">24 <span>Clinics</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="special-box text-center">
+                    <div class="special-body">
+                        <img src="assets/img/shapes/spec-03.png" alt=""/>
+                        <h4>Cardiology</h4>
+                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                    </div>
+                    <div class="row row-sm special-footer">
+                        <div class="col-6 text-left">
+                            <a href="#" class="doc-count">124 <span>Doctors</span></a>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="#" class="clin-count">24 <span>Clinics</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="special-box text-center">
+                    <div class="special-body">
+                        <img src="assets/img/shapes/spec-04.png" alt=""/>
+                        <h4>MRI Scans</h4>
+                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                    </div>
+                    <div class="row row-sm special-footer">
+                        <div class="col-6 text-left">
+                            <a href="#" class="doc-count">124 <span>Doctors</span></a>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="#" class="clin-count">24 <span>Clinics</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="special-box text-center">
+                    <div class="special-body">
+                        <img src="assets/img/shapes/spec-05.png" alt=""/>
+                        <h4>Primary Checkup</h4>
+                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                    </div>
+                    <div class="row row-sm special-footer">
+                        <div class="col-6 text-left">
+                            <a href="#" class="doc-count">124 <span>Doctors</span></a>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="#" class="clin-count">24 <span>Clinics</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="special-box text-center">
+                    <div class="special-body">
+                        <img src="assets/img/shapes/spec-06.png" alt=""/>
+                        <h4>Testing</h4>
+                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                    </div>
+                    <div class="row row-sm special-footer">
+                        <div class="col-6 text-left">
+                            <a href="#" class="doc-count">124 <span>Doctors</span></a>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="#" class="clin-count">24 <span>Clinics</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="special-box text-center">
+                    <div class="special-body">
+                        <img src="assets/img/shapes/spec-07.png" alt=""/>
+                        <h4>Dentist</h4>
+                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                    </div>
+                    <div class="row row-sm special-footer">
+                        <div class="col-6 text-left">
+                            <a href="#" class="doc-count">124 <span>Doctors</span></a>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="#" class="clin-count">24 <span>Clinics</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="view-all-more text-center">
+            <a [routerLink]="'/patients/doctor-profile'" class="btn btn-primary">View More</a>
+        </div>
+    </div>
+</section>
+<!-- /Clinic Section -->
+
+<!-- Doctor Section-->
+<section class="doctor-divison">
+    <div class="d-flex" style="margin-bottom: 50px;">
+        <div class="doc-background">
+            <h3>Você é um especialista?</h3>
+            <p>Construa sua reputação online rapidamente e seja encontrado por tutores de todo país. São mais de 141 milhões de pets no Brasil em busca de um profissional. </p>
+            <a [routerLink]="'/veterinario/cadastro'" class="doc-bok-btn">cadastre-se</a>
+        </div>
+       <div class="pat-background">
+            <h3></h3>
+            <p></p>
+            <!--<a class="doc-bok-btn"></a>-->
+        </div>
+    </div>
+</section>
+<!-- /Doctor Section-->

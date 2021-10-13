@@ -1,0 +1,93 @@
+
+db.especialidades.insert(
+    [
+        {
+            nome: "Acupuntura",
+            descricao: "Com origem na medicina tradicional chinesa, utiliza agulhas para estimular pontos do corpo do animal, com o objetivo de restabelecer o equilíbrio desse organismo. De acordo com a Dra. Carolina, pode ser usada em afecções, mas é mais procurada para tratamentos ortopédicos e controle de dor."
+
+        },
+        {
+            nome: "Cardiologia",
+            descricao: "Assim como na medicina humana, cuida do coração e do sistema circulatório dos animais. É recomendada para o acompanhamento de pets cardiopatas. Assim como de cães e gatos idosos, que estão mais sujeitos a desenvolver problemas do coração.",
+        },
+        {
+            nome: "Clínico Geral",
+            descricao: "Responsável pela primeira consulta do paciente, fazendo a triagem de cada caso clínico, sendo muitos dos casos resolvidos por ele do início até o fim."
+        },
+        {
+            nome: "Comportamento animal",
+            descricao: "Além de adestradores, os pets também podem contar com a ajuda de veterinários especializados em comportamento animal para o tratamento de problemas como ansiedade, agressividade, medos e depressão.",
+
+        },
+        {
+            nome: "Dermatologia",
+            descricao: "É indicada para o tratamento de problemas de pele nos animais de estimação, com destaque para as alergias."
+        },
+        {
+            nome: "Endocrinologia",
+            descricao: "Cuida do sistema hormonal e do metabolismo de cães e gatos. É muito recomendada para o acompanhamento de pets com doenças como diabetes, síndrome de cushing e outras."
+        },
+        {
+            nome: "Fisioterapia",
+            descricao: "Geralmente indicada pelo clínico geral, o ortopedista ou neurologista é procurado principalmente para restabelecer pacientes que passaram por cirurgias ou que apresentam problemas na movimentação, como dores articulares e dificuldade de locomoção."
+        },
+        {
+            nome: "Hematologia",
+            descricao: "Trata de doenças relacionadas ao sangue, sendo especialmente recomendada para o tratamento de anemias, como as causadas pela doença do carrapato."
+        },
+        {
+            nome: "Homeopatia",
+            descricao: "Assim como a acupuntura, pode auxiliar no tratamento de todas as doenças, pois aposta no uso de ativos naturais, em vez dos medicamentos convencionais."
+        },
+        {
+            nome: "Nefrologia",
+            descricao: "Cuida de doenças renais e do trato urinário, como obstruções e doença renal crônica."
+        },
+        {
+            nome: "Neurologia",
+            descricao: "Essa ainda não é uma especialidade veterinária reconhecida, mas trata das doenças do sistema nervoso central e periférico, como epilepsia, tumores cerebrais, da coluna, entre outros."
+        },
+        {
+            nome: "Nutrologia",
+            descricao: "Estuda a fundo a nutrição individual de cada pet, balanceando a alimentação de acordo com a necessidade. É indicada, por exemplo, para quem busca trocar a ração por alimentação caseira e também para tratar problemas de origem alimentar, como alergias e obesidade."
+        },
+        {
+            nome: "Odontologia",
+            descricao: "Entre outras condições, como má-oclusão e a dentição dupla, é o profissional mais indicado para ajudar a prevenir o acúmulo de tártaro e também para removê-lo depois que já se acumulou."
+        },
+        {
+            nome: "Oftalmologia",
+            descricao: "Trata dos olhos dos animais e de suas particularidades, investigando, por exemplo, a produção excessiva de lágrimas ou a falta dela, inversão de cílios, entre outros."
+        },
+        {
+            nome: "Ortopedia",
+            descricao: "É recomendada para o tratamento de problemas do sistema ósseo e articular, como displasia, artrite, artrose, luxação de quadril, etc."
+        },
+        {
+            nome: "Pediatria",
+            descricao: "Assim como na medicina humana, trata de condições diversas em recém-nascidos e durante a primeira fase da vida de filhotes, geralmente de até 1 ano."
+        },
+
+     ]
+)
+db.veterinario.insert(
+        {
+            nome: "Ada Lovelace",
+            especialidades:[
+                {
+                  nome: "Ortopedia",
+                  descricao: "É recomendada para o tratamento de problemas do sistema ósseo e articular, como displasia, artrite, artrose, luxação de quadril, etc."
+                },
+                {
+                  nome: "Pediatria",
+                  descricao: "Assim como na medicina humana, trata de condições diversas em recém-nascidos e durante a primeira fase da vida de filhotes, geralmente de até 1 ano."
+                }
+            ],
+            clinicas:[
+                {
+                  nome: "Pet PLUS",
+                  endereço: "Rua abc, n 555, carro velho, Rio de Janeiro"
+                }
+            ]
+        }
+)

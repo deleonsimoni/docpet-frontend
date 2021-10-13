@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive" *ngIf="veterinarios">
+          <table class="datatable table table-hover table-center mb-0" datatable [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger">
+            <thead>
+              <tr>
+                <th>CRMV</th>
+                <th>Nome</th>
+                <th>Atende Plano</th>
+                <th>Endereço</th>
+                <th>Data</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let veterinario of veterinarios">
+                <td>
+                  <h2 class="table-avatar">
+                    <!-- <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" [src]="doctor.profile" alt="User Image"></a> -->
+                    <a [routerLink]="['/veterinario/altera/',veterinario._id]"> {{veterinario.crmv}}</a>
+                  </h2>
+                </td>
+                <td>{{veterinario.nome}}</td>
+                <td>{{veterinario.atendePlano ? 'Sim': 'Não'}}</td>
+                <td>{{veterinario.endereco?.logradouro}}</td>
+                <td>{{veterinario.dtCriacao | date : 'dd/MM/yyyy'}}</td>
+                <td>
+                  <div class="status-toggle">
+                    <input type="checkbox" id="{{veterinario._id}}" class="check" [checked]="veterinario.status" (change)="changeStatus(veterinario)">
+                    <label for="{{veterinario._id}}" class="checktoggle">checkbox</label>
+                  </div>
+                </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <div class="row form-row">
+      <div class="submit-section submit-btn-bottom">
+        <a [routerLink]="['/veterinario/cadastro']" class="btn submit-btn btn-primary"><i class="fa fa-plus-circle"></i> Cadastrar</a>
+      </div>
+    </div>
+  </div>
+</div>
