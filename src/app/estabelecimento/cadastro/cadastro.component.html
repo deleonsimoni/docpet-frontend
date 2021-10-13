@@ -28,7 +28,15 @@
                     ></app-mensagem>
                 </div>
             </div>
-
+            <div class="col-md-12">
+              <div class="form-group">
+                  <label>Especialidade</label>
+                  <ng-select [multiple]="true" formControlName="especialidades">
+                    <ng-option *ngFor="let espc of listaEspecialidade" [value]="espc._id">{{espc.nome}}</ng-option>
+                    <!--<ng-option [value]="'custom'">Custom</ng-option> -->
+                  </ng-select>
+              </div>
+            </div>
             <div class="col-md-2">
                 <div class="form-group mb-0">
                   <div id="isVeterinario_select">
@@ -49,17 +57,7 @@
                 </div>
               </div>
           </div>
-          <div class="col-md-12">
-            <div [hidden]="!checkIsVeterinario.checked">
-              <div class="form-group">
-                  <label>Especialidade</label>
-                  <ng-select [multiple]="true" formControlName="especialidades">
-                    <ng-option *ngFor="let espc of listaEspecialidade" [value]="espc._id">{{espc.nome}}</ng-option>
-                    <!--<ng-option [value]="'custom'">Custom</ng-option> -->
-                  </ng-select>
-              </div>
-            </div>
-          </div>
+
         </div>
     </div>
   </div>
