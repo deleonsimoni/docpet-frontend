@@ -19,6 +19,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgSelect2Module } from 'ng-select2';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { NgxMaskModule} from 'ngx-mask';
+import { NgxSelectModule } from 'ngx-select-ex';
 
 
 
@@ -35,6 +36,7 @@ import { NgxMaskModule} from 'ngx-mask';
     BrowserAnimationsModule,
     FormsModule,
     NgSelectModule,
+    NgxSelectModule,
     NgbModule,
     Daterangepicker,
     NgSelect2Module,
