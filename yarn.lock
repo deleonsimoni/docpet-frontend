@@ -7611,6 +7611,11 @@
   "resolved" "https://registry.npmjs.org/lodash.isarray/-/lodash.isarray-3.0.4.tgz"
   "version" "3.0.4"
 
+"lodash.isequal@^4.5.0":
+  "integrity" "sha1-QVxEePK8wwEgwizhDtMib30+GOA="
+  "resolved" "https://registry.npmjs.org/lodash.isequal/-/lodash.isequal-4.5.0.tgz"
+  "version" "4.5.0"
+
 "lodash.keys@^3.0.0":
   "integrity" "sha1-TbwEcrFWvlCgsoaFXRvQsMZWCYo="
   "resolved" "https://registry.npmjs.org/lodash.keys/-/lodash.keys-3.1.2.tgz"
@@ -8462,6 +8467,14 @@
   "resolved" "https://registry.npmjs.org/ngx-owl-carousel-o/-/ngx-owl-carousel-o-5.0.0.tgz"
   "version" "5.0.0"
   dependencies:
+    "tslib" "^2.0.0"
+
+"ngx-select-ex@^6.1.1":
+  "integrity" "sha512-LdjzyXERKuN7alJijxbuEo5+m4h6b3/eNDLgJsFuhYyLCLgRvdfp0CD/3SrqeNw15M6GYfQiK4ZpVjfo0+0yqA=="
+  "resolved" "https://registry.npmjs.org/ngx-select-ex/-/ngx-select-ex-6.1.1.tgz"
+  "version" "6.1.1"
+  dependencies:
+    "lodash.isequal" "^4.5.0"
     "tslib" "^2.0.0"
 
 "ngx-slick-carousel@^0.5.1":
