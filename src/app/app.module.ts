@@ -20,6 +20,7 @@ import { NgSelect2Module } from 'ng-select2';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { NgxMaskModule} from 'ngx-mask';
 import { NgxSelectModule } from 'ngx-select-ex';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 
@@ -42,6 +43,7 @@ import { NgxSelectModule } from 'ngx-select-ex';
     NgSelect2Module,
     NgApexchartsModule,
     NgxMaskModule.forRoot({dropSpecialCharacters:false}),
+    LeafletModule
   ],
   providers: [],
   bootstrap: [AppComponent],

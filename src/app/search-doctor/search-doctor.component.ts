@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { CommonServiceService } from '../common-service.service'
 import { FormsModule } from '@angular/forms';
+import { latLng, tileLayer } from 'leaflet';
 
 
 @Component({
@@ -19,6 +20,18 @@ export class SearchDoctorComponent implements OnInit {
   speciality;
   selDate;
   idEspecialidade;
+
+
+  options = {
+    layers: [
+      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+    ],
+    zoom: 13,
+    center: latLng(-22.9186483, -43.1892977)
+  };
+
+
+
   constructor(private route: ActivatedRoute, public veterinarioService: VeterinarioService, public router: Router) { }
   images = [
     {

@@ -41,42 +41,15 @@
 							<!-- Search Filter -->
 							<div class="card search-filter">
 								<div class="card-header">
-									<h4 class="card-title mb-0">Search Filter</h4>
+									<h4 class="card-title mb-0">Veja no mapa</h4>
 								</div>
 								<div class="card-body">
-								<div class="filter-widget">
-									<div class="cal-icon">
-										<!--<input type="text" class="form-control" name="dp"  ngbDatepicker #d="ngbDatepicker"> -->
-									</div>
-								</div>
-								<div class="filter-widget">
-									<h4>Gender</h4>
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="gender_type" value="Male" (click)="checkType($event)"  [checked]="type === 'Male'" >
-											<span class="checkmark"></span> Male Doctor
-										</label>
-									</div>
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="gender_type" value="Female" [checked]="type === 'Female'"  (click)="checkType($event)">
-											<span class="checkmark"></span> Female Doctor
-										</label>
-									</div>
-								</div>
-								<div class="filter-widget">
-									<h4>Select Specialist</h4>
-									<div *ngFor="let specialit of specialityList">
-										<label class="custom_check">
-											<input type="checkbox" (click)="checkSpeciality($event)" name="select_specialist" [value]="specialit.speciality" [checked]="specialit.checked">
-											<span class="checkmark"></span> {{specialit.speciality}}
-										</label>
+								
+									<div style="height: 800px;"
+										leaflet 
+										[leafletOptions]="options">
 									</div>
 
-								</div>
-									<div class="btn-search">
-										<button type="button" class="btn btn-block" (click)="search()">Search</button>
-									</div>
 								</div>
 							</div>
 							<!-- /Search Filter -->
