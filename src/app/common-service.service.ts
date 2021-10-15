@@ -55,7 +55,7 @@ export class CommonServiceService {
   ];
 
   messages: '';
-  SERVER_URL: string = 'http://localhost:8080/api/';
+  SERVER_URL: string = 'http://localhost:4200/api/';
   message: BehaviorSubject<String>;
   constructor(public http: HttpClient) {
     this.message = new BehaviorSubject(this.messages);

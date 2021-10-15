@@ -1,7 +1,8 @@
+import { VeterinarioService } from './../services/veterinario.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import { CommonServiceService } from './../../common-service.service'
+import { CommonServiceService } from '../common-service.service'
 import { FormsModule } from '@angular/forms';
 
 
@@ -17,7 +18,8 @@ export class SearchDoctorComponent implements OnInit {
   specialist = "";
   speciality;
   selDate;
-  constructor(public commonService: CommonServiceService, public router: Router) { }
+  idEspecialidade;
+  constructor(private route: ActivatedRoute, public veterinarioService: VeterinarioService, public router: Router) { }
   images = [
     {
       path: 'assets/img/features/feature-01.jpg',
@@ -33,23 +35,19 @@ export class SearchDoctorComponent implements OnInit {
     },
   ];
   ngOnInit(): void {
-    this.getDoctors();
-    this.getspeciality();
+    this.idEspecialidade = this.route.snapshot.params['id'];
+    this.getEstabelecimentos();
   }
 
-  getDoctors() {
-    this.commonService.getDoctors().subscribe(res => {
-      this.doctors = res;
-    })
+  getEstabelecimentos() {
+    this.veterinarioService.getByEspecialidade().subscribe(
+      (res) => {
+        this.doctors = res;
+      },
+    );
   }
 
-  getspeciality() {
-    this.commonService.getSpeciality().subscribe(res => {
-      this.specialityList = res;
-    })
-  }
-
-  checkType(event) {
+    checkType(event) {
     if (event.target.checked) {
       this.type = event.target.value;
     } else {
@@ -61,7 +59,7 @@ export class SearchDoctorComponent implements OnInit {
     if (this.type && this.speciality) {
       this.doctors = this.doctors.filter(a => a.type === this.type && a.speciality === this.speciality)
     } else {
-      this.getDoctors();
+     // this.getDoctors();
     }
 
   }

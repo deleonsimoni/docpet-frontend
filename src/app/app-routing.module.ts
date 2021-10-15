@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'veterinario',
     loadChildren: () => import('./veterinario/veterinario.module').then((m) => m.VeterinarioModule),
   },
+  {
+    path: 'list/:id',
+    loadChildren: () => import('./search-doctor/search-doctor.module').then((m) => m.SearchDoctorModule),
+  },
 
 ];
 
