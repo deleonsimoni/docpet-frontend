@@ -44,9 +44,9 @@
 									<h4 class="card-title mb-0">Veja no mapa</h4>
 								</div>
 								<div class="card-body">
-								
+
 									<div style="height: 800px;"
-										leaflet 
+										leaflet
 										[leafletOptions]="options">
 									</div>
 
@@ -55,11 +55,24 @@
 							<!-- /Search Filter -->
 
 						</div>
-
 						<div class="col-md-12 col-lg-8 col-xl-9">
 
+              	<!-- Doctor Widget -->
+							<div class="card" *ngIf="doctors.length == 0">
+								<div class="card-body">
+									<div class="doctor-widget">
+										<div class="doc-info-left">
+											<div class="doctor-img">
+											</div>
+											<div class="doc-info-cont">
+												<h4 class="doc-name">Não foi possível localizar nenhum profissional.</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 							<!-- Doctor Widget -->
-							<div class="card" *ngFor="let doctor of doctors" [hidden]="doctors.length === 0">
+							<div class="card" *ngFor="let doctor of doctors;let iDoc = index" [hidden]="doctors.length === 0">
 
 								<div class="card-body">
 									<div class="doctor-widget">
@@ -71,7 +84,7 @@
 												</a>
 											</div>
 											<div class="doc-info-cont">
-												<h4 class="doc-name"><a [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.id}">{{doctor.nome}}</a></h4>
+												<h4 class="doc-name"><a [routerLink]="'/patients/doctor-profi4558le'" [queryParams]="{id: doctor.id}">{{doctor.nome}}</a></h4>
 												<p class="doc-speciality">{{doctor.Education}}</p>
 												<h5 class="doc-department" *ngFor="let especialidade of doctor.especialidades">
                           <!-- img [src]="doctor.speciality_profile" class="img-fluid" alt="Speciality"> -->
@@ -114,11 +127,32 @@
 											</div>
 											<div class="clinic-booking">
 												<a class="view-pro-btn" style="cursor: pointer;" [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.id}">View Profile</a>
-												<a class="apt-btn" style="cursor: pointer;" (click)="bookAppointment(doctor.id)">Book Appointment</a>
+												<!--<a class="apt-btn" style="cursor: pointer;" (click)="bookAppointment(doctor.id)">Book Appointment</a> -->
 											</div>
 										</div>
 									</div>
 								</div>
+                <div [hidden]="doctor.estabelecimentos.length <= 0">
+                  <div class="col-12 col-md-12 col-lg-12 d-flex">
+                    <div class="card flex-fill">
+                        <div class="card-header">
+                            <ul role="tablist" class="nav nav-tabs card-header-tabs float-left">
+                                <li class="nav-item" *ngFor="let estabelecimento of doctor.estabelecimentos; let i = index">
+                                    <a href="#tab-{{iDoc}}-{{i}}" data-toggle="tab" [ngClass]="[i === 'home-seven' ? 'nav-link active' : 'nav-link' ]">Endereço {{i+1}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content pt-0">
+                                <div *ngFor="let estabelecimento of doctor.estabelecimentos; let i = index" role="tabpanel" id="tab-{{iDoc}}-{{i}}" [ngClass]="[i === 0 ? 'tab-pane fade show active' : 'tab-pane fade' ]">
+                                  <p class="card-text" [hidden]="!estabelecimento.endereco"> <i class="fas fa-map-marker-alt"></i> {{estabelecimento.endereco?.logradouro}}, {{estabelecimento.endereco?.numero}}, {{estabelecimento.endereco?.bairro}}, {{estabelecimento.endereco?.municipio}}, {{estabelecimento.endereco?.estado}}</p>
+                                  <p class="card-text" [hidden]="estabelecimento.endereco"> <i class="fas fa-map-marker-alt"></i> Endereço não cadastrado </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
 							</div>
 
 							<div class="load-more text-center" *ngIf="doctors.length !== 0">

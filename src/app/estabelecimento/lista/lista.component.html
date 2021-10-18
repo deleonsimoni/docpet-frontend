@@ -28,7 +28,7 @@
                 <td>{{estabelecimento.endereco?.logradouro}}</td>
                 <td>{{estabelecimento.dtCriacao | date : 'dd/MM/yyyy'}}</td>
                 <td>
-                  <div class="status-toggle"> {{estabelecimento.status}}
+                  <div class="status-toggle">
                     <input type="checkbox" id="{{estabelecimento._id}}" class="check" [checked]="estabelecimento.status" (change)="changeStatus(estabelecimento)">
                     <label for="{{estabelecimento._id}}" class="checktoggle">checkbox</label>
                   </div>

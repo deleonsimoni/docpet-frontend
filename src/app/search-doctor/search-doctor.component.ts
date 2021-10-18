@@ -49,13 +49,14 @@ export class SearchDoctorComponent implements OnInit {
   ];
   ngOnInit(): void {
     this.idEspecialidade = this.route.snapshot.params['id'];
-    this.getEstabelecimentos();
+    this.getEstabelecimentos(this.idEspecialidade);
   }
 
-  getEstabelecimentos() {
-    this.veterinarioService.getByEspecialidade().subscribe(
+  getEstabelecimentos(id) {
+    this.veterinarioService.getByEspecialidade(id).subscribe(
       (res) => {
         this.doctors = res;
+        console.log(this.doctors);
       },
     );
   }

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   title: 'Local Environment Heading',
-  apiURL: 'http://localhost:21168/v1/'
+  apiURL: 'http://localhost:3001/v1/'
 };
 
 /*

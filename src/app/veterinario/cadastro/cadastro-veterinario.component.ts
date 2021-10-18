@@ -87,8 +87,6 @@ export class CadastroVeterinarioComponent implements OnInit {
 
       this.estabelecimentoSevice.getByIdVet(this.id).subscribe(estebelecimento => {
         if(estebelecimento.length > 0){
-          console.log(estebelecimento.length);
-
           let estab = estebelecimento as Estabelecimento;
           this.isEstabelecimento = true;
 
@@ -98,16 +96,7 @@ export class CadastroVeterinarioComponent implements OnInit {
           this.veterinarioForm.get('estabelecimentos').patchValue(estab);
         }
       });
-     /*if(vet.estabelecimentos.length > 0){
-        this.isEstabelecimento = true;
-
-        for(var i=1; i < estebelecimento.veterinarios.length; i++){
-          this.addVeterinario();
-        }
-        this.veterinarioForm.get('estabelecimentos').patchValue(estebelecimento.veterinarios);
-      } */
     }),(error) => {
-
       console.log(error);
     }
 
