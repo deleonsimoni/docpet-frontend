@@ -26,6 +26,10 @@ export class VeterinarioService {
     return this.http.get(`${baseUrl}/especialidades/${id}`);
   }
 
+  getByName(nomeFormated): Observable<any> {
+    return this.http.get(`${baseUrl}/perfil/${nomeFormated}`);
+  }
+
   get(id): Observable<any> {
     return this.http.get(`${baseUrl}/${id}`);
   }

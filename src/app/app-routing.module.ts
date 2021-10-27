@@ -19,6 +19,11 @@ const routes: Routes = [
     path: 'list/:id',
     loadChildren: () => import('./search-doctor/search-doctor.module').then((m) => m.SearchDoctorModule),
   },
+  {
+    path: 'doctor/:nome/:municipio',
+    loadChildren: () => import('./doctor-profile/doctor-profile.module').then((m) => m.DoctorProfileModule),
+  },
+
 
 ];
 

@@ -76,7 +76,7 @@ const routes: Routes = [
       {
         path: 'doctor-profile',
         loadChildren: () =>
-          import('./doctor-profile/doctor-profile.module').then(
+          import('../doctor-profile/doctor-profile.module').then(
             (m) => m.DoctorProfileModule
           ),
       },
@@ -84,13 +84,6 @@ const routes: Routes = [
         path: 'settings',
         loadChildren: () =>
           import('./settings/settings.module').then((m) => m.SettingsModule),
-      },
-      {
-        path: 'search-doctor',
-        loadChildren: () =>
-          import('./search-doctor/search-doctor.module').then(
-            (m) => m.SearchDoctorModule
-          ),
       },
       {
         path: 'message',
@@ -109,35 +102,35 @@ const routes: Routes = [
         loadChildren: () =>
           import('./checkout/checkout.module').then((m) => m.CheckoutModule),
       },
-      { 
-        path: 'dependent', 
-        loadChildren: () => 
-        import('./dependent/dependent.module').then((m) => m.DependentModule), 
+      {
+        path: 'dependent',
+        loadChildren: () =>
+        import('./dependent/dependent.module').then((m) => m.DependentModule),
       },
-      { 
+      {
         path: 'accounts',
-        loadChildren: () => 
+        loadChildren: () =>
         import('./patient-accounts/patient-accounts.module').then(m => m.PatientAccountsModule),
        },
-       { 
-         path: 'orders', 
-         loadChildren: () => 
-         import('./orders-list/orders-list.module').then(m => m.OrdersListModule), 
+       {
+         path: 'orders',
+         loadChildren: () =>
+         import('./orders-list/orders-list.module').then(m => m.OrdersListModule),
         },
-        { 
-          path: 'medical-records', 
-          loadChildren: () => 
-          import('./medical-records/medical-records.module').then(m => m.MedicalRecordsModule), 
+        {
+          path: 'medical-records',
+          loadChildren: () =>
+          import('./medical-records/medical-records.module').then(m => m.MedicalRecordsModule),
         },
-        { 
-          path: 'medical-details', 
-          loadChildren: () => 
-          import('./medical-details/medical-details.module').then(m => m.MedicalDetailsModule), 
+        {
+          path: 'medical-details',
+          loadChildren: () =>
+          import('./medical-details/medical-details.module').then(m => m.MedicalDetailsModule),
         },
     ],
   },
-  
-  
+
+
 ];
 
 @NgModule({

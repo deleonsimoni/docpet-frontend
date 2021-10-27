@@ -13,7 +13,7 @@
                 <div class="col-lg-8">
                     <div class="">
                         <div class="">
-                            
+
                                 <div class="row">
 
                                   <div class="col-md-6">
@@ -31,9 +31,9 @@
                                                                 (remove)="listarEspecialidades()"
                                                                 (typed)="inputTyped($event)"
                                                                 placeholder="Especialidade">
-                                            
-                                                               
-                                                            
+
+
+
                                                                 <ng-template ngx-select-option let-option>
 
                                                                     <span *ngIf="!option.data.type"><i class="fas fa-bone fa-lg" style="color: rgb(105, 105, 247); "></i></span>
@@ -42,21 +42,21 @@
                                                                     <span *ngIf="option.data.type == 3"><i class="fas fa-clinic-medical fa-lg" style="color: rgb(248, 95, 120)"></i></span>
 
                                                                     <span>
-                                                                        {{option.data.nome}} 
+                                                                        {{option.data.nome}}
                                                                     </span>
 
-                                                                   
+
                                                                         <span *ngIf="option.data.type == 1" style="float:right; color:gray">Especialidade</span>
                                                                         <span *ngIf="option.data.type == 2" style="float:right; color:gray">Veterinário</span>
                                                                         <span *ngIf="option.data.type == 3" style="float:right; color:gray ">Clínica</span>
-                                                                    
 
-                                                                </ng-template>-->
+
+                                                                </ng-template>
 
                                                                 <ng-template ngx-select-option-not-found>
                                                                     Nenhum item encontrado
                                                                 </ng-template>
-                                            
+
                                                     </ngx-select>
                                                     <p></p>
                                                 </div>
@@ -82,16 +82,16 @@
                                                                     [items]="cidades" optionValueField="_id" optionTextField="nome"
                                                                     [(ngModel)]="cidadeEscolhida"
                                                                     placeholder="Cidade">
-                                                
+
                                                             <ng-template ngx-select-option ngx-select-option-selected let-option let-text="text">
-                                                               
-                                                                {{option.text}} 
+
+                                                                {{option.text}}
                                                             </ng-template>
 
                                                             <ng-template ngx-select-option-not-found>
                                                                 Nenhum item encontrado
                                                             </ng-template>
-                                                
+
                                                         </ngx-select>
                                                         <p></p>
                                                     </div>
@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="col-md-7"></div>
                                     <div class="col-md-5">
-                                        <a [routerLink]="'/patients/search-doctor'" class="btn banner-btn"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</a>
+                                        <a class="btn banner-btn" href="javascript:void(0);" (click)="consultar(especialidadeEscolhida)" ><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</a>
                                     </div>
                                 </div>
 

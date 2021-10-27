@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
       options[0].text = options[0].data.nome;
 
     }
-    
+
   }
 
   consultar(pesquisa){
@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
       this.router.navigate([`/list/${filtro._id}`]);
     } else if(filtro.type == 2){
       //Veterinario
-      this.router.navigate([`/detail/${filtro.nome}/RioDeJaneiro`]);
+      this.router.navigate([`/doctor/${filtro.nome}/RioDeJaneiro`]);
     } else if(filtro.type == 3){
       //clinica
       this.router.navigate([`/detail/${filtro.nome}/RioDeJaneiro`]);
@@ -75,14 +75,14 @@ export class HomeComponent implements OnInit {
         });
   }
 
-  
+
   createEdgeNGrams(str) {
     if (str && str.length > 3) {
         const minGram = 3
         const maxGram = str.length
-        
+
         return str.split(" ").reduce((ngrams, token) => {
-            if (token.length > minGram) {   
+            if (token.length > minGram) {
                 for (let i = minGram; i <= maxGram && i <= token.length; ++i) {
                     ngrams = [...ngrams, token.substr(0, i)]
                 }
@@ -91,8 +91,8 @@ export class HomeComponent implements OnInit {
             }
             return ngrams
         }, []).join(" ")
-    } 
-    
+    }
+
     return str
   }
 

@@ -1,7 +1,7 @@
+import { VeterinarioService } from './../services/veterinario.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { CommonServiceService } from './../../common-service.service';
-import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-doctor-profile',
@@ -10,11 +10,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DoctorProfileComponent implements OnInit {
   id;
+  docNameFormated;
   doctorDetails;
   constructor(
-    public commonService: CommonServiceService,
+    private veterinarioService: VeterinarioService,
     private route: ActivatedRoute,
-    private toastr: ToastrService
+    public router: Router,
+
   ) {}
   images = [
     {
@@ -31,25 +33,32 @@ export class DoctorProfileComponent implements OnInit {
     },
   ];
   ngOnInit(): void {
+    console.log(this.route.snapshot.queryParams);
+    this.id = this.route.snapshot.params['id'];
+    this.docNameFormated = this.route.snapshot.params['nome'];
     window.scrollTo(0, 0);
-    this.id = this.route.snapshot.queryParams['id'];
+
+    console.log(this.docNameFormated);
     this.getDoctorsDetails();
   }
 
   getDoctorsDetails() {
-    if (!this.id) {
-      this.id = 1;
+    if (!this.docNameFormated) {
+      console.log('teste');
+        console.log(this.docNameFormated);
+        this.veterinarioService.getByName(this.docNameFormated).subscribe(
+          (res) => {
+            this.doctorDetails = res;
+            //this.dtTrigger.next();
+          },
+          //(error) => (this.errorMessage = <any>error)
+        );
+
     }
-    this.commonService.getDoctorDetails(this.id).subscribe((res) => {
-      this.doctorDetails = res;
-    });
+
   }
 
   addFav() {
-    this.commonService.createFav(this.doctorDetails).subscribe((res) => {
-      this.toastr.success('', 'Added to favourite successfully!');
-      document.getElementById('fav-btn').style.background = '#fb1612';
-      document.getElementById('fav-btn').style.color = '#fff';
-    });
+
   }
 }
