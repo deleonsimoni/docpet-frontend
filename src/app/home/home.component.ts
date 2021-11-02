@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { INgxSelectOption } from 'ngx-select-ex';
+import { ToastrService } from 'ngx-toastr';
 import { EspecialidadeService } from '../services/especialidades.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private especialidadeSevice: EspecialidadeService,
+    private toastr: ToastrService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -48,13 +50,13 @@ export class HomeComponent implements OnInit {
 
   consultar(pesquisa){
     
-    if(!this.especialidadeEscolhida){
-
+    if(this.especialidadeEscolhida?.length == 0){
+      this.toastr.warning('Preencha o campo especialidade!', 'Atenção!');
       return;
     }
 
-    if(!this.cidadeEscolhida){
-
+    if(this.cidadeEscolhida?.length == 0){
+      this.toastr.warning('Preencha o campo cidade!', 'Atenção!');
       return;
     }
 
