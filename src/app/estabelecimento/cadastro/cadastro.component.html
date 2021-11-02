@@ -7,7 +7,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>CNPJ<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" formControlName="cnpj" mask="00.000.000/0000-00">
+                    <input type="text" class="form-control" #cnpj formControlName="cnpj" mask="00.000.000/0000-00">
                     <app-mensagem *ngIf="
                       estabelecimentoForm.get('cnpj')?.errors?.required &&
                       estabelecimentoForm.get('cnpj')?.touched"
@@ -18,7 +18,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Nome<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" formControlName="nome">
+                    <input type="text" class="form-control" formControlName="nome" [readonly]="!cnpj.value">
                     <app-mensagem
                       *ngIf="
                       estabelecimentoForm.get('nome')?.errors?.required &&
@@ -35,6 +35,14 @@
                     <ng-option *ngFor="let espc of listaEspecialidade" [value]="espc._id">{{espc.nome}}</ng-option>
                     <!--<ng-option [value]="'custom'">Custom</ng-option> -->
                   </ng-select>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group mb-0">
+                <div class="status-toggle">
+                  <input type="checkbox" id="isStatus" name="status" formControlName="status" class="check" checked> Status
+                  <label for="isStatus" class="checktoggle">Status</label>
+                </div>
               </div>
             </div>
             <div class="col-md-2">
@@ -218,7 +226,7 @@
               <div class="col-md-8">
                   <div class="form-group">
                       <label>Nome<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" formControlName="nome" placeholder="Nome">
+                      <input type="text" class="form-control" formControlName="nome" placeholder="Nome" [readonly]="!crmv.value">
                   </div>
               </div>
 

@@ -54,6 +54,7 @@ export class CadastroVeterinarioComponent implements OnInit {
         _id: [null],
         crmv: [null, [Validators.required, Validators.minLength(4)]],
         nome: [null, [Validators.required, Validators.minLength(4)]],
+        status:[true, [Validators.required]],
         atendePlano: [null],
         especialidades: [null],
         endereco: this.createEnderecoFormGroup(),

@@ -52,6 +52,7 @@ export class CadastroComponent implements OnInit {
         _id: [null],
         cnpj: [null, [Validators.required, Validators.minLength(11)]],
         nome: [null, [Validators.required, Validators.minLength(4)]],
+        status:[true, [Validators.required]],
         atendePlano: [null],
         especialidades: [null],
         endereco: this.createEnderecoFormGroup(),
