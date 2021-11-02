@@ -5,6 +5,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { FormsModule } from '@angular/forms';
+import { MensagemModule } from '../componentes/mensagem/mensagem.module';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     HomeRoutingModule,
     NgxSelectModule,
+    MensagemModule,
     FormsModule
   ]
 })

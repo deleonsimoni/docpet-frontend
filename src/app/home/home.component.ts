@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   public especialidadeEscolhida: any = [];
   public cidadeEscolhida: any = [];
-
+  isload = false;
   public ngxDisabled = false;
 
 
@@ -47,18 +47,31 @@ export class HomeComponent implements OnInit {
   }
 
   consultar(pesquisa){
+    
+    if(!this.especialidadeEscolhida){
 
-    let filtro: any = this.especialidades.filter(e => e._id == pesquisa)[0];
-
-    if(!filtro.type || filtro.type == 1){
-      this.router.navigate([`/list/${filtro._id}`]);
-    } else if(filtro.type == 2){
-      //Veterinario
-      this.router.navigate([`/doctor/${filtro.nome}/RioDeJaneiro`]);
-    } else if(filtro.type == 3){
-      //clinica
-      this.router.navigate([`/detail/${filtro.nome}/RioDeJaneiro`]);
+      return;
     }
+
+    if(!this.cidadeEscolhida){
+
+      return;
+    }
+
+    this.isload = true;
+    let filtro: any = this.especialidades.filter(e => e._id == pesquisa)[0];
+    setTimeout(() => {
+      if(!filtro.type || filtro.type == 1){
+        this.router.navigate([`/list/${filtro._id}`]);
+      } else if(filtro.type == 2){
+        //Veterinario
+        this.router.navigate([`/doctor/${filtro.nome}/RioDeJaneiro`]);
+      } else if(filtro.type == 3){
+        //clinica
+        this.router.navigate([`/detail/${filtro.nome}/RioDeJaneiro`]);
+      }
+    }, 3000);
+    
   }
 
   listarCompleto(query) {
