@@ -26,7 +26,7 @@
                                                                 [items]="especialidades" optionValueField="_id" optionTextField="nomeFormated"
                                                                 [(ngModel)]="especialidadeEscolhida"
                                                                 style="color: black;"
-                                                                
+
                                                                 (selectionChanges)="normalizeNome($event)"
                                                                 (remove)="listarEspecialidades()"
                                                                 (typed)="inputTyped($event)"
@@ -118,56 +118,6 @@
 </section>
 <!-- /Home Banner -->
 
-<!-- category select-->
-<section class="doctor-category">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="pop-box">
-                    <div class="top-section">
-                        <div class="cat-icon">
-                            <i class="fas fa-procedures"></i>
-                        </div>
-                    </div>
-                    <div class="body-section">
-                        <h3>Visit a Doctor</h3>
-                        <p>250 +  Doctors</p>
-                        <a [routerLink]="'/patients/booking'" class="btn book-btn" tabindex="0">Book Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="pop-box">
-                    <div class="top-section two">
-                        <div class="cat-icon">
-                            <i class="fas fa-plus-square"></i>
-                        </div>
-                    </div>
-                    <div class="body-section">
-                        <h3>Find a Pharmacy</h3>
-                        <p>2560 +  Pharmacy</p>
-                        <a [routerLink]="'/patients/booking'" class="btn book-btn" tabindex="0">Book Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="pop-box">
-                    <div class="top-section three">
-                        <div class="cat-icon">
-                            <i class="fas fa-city"></i>
-                        </div>
-                    </div>
-                    <div class="body-section">
-                        <h3>Find a Lab</h3>
-                        <p>250 +  Testing Labs</p>
-                        <a [routerLink]="'/patients/booking'" class="btn book-btn" tabindex="0">Book Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- /category select-->
 
 <!-- Clinic Section -->
 <section class="clinic-specialities">
