@@ -26,7 +26,9 @@ export class CadastroVeterinarioComponent implements OnInit {
   isEstabelecimento: Boolean;
   isAddMode!: boolean;
   id!: string;
-
+  lat;
+  lng;
+  showMap = false;
   especialidade: any;
   veterinarioForm: FormGroup;
   estabelecimentos: FormArray;
@@ -143,10 +145,22 @@ export class CadastroVeterinarioComponent implements OnInit {
         });
   }
 
+  buscarMap():void{
+ 
+    const novoVeterinario = this.veterinarioForm.getRawValue() as Veterinario;
+
+    this.cepService.getLocale(JSON.stringify(novoVeterinario.endereco)).subscribe(data=>{
+      this.lat = data.lat;
+      this.lng = data.lng
+      this.showMap = true;
+    }, error=>{
+      console.log(error);
+    })
+
+  }
+
   buscarCEP(cep:String):void{
-    console.log(cep);
     this.cepService.get(cep).subscribe(data=>{
-      console.log(data);
       this.veterinarioForm.get('endereco').patchValue({'bairro':data.bairro, 'logradouro': data.logradouro, 'municipio': data.localidade, 'estado' : data.uf});
     }, error=>{
       console.log(error);

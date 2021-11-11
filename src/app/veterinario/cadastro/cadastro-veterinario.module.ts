@@ -12,6 +12,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { AngularTagsInputModule } from '@iomechs/angular-tags-input';
 import { CadastroVeterinarioComponent } from './cadastro-veterinario.component';
 import { NgxMaskModule} from 'ngx-mask'
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [CadastroVeterinarioComponent],
@@ -22,6 +23,10 @@ import { NgxMaskModule} from 'ngx-mask'
 	  AngularTagsInputModule,
     FormsModule,
     NgSelectModule,
+    MensagemModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC39y1TCyvZP0bU7Pur_SBfySWjSy5qhEg'
+    }),
     MensagemModule,
     ReactiveFormsModule,
     NgxMaskModule.forChild()

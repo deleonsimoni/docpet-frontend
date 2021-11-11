@@ -159,7 +159,7 @@
           <div class="col-md-1">
             <div class="form-group">
                 <label>N°<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" formControlName="numero">
+                <input [readonly]="veterinarioForm.get('endereco')?.get('logradouro').value == null" (change)="buscarMap()" type="text" class="form-control" formControlName="numero">
                 <app-mensagem *ngIf="
                   veterinarioForm.get('endereco')?.get('numero')?.errors?.required &&
                   veterinarioForm.get('endereco')?.get('numero')?.touched"
@@ -209,6 +209,9 @@
           </div>
       </div>
     </div>
+    <agm-map *ngIf="showMap" [latitude]="lat" [zoom]="15" [longitude]="lng">
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
   </div>
   <!-- Contato -->
   <div class="card" id="customInfoVeterinario" [hidden]="!checkIsEstabelecimento.checked">

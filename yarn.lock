@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@agm/core@^1.1.0":
+  "integrity" "sha512-cMvmm3+3/uuVFurLv1FKhE0/6ssIlDvYBjQFCi8ELg7h0OY2MkIU1MXWr7z+f/xZ08E936I4eeddni6k4yUTIA=="
+  "resolved" "https://registry.npmjs.org/@agm/core/-/core-1.1.0.tgz"
+  "version" "1.1.0"
+  dependencies:
+    "tslib" "^1.9.0"
+
 "@angular-cli/ast-tools@^1.0.14":
   "integrity" "sha1-YxmULBol+4TjKUID6fejJmMvzlA="
   "resolved" "https://registry.npmjs.org/@angular-cli/ast-tools/-/ast-tools-1.0.16.tgz"
@@ -1504,10 +1511,10 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/googlemaps@^3.39.1", "@types/googlemaps@^3.39.3":
-  "integrity" "sha512-ZWNoz/O8MPEpiajvj7QiqCY8tTLFNqNZ/a+s+zTV58wFVNAvvqV4bdGfnsjTb5Cs4V6wEsLrX8XRhmnyYJ2Tdg=="
-  "resolved" "https://registry.npmjs.org/@types/googlemaps/-/googlemaps-3.43.3.tgz"
-  "version" "3.43.3"
+"@types/googlemaps@^3.39.1", "@types/googlemaps@^3.39.13", "@types/googlemaps@^3.39.3":
+  "integrity" "sha512-R/k5WKe8zQHo9oFRINuX/1haKYRkKEfItnBGrSjspbXXITakRdsj6daQIdL1+Pt84lnzduWurxNA5k0fgPMQUg=="
+  "resolved" "https://registry.npmjs.org/@types/googlemaps/-/googlemaps-3.39.13.tgz"
+  "version" "3.39.13"
 
 "@types/jasmine@*", "@types/jasmine@~3.6.0":
   "integrity" "sha512-kgl+oYOLCBt41iba8cetp+QPOqDAaTJnHtVPCE7JzYmda4juglRBLX35opVcANc7TLA/Lp0DEnajbUNnyxGC+Q=="
