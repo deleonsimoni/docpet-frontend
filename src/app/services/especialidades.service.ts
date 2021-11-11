@@ -17,6 +17,10 @@ export class EspecialidadeService {
     return this.http.get(baseUrl);
   }
 
+  getAllTotalEspcEstab(): Observable<any> {
+    return this.http.get(`${baseUrl}/total`);
+  }
+
   getCompletedFind(query): Observable<any> {
     return this.http.get(`${baseUrl}/search?search=${query}`);
   }

@@ -5,6 +5,7 @@ import { INgxSelectOption } from 'ngx-select-ex';
 import { ToastrService } from 'ngx-toastr';
 import { EspecialidadeService } from '../services/especialidades.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,7 +14,9 @@ import { EspecialidadeService } from '../services/especialidades.service';
 export class HomeComponent implements OnInit {
 
   public especialidades: any[];
-  public cidades: any[] = ['Rio de Janeiro'];
+  public especialidadesTotal: any[];
+
+  public cidades: any[] = ['Rio de Janeiro', 'Curitiba'];
 
   public especialidadeEscolhida: any = [];
   public cidadeEscolhida: any = [];
@@ -28,6 +31,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarEspecialidades();
+    this.listarEspecialidadesTotal();
   }
 
   inputTyped(text: string){
@@ -49,7 +53,7 @@ export class HomeComponent implements OnInit {
   }
 
   consultar(pesquisa){
-    
+
     if(this.especialidadeEscolhida?.length == 0){
       this.toastr.warning('Preencha o campo especialidade!', 'Atenção!');
       return;
@@ -62,18 +66,19 @@ export class HomeComponent implements OnInit {
 
     this.isload = true;
     let filtro: any = this.especialidades.filter(e => e._id == pesquisa)[0];
+
     setTimeout(() => {
       if(!filtro.type || filtro.type == 1){
-        this.router.navigate([`/list/${filtro._id}`]);
+        this.router.navigate([`/list/${filtro._id}/${this.cidadeEscolhida}`]);
       } else if(filtro.type == 2){
         //Veterinario
-        this.router.navigate([`/doctor/${filtro.nome}/RioDeJaneiro`]);
+        this.router.navigate([`/doctor/${filtro.nome}/${this.cidadeEscolhida}`]);
       } else if(filtro.type == 3){
         //clinica
-        this.router.navigate([`/detail/${filtro.nome}/RioDeJaneiro`]);
+        this.router.navigate([`/detail/${filtro.nome}/${this.cidadeEscolhida}`]);
       }
     }, 3000);
-    
+
   }
 
   listarCompleto(query) {
@@ -117,6 +122,17 @@ export class HomeComponent implements OnInit {
       .subscribe(
         data => {
           this.especialidades = data;
+        },
+        error => {
+          console.log(error);
+        });
+  }
+  listarEspecialidadesTotal() {
+
+    this.especialidadeSevice.getAllTotalEspcEstab()
+      .subscribe(
+        data => {
+          this.especialidadesTotal = data;
         },
         error => {
           console.log(error);

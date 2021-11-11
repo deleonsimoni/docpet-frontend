@@ -10,6 +10,7 @@
                 <th>CRMV</th>
                 <th>Nome</th>
                 <th>Atende Plano</th>
+                <th>Especialidades</th>
                 <th>Endereço</th>
                 <th>Data</th>
                 <th>Status</th>
@@ -25,6 +26,9 @@
                 </td>
                 <td>{{veterinario.nome}}</td>
                 <td>{{veterinario.atendePlano ? 'Sim': 'Não'}}</td>
+                <td>
+                  <p *ngFor="let especialidade of veterinario.especialidades"> {{especialidade.nome}}</p>
+                </td>
                 <td>{{veterinario.endereco?.logradouro}}</td>
                 <td>{{veterinario.dtCriacao | date : 'dd/MM/yyyy'}}</td>
                 <td>

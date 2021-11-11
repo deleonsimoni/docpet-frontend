@@ -10,6 +10,7 @@
                 <th>CNPJ</th>
                 <th>Nome</th>
                 <th>Atende Plano</th>
+                <th>Especialidades</th>
                 <th>Endereço</th>
                 <th>Data</th>
                 <th>Status</th>
@@ -25,6 +26,9 @@
                 </td>
                 <td>{{estabelecimento.nome}}</td>
                 <td>{{estabelecimento.atendePlano ? 'Sim': 'Não'}}</td>
+                <td>
+                  <p *ngFor="let especialidade of estabelecimento.especialidades"> {{especialidade.nome}}</p>
+                </td>
                 <td>{{estabelecimento.endereco?.logradouro}}</td>
                 <td>{{estabelecimento.dtCriacao | date : 'dd/MM/yyyy'}}</td>
                 <td>

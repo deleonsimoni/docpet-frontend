@@ -16,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./veterinario/veterinario.module').then((m) => m.VeterinarioModule),
   },
   {
-    path: 'list/:id',
+    path: 'list/:id/:municipio',
     loadChildren: () => import('./search-doctor/search-doctor.module').then((m) => m.SearchDoctorModule),
   },
   {
