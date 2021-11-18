@@ -50,6 +50,8 @@ export class CadastroComponent implements OnInit {
 
     console.log(this.id);
     console.log(this.isAddMode);
+    this.lat= -22.7721807;
+    this.lng= -43.3777264;
 
     this.estabelecimentoForm = this.formBuilder.group(
       {
