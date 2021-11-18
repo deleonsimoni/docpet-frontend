@@ -159,7 +159,7 @@
           <div class="col-md-1">
             <div class="form-group">
                 <label>N°<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" formControlName="numero">
+                <input [readonly]="estabelecimentoForm.get('endereco')?.get('logradouro').value == null" (change)="buscarMap()" type="text" class="form-control" formControlName="numero">
                 <app-mensagem *ngIf="
                   estabelecimentoForm.get('endereco')?.get('numero')?.errors?.required &&
                   estabelecimentoForm.get('endereco')?.get('numero')?.touched"
@@ -170,7 +170,7 @@
           </div>
           <div class="col-md-4">
             <div class="form-group">
-                <label>Complemento<span class="text-danger">*</span></label>
+                <label>Complemento<span class="text-danger"></span></label>
                 <input type="text" class="form-control" formControlName="complemento">
             </div>
           </div>
@@ -234,7 +234,7 @@
               </div>
 
 
-            <div class="col-12 col-md-2 col-lg-1"  *ngIf="i != 0">
+            <div class="col-12 col-md-2 col-lg-1"  *ngIf="!isAddMode || i != 0">
                 <label class="d-md-block d-sm-none d-none">&nbsp;</label>
                 <a href="javascript:void(0);" (click)="removeVeterinario(i)" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>
             </div>

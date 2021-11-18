@@ -157,7 +157,7 @@ export class CadastroComponent implements OnInit {
 
     const novoEstabelecimento = this.estabelecimentoForm.getRawValue() as Estabelecimento;
 
-    this.cepService.getLocale(JSON.stringify(novoEstabelecimento.endereco)).subscribe(data=>{
+    this.estabelecimentosevice.getLocale(JSON.stringify(novoEstabelecimento.endereco)).subscribe(data=>{
       this.lat = data.lat;
       this.lng = data.lng
       this.showMap = true;

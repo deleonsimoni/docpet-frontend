@@ -234,7 +234,7 @@
               </div>
 
 
-            <div class="col-12 col-md-2 col-lg-1"  *ngIf="i != 0">
+            <div class="col-12 col-md-2 col-lg-1"  *ngIf="!isAddMode || i != 0">
                 <label class="d-md-block d-sm-none d-none">&nbsp;</label>
                 <a href="javascript:void(0);" (click)="removeEstabelecimento(i)" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>
             </div>
