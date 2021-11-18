@@ -25,6 +25,10 @@ export class CadastroComponent implements OnInit {
   isAddMode!: boolean;
   id!: string;
 
+  lat;
+  lng;
+  showMap = false;
+
   especialidade: any;
   estabelecimentoForm: FormGroup;
   veterinarios: FormArray;
@@ -147,6 +151,20 @@ export class CadastroComponent implements OnInit {
         error => {
           console.log(error);
         });
+  }
+
+  buscarMap():void{
+
+    const novoEstabelecimento = this.estabelecimentoForm.getRawValue() as Estabelecimento;
+
+    this.cepService.getLocale(JSON.stringify(novoEstabelecimento.endereco)).subscribe(data=>{
+      this.lat = data.lat;
+      this.lng = data.lng
+      this.showMap = true;
+    }, error=>{
+      console.log(error);
+    })
+
   }
 
   buscarCEP(cep:String):void{

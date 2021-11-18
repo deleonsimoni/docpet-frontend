@@ -209,6 +209,9 @@
           </div>
       </div>
     </div>
+    <agm-map *ngIf="showMap" [latitude]="lat" [zoom]="15" [longitude]="lng">
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
   </div>
   <!-- Contato -->
   <div class="card" id="customInfoVeterinario" [hidden]="!checkIsVeterinario.checked">
