@@ -11,6 +11,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { AngularTagsInputModule } from '@iomechs/angular-tags-input';
 import { CadastroComponent } from './cadastro.component';
+import { AgmCoreModule } from '@agm/core';
 import { NgxMaskModule} from 'ngx-mask'
 
 @NgModule({
@@ -23,6 +24,9 @@ import { NgxMaskModule} from 'ngx-mask'
     FormsModule,
     NgSelectModule,
     MensagemModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC39y1TCyvZP0bU7Pur_SBfySWjSy5qhEg'
+    }),
     ReactiveFormsModule,
     NgxMaskModule.forChild()
 

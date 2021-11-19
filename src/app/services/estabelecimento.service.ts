@@ -48,4 +48,8 @@ export class EstabelecimentoService {
   findByTitle(title): Observable<any> {
     return this.http.get(`${baseUrl}?title=${title}`);
   }
+
+  getLocale(cep): Observable<any> {
+    return this.http.get(`${baseUrl}/cep/${cep}`);
+  }
 }
