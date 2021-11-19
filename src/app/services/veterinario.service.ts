@@ -27,7 +27,7 @@ export class VeterinarioService {
   }
 
   getByEspecialidadeMunicipio(id, municipio): Observable<any> {
-    return this.http.get(`${baseUrl}/especialidades/${id}/municipio/${municipio}}`);
+    return this.http.get(`${baseUrl}/especialidades/${id}/municipio/${municipio}`);
   }
 
 

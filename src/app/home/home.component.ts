@@ -3,6 +3,7 @@ import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { INgxSelectOption } from 'ngx-select-ex';
 import { ToastrService } from 'ngx-toastr';
+import { CEPService } from '../services/cep.service';
 import { EspecialidadeService } from '../services/especialidades.service';
 //import {} from 'googlemaps';
 
@@ -17,19 +18,19 @@ export class HomeComponent implements OnInit {
   public especialidades: any[];
   public especialidadesTotal: any[];
 
-  public cidades: any[] = ['Rio de Janeiro', 'Curitiba'];
+  public places: any[];
 
   public especialidadeEscolhida: any = [];
   public cidadeEscolhida: any = [];
   isload = false;
   public ngxDisabled = false;
-  @ViewChild('addresstext') addresstext: any;
   autocompleteInput: string;
   queryWait: boolean;
-  @Output() setAddress: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private especialidadeSevice: EspecialidadeService,
+    private cepService: CEPService,
+
     private toastr: ToastrService,
     private router: Router) { }
 
@@ -38,17 +39,30 @@ export class HomeComponent implements OnInit {
     this.listarEspecialidadesTotal();
   }
 
-  inputTyped(text: string){
-    if(text.length){
+  inputTyped(text: string) {
+    if (text.length) {
       this.listarCompleto(text.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
     } else {
       this.listarEspecialidades();
     }
   }
 
+  searchLocale(text: string) {
+    if (text.length > 3) {
+      this.cepService.getPlace(text)
+        .subscribe(
+          data => {
+            this.places = data;
+          },
+          error => {
+            console.log(error);
+          });
+    }
 
-  normalizeNome(options: INgxSelectOption[]){
-    if(options){
+  }
+
+  normalizeNome(options: INgxSelectOption[]) {
+    if (options) {
 
       options[0].text = options[0].data.nome;
 
@@ -56,14 +70,14 @@ export class HomeComponent implements OnInit {
 
   }
 
-  consultar(pesquisa){
+  consultar(pesquisa) {
 
-    if(this.especialidadeEscolhida?.length == 0){
+    if (this.especialidadeEscolhida?.length == 0) {
       this.toastr.warning('Preencha o campo especialidade!', 'Atenção!');
       return;
     }
 
-    if(this.cidadeEscolhida?.length == 0){
+    if (this.cidadeEscolhida?.length == 0) {
       this.toastr.warning('Preencha o campo cidade!', 'Atenção!');
       return;
     }
@@ -72,14 +86,14 @@ export class HomeComponent implements OnInit {
     let filtro: any = this.especialidades.filter(e => e._id == pesquisa)[0];
 
     setTimeout(() => {
-      if(!filtro.type || filtro.type == 1){
+      if (!filtro.type || filtro.type == 1) {
         this.router.navigate([`/list/${filtro._id}/${this.cidadeEscolhida}`]);
-      } else if(filtro.type == 2){
+      } else if (filtro.type == 2) {
         //Veterinario
-        this.router.navigate([`/doctor/${filtro.nome}/${this.cidadeEscolhida}`]);
-      } else if(filtro.type == 3){
+        this.router.navigate([`/doctor/${filtro.nome}`]);
+      } else if (filtro.type == 3) {
         //clinica
-        this.router.navigate([`/detail/${filtro.nome}/${this.cidadeEscolhida}`]);
+        this.router.navigate([`/detail/${filtro.nome}`]);
       }
     }, 3000);
 
@@ -102,19 +116,19 @@ export class HomeComponent implements OnInit {
 
   createEdgeNGrams(str) {
     if (str && str.length > 3) {
-        const minGram = 3
-        const maxGram = str.length
+      const minGram = 3
+      const maxGram = str.length
 
-        return str.split(" ").reduce((ngrams, token) => {
-            if (token.length > minGram) {
-                for (let i = minGram; i <= maxGram && i <= token.length; ++i) {
-                    ngrams = [...ngrams, token.substr(0, i)]
-                }
-            } else {
-                ngrams = [...ngrams, token]
-            }
-            return ngrams
-        }, []).join(" ")
+      return str.split(" ").reduce((ngrams, token) => {
+        if (token.length > minGram) {
+          for (let i = minGram; i <= maxGram && i <= token.length; ++i) {
+            ngrams = [...ngrams, token.substr(0, i)]
+          }
+        } else {
+          ngrams = [...ngrams, token]
+        }
+        return ngrams
+      }, []).join(" ")
     }
 
     return str
@@ -142,21 +156,9 @@ export class HomeComponent implements OnInit {
           console.log(error);
         });
   }
-/*
-  private getPlaceAutocomplete() {
-    const autocomplete = new google.maps.places.Autocomplete(this.addresstext.nativeElement,
-        {
-            componentRestrictions: { country: 'US' },
-            types: ['address']  // 'establishment' / 'address' / 'geocode'
-        });
-    google.maps.event.addListener(autocomplete, 'place_changed', () => {
-        const place = autocomplete.getPlace();
-        this.invokeEvent(place);
-    });
-}
-*/
-invokeEvent(place: Object) {
-    this.setAddress.emit(place);
-}
+
+
+
+
 
 }

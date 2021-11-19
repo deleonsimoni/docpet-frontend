@@ -20,4 +20,8 @@ export class CEPService {
   getLocale(cep): Observable<any> {
     return this.http.get(`${baseUrlServer}/cep/${cep}`);
   }
+
+  getPlace(search): Observable<any> {
+    return this.http.get(`${baseUrlServer}/locale/${search}`);
+  }
 }

@@ -52,7 +52,6 @@ export class SearchDoctorComponent implements OnInit {
   ngOnInit(): void {
     this.idEspecialidade = this.route.snapshot.params['id'];
     this.dsMunicipio = this.route.snapshot.params['municipio'];
-    console.log(this.dsMunicipio);
 
     this.getEstabelecimentos(this.idEspecialidade, this.dsMunicipio);
   }
