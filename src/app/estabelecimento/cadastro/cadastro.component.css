@@ -13,6 +13,10 @@
   width: 100%;
 }
 
+agm-map {
+  height: 300px;
+}
+
 .ng-select.ng-select-multiple .ng-select-container .ng-value-container {
 padding-top: 5px;
 padding-left: 7px;

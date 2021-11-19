@@ -48,11 +48,6 @@ export class CadastroComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
 
-    console.log(this.id);
-    console.log(this.isAddMode);
-    this.lat= -22.7721807;
-    this.lng= -43.3777264;
-
     this.estabelecimentoForm = this.formBuilder.group(
       {
         _id: [null],
