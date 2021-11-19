@@ -71,7 +71,30 @@
                                     </div>
                                   </div>
 
-                                    <div class="col-md-6">
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-custom">
+
+
+                                            <div class="example-block">
+                                                <div class="example-block__item">
+                                                    
+                                                    <input class="input"
+                                                    type="text"
+                                                    [(ngModel)]="autocompleteInput"
+                                                    #addresstext style="padding: 12px 20px; border: 1px solid #ccc; width: 400px"
+                                                    >
+
+                                                    <p></p>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    <!--<div class="col-md-6">
                                         <div class="form-group">
                                             <div class="form-custom">
 
@@ -100,7 +123,9 @@
 
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
+
+
                                     <div class="col-md-7"></div>
                                     <div class="col-md-5">
                                         <a *ngIf="!isload" class="btn banner-btn" href="javascript:void(0);" (click)="consultar(especialidadeEscolhida)" ><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</a>

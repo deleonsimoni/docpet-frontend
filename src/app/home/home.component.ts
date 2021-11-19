@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { INgxSelectOption } from 'ngx-select-ex';
 import { ToastrService } from 'ngx-toastr';
 import { EspecialidadeService } from '../services/especialidades.service';
+//import {} from 'googlemaps';
 
 
 @Component({
@@ -22,7 +23,10 @@ export class HomeComponent implements OnInit {
   public cidadeEscolhida: any = [];
   isload = false;
   public ngxDisabled = false;
-
+  @ViewChild('addresstext') addresstext: any;
+  autocompleteInput: string;
+  queryWait: boolean;
+  @Output() setAddress: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private especialidadeSevice: EspecialidadeService,
@@ -138,5 +142,21 @@ export class HomeComponent implements OnInit {
           console.log(error);
         });
   }
+/*
+  private getPlaceAutocomplete() {
+    const autocomplete = new google.maps.places.Autocomplete(this.addresstext.nativeElement,
+        {
+            componentRestrictions: { country: 'US' },
+            types: ['address']  // 'establishment' / 'address' / 'geocode'
+        });
+    google.maps.event.addListener(autocomplete, 'place_changed', () => {
+        const place = autocomplete.getPlace();
+        this.invokeEvent(place);
+    });
+}
+*/
+invokeEvent(place: Object) {
+    this.setAddress.emit(place);
+}
 
 }
