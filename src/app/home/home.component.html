@@ -1,348 +1,348 @@
 
 <!-- Home Banner -->
 <section class="section-search-3">
-    <div class="container">
-        <div class="banner-info">
-            <div class="row align-items-center">
-                <div class="col-lg-4">
-                    <div class="header-banner">
-                        <h2>Pesquise o veterinário, <br> <span class="header-highlight">agende uma consulta para o seu PET.</span></h2>
-                        <p>Descubra os melhores médicos, clínicas e Pet Shops da cidade mais próxima de você.</p>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="">
-                        <div class="">
+  <div class="container">
+      <div class="banner-info">
+          <div class="row align-items-center">
+              <div class="col-lg-4">
+                  <div class="header-banner">
+                      <h2>Pesquise o veterinário, <br> <span class="header-highlight">agende uma consulta para o seu PET.</span></h2>
+                      <p>Descubra os melhores médicos, clínicas e Pet Shops da cidade mais próxima de você.</p>
+                  </div>
+              </div>
+              <div class="col-lg-8">
+                  <div class="">
+                      <div class="">
 
-                                <div class="row">
+                              <div class="row">
 
-                                  <div class="col-md-6">
-                                    <div class="">
-                                        <div class="">
+                                <div class="col-md-6">
+                                  <div class="">
+                                      <div class="">
 
-                                            <div class="">
-                                                <div class="">
-                                                    <ngx-select [allowClear]="true"
-                                                                [items]="especialidades" optionValueField="_id" optionTextField="nomeFormated"
-                                                                [(ngModel)]="especialidadeEscolhida"
-                                                                style="color: black;"
+                                          <div class="">
+                                              <div class="">
+                                                  <ngx-select [allowClear]="true"
+                                                              [items]="especialidades" optionValueField="_id" optionTextField="nomeFormated"
+                                                              [(ngModel)]="especialidadeEscolhida"
+                                                              style="color: black;"
 
-                                                                (selectionChanges)="normalizeNome($event)"
-                                                                (remove)="listarEspecialidades()"
-                                                                (typed)="inputTyped($event)"
-                                                                placeholder="Especialidade">
-
-
-
-                                                                <ng-template ngx-select-option let-option>
-
-                                                                    <span *ngIf="!option.data.type"><i class="fas fa-bone fa-lg" style="color: rgb(105, 105, 247); "></i></span>
-                                                                    <span *ngIf="option.data.type == 1"><i class="fas fa-bone fa-lg" style="color: rgb(105, 105, 247)"></i></span>
-                                                                    <span *ngIf="option.data.type == 2"><i class="fas fa-paw fa-lg" style="color: rgb(0, 131, 11)"></i></span>
-                                                                    <span *ngIf="option.data.type == 3"><i class="fas fa-clinic-medical fa-lg" style="color: rgb(248, 95, 120)"></i></span>
-
-                                                                    <span>
-                                                                        {{option.data.nome}}
-                                                                    </span>
+                                                              (selectionChanges)="normalizeNome($event)"
+                                                              (remove)="listarEspecialidades()"
+                                                              (typed)="inputTyped($event)"
+                                                              placeholder="Especialidade">
 
 
-                                                                        <span *ngIf="option.data.type == 1" style="float:right; color:gray">Especialidade</span>
-                                                                        <span *ngIf="option.data.type == 2" style="float:right; color:gray">Veterinário</span>
-                                                                        <span *ngIf="option.data.type == 3" style="float:right; color:gray ">Clínica</span>
+
+                                                              <ng-template ngx-select-option let-option>
+
+                                                                  <span *ngIf="!option.data.type"><i class="fas fa-bone fa-lg" style="color: rgb(105, 105, 247); "></i></span>
+                                                                  <span *ngIf="option.data.type == 1"><i class="fas fa-bone fa-lg" style="color: rgb(105, 105, 247)"></i></span>
+                                                                  <span *ngIf="option.data.type == 2"><i class="fas fa-paw fa-lg" style="color: rgb(0, 131, 11)"></i></span>
+                                                                  <span *ngIf="option.data.type == 3"><i class="fas fa-clinic-medical fa-lg" style="color: rgb(248, 95, 120)"></i></span>
+
+                                                                  <span>
+                                                                      {{option.data.nome}}
+                                                                  </span>
 
 
-                                                                </ng-template>
-
-                                                                <ng-template ngx-select-option-not-found>
-                                                                    Nenhum item encontrado
-                                                                </ng-template>
-
-                                                    </ngx-select>
-                                                    <p></p>
-                                                </div>
-                                            </div>
+                                                                      <span *ngIf="option.data.type == 1" style="float:right; color:gray">Especialidade</span>
+                                                                      <span *ngIf="option.data.type == 2" style="float:right; color:gray">Veterinário</span>
+                                                                      <span *ngIf="option.data.type == 3" style="float:right; color:gray ">Clínica</span>
 
 
+                                                              </ng-template>
+
+                                                              <ng-template ngx-select-option-not-found>
+                                                                  Nenhum item encontrado
+                                                              </ng-template>
+
+                                                  </ngx-select>
+                                                  <p></p>
+                                              </div>
+                                          </div>
 
 
 
 
-                                        </div>
-                                    </div>
+
+
+                                      </div>
                                   </div>
-
-                                  <div class="col-md-6">
-                                    <div class="">
-                                        <div class="">
-
-
-                                            <div class="">
-                                                <div class="">
-                                                    
-                                                    <ngx-select [allowClear]="true"
-                                                                [items]="places" optionValueField="placeId" optionTextField="description"
-                                                                [(ngModel)]="cidadeEscolhida"
-                                                                style="color: black;"
-                                                                (typed)="searchLocale($event)"
-                                                                placeholder="Localização">
-
-
-
-                                                                <ng-template ngx-select-option let-option>
-
-                                                                    <span>
-                                                                        {{option.data.description}}
-                                                                    </span>
-
-                                                                </ng-template>
-
-                                                                <ng-template ngx-select-option-not-found>
-                                                                    Nenhum lugar localizado
-                                                                </ng-template>
-
-                                                    </ngx-select>
-
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
                                 </div>
 
-                                    <!--<div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="form-custom">
+                                <div class="col-md-6">
+                                  <div class="">
+                                      <div class="">
 
 
-                                                <div class="example-block">
-                                                    <div class="example-block__item">
-                                                        <ngx-select [allowClear]="true"
-                                                                    [items]="cidades" optionValueField="_id" optionTextField="nome"
-                                                                    [(ngModel)]="cidadeEscolhida"
-                                                                    placeholder="Cidade">
+                                          <div class="">
+                                              <div class="">
 
-                                                            <ng-template ngx-select-option ngx-select-option-selected let-option let-text="text">
-
-                                                                {{option.text}}
-                                                            </ng-template>
-
-                                                            <ng-template ngx-select-option-not-found>
-                                                                Nenhum item encontrado
-                                                            </ng-template>
-
-                                                        </ngx-select>
-                                                        <p></p>
-                                                    </div>
-                                                </div>
+                                                  <ngx-select [allowClear]="true"
+                                                              [items]="places" optionValueField="placeId" optionTextField="description"
+                                                              [(ngModel)]="cidadeEscolhida"
+                                                              style="color: black;"
+                                                              (typed)="searchLocale($event)"
+                                                              placeholder="Localização">
 
 
-                                            </div>
-                                        </div>
-                                    </div>-->
+
+                                                              <ng-template ngx-select-option let-option>
+
+                                                                  <span>
+                                                                      {{option.data.description}}
+                                                                  </span>
+
+                                                              </ng-template>
+
+                                                              <ng-template ngx-select-option-not-found>
+                                                                  Nenhum lugar localizado
+                                                              </ng-template>
+
+                                                  </ngx-select>
+
+                                              </div>
+                                          </div>
 
 
-                                    <div class="col-md-7"></div>
-                                    <div class="col-md-5">
-                                        <a *ngIf="!isload" class="btn banner-btn" href="javascript:void(0);" (click)="consultar(especialidadeEscolhida)" ><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</a>
-                                        <button *ngIf="isload" type="button" class="btn banner-btn"><span class="spinner-border spinner-border-sm mr-2" role="status"></span>Buscando sua melhor opção</button>
+                                      </div>
+                                  </div>
+                              </div>
 
-                                    </div>
-                                </div>
+                                  <!--<div class="col-md-6">
+                                      <div class="form-group">
+                                          <div class="form-custom">
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+                                              <div class="example-block">
+                                                  <div class="example-block__item">
+                                                      <ngx-select [allowClear]="true"
+                                                                  [items]="cidades" optionValueField="_id" optionTextField="nome"
+                                                                  [(ngModel)]="cidadeEscolhida"
+                                                                  placeholder="Cidade">
+
+                                                          <ng-template ngx-select-option ngx-select-option-selected let-option let-text="text">
+
+                                                              {{option.text}}
+                                                          </ng-template>
+
+                                                          <ng-template ngx-select-option-not-found>
+                                                              Nenhum item encontrado
+                                                          </ng-template>
+
+                                                      </ngx-select>
+                                                      <p></p>
+                                                  </div>
+                                              </div>
+
+
+                                          </div>
+                                      </div>
+                                  </div>-->
+
+
+                                  <div class="col-md-7"></div>
+                                  <div class="col-md-5">
+                                      <a *ngIf="!isload" class="btn banner-btn" href="javascript:void(0);" (click)="consultar(especialidadeEscolhida)" ><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</a>
+                                      <button *ngIf="isload" type="button" class="btn banner-btn"><span class="spinner-border spinner-border-sm mr-2" role="status"></span>Buscando sua melhor opção</button>
+
+                                  </div>
+                              </div>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </section>
 <!-- /Home Banner -->
 
 
 <!-- Clinic Section -->
 <section class="clinic-specialities">
-    <div class="container">
-        <div class="section-header-three text-center">
-                        <h2>Especialistas</h2>
-                        <p class="sub-title">Encontre o melhor especialista para seu pet, marque uma consulta e avalie o serviço.</p>
-                    </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-4" *ngFor="let especialidadeTotal of especialidadesTotal">
-                <div class="special-box text-center">
-                    <div class="special-body">
-                        <img src="assets/img/shapes/spec-fisio.png" alt=""/>
-                        <h4>{{especialidadeTotal.nome}}</h4>
-                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
-                    </div>
-                    <div class="row row-sm special-footer">
-                        <div class="col-6 text-left">
-                            <a href="#" class="doc-count">{{especialidadeTotal.totalVet}} <span>Veterinários</span></a>
-                        </div>
-                        <div class="col-6 text-right">
-                            <a href="#" class="clin-count">{{especialidadeTotal.totalEstab}} <span>Estabelecimentos</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--
-            <div class="col-lg-3 col-md-4">
-                <div class="special-box text-center">
-                    <div class="special-body">
-                        <img src="assets/img/shapes/spec.png" alt=""/>
-                        <h4>Orthopedic</h4>
-                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
-                    </div>
-                    <div class="row row-sm special-footer">
-                        <div class="col-6 text-left">
-                            <a href="#" class="doc-count">124 <span>Doctors</span></a>
-                        </div>
-                        <div class="col-6 text-right">
-                            <a href="#" class="clin-count">24 <span>Clinics</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4">
-                <div class="special-box text-center">
-                    <div class="special-body">
-                        <img src="assets/img/shapes/spec-01.png" alt=""/>
-                        <h4>Laboratry</h4>
-                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
-                    </div>
-                    <div class="row row-sm special-footer">
-                        <div class="col-6 text-left">
-                            <a href="#" class="doc-count">124 <span>Doctors</span></a>
-                        </div>
-                        <div class="col-6 text-right">
-                            <a href="#" class="clin-count">24 <span>Clinics</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4">
-                <div class="special-box text-center">
-                    <div class="special-body">
-                        <img src="assets/img/shapes/spec-02.png" alt=""/>
-                        <h4>Neurology</h4>
-                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
-                    </div>
-                    <div class="row row-sm special-footer">
-                        <div class="col-6 text-left">
-                            <a href="#" class="doc-count">124 <span>Doctors</span></a>
-                        </div>
-                        <div class="col-6 text-right">
-                            <a href="#" class="clin-count">24 <span>Clinics</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4">
-                <div class="special-box text-center">
-                    <div class="special-body">
-                        <img src="assets/img/shapes/spec-03.png" alt=""/>
-                        <h4>Cardiology</h4>
-                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
-                    </div>
-                    <div class="row row-sm special-footer">
-                        <div class="col-6 text-left">
-                            <a href="#" class="doc-count">124 <span>Doctors</span></a>
-                        </div>
-                        <div class="col-6 text-right">
-                            <a href="#" class="clin-count">24 <span>Clinics</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4">
-                <div class="special-box text-center">
-                    <div class="special-body">
-                        <img src="assets/img/shapes/spec-04.png" alt=""/>
-                        <h4>MRI Scans</h4>
-                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
-                    </div>
-                    <div class="row row-sm special-footer">
-                        <div class="col-6 text-left">
-                            <a href="#" class="doc-count">124 <span>Doctors</span></a>
-                        </div>
-                        <div class="col-6 text-right">
-                            <a href="#" class="clin-count">24 <span>Clinics</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4">
-                <div class="special-box text-center">
-                    <div class="special-body">
-                        <img src="assets/img/shapes/spec-05.png" alt=""/>
-                        <h4>Primary Checkup</h4>
-                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
-                    </div>
-                    <div class="row row-sm special-footer">
-                        <div class="col-6 text-left">
-                            <a href="#" class="doc-count">124 <span>Doctors</span></a>
-                        </div>
-                        <div class="col-6 text-right">
-                            <a href="#" class="clin-count">24 <span>Clinics</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4">
-                <div class="special-box text-center">
-                    <div class="special-body">
-                        <img src="assets/img/shapes/spec-06.png" alt=""/>
-                        <h4>Testing</h4>
-                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
-                    </div>
-                    <div class="row row-sm special-footer">
-                        <div class="col-6 text-left">
-                            <a href="#" class="doc-count">124 <span>Doctors</span></a>
-                        </div>
-                        <div class="col-6 text-right">
-                            <a href="#" class="clin-count">24 <span>Clinics</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4">
-                <div class="special-box text-center">
-                    <div class="special-body">
-                        <img src="assets/img/shapes/spec-07.png" alt=""/>
-                        <h4>Dentist</h4>
-                        <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
-                    </div>
-                    <div class="row row-sm special-footer">
-                        <div class="col-6 text-left">
-                            <a href="#" class="doc-count">124 <span>Doctors</span></a>
-                        </div>
-                        <div class="col-6 text-right">
-                            <a href="#" class="clin-count">24 <span>Clinics</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
-        </div>
-        <div class="view-all-more text-center">
-            <a [routerLink]="'/patients/doctor-profile'" class="btn btn-primary">View More</a>
-        </div>
-    </div>
+  <div class="container">
+      <div class="section-header-three text-center">
+                      <h2>Especialistas</h2>
+                      <p class="sub-title">Encontre o melhor especialista para seu pet, marque uma consulta e avalie o serviço.</p>
+                  </div>
+      <div class="row">
+          <div class="col-lg-4 col-md-4" *ngFor="let especialidadeTotal of especialidadesTotal">
+              <div class="special-box text-center">
+                  <div class="special-body">
+                      <img src="assets/img/shapes/spec-fisio.png" alt=""/>
+                      <h4>{{especialidadeTotal.nome}}</h4>
+                      <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                  </div>
+                  <div class="row row-sm special-footer">
+                      <div class="col-6 text-left">
+                          <a href="#" class="doc-count">{{especialidadeTotal.totalVet}} <span>Veterinários</span></a>
+                      </div>
+                      <div class="col-6 text-right">
+                          <a href="#" class="clin-count">{{especialidadeTotal.totalEstab}} <span>Estabelecimentos</span></a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!--
+          <div class="col-lg-3 col-md-4">
+              <div class="special-box text-center">
+                  <div class="special-body">
+                      <img src="assets/img/shapes/spec.png" alt=""/>
+                      <h4>Orthopedic</h4>
+                      <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                  </div>
+                  <div class="row row-sm special-footer">
+                      <div class="col-6 text-left">
+                          <a href="#" class="doc-count">124 <span>Doctors</span></a>
+                      </div>
+                      <div class="col-6 text-right">
+                          <a href="#" class="clin-count">24 <span>Clinics</span></a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-4">
+              <div class="special-box text-center">
+                  <div class="special-body">
+                      <img src="assets/img/shapes/spec-01.png" alt=""/>
+                      <h4>Laboratry</h4>
+                      <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                  </div>
+                  <div class="row row-sm special-footer">
+                      <div class="col-6 text-left">
+                          <a href="#" class="doc-count">124 <span>Doctors</span></a>
+                      </div>
+                      <div class="col-6 text-right">
+                          <a href="#" class="clin-count">24 <span>Clinics</span></a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-4">
+              <div class="special-box text-center">
+                  <div class="special-body">
+                      <img src="assets/img/shapes/spec-02.png" alt=""/>
+                      <h4>Neurology</h4>
+                      <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                  </div>
+                  <div class="row row-sm special-footer">
+                      <div class="col-6 text-left">
+                          <a href="#" class="doc-count">124 <span>Doctors</span></a>
+                      </div>
+                      <div class="col-6 text-right">
+                          <a href="#" class="clin-count">24 <span>Clinics</span></a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-4">
+              <div class="special-box text-center">
+                  <div class="special-body">
+                      <img src="assets/img/shapes/spec-03.png" alt=""/>
+                      <h4>Cardiology</h4>
+                      <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                  </div>
+                  <div class="row row-sm special-footer">
+                      <div class="col-6 text-left">
+                          <a href="#" class="doc-count">124 <span>Doctors</span></a>
+                      </div>
+                      <div class="col-6 text-right">
+                          <a href="#" class="clin-count">24 <span>Clinics</span></a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-4">
+              <div class="special-box text-center">
+                  <div class="special-body">
+                      <img src="assets/img/shapes/spec-04.png" alt=""/>
+                      <h4>MRI Scans</h4>
+                      <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                  </div>
+                  <div class="row row-sm special-footer">
+                      <div class="col-6 text-left">
+                          <a href="#" class="doc-count">124 <span>Doctors</span></a>
+                      </div>
+                      <div class="col-6 text-right">
+                          <a href="#" class="clin-count">24 <span>Clinics</span></a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-4">
+              <div class="special-box text-center">
+                  <div class="special-body">
+                      <img src="assets/img/shapes/spec-05.png" alt=""/>
+                      <h4>Primary Checkup</h4>
+                      <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                  </div>
+                  <div class="row row-sm special-footer">
+                      <div class="col-6 text-left">
+                          <a href="#" class="doc-count">124 <span>Doctors</span></a>
+                      </div>
+                      <div class="col-6 text-right">
+                          <a href="#" class="clin-count">24 <span>Clinics</span></a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-4">
+              <div class="special-box text-center">
+                  <div class="special-body">
+                      <img src="assets/img/shapes/spec-06.png" alt=""/>
+                      <h4>Testing</h4>
+                      <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                  </div>
+                  <div class="row row-sm special-footer">
+                      <div class="col-6 text-left">
+                          <a href="#" class="doc-count">124 <span>Doctors</span></a>
+                      </div>
+                      <div class="col-6 text-right">
+                          <a href="#" class="clin-count">24 <span>Clinics</span></a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-4">
+              <div class="special-box text-center">
+                  <div class="special-body">
+                      <img src="assets/img/shapes/spec-07.png" alt=""/>
+                      <h4>Dentist</h4>
+                      <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
+                  </div>
+                  <div class="row row-sm special-footer">
+                      <div class="col-6 text-left">
+                          <a href="#" class="doc-count">124 <span>Doctors</span></a>
+                      </div>
+                      <div class="col-6 text-right">
+                          <a href="#" class="clin-count">24 <span>Clinics</span></a>
+                      </div>
+                  </div>
+              </div>
+          </div>-->
+      </div>
+      <div class="view-all-more text-center">
+          <a [routerLink]="'/patients/doctor-profile'" class="btn btn-primary">View More</a>
+      </div>
+  </div>
 </section>
 <!-- /Clinic Section -->
 
 <!-- Doctor Section-->
 <section class="doctor-divison">
-    <div class="d-flex" style="margin-bottom: 50px;">
-        <div class="doc-background">
-            <h3>Você é um especialista?</h3>
-            <p>Construa sua reputação online rapidamente e seja encontrado por tutores de todo país. São mais de 141 milhões de pets no Brasil em busca de um profissional. </p>
-            <a [routerLink]="'/veterinario/cadastro'" class="doc-bok-btn">cadastre-se</a>
-        </div>
-       <div class="pat-background">
-            <h3></h3>
-            <p></p>
-            <!--<a class="doc-bok-btn"></a>-->
-        </div>
-    </div>
+  <div class="d-flex" style="margin-bottom: 50px;">
+      <div class="doc-background">
+          <h3>Você é um especialista?</h3>
+          <p>Construa sua reputação online rapidamente e seja encontrado por tutores de todo país. São mais de 141 milhões de pets no Brasil em busca de um profissional. </p>
+          <a [routerLink]="'/veterinario/cadastro'" class="doc-bok-btn">cadastre-se</a>
+      </div>
+     <div class="pat-background">
+          <h3></h3>
+          <p></p>
+          <!--<a class="doc-bok-btn"></a>-->
+      </div>
+  </div>
 </section>
 <!-- /Doctor Section-->

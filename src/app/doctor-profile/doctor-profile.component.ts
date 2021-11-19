@@ -36,19 +36,23 @@ export class DoctorProfileComponent implements OnInit {
     console.log(this.route.snapshot.queryParams);
     this.id = this.route.snapshot.params['id'];
     this.docNameFormated = this.route.snapshot.params['nome'];
+    this.getDoctorsDetails();
+
     window.scrollTo(0, 0);
 
-    console.log(this.docNameFormated);
-    this.getDoctorsDetails();
+
   }
 
   getDoctorsDetails() {
-    if (!this.docNameFormated) {
-      console.log('teste');
+    console.log('teste');
+    if (this.docNameFormated) {
+
         console.log(this.docNameFormated);
         this.veterinarioService.getByName(this.docNameFormated).subscribe(
           (res) => {
+            console.log("Teste", res);
             this.doctorDetails = res;
+
             //this.dtTrigger.next();
           },
           //(error) => (this.errorMessage = <any>error)

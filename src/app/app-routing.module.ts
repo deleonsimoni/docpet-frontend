@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./search-doctor/search-doctor.module').then((m) => m.SearchDoctorModule),
   },
   {
-    path: 'doctor/:nome/:municipio',
+    path: 'doctor/:nome',
     loadChildren: () => import('./doctor-profile/doctor-profile.module').then((m) => m.DoctorProfileModule),
   },
 

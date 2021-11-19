@@ -62,10 +62,19 @@ export class HomeComponent implements OnInit {
   }
 
   normalizeNome(options: INgxSelectOption[]) {
+    let tipo = 0;
     if (options) {
-
+      tipo = options[0].data.type;
       options[0].text = options[0].data.nome;
 
+    }
+
+    if (tipo == 2) {
+      //Veterinario
+      this.router.navigate([`/doctor/${options[0].text}`]);
+    } else if (tipo == 3) {
+      //clinica
+      this.router.navigate([`/detail/${options[0].text}`]);
     }
 
   }

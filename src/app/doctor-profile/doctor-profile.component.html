@@ -30,16 +30,19 @@
 										<img *ngIf="doctorDetails" src="assets/img/doctors/doctor-thumb-02.jpg" class="img-fluid" alt="User Image">
 									</div>
 									<div class="doc-info-cont">
-										<h4 class="doc-name" *ngIf="!doctorDetails">Dr. Darren Elder</h4>
-										<h4 class="doc-name" *ngIf="doctorDetails">{{doctorDetails.doctor_name}}</h4>
+										<h4 class="doc-name" *ngIf="doctorDetails">{{doctorDetails.nome}}</h4>
 										<p class="doc-speciality" *ngIf="!doctorDetails">BDS, MDS - Oral & Maxillofacial Surgery</p>
 										<p class="doc-speciality" *ngIf="doctorDetails">{{doctorDetails.Education}}</p>
 										<p class="doc-department" *ngIf="!doctorDetails"><img src="assets/img/specialities/specialities-05.png" class="img-fluid" alt="Speciality">
 											<span > Dentist </span>
 										</p>
-										<p class="doc-department" *ngIf="doctorDetails"><img [src]="doctorDetails.speciality_profile" class="img-fluid" alt="Speciality">
-											<span > {{doctorDetails.speciality}} </span>
-										</p>
+
+                    <p class="doc-department" *ngFor="let especialidade of doctorDetails.especialidades">
+                        <img src="assets/img/specialities/specialities-05.png" class="img-fluid" alt={{especialidade.nome}}> <span > {{especialidade.nome}}</span>
+                    </p>
+
+
+
 										<div class="rating">
 											<i class="fas fa-star filled"></i>
 											<i class="fas fa-star filled"></i>
@@ -50,7 +53,7 @@
 										</div>
 										<div class="clinic-details">
 											<p class="doc-location" *ngIf="!doctorDetails"><i class="fas fa-map-marker-alt"></i> Newyork, USA - <a href="javascript:void(0);">Get Directions</a></p>
-											<p class="doc-location" *ngIf="doctorDetails"><i class="fas fa-map-marker-alt"></i> {{doctorDetails.location}} - <a href="javascript:void(0);">Get Directions</a></p>
+											<p class="doc-location" *ngIf="doctorDetails"><i class="fas fa-map-marker-alt"></i> {{doctorDetails.endereco?.municipio}}, {{doctorDetails.endereco?.estado}}</p>
 											<ul class="clinic-gallery">
 												<li>
 													<a lightbox-group >
@@ -74,11 +77,11 @@
 											<li><i class="far fa-comment"></i> 35 Feedback</li>
 											<li><i class="fas fa-map-marker-alt"></i>
 												<span *ngIf="!doctorDetails">Newyork,USA</span>
-												<span *ngIf="doctorDetails">{{doctorDetails.location}}</span>
+												<span *ngIf="doctorDetails">{{doctorDetails.endereco?.municipio}}, {{doctorDetails.endereco?.estado}}</span>
 											</li>
 											<li><i class="far fa-money-bill-alt"></i>
 												<span *ngIf="!doctorDetails">$100 per hour</span>
-												<span *ngIf="doctorDetails">{{doctorDetails.Price}} per hour</span>
+												<span *ngIf="doctorDetails">$100 per hour</span>
 											 </li>
 										</ul>
 									</div>
@@ -86,7 +89,7 @@
 										<a (click)="addFav()" id="fav-btn" class="btn btn-white fav-btn">
 											<i class="far fa-bookmark"></i>
 										</a>
-										<!--<a [routerLink]="'/doctor/message'" class="btn btn-white msg-btn">
+										<a [routerLink]="'/doctor/message'" class="btn btn-white msg-btn">
 											<i class="far fa-comment-alt"></i>
 										</a>
 										<a [routerLink]="'/voice-call'" class="btn btn-white call-btn" data-toggle="modal" data-target="#voice_call">
@@ -94,10 +97,10 @@
 										</a>
 										<a [routerLink]="'/video-call'"  class="btn btn-white call-btn" data-toggle="modal" data-target="#video_call">
 											<i class="fas fa-video"></i>
-										</a> -->
+										</a>
 									</div>
 									<div class="clinic-booking">
-										<!--<a class="apt-btn" [routerLink]="'/patients/booking'"  [queryParams]="{id: doctorDetails?.id}">Book Appointment</a>-->
+										  <a class="apt-btn" [routerLink]="'/patients/booking'"  [queryParams]="{id: doctorDetails?.id}">Book Appointment</a>
 									</div>
 								</div>
 							</div>
@@ -303,14 +306,14 @@
 								<div role="tabpanel" id="doc_locations" class="tab-pane fade">
 
 									<!-- Location List -->
-									<div class="location-list">
+									<div class="location-list" *ngFor="let estabelecimento of doctorDetails.estabelecimentos;">
 										<div class="row">
 
 											<!-- Clinic Content -->
 											<div class="col-md-6">
 												<div class="clinic-content">
-													<h4 class="clinic-name"><a href="javascript:void(0)">Smile Cute Dental Care Center</a></h4>
-													<p class="doc-speciality">MDS - Periodontology and Oral Implantology, BDS</p>
+													<h4 class="clinic-name"><a href="javascript:void(0)">{{estabelecimento.nome}}</a></h4>
+													<p class="doc-speciality">{{estabelecimento.especialidades.nome}}</p>
 													<div class="rating">
 														<i class="fas fa-star filled"></i>
 														<i class="fas fa-star filled"></i>
@@ -320,7 +323,7 @@
 														<span class="d-inline-block average-rating">(4)</span>
 													</div>
 													<div class="clinic-details mb-0">
-														<h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> 2286  Sundown Lane, Austin, Texas 78749, USA <br><a href="javascript:void(0);">Get Directions</a></h5>
+														<h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> {{estabelecimento.endereco?.logradouro}}, {{estabelecimento.endereco?.numero}}, {{estabelecimento.endereco?.bairro}}, {{estabelecimento.endereco?.municipio}}, {{estabelecimento.endereco?.estado}} <br></h5>
 														<ul class="clinic-gallery">
 															<li>
 																<a lightbox-group >
@@ -368,72 +371,7 @@
 									</div>
 									<!-- /Location List -->
 
-									<!-- Location List -->
-									<div class="location-list">
-										<div class="row">
 
-											<!-- Clinic Content -->
-											<div class="col-md-6">
-												<div class="clinic-content">
-													<h4 class="clinic-name"><a href="javascript:void(0)">The Family Dentistry Clinic</a></h4>
-													<p class="doc-speciality">MDS - Periodontology and Oral Implantology, BDS</p>
-													<div class="rating">
-														<i class="fas fa-star filled"></i>
-														<i class="fas fa-star filled"></i>
-														<i class="fas fa-star filled"></i>
-														<i class="fas fa-star filled"></i>
-														<i class="fas fa-star"></i>
-														<span class="d-inline-block average-rating">(4)</span>
-													</div>
-													<div class="clinic-details mb-0">
-														<p class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> 2883  University Street, Seattle, Texas Washington, 98155 <br><a href="javascript:void(0);">Get Directions</a></p>
-														<ul class="clinic-gallery">
-															<li>
-																<a lightbox-group >
-																	<img *ngFor="let image of images"
-																	[src]="image.path"
-																	lightbox />
-																</a>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<!-- /Clinic Content -->
-
-											<!-- Clinic Timing -->
-											<div class="col-md-4">
-												<div class="clinic-timing">
-													<div>
-														<p class="timings-days">
-															<span> Tue - Fri </span>
-														</p>
-														<p class="timings-times">
-															<span>11:00 AM - 1:00 PM</span>
-															<span>6:00 PM - 11:00 PM</span>
-														</p>
-													</div>
-													<div>
-														<p class="timings-days">
-															<span>Sat - Sun</span>
-														</p>
-														<p class="timings-times">
-															<span>8:00 AM - 10:00 AM</span>
-															<span>3:00 PM - 7:00 PM</span>
-														</p>
-													</div>
-												</div>
-											</div>
-											<!-- /Clinic Timing -->
-
-											<div class="col-md-2">
-												<div class="consult-price">
-													$350
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- /Location List -->
 
 								</div>
 								<!-- /Locations Content -->

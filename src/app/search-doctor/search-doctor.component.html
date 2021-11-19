@@ -47,7 +47,7 @@
 
 									<div style="height: 800px;">
 										<agm-map [latitude]="lat" [zoom]="10" [longitude]="lng">
-											
+
 											<agm-circle [latitude]="lat" [longitude]="lng" [radius]="20000" [fillColor]="'green'"
 												[editable]="false">
 											</agm-circle>
@@ -91,13 +91,13 @@
 									<div class="doctor-widget">
 										<div class="doc-info-left">
 											<div class="doctor-img">
-												<a [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.id}">
+												<a [routerLink]="'/doctor/'+doctor.nome">
 													<!--<img [src]="doctor.profile" class="img-fluid" alt="User Image"> -->
                           <img src="assets/img/doctors/veterinaria.png" class="img-fluid" alt=""/>
 												</a>
 											</div>
 											<div class="doc-info-cont">
-												<h4 class="doc-name"><a [routerLink]="'/patients/doctor-profi4558le'" [queryParams]="{id: doctor.id}">{{doctor.nome}}</a></h4>
+												<h4 class="doc-name"><a [routerLink]="'/doctor/'+doctor.nome">{{doctor.nome}}</a></h4>
 												<p class="doc-speciality">{{doctor.Education}}</p>
 												<h5 class="doc-department" *ngFor="let especialidade of doctor.especialidades">
                           <!-- img [src]="doctor.speciality_profile" class="img-fluid" alt="Speciality"> -->
