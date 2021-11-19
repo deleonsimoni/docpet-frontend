@@ -21,7 +21,8 @@ export class SearchDoctorComponent implements OnInit {
   selDate;
   idEspecialidade;
   dsMunicipio;
-
+  lat;
+  lng;
 
 
   options = {
@@ -57,12 +58,17 @@ export class SearchDoctorComponent implements OnInit {
   }
 
   getEstabelecimentos(id, municipio) {
-    console.log('ID-ESPC', id);
-    console.log('Municipio', municipio);
+   
     this.veterinarioService.getByEspecialidadeMunicipio(id, municipio).subscribe(
       (res) => {
         this.doctors = res;
-        console.log(this.doctors);
+        if(this.doctors.length > 0){
+
+          this.lat = this.doctors[0].location.coordinates[1];
+          this.lng = this.doctors[0].location.coordinates[0];
+
+        }
+
       },
     );
   }

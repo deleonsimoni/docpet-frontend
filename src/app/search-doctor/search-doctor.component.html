@@ -45,9 +45,22 @@
 								</div>
 								<div class="card-body">
 
-									<div style="height: 800px;"
-										leaflet
-										[leafletOptions]="options">
+									<div style="height: 800px;">
+										<agm-map [latitude]="lat" [zoom]="10" [longitude]="lng">
+											
+											<agm-circle [latitude]="lat" [longitude]="lng" [radius]="20000" [fillColor]="'green'"
+												[editable]="false">
+											</agm-circle>
+
+											<agm-marker *ngFor="let doctor of doctors" [latitude]="doctor.location.coordinates[1]" [longitude]="doctor.location.coordinates[0]">
+												<agm-info-window>
+													<h3>{{doctor.nome}}</h3>
+													<h5 *ngFor="let especialidade of doctor.especialidades">{{especialidade.nome}}</h5>
+													<p>{{doctor.contato.telefone}}</p>
+												</agm-info-window>
+											</agm-marker>
+
+										  </agm-map>
 									</div>
 
 								</div>
