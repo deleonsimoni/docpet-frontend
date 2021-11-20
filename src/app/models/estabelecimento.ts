@@ -9,5 +9,8 @@ export interface Estabelecimento {
   contato: Contato,
   endereco: Endereco,
   especialidade: [],
-  veterinarios: [Veterinario]
+  veterinarios: [Veterinario],
+  location:{
+    coordinates: [0, 0]
+  }
 }

@@ -91,18 +91,27 @@ export class CadastroComponent implements OnInit {
   }
 
   popular(){
-    console.log("Listando Estabelecimento por ID" + this.id);
     this.estabelecimentosevice.get(this.id).subscribe(estabelecimento => {
       let estab = estabelecimento as Estabelecimento;
 
       this.estabelecimentoForm.patchValue(estab);
 
+      if(estab.location){
+        var location = estab.location;
+        this.lat = location.coordinates[1];
+        this.lng = location.coordinates[0];
+        this.showMap = true;
+      }
+
       if(estab.veterinarios.length > 0){
         this.isVeterinario = true;
+
+        this.veterinarios = this.estabelecimentoForm.get('veterinarios') as FormArray;
 
         for(var i=1; i < estab.veterinarios.length; i++){
           this.addVeterinario();
         }
+
         this.estabelecimentoForm.get('veterinarios').patchValue(estab.veterinarios);
       }
     }),(error) => {

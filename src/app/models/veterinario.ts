@@ -10,4 +10,7 @@ export interface Veterinario {
   endereco: Endereco,
   especialidade: [],
   estabelecimentos: [Estabelecimento]
+  location:{
+    coordinates: [0, 0]
+  }
 }

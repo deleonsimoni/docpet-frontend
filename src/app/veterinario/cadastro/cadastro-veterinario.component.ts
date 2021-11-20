@@ -82,23 +82,30 @@ export class CadastroVeterinarioComponent implements OnInit {
   }
 
   popular(){
-
     this.veterinarioService.get(this.id).subscribe(veterinario => {
+
       let vet = veterinario as Veterinario;
 
       this.veterinarioForm.patchValue(vet);
 
-      this.estabelecimentoSevice.getByIdVet(this.id).subscribe(estebelecimento => {
-        if(estebelecimento.length > 0){
-          let estab = estebelecimento as Estabelecimento;
-          this.isEstabelecimento = true;
+      if(vet.location){
+        var location = vet.location;
+        this.lat = location.coordinates[1];
+        this.lng = location.coordinates[0];
+        this.showMap = true;
+      }
 
-          if(estebelecimento.length > 1){
-            this.addEstabelecimento();
-          }
-          this.veterinarioForm.get('estabelecimentos').patchValue(estab);
+      if(vet.estabelecimentos.length > 0){
+        this.isEstabelecimento = true;
+
+        this.estabelecimentos = this.veterinarioForm.get('estabelecimentos') as FormArray;
+
+        for(var i=1; i < vet.estabelecimentos.length; i++){
+          this.addEstabelecimento();
         }
-      });
+        this.veterinarioForm.get('estabelecimentos').patchValue(vet.estabelecimentos);
+      }
+
     }),(error) => {
       console.log(error);
     }
@@ -109,7 +116,7 @@ export class CadastroVeterinarioComponent implements OnInit {
   salvar(){
     if (this.veterinarioForm.valid) {
       const novoVeterinario = this.veterinarioForm.getRawValue() as Veterinario;
-
+      console.log(novoVeterinario);
       if(this.id){
         this.veterinarioService.update(this.id, novoVeterinario).subscribe(
           () => {
@@ -146,7 +153,7 @@ export class CadastroVeterinarioComponent implements OnInit {
   }
 
   buscarMap():void{
- 
+
     const novoVeterinario = this.veterinarioForm.getRawValue() as Veterinario;
 
     this.cepService.getLocale(JSON.stringify(novoVeterinario.endereco)).subscribe(data=>{

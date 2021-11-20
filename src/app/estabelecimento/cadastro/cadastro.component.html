@@ -125,93 +125,105 @@
   <div class="card">
     <div class="card-body">
         <h4 class="card-title">Endereço</h4>
+
         <div class="row form-row" formGroupName="endereco">
-          <div class="col-md-2">
-            <div class="form-group">
-                <label>CEP<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" formControlName="cep" mask="00000-000">
-                <app-mensagem *ngIf="
-                  estabelecimentoForm.get('endereco')?.get('cep')?.errors?.required &&
-                  estabelecimentoForm.get('endereco')?.get('cep')?.touched"
-                  mensagem="CEP é obrigatório">
-              </app-mensagem>
-            </div>
-          </div>
-          <div class="col-md-1">
-            <div class="form-group">
-              <label></label>
-              <div class="btn-search">
-                <button type="button" class="btn btn-block" style="margin-top: 7px; width: 45px;" (click)="buscarCEP(estabelecimentoForm.get('endereco')?.get('cep')?.value)"><i class="fas fa-search"></i></button>
+          <div class="col-md-6">
+            <div class="row form-row">
+              <div class="col-md-3">
+                <div class="form-group">
+                    <label>CEP<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="cep" mask="00000-000">
+                    <app-mensagem *ngIf="
+                      estabelecimentoForm.get('endereco')?.get('cep')?.errors?.required &&
+                      estabelecimentoForm.get('endereco')?.get('cep')?.touched"
+                      mensagem="CEP é obrigatório">
+                  </app-mensagem>
+                </div>
+              </div>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <label></label>
+                  <div class="btn-search">
+                    <button type="button" class="btn btn-block" style="margin-top: 7px; width: 45px;" (click)="buscarCEP(estabelecimentoForm.get('endereco')?.get('cep')?.value)"><i class="fas fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                    <label>Logradouro<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="logradouro" readonly>
+                    <app-mensagem *ngIf="
+                      estabelecimentoForm.get('endereco')?.get('logradouro')?.errors?.required &&
+                      estabelecimentoForm.get('endereco')?.get('logradouro')?.touched"
+                      mensagem="Logradouro é obrigatório">
+                  </app-mensagem>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                    <label>N°<span class="text-danger">*</span></label>
+                    <input [readonly]="estabelecimentoForm.get('endereco')?.get('logradouro').value == null" (change)="buscarMap()" type="text" class="form-control" formControlName="numero">
+                    <app-mensagem *ngIf="
+                      estabelecimentoForm.get('endereco')?.get('numero')?.errors?.required &&
+                      estabelecimentoForm.get('endereco')?.get('numero')?.touched"
+                      mensagem="Numero é obrigatório">
+                    </app-mensagem>
+
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                    <label>Complemento<span class="text-danger"></span></label>
+                    <input type="text" class="form-control" formControlName="complemento">
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="form-group">
+                    <label>Bairro<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="bairro" readonly>
+                    <app-mensagem *ngIf="
+                      estabelecimentoForm.get('endereco')?.get('bairro')?.errors?.required &&
+                      estabelecimentoForm.get('endereco')?.get('bairro')?.touched"
+                      mensagem="Bairro é obrigatório">
+                    </app-mensagem>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                    <label>Município<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="municipio" readonly>
+                    <app-mensagem *ngIf="
+                      estabelecimentoForm.get('endereco')?.get('municipio')?.errors?.required &&
+                      estabelecimentoForm.get('endereco')?.get('municipio')?.touched"
+                      mensagem="Nunicipio é obrigatório">
+                    </app-mensagem>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                    <label>Estado<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="estado" readonly>
+                    <app-mensagem *ngIf="
+                      estabelecimentoForm.get('endereco')?.get('estado')?.errors?.required &&
+                      estabelecimentoForm.get('endereco')?.get('estado')?.touched"
+                      mensagem="Estado é obrigatório">
+                    </app-mensagem>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="form-group">
-                <label>Logradouro<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" formControlName="logradouro" readonly>
-                <app-mensagem *ngIf="
-                  estabelecimentoForm.get('endereco')?.get('logradouro')?.errors?.required &&
-                  estabelecimentoForm.get('endereco')?.get('logradouro')?.touched"
-                  mensagem="Logradouro é obrigatório">
-              </app-mensagem>
-            </div>
-          </div>
-          <div class="col-md-1">
-            <div class="form-group">
-                <label>N°<span class="text-danger">*</span></label>
-                <input [readonly]="estabelecimentoForm.get('endereco')?.get('logradouro').value == null" (change)="buscarMap()" type="text" class="form-control" formControlName="numero">
-                <app-mensagem *ngIf="
-                  estabelecimentoForm.get('endereco')?.get('numero')?.errors?.required &&
-                  estabelecimentoForm.get('endereco')?.get('numero')?.touched"
-                  mensagem="Numero é obrigatório">
-                </app-mensagem>
 
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-                <label>Complemento<span class="text-danger"></span></label>
-                <input type="text" class="form-control" formControlName="complemento">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-                <label>Bairro<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" formControlName="bairro" readonly>
-                <app-mensagem *ngIf="
-                  estabelecimentoForm.get('endereco')?.get('bairro')?.errors?.required &&
-                  estabelecimentoForm.get('endereco')?.get('bairro')?.touched"
-                  mensagem="Bairro é obrigatório">
-                </app-mensagem>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-                <label>Município<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" formControlName="municipio" readonly>
-                <app-mensagem *ngIf="
-                  estabelecimentoForm.get('endereco')?.get('municipio')?.errors?.required &&
-                  estabelecimentoForm.get('endereco')?.get('municipio')?.touched"
-                  mensagem="Nunicipio é obrigatório">
-                </app-mensagem>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-                <label>Estado<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" formControlName="estado" readonly>
-                <app-mensagem *ngIf="
-                  estabelecimentoForm.get('endereco')?.get('estado')?.errors?.required &&
-                  estabelecimentoForm.get('endereco')?.get('estado')?.touched"
-                  mensagem="Estado é obrigatório">
-                </app-mensagem>
+          <div class="col-md-6">
+            <div class="row form-row">
+              <div class="col-md-12">
+                  <agm-map *ngIf="showMap"  [latitude]="lat" [zoom]="15" [longitude]="lng">
+                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                  </agm-map>
+              </div>
             </div>
           </div>
       </div>
     </div>
-    <agm-map *ngIf="showMap"  [latitude]="lat" [zoom]="15" [longitude]="lng">
-      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-    </agm-map>
   </div>
   <!-- Contato -->
   <div class="card" id="customInfoVeterinario" [hidden]="!checkIsVeterinario.checked">
