@@ -5,6 +5,7 @@ export interface Veterinario {
   id?: String,
   nome: String,
   crmv: String,
+  img: String;
   atendePlano: Boolean,
   contato: Contato,
   endereco: Endereco,

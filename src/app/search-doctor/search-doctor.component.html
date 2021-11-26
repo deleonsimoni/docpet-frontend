@@ -93,7 +93,9 @@
 											<div class="doctor-img">
 												<a [routerLink]="'/doctor/'+doctor.nome">
 													<!--<img [src]="doctor.profile" class="img-fluid" alt="User Image"> -->
-                          <img src="assets/img/doctors/veterinaria.png" class="img-fluid" alt=""/>
+                          <img 
+						  [src]="doctor.img ? doctor.img : 'assets/img/doctors/veterinaria.png'"
+						  class="img-fluid" alt=""/>
 												</a>
 											</div>
 											<div class="doc-info-cont">
