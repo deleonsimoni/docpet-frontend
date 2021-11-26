@@ -225,6 +225,21 @@
     <div class="card-body">
         <h4 class="card-title">Contato</h4>
         <div class="row form-row" formGroupName="contato">
+
+
+
+          <div class="col-md-12 mb-3">
+
+            <label class="hoverable" for="fileInput">
+              <img [src]="url ? url : 'https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg'"> 
+              <div class="hover-text">Escolha sua Foto</div>
+              <div class="background"></div>
+            </label>
+            <br/>
+            <input id="fileInput" type='file' (change)="onFileChanged($event)">
+            <button *ngIf="url" (click)="delete()" >Excluir foto</button>
+
+          </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Nome<span class="text-danger">* </span></label>

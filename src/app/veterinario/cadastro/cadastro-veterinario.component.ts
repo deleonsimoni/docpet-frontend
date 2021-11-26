@@ -69,7 +69,6 @@ export class CadastroVeterinarioComponent implements OnInit {
     var anos=[];
 
     anos.push(ano);
-
     for (var i = 1; i < 40; i++) {
       anos.push(ano - i);
     }
@@ -107,7 +106,22 @@ export class CadastroVeterinarioComponent implements OnInit {
         this.page = this.splitVal[2];
       }
     });
+  }
 
+  onFileChanged(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = event.target.result;
+      }
+    }
+  }
+
+  public delete(){
+    this.url = null;
   }
 
   popular(){
@@ -116,6 +130,10 @@ export class CadastroVeterinarioComponent implements OnInit {
       let vet = veterinario as Veterinario;
 
       this.veterinarioForm.patchValue(vet);
+
+      if(veterinario.img){
+        this.url = veterinario.img;
+      }
 
       if(vet.location){
         var location = vet.location;
@@ -175,7 +193,11 @@ export class CadastroVeterinarioComponent implements OnInit {
   salvar(){
     if (this.veterinarioForm.valid) {
       const novoVeterinario = this.veterinarioForm.getRawValue() as Veterinario;
-      console.log(novoVeterinario);
+
+      if(this.url){
+        novoVeterinario.img = this.url;
+      }
+
       if(this.id){
         this.veterinarioService.update(this.id, novoVeterinario).subscribe(
           () => {
