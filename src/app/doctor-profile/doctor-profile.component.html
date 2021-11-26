@@ -35,73 +35,16 @@
 										<p class="doc-speciality" *ngIf="doctorDetails">{{doctorDetails.Education}}</p>
 										<p class="doc-department" *ngIf="!doctorDetails"><img src="assets/img/specialities/specialities-05.png" class="img-fluid" alt="Speciality">
 											<span > Dentist </span>
-										</p>
-
+  										</p>
                     <p class="doc-department" *ngFor="let especialidade of doctorDetails.especialidades">
                         <img src="assets/img/specialities/specialities-05.png" class="img-fluid" alt={{especialidade.nome}}> <span > {{especialidade.nome}}</span>
                     </p>
-
-
-
-										<div class="rating">
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star"></i>
-											<span class="d-inline-block average-rating">(35)</span>
-										</div>
 										<div class="clinic-details">
-											<p class="doc-location" *ngIf="!doctorDetails"><i class="fas fa-map-marker-alt"></i> Newyork, USA - <a href="javascript:void(0);">Get Directions</a></p>
-											<p class="doc-location" *ngIf="doctorDetails"><i class="fas fa-map-marker-alt"></i> {{doctorDetails.endereco?.municipio}}, {{doctorDetails.endereco?.estado}}</p>
-											<ul class="clinic-gallery">
-												<li>
-													<a lightbox-group >
-														<img *ngFor="let image of images"
-														[src]="image.path"
-														lightbox />
-													</a>
-												</li>
-											</ul>
-										</div>
-										<div class="clinic-services">
-											<span>Dental Fillings</span>
-											<span>Teeth Whitneing</span>
+											<p class="doc-location" *ngIf="doctorDetails"><i class="fas fa-map-marker-alt"></i> {{doctorDetails.estabelecimentos[0]?.endereco.logradouro}}, {{doctorDetails.estabelecimentos[0]?.endereco?.numero}}, {{doctorDetails.estabelecimentos[0]?.endereco?.bairro}}, {{doctorDetails.estabelecimentos[0]?.endereco?.municipio}}, {{doctorDetails.estabelecimentos[0]?.endereco?.estado}}</p>
 										</div>
 									</div>
 								</div>
 								<div class="doc-info-right">
-									<div class="clini-infos">
-										<ul>
-											<li><i class="far fa-thumbs-up"></i> 99%</li>
-											<li><i class="far fa-comment"></i> 35 Feedback</li>
-											<li><i class="fas fa-map-marker-alt"></i>
-												<span *ngIf="!doctorDetails">Newyork,USA</span>
-												<span *ngIf="doctorDetails">{{doctorDetails.endereco?.municipio}}, {{doctorDetails.endereco?.estado}}</span>
-											</li>
-											<li><i class="far fa-money-bill-alt"></i>
-												<span *ngIf="!doctorDetails">$100 per hour</span>
-												<span *ngIf="doctorDetails">$100 per hour</span>
-											 </li>
-										</ul>
-									</div>
-									<div class="doctor-action">
-										<a (click)="addFav()" id="fav-btn" class="btn btn-white fav-btn">
-											<i class="far fa-bookmark"></i>
-										</a>
-										<a [routerLink]="'/doctor/message'" class="btn btn-white msg-btn">
-											<i class="far fa-comment-alt"></i>
-										</a>
-										<a [routerLink]="'/voice-call'" class="btn btn-white call-btn" data-toggle="modal" data-target="#voice_call">
-											<i class="fas fa-phone"></i>
-										</a>
-										<a [routerLink]="'/video-call'"  class="btn btn-white call-btn" data-toggle="modal" data-target="#video_call">
-											<i class="fas fa-video"></i>
-										</a>
-									</div>
-									<div class="clinic-booking">
-										  <a class="apt-btn" [routerLink]="'/patients/booking'"  [queryParams]="{id: doctorDetails?.id}">Book Appointment</a>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -113,6 +56,7 @@
 						<div class="card-body pt-0">
 
 							<!-- Tab Menu -->
+              <!--
 							<nav class="user-tabs mb-4">
 								<ul class="nav nav-tabs nav-tabs-bottom nav-justified">
 									<li class="nav-item">
@@ -129,9 +73,11 @@
 									</li>
 								</ul>
 							</nav>
+              -->
 							<!-- /Tab Menu -->
 
 							<!-- Tab Content -->
+              <br />
 							<div class="tab-content pt-0">
 
 								<!-- Overview Content -->
@@ -141,37 +87,25 @@
 
 											<!-- About Details -->
 											<div class="widget about-widget">
-												<h4 class="widget-title">About Me</h4>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+												<h4 class="widget-title">Sobre</h4>
+												<p>{{doctorDetails.sobre}}</p>
 											</div>
 											<!-- /About Details -->
 
 											<!-- Education Details -->
 											<div class="widget education-widget">
-												<h4 class="widget-title">Education</h4>
+												<h4 class="widget-title">Formação</h4>
 												<div class="experience-box">
 													<ul class="experience-list">
-														<li>
+														<li *ngFor="let formacao of  doctorDetails.formacoes" >
 															<div class="experience-user">
 																<div class="before-circle"></div>
 															</div>
 															<div class="experience-content">
 																<div class="timeline-content">
-																	<a href="#/" class="name">American Dental Medical University</a>
-																	<div>BDS</div>
-																	<span class="time">1998 - 2003</span>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="experience-user">
-																<div class="before-circle"></div>
-															</div>
-															<div class="experience-content">
-																<div class="timeline-content">
-																	<a href="#/" class="name">American Dental Medical University</a>
-																	<div>MDS</div>
-																	<span class="time">2003 - 2005</span>
+																	<a href="#/" class="name">{{formacao.nomeInstituicao}}</a>
+																	<div>{{formacao.curso}}</div>
+																	<span class="time">{{formacao.anoInicio}} - {{formacao.anoFim}}</span>
 																</div>
 															</div>
 														</li>
@@ -182,39 +116,17 @@
 
 											<!-- Experience Details -->
 											<div class="widget experience-widget">
-												<h4 class="widget-title">Work & Experience</h4>
+												<h4 class="widget-title">Experiência</h4>
 												<div class="experience-box">
 													<ul class="experience-list">
-														<li>
+														<li *ngFor="let experiencia of doctorDetails.experiencias">
 															<div class="experience-user">
 																<div class="before-circle"></div>
 															</div>
 															<div class="experience-content">
 																<div class="timeline-content">
-																	<a href="#/" class="name">Glowing Smiles Family Dental Clinic</a>
-																	<span class="time">2010 - Present (5 years)</span>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="experience-user">
-																<div class="before-circle"></div>
-															</div>
-															<div class="experience-content">
-																<div class="timeline-content">
-																	<a href="#/" class="name">Comfort Care Dental Clinic</a>
-																	<span class="time">2007 - 2010 (3 years)</span>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="experience-user">
-																<div class="before-circle"></div>
-															</div>
-															<div class="experience-content">
-																<div class="timeline-content">
-																	<a href="#/" class="name">Dream Smile Dental Practice</a>
-																	<span class="time">2005 - 2007 (2 years)</span>
+																	<a href="#/" class="name">{{experiencia.nomeEstabelecimento}}</a>
+																	<span class="time">{{experiencia.anoInicio}} - {{experiencia.anoFim? experiencia.anoFim : 'Presente'}}</span>
 																</div>
 															</div>
 														</li>
@@ -225,52 +137,54 @@
 
 											<!-- Awards Details -->
 											<div class="widget awards-widget">
-												<h4 class="widget-title">Awards</h4>
+												<h4 class="widget-title">Conquista</h4>
 												<div class="experience-box">
 													<ul class="experience-list">
-														<li>
+														<li *ngFor="let conquista of doctorDetails.conquistas">
 															<div class="experience-user">
 																<div class="before-circle"></div>
 															</div>
 															<div class="experience-content">
 																<div class="timeline-content">
-																	<p class="exp-year">July 2019</p>
-																	<h4 class="exp-title">Humanitarian Award</h4>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="experience-user">
-																<div class="before-circle"></div>
-															</div>
-															<div class="experience-content">
-																<div class="timeline-content">
-																	<p class="exp-year">March 2011</p>
-																	<h4 class="exp-title">Certificate for International Volunteer Service</h4>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="experience-user">
-																<div class="before-circle"></div>
-															</div>
-															<div class="experience-content">
-																<div class="timeline-content">
-																	<p class="exp-year">May 2008</p>
-																	<h4 class="exp-title">The Dental Professional of The Year Award</h4>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+																	<p class="exp-year">{{getMes(conquista.mes)}} {{conquista.ano}}</p>
+																	<h4 class="exp-title">{{conquista.nome}}</h4>
+																	<p>{{conquista.descricao}}</p>
 																</div>
 															</div>
 														</li>
 													</ul>
 												</div>
 											</div>
+                      <div class="widget awards-widget">
+												<h4 class="widget-title">Consultórios ({{doctorDetails.estabelecimentos.length}})</h4>
+												<div class="experience-box">
+                          <div [hidden]="doctorDetails.estabelecimentos.length <= 0">
+                            <div class="col-12 col-md-12 col-lg-12 d-flex">
+                              <div class="card flex-fill">
+                                  <div class="card-header">
+                                      <ul role="tablist" class="nav nav-tabs card-header-tabs float-left">
+                                          <li class="nav-item" *ngFor="let estabelecimento of doctorDetails.estabelecimentos; let i = index">
+                                              <a href="#tab-{{i}}" data-toggle="tab" [ngClass]="[i === 'home-seven' ? 'nav-link active' : 'nav-link' ]">Endereço {{i+1}}</a>
+                                          </li>
+                                      </ul>
+                                  </div>
+                                  <div class="card-body">
+                                      <div class="tab-content pt-0">
+                                          <div *ngFor="let estabelecimento of doctorDetails.estabelecimentos; let i = index" role="tabpanel" id="tab-{{i}}" [ngClass]="[i === 0 ? 'tab-pane fade show active' : 'tab-pane fade' ]">
+                                            <p class="card-text" [hidden]="!estabelecimento.endereco"> <i class="fas fa-map-marker-alt"></i> {{estabelecimento.endereco?.logradouro}}, {{estabelecimento.endereco?.numero}}, {{estabelecimento.endereco?.bairro}}, {{estabelecimento.endereco?.municipio}}, {{estabelecimento.endereco?.estado}}</p>
+                                            <p class="card-text" [hidden]="estabelecimento.endereco"> <i class="fas fa-map-marker-alt"></i> Endereço não cadastrado </p>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 											<!-- /Awards Details -->
 
 											<!-- Services List -->
-											<div class="service-list">
+											<!--<div class="service-list">
 												<h4>Services</h4>
 												<ul class="clearfix">
 													<li>Tooth cleaning </li>
@@ -281,21 +195,8 @@
 													<li>Surgical Extractions</li>
 												</ul>
 											</div>
+                    -->
 											<!-- /Services List -->
-
-											<!-- Specializations List -->
-											<div class="service-list">
-												<h4>Specializations</h4>
-												<ul class="clearfix">
-													<li>Children Care</li>
-													<li>Dental Care</li>
-													<li>Oral and Maxillofacial Surgery </li>
-													<li>Orthodontist</li>
-													<li>Periodontist</li>
-													<li>Prosthodontics</li>
-												</ul>
-											</div>
-											<!-- /Specializations List -->
 
 										</div>
 									</div>
@@ -313,7 +214,7 @@
 											<div class="col-md-6">
 												<div class="clinic-content">
 													<h4 class="clinic-name"><a href="javascript:void(0)">{{estabelecimento.nome}}</a></h4>
-													<p class="doc-speciality">{{estabelecimento.especialidades.nome}}</p>
+													<p class="doc-speciality"></p>
 													<div class="rating">
 														<i class="fas fa-star filled"></i>
 														<i class="fas fa-star filled"></i>

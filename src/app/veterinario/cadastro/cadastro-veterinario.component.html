@@ -65,11 +65,161 @@
                 </div>
               </div>
           </div>
+          <div class="col-md-12 col-lg-12">
+              <div class="form-group">
+                  <label>Sobre <span class="text-danger">*</span></label>
+                  <textarea id="sobre" class="form-control service-desc" name="sobre" formControlName="sobre"></textarea>
+              </div>
+          </div>
 
         </div>
     </div>
   </div>
   <!-- /Basic Information -->
+  <!-- Information formação-->
+  <div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Formação</h4>
+        <div class="formacao-info" formArrayName="formacoes"
+        *ngFor="let formacao of veterinarioForm.get('formacoes')['controls']; let i = index;">
+          <div class="row form-row" [formGroupName]="i">
+              <div class="col-md-5">
+                  <div class="form-group">
+                      <label>Instituição<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" formControlName="nomeInstituicao" #nomeInstituicao>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="form-group">
+                      <label>Curso<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" formControlName="curso">
+                  </div>
+              </div>
+              <div class="col-md-1 col-lg-1">
+                  <div class="form-group">
+                      <label>Início <span class="text-danger">*</span></label>
+                      <select class="form-control" formControlName="anoInicio">
+                        <option>-</option>
+                        <option  *ngFor="let ano of listaAnos">{{ano}}</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="col-md-1 col-lg-1">
+                <div class="form-group">
+                    <label>Termino <span class="text-danger">*</span></label>
+                    <select class="form-control"formControlName="anoFim">
+                      <option>-</option>
+                      <option  *ngFor="let ano of listaAnos">{{ano}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-1 col-md-1 col-lg-1"  *ngIf="!isAddMode || i != 0">
+              <label class="d-md-block d-sm-none d-none">&nbsp;</label>
+              <a href="javascript:void(0);" (click)="removeFormacao(i)" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>
+          </div>
+          </div>
+        </div>
+        <div class="add-more">
+          <a href="javascript:void(0);" (click)="addFormacao()" class="add-formacao"><i class="fa fa-plus-circle"></i> Adicionar</a>
+        </div>
+    </div>
+  </div>
+  <!-- /Basic formação -->
+  <!-- Information Experiencia-->
+    <div class="card">
+      <div class="card-body">
+          <h4 class="card-title">Experiencia</h4>
+          <div class="formacao-info" formArrayName="experiencias"
+          *ngFor="let experiencia of veterinarioForm.get('experiencias')['controls']; let i = index;">
+            <div class="row form-row" [formGroupName]="i">
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label>Nome da empresa<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" formControlName="nomeEstabelecimento">
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1">
+                    <div class="form-group">
+                        <label>Início <span class="text-danger">*</span></label>
+                        <select class="form-control" formControlName="anoInicio">
+                          <option>-</option>
+                          <option  *ngFor="let ano of listaAnos">{{ano}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1">
+                  <div class="form-group">
+                      <label>Termino <span class="text-danger">*</span></label>
+                      <select class="form-control"formControlName="anoFim">
+                        <option>-</option>
+                        <option  *ngFor="let ano of listaAnos">{{ano}}</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="col-1 col-md-1 col-lg-1"  *ngIf="!isAddMode || i != 0">
+                <label class="d-md-block d-sm-none d-none">&nbsp;</label>
+                <a href="javascript:void(0);" (click)="removeExperiencia(i)" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>
+            </div>
+            </div>
+          </div>
+          <div class="add-more">
+            <a href="javascript:void(0);" (click)="addExperiencia()" class="add-formacao"><i class="fa fa-plus-circle"></i> Adicionar</a>
+          </div>
+      </div>
+    </div>
+    <!-- /Basic experiencia -->
+     <!-- Information conquistas-->
+     <div class="card">
+      <div class="card-body">
+          <h4 class="card-title">Conquista</h4>
+          <div class="formacao-info" formArrayName="conquistas"
+          *ngFor="let conquista of veterinarioForm.get('conquistas')['controls']; let i = index;">
+            <div class="row form-row" [formGroupName]="i">
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label>Nome<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" formControlName="nome">
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1">
+                    <div class="form-group">
+                        <label>Mês <span class="text-danger">*</span></label>
+                        <select class="form-control" formControlName="mes">
+                          <option>-</option>
+                          <option  *ngFor="let mes of meses" [ngValue]="mes.id">{{mes.abreviado}} </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-1">
+                  <div class="form-group">
+                      <label>Termino <span class="text-danger">*</span></label>
+                      <select class="form-control"formControlName="ano">
+                        <option>-</option>
+                        <option  *ngFor="let ano of listaAnos">{{ano}}</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="col-md-11 col-lg-11">
+                <div class="form-group">
+                    <label>Descrição<span class="text-danger">*</span></label>
+                    <textarea id="descricao" class="form-control service-desc" name="descricao" formControlName="descricao"></textarea>
+                </div>
+              </div>
+              <div class="col-1 col-md-1 col-lg-1"  *ngIf="!isAddMode || i != 0">
+                <label class="d-md-block d-sm-none d-none">&nbsp;</label>
+                <a href="javascript:void(0);" (click)="removeConquista(i)" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>
+              </div>
+
+
+            </div>
+          </div>
+          <div class="add-more">
+            <a href="javascript:void(0);" (click)="addConquista()" class="add-formacao"><i class="fa fa-plus-circle"></i> Adicionar</a>
+          </div>
+      </div>
+    </div>
+    <!-- /Basic formação -->
+
   <!-- Contato -->
   <div class="card">
     <div class="card-body">

@@ -1,6 +1,8 @@
+import { EstabelecimentoService } from './../services/estabelecimento.service';
 import { VeterinarioService } from './../services/veterinario.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Veterinario } from '../models/veterinario';
 
 
 @Component({
@@ -12,8 +14,25 @@ export class DoctorProfileComponent implements OnInit {
   id;
   docNameFormated;
   doctorDetails;
+  estabelecimentos;
+
+  meses = [ {id:1, mes:'Janeiro', abreviado:'Jan'},
+  {id:2, mes:'Fevereiro', abreviado:'Fev'},
+  {id:3, mes:'Março', abreviado:'Mar'},
+  {id:4, mes:'Abril', abreviado:'Abr'},
+  {id:5, mes:'Maio', abreviado:'Mai'},
+  {id:6, mes:'Junho', abreviado:'Jun'},
+  {id:7, mes:'Julho', abreviado:'Jul'},
+  {id:8, mes:'Agosto', abreviado:'Ago'},
+  {id:9, mes:'Setembro', abreviado:'Set'},
+  {id:10, mes:'Outubro', abreviado:'Out'},
+  {id:11, mes:'Novembro', abreviado:'Nov'},
+  {id:12, mes:'Dezembro', abreviado:'Dez'},
+];
+
   constructor(
     private veterinarioService: VeterinarioService,
+    private estabelecimentoService: EstabelecimentoService,
     private route: ActivatedRoute,
     public router: Router,
 
@@ -44,16 +63,11 @@ export class DoctorProfileComponent implements OnInit {
   }
 
   getDoctorsDetails() {
-    console.log('teste');
     if (this.docNameFormated) {
-
-        console.log(this.docNameFormated);
         this.veterinarioService.getByName(this.docNameFormated).subscribe(
           (res) => {
-            console.log("Teste", res);
-            this.doctorDetails = res;
-
-            //this.dtTrigger.next();
+            this.doctorDetails = res as Veterinario;
+             //this.dtTrigger.next();
           },
           //(error) => (this.errorMessage = <any>error)
         );
@@ -62,7 +76,7 @@ export class DoctorProfileComponent implements OnInit {
 
   }
 
-  addFav() {
-
+  getMes(i){
+    return this.meses[i-1].abreviado;
   }
 }
