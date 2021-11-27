@@ -26,8 +26,12 @@
 							<div class="doctor-widget">
 								<div class="doc-info-left">
 									<div class="doctor-img">
-										<img *ngIf="!doctorDetails" src="assets/img/doctors/doctor-thumb-02.jpg" class="img-fluid" alt="User Image">
-										<img *ngIf="doctorDetails" src="assets/img/doctors/doctor-thumb-02.jpg" class="img-fluid" alt="User Image">
+                    <!--<label class="hoverable" for="fileInput">
+                      <img [src]="doctorDetails.img ? doctorDetails.img : 'https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg'">
+                      <div class="background"></div>
+                    </label> -->
+                    <img class="img-fluid" [src]="doctorDetails.img ? doctorDetails.img : 'https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg'">
+										<!--<img *ngIf="doctorDetails" src="assets/img/doctors/doctor-thumb-02.jpg" class="img-fluid" alt="User Image"> -->
 									</div>
 									<div class="doc-info-cont">
 										<h4 class="doc-name" *ngIf="doctorDetails">{{doctorDetails.nome}}</h4>

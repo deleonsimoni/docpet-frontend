@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class FormContatoComponent implements OnInit {
 
   base = 'Form';
-  page = 'Contato';
+  page = 'Cadastre-se';
 
   constructor() { }
 
