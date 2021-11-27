@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./doctor-profile/doctor-profile.module').then((m) => m.DoctorProfileModule),
   },
   {
-    path: 'form-contato',
+    path: 'cadastro',
     loadChildren: () => import('./form-contato/form-contato.module').then((m) => m.FormContatoModule),
   },
 ];

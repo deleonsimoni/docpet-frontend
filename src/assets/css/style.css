@@ -4438,6 +4438,7 @@ html.menu-opened body {
 	background: url('../img/shapes/doctor-bg.jpg');
 	background-position: center;
 	min-height: 350px;
+	min-width: 1350px;
 	background-size: cover;
 	padding: 40px 30px;
 	display: flex;
