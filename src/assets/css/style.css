@@ -138,10 +138,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-    color: #2E3842;
+    color: #fff;
 }
 a:hover {
-	color: #09dca4;
+	color: #000000;
 }
 a:hover,
 a:active,
@@ -442,16 +442,16 @@ button.bg-danger:hover {
     color: #757575 !important;
 }
 .btn-primary {
-	background-color: #09e5ab;
-	border: 1px solid #09e5ab;
+	background-color: #32b7bc;
+	border: 1px solid #32b7bc;
 }
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary.active,
 .btn-primary:active,
 .open > .dropdown-toggle.btn-primary {
-	background-color: #09dca4;
-	border: 1px solid #09dca4;
+	background-color: #2a9ca1;
+	border: 1px solid #2a9ca1;
 }
 .btn-primary.active.focus,
 .btn-primary.active:focus,
@@ -1877,11 +1877,12 @@ button.bg-danger:hover {
 	background-color: transparent !important;
 	border-bottom: 0 !important;
 }
+
 .header-nav {
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
-	background-color: #fff;
+	background-color: rgb(50, 183, 188);
 	border: 0;
 	border-bottom: 1px solid #f0f0f0;
 	display: -webkit-box;
@@ -1914,7 +1915,7 @@ button.bg-danger:hover {
     clear: both;
     white-space: nowrap;
     font-size: 14px;
-    color: #2d3b48;
+    color: #fff;
     -webkit-transition: all .35s ease;
     transition: all .35s ease;
 	width: 100%;
@@ -2021,8 +2022,8 @@ button.bg-danger:hover {
 	border-radius: 0 0 5px 5px;
 }
 .header-navbar-rht li a.header-login:hover {
-    background-color: #09e5ab;
-    border-color: #09e5ab;
+    background-color: #000;
+    /*border-color: #09e5ab; */
     color: #fff;
 }
 .header-navbar-rht li .dropdown-menu a:hover {
@@ -2032,14 +2033,16 @@ button.bg-danger:hover {
 	background-color: #fff;
 }
 .header-navbar-rht li a.header-login {
-    border: 2px solid #09e5ab;
+    /*border: 2px solid #09e5ab; */
     border-radius: 4px;
     padding: 10px 15px !important;
     text-align: center;
-    font-size: 15px;
-    color: #09e5ab;
+    font-size: 12px;
+    background-color: #fff;
+    color: #000;
     text-transform: uppercase;
     font-weight: 500;
+    font-weight:bold;
 }
 .header .has-arrow .dropdown-toggle:after {
 	border-top: 0;
@@ -2339,7 +2342,7 @@ button.bg-danger:hover {
 	justify-content: space-between;
 	-webkit-justify-content: space-between;
 	-ms-flex-pack: space-between;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #32b7bc;
 	display: none;
 }
 .menu-logo img {
@@ -2380,7 +2383,7 @@ html.menu-opened body {
 -----------------------*/
 
 .footer {
-    background-color: #15558d;
+    background-color: #32b7bc;
 }
 .footer .footer-top {
 	padding: 40px 0;
@@ -2405,7 +2408,7 @@ html.menu-opened body {
 	border-top: 1px solid #0f4d84;
 }
 .footer.custom-footer .copyright-text span {
-	color: #20C0F3;
+	color: #535c5f;
 }
 .footer-title {
     color: #fff;
@@ -2476,7 +2479,7 @@ html.menu-opened body {
 	margin-right: 15px;
 }
 .footer .footer-bottom .copyright {
-	border-top: 1px solid #1663a6;
+	/*border-top: 1px solid #1663a6;*/
 	padding: 30px 0;
 }
 .footer .footer-bottom .copyright-text p {
@@ -4245,17 +4248,18 @@ html.menu-opened body {
 	color: #FFAABD;
 }
 .clinic-specialities {
-	background: url('../img/special-banner.jpg');
+	/*background: url('../img/special-banner.jpg'); */
 	padding: 60px 0;
 	background-size: cover;
 	background-repeat: no-repeat;
+  background-color: #fff;
 }
 .section-header-three {
 	margin-bottom: 60px;
 }
 
 .section-header-three h2 {
-	color: #2868C8;
+	color: #32b7bc;
 	font-weight: 700;
 	font-size: 30px;
 	position: relative;
@@ -4308,7 +4312,7 @@ html.menu-opened body {
     transition: ease all 0.4s;
 }
 .special-box:hover {
-	background-color: #1C71EF;
+	background-color: #32b7bc;
 	-webkit-transition: ease all 0.4s;
     -ms-transition: ease all 0.4s;
     transition: ease all 0.4s;
@@ -4459,7 +4463,7 @@ html.menu-opened body {
 }
 .doctor-divison h3 {
 	font-size: 28px;
-	color: #fff;
+	color: #32b7bc;
 	font-weight: 700;
 	margin-bottom: 20px;
 }
@@ -4472,8 +4476,8 @@ html.menu-opened body {
 .doctor-divison .doc-bok-btn {
 	font-size: 14px;
 	padding: 6px 12px;
-	color: #fff;
-	background-color: #1C71EF;
+	color: #000;
+	background-color: #FFF;
 	border-radius: 30px;
 	width: 100px;
 	text-align: center;
@@ -5030,7 +5034,7 @@ html.menu-opened body {
 	padding-top: 95px;
 }
 .banner-btn {
-    background: #1C5B90;
+    background: #000000;
     border-radius: 130px;
     color: #fff;
     font-weight: 600;
@@ -5039,7 +5043,7 @@ html.menu-opened body {
 	width: 100%;
 }
 .banner-btn:hover {
-    background: #10DEFD;
+    background: #023f41;
     color: #fff;
 }
 .doctor-search {
@@ -5139,19 +5143,20 @@ html.menu-opened body {
     right: 0;
 }
 .section-search-3 {
-	position: relative;
-    background: url('../img/banner-3.jpg');
-    background-position: 50% 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-    z-index: 1;
+	/*position: relative; */
+  background: url('../img/banner-3.jpg');
+  background-position: 50% 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
 	min-height: 450px;
 	padding-top: 85px;
 }
+
 .section-search-3:after {
     content: "";
     position: absolute;
-    background: rgba(24, 96, 202, 0.9);
+    background: rgb(50, 183, 188);
     top: 0;
     right: 0;
     left: 0;
@@ -5159,17 +5164,17 @@ html.menu-opened body {
     z-index: -1;
 }
 .header-banner h2 {
-	color: #FFFFFF;
+	color: #000000;
 	font-weight: 600;
 	line-height: 40px;
 }
 .header-banner p {
 	font-size: 17px;
-	color: #FFFFFF;
+	color: #000000;
 }
 .header-highlight {
 	font-weight: 700;
-	color: #0CE0FF;
+	color: #000000;
 }
 .section-search-3 .banner-info {
 	padding: 130px 0 190px;
@@ -6179,7 +6184,7 @@ body .multi-optn {
 -----------------------*/
 
 .breadcrumb-bar {
-    background-color: #15558d;
+    background-color: #86ccd2;
     padding: 15px 0;
 }
 .breadcrumb-bar .breadcrumb-title {
@@ -10709,7 +10714,7 @@ ul.benifits-col li i{
 		padding-left: 0;
 	}
 	.main-nav > li {
-		border-bottom: 1px solid #1663a6;
+		border-bottom: 1px solid #bee1e2;
 		margin-left: 0;
 	}
 	.main-nav li + li {
@@ -10758,12 +10763,13 @@ ul.benifits-col li i{
 		z-index: 1060;
 		transform: translateX(-260px);
 		transition: all 0.4s;
-		background-color: #15558d;
+		background-color: #32b7bc;
 	}
 	.menu-header {
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
+    background-color: #2a9ca1;
 	}
 	.navbar-header {
 		-webkit-box-align: center;

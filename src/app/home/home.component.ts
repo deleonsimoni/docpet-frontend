@@ -166,6 +166,10 @@ export class HomeComponent implements OnInit {
         });
   }
 
+  getURLImgEspc(nome){
+    return 'assets/img/shapes/'+nome+'.png';
+  }
+
 
 
 

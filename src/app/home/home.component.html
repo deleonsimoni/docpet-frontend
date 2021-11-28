@@ -171,7 +171,7 @@
           <div class="col-lg-4 col-md-4" *ngFor="let especialidadeTotal of especialidadesTotal">
               <div class="special-box text-center">
                   <div class="special-body">
-                      <img src="assets/img/shapes/spec-fisio.png" alt=""/>
+                      <img src="assets/img/shapes/{{especialidadeTotal.nomeFormated}}.png"  alt=""/>
                       <h4>{{especialidadeTotal.nome}}</h4>
                       <a [routerLink]="'/patients/booking'" class="spc-book">Book now <i class="fas fa-caret-right"></i> </a>
                   </div>
@@ -332,10 +332,11 @@
 
 <!-- Doctor Section-->
 <section class="doctor-divison">
-  <div class="d-flex" style="margin-bottom: 50px;">
+  <div class="d-flex">
       <div class="doc-background">
           <h3>Você é um especialista?</h3>
-          <p>Construa sua reputação online rapidamente e seja encontrado por tutores de todo país. São mais de 141 milhões de pets no Brasil em busca de um profissional. </p>
+          <p>Construa sua reputação online rapidamente e seja encontrado por tutores de todo país.</p>
+          <p> São mais de 141 milhões de pets no Brasil em busca de um profissional.</p>
           <a [routerLink]="'/cadastro'" class="doc-bok-btn">cadastre-se</a>
       </div>
      <!--<div class="pat-background">
