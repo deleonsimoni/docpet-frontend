@@ -63,6 +63,10 @@ export class DoctorProfileComponent implements OnInit {
 
   }
 
+  getImageDoctor(doctorDetails){
+    return doctorDetails?.img ? doctorDetails.img : 'https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg'
+  }
+
   likeIt(){
 
     this.like = !this.like;
