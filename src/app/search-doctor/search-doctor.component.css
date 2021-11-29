@@ -12,3 +12,7 @@
 agm-map {
     height: 800px;
   }
+
+.doc-name {
+    color: black !important;
+}
