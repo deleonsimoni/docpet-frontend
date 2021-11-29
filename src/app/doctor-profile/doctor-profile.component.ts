@@ -15,6 +15,7 @@ export class DoctorProfileComponent implements OnInit {
   docNameFormated;
   doctorDetails;
   estabelecimentos;
+  like = false;
 
   meses = [ {id:1, mes:'Janeiro', abreviado:'Jan'},
   {id:2, mes:'Fevereiro', abreviado:'Fev'},
@@ -59,6 +60,12 @@ export class DoctorProfileComponent implements OnInit {
 
     window.scrollTo(0, 0);
 
+
+  }
+
+  likeIt(){
+
+    this.like = !this.like;
 
   }
 
