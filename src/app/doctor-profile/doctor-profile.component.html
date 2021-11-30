@@ -26,10 +26,10 @@
 				<div class="doctor-widget">
 					<div class="doc-info-left">
 						<div class="doctor-img">
-						
+
 							<img class="img-fluid"
 								[src]="getImageDoctor(doctorDetails)">
-						
+
 						</div>
 						<div class="doc-info-cont">
 							<h4 class="doc-name" *ngIf="doctorDetails">{{doctorDetails.nome}} - {{doctorDetails.crmv}}
@@ -75,7 +75,7 @@
 							<div class="col-12">
 								<h1><a><i class="fa fa-thumbs-up"></i> 98%</a></h1>
 								<p>
-									Dos clientes recomenam
+									Dos clientes recomendam
 								</p>
 							</div>
 
@@ -111,7 +111,7 @@
 
 						<div class="">
 							<div class="">
-								
+
 								<div class="card-body">
 									<ul style="font-weight: bold;font-size: 20px;" class="nav nav-tabs nav-tabs-bottom nav-justified">
 										<li class="nav-item"><a class="nav-link active" href="#bottom-justified-tab1" data-toggle="tab">Visão geral</a></li>
@@ -126,14 +126,14 @@
 
 											<div class="row">
 												<div class="col-md-12 col-lg-9">
-					
+
 													<!-- About Details -->
 													<div class="widget about-widget">
 														<h4 class="widget-title"><b>Sobre</b></h4>
 														<p>{{doctorDetails.sobre}}</p>
 													</div>
 													<!-- /About Details -->
-					
+
 													<!-- Education Details -->
 													<div class="widget education-widget">
 														<h4 class="widget-title">Formação</h4>
@@ -156,7 +156,7 @@
 														</div>
 													</div>
 													<!-- /Education Details -->
-					
+
 													<!-- Experience Details -->
 													<div class="widget experience-widget">
 														<h4 class="widget-title">Experiência</h4>
@@ -180,7 +180,7 @@
 														</div>
 													</div>
 													<!-- /Experience Details -->
-					
+
 													<!-- Awards Details -->
 													<div class="widget awards-widget">
 														<h4 class="widget-title">Conquista</h4>
@@ -202,7 +202,7 @@
 															</ul>
 														</div>
 													</div>
-													
+
 												</div>
 											</div>
 
@@ -214,9 +214,9 @@
 
 											<div class="row">
 												<div class="col-md-12 col-lg-9">
-					
-													<div *ngIf="doctorDetails.estabelecimentos 
-															&& doctorDetails.estabelecimentos[0] 
+
+													<div *ngIf="doctorDetails.estabelecimentos
+															&& doctorDetails.estabelecimentos[0]
 															&& !doctorDetails.estabelecimentos[0].cnpj" class="widget awards-widget">
 
 															<div  style="width: 100%;">
@@ -237,16 +237,16 @@
 																{{doctorDetails.contato?.telefone}} -
 																{{doctorDetails.contato?.email}}</p>
 													</div>
-													
 
-													<div *ngIf="doctorDetails.estabelecimentos 
-															&& doctorDetails.estabelecimentos[0] 
+
+													<div *ngIf="doctorDetails.estabelecimentos
+															&& doctorDetails.estabelecimentos[0]
 															&& doctorDetails.estabelecimentos[0].cnpj" class="widget awards-widget">
 
 														<h4 class="widget-title">Consultórios ({{doctorDetails.estabelecimentos.length}})
 														</h4>
 														<div class="experience-box">
-															
+
 															<div *ngFor="let estabelecimento of doctorDetails.estabelecimentos; let i = index">
 																<div  style="width: 100%;">
 																	<agm-map [latitude]="estabelecimento.location.coordinates[1]" [zoom]="10" [longitude]="estabelecimento.location.coordinates[0]">
@@ -266,7 +266,7 @@
 
 														</div>
 													</div>
-													
+
 												</div>
 											</div>
 
@@ -278,8 +278,8 @@
 
 
 										<div class="tab-pane" id="bottom-justified-tab3">
-											
-											
+
+
 											<div class="comment">
 												<img class="avatar rounded-circle" alt="User Image" src="https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg">
 												<div class="comment-body">
@@ -358,7 +358,7 @@
 									</div>
 
 									<div class="tab-pane" id="bottom-justified-tab4">
-										
+
 										<div class="row">
 											<div class="col-sm-12">
 												<div class="card">
@@ -371,7 +371,7 @@
 																		<div class="schedule-calendar-col justify-content-start">
 																			<form method="post" class="d-flex flex-wrap">
 																				<div class="input-group-prepend">
-																					<span class="input-group-text">Data:</span> 
+																					<span class="input-group-text">Data:</span>
 																				</div>
 																				<div class="mr-3">
 																					<input type="date" class="form-control" name="schedule_date" id="schedule_date" value="2021-05-21" min="2021-05-21">
@@ -387,7 +387,7 @@
 															<div class="row">
 																<div class="col-lg-12">
 																	<h3 class="h3 text-center book-btn2 mt-3 px-5 py-1 mx-3 rounded">Horários Livres</h3>
-																	
+
 																	<div class="token-slot mt-2">
 																		<div class="form-check-inline visits mr-0">
 																			<label class="visit-btns">
@@ -532,7 +532,7 @@
 												</div>
 											</div>
 										</div>
-											
+
 
 									</div>
 									<!-- FIM TAB HORARIOS -->
@@ -541,7 +541,7 @@
 				</div>
 			</div>
 
-					
+
 		</div>
 		<!-- /Doctor Details Tab -->
 

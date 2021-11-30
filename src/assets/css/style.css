@@ -1882,7 +1882,7 @@ button.bg-danger:hover {
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
-	background-color: rgb(50, 183, 188);
+	background-color: #27B6BC;
 	border: 0;
 	border-bottom: 1px solid #f0f0f0;
 	display: -webkit-box;
@@ -4321,8 +4321,8 @@ html.menu-opened body {
 	padding: 20px;
 }
 .special-box .special-body img {
-	width: 50px;
-    margin-bottom: 15px;
+	width: 70px;
+  margin-bottom: 15px;
 }
 .special-box .special-body h4 {
 	font-size: 16px;

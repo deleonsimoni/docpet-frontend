@@ -36,38 +36,7 @@
 				<div class="container-fluid">
 
 					<div class="row">
-						<div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
 
-							<!-- Search Filter -->
-							<div class="card search-filter">
-								<div class="card-header">
-									<h4 class="card-title mb-0">Veja no mapa</h4>
-								</div>
-								<div class="card-body">
-
-									<div style="height: 800px;">
-										<agm-map [latitude]="lat" [zoom]="10" [longitude]="lng">
-
-											<agm-circle [latitude]="lat" [longitude]="lng" [radius]="20000" [fillColor]="'green'"
-												[editable]="false">
-											</agm-circle>
-
-											<agm-marker *ngFor="let doctor of doctors" [latitude]="doctor.location.coordinates[1]" [longitude]="doctor.location.coordinates[0]">
-												<agm-info-window>
-													<h3>{{doctor.nome}}</h3>
-													<h5 *ngFor="let especialidade of doctor.especialidades">{{especialidade.nome}}</h5>
-													<p>{{doctor.contato.telefone}}</p>
-												</agm-info-window>
-											</agm-marker>
-
-										  </agm-map>
-									</div>
-
-								</div>
-							</div>
-							<!-- /Search Filter -->
-
-						</div>
 						<div class="col-md-12 col-lg-8 col-xl-9">
 
               	<!-- Doctor Widget -->
@@ -93,7 +62,7 @@
 											<div class="doctor-img">
 												<a [routerLink]="'/doctor/'+doctor.nome">
 													<!--<img [src]="doctor.profile" class="img-fluid" alt="User Image"> -->
-                          <img 
+                          <img
 						  [src]="doctor.img ? doctor.img : 'assets/img/doctors/veterinaria.png'"
 						  class="img-fluid" alt=""/>
 												</a>
@@ -173,6 +142,39 @@
 							<div class="load-more text-center" *ngIf="doctors.length !== 0">
 								<a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>
 							</div>
+						</div>
+
+            <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
+
+							<!-- Search Filter -->
+							<div class="card search-filter">
+								<div class="card-header">
+									<h4 class="card-title mb-0">Veja no mapa</h4>
+								</div>
+								<div class="card-body">
+
+									<div style="height: 800px;">
+										<agm-map [latitude]="lat" [zoom]="10" [longitude]="lng">
+
+											<agm-circle [latitude]="lat" [longitude]="lng" [radius]="20000" [fillColor]="'green'"
+												[editable]="false">
+											</agm-circle>
+
+											<agm-marker *ngFor="let doctor of doctors" [latitude]="doctor.location.coordinates[1]" [longitude]="doctor.location.coordinates[0]">
+												<agm-info-window>
+													<h3>{{doctor.nome}}</h3>
+													<h5 *ngFor="let especialidade of doctor.especialidades">{{especialidade.nome}}</h5>
+													<p>{{doctor.contato.telefone}}</p>
+												</agm-info-window>
+											</agm-marker>
+
+										  </agm-map>
+									</div>
+
+								</div>
+							</div>
+							<!-- /Search Filter -->
+
 						</div>
 					</div>
 

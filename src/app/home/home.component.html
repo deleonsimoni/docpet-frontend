@@ -6,8 +6,8 @@
           <div class="row align-items-center">
               <div class="col-lg-4">
                   <div class="header-banner">
-                      <h2>Pesquise o veterinário, <br> <span class="header-highlight">agende uma consulta para o seu pet.</span></h2>
-                      <p>Descubra os melhores médicos, clínicas e Pet Shops da cidade mais próxima de você.</p>
+                      <h2>Faça a sua pesquisa e encontre o atendimento adequado para o seu Pet.</h2>
+                      <p>Descubra os melhores especialistas, clínicas e Pet Shops da cidade mais próxima de você.</p>
                   </div>
               </div>
               <div class="col-lg-8">
@@ -164,14 +164,14 @@
 <section class="clinic-specialities">
   <div class="container">
       <div class="section-header-three text-center">
-                      <h2>Especialistas</h2>
-                      <p class="sub-title">Encontre o melhor especialista para seu pet, marque uma consulta e avalie o serviço.</p>
-                  </div>
+          <h2>Especialistas</h2>
+          <p class="sub-title">O melhor especialista para seu pet a um click de você.</p>
+      </div>
       <div class="row">
-          <div class="col-lg-4 col-md-4" *ngFor="let especialidadeTotal of especialidadesTotal">
+          <div class="col-lg-4 col-md-6 shadow-sm p-3 mb-5 bg-white rounded" *ngFor="let especialidadeTotal of especialidadesTotal">
               <div class="special-box text-center">
                   <div class="special-body">
-                      <img src="assets/img/shapes/{{especialidadeTotal.nomeFormated}}.png"  alt=""/>
+                      <img  src="assets/img/shapes/{{especialidadeTotal.nomeFormated.trim().replace(' ', '_')}}.png" onerror="this.onerror=null;this.src='assets/img/shapes/Comportamento_Animal.png';"  alt=""/>
                       <h4>{{especialidadeTotal.nome}}</h4>
                       <a [routerLink]="'/patients/booking'" class="spc-book">Agende agora<i class="fas fa-caret-right"></i> </a>
                   </div>
