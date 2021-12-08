@@ -1,3 +1,8 @@
+# CONFIGURAR UTILIZAÇÃO DO HTTPS
+RewriteEngine On
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://www.vetzco.com.br/$1 [R,L]
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /

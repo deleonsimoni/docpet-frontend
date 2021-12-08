@@ -95,8 +95,8 @@
 													</ul> -->
 												</div>
 												<div class="clinic-services">
-													<span>Dental Fillings</span>
-													<span> Whitneing</span>
+													<!--<span>Dental Fillings</span>
+													<span> Whitneing</span> -->
 												</div>
 											</div>
 										</div>
@@ -110,7 +110,7 @@
 												</ul>
 											</div>
 											<div class="clinic-booking">
-												<a class="view-pro-btn" style="cursor: pointer;" [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.id}">View Profile</a>
+												<a class="view-pro-btn" style="cursor: pointer;" [routerLink]="'/doctor/'+doctor.nome">Perfil</a>
 												<!--<a class="apt-btn" style="cursor: pointer;" (click)="bookAppointment(doctor.id)">Book Appointment</a> -->
 											</div>
 										</div>
@@ -139,9 +139,9 @@
                 </div>
 							</div>
 
-							<div class="load-more text-center" *ngIf="doctors.length !== 0">
+							<!--<div class="load-more text-center" *ngIf="doctors.length !== 0">
 								<a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>
-							</div>
+							</div> -->
 						</div>
 
             <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">

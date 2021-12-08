@@ -47,9 +47,8 @@
                     </a>
                 </div>
                 <ul class="main-nav" [ngClass]="[base === 'home-seven' ? 'white-font' : '' ]">
-                    <a [routerLink]="'cadastro'">Cadastre-se</a>
 
-                    <li [class.active]="base === 'login-page'" class="nav-item" *ngIf="!auth">
+                  <li [class.active]="base === 'login-page'" class="nav-item" *ngIf="!auth">
                       <!--<a class="nav-link header-login"  [routerLink]="'login-page'">login / Signup </a> -->
                     </li>
                     <li class="nav-item" *ngIf="hi4">
@@ -69,7 +68,7 @@
                 </li> -->
                 <li [class.active]="base === 'login-page'" class="nav-item" *ngIf="!auth">
                     <!--<a class="nav-link header-login"  [routerLink]="'login-page'">login / Signup </a> -->
-                    <a class="nav-link header-login" [routerLink]="'cadastro'">Você é um Veterinário? Inscreva-se</a>
+                    <a class="nav-link header-login" [routerLink]="'cadastro'">Você é um Especialista? Inscreva-se</a>
                 </li>
                 <!-- User Menu -->
                 <li class="nav-item dropdown has-arrow logged-item" *ngIf="auth">
