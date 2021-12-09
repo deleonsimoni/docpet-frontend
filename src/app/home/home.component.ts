@@ -37,6 +37,23 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.listarEspecialidades();
     this.listarEspecialidadesTotal();
+    this.places=[
+      {"description":"São Paulo", "placeId":"ChIJ0WGkg4FEzpQRrlsz_whLqZs"},
+      {"description":"Rio de Janeiro", "placeId":"ChIJW6AIkVXemwARTtIvZ2xC3FA"},
+      {"description":"Brasília", "placeId":"ChIJ1wSIEPI6WpMRVlAUyZAjuj4"},
+      {"description":"Salvador", "placeId":"ChIJvS5CUCARFgcRndtzlTaEHPc"},
+      {"description":"Fortaleza", "placeId":"ChIJP3hMRj9MxwcRyjdrDArGYUY"},
+      {"description":"Belo Horizonte", "placeId":"ChIJMyzPysqQpgARlznSOl55NVs"},
+      {"description":"Manaus", "placeId":"ChIJt0d2s8gbbJIRzKll959cSCs"},
+      {"description":"Curitiba", "placeId":"ChIJ3bPNUVPj3JQRCejLuqVrL20"},
+      {"description":"Recife", "placeId":"ChIJi0DllG8ZqwcRpuO9gvcOgOU"},
+      {"description":"Goiânia", "placeId":"ChIJZwjYWL32XpMRjmfSIK0rae8"},
+      {"description":"Belém", "placeId":"ChIJ4Wx1hK9hpJIRNUyGFQJUDVc"},
+      {"description":"Porto Alegre", "placeId":"ChIJHctqVtKcGZURH-mHn6gRMWA"},
+      //{"description":"Guarulhos", "placeId":"ChIJbeK1sT_1zpQRW1XDIo3hTJc"},
+      //{"description":"Campinas", "placeId":"ChIJJWNL5x3GyJQRKsJ4IWo65Rc"},
+      {"description":"São Luís", "placeId":"ChIJIW1_b_CP9gcRR96jWeQCMZg"},
+    ];
   }
 
   inputTyped(text: string) {

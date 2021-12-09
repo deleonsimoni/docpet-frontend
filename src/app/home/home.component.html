@@ -36,10 +36,10 @@
 
                                                               <ng-template ngx-select-option let-option>
 
-                                                                  <span *ngIf="!option.data.type"><i class="fas fa-bone fa-lg" style="color: rgb(105, 105, 247); "></i></span>
-                                                                  <span *ngIf="option.data.type == 1"><i class="fas fa-bone fa-lg" style="color: rgb(105, 105, 247)"></i></span>
-                                                                  <span *ngIf="option.data.type == 2"><i class="fas fa-paw fa-lg" style="color: rgb(0, 131, 11)"></i></span>
-                                                                  <span *ngIf="option.data.type == 3"><i class="fas fa-clinic-medical fa-lg" style="color: rgb(248, 95, 120)"></i></span>
+                                                                  <span *ngIf="!option.data.type"><i class="fas fa-bone fa-lg" style="color: rgb(105, 105, 247); padding-right: 10px; "></i></span>
+                                                                  <span *ngIf="option.data.type == 1"><i class="fas fa-bone fa-lg" style="color: rgb(105, 105, 247); padding-right: 10px;"></i></span>
+                                                                  <span *ngIf="option.data.type == 2"><i class="fas fa-paw fa-lg" style="color: rgb(0, 131, 11);padding-right: 10px; "></i></span>
+                                                                  <span *ngIf="option.data.type == 3"><i class="fas fa-clinic-medical fa-lg" style="color: rgb(248, 95, 120);padding-right: 10px;"></i></span>
 
                                                                   <span>
                                                                       {{option.data.nome}}
@@ -89,7 +89,7 @@
 
 
                                                               <ng-template ngx-select-option let-option>
-
+                                                                <i class="fas fa-map-marker-alt" style="padding-right: 10px;"></i>
                                                                   <span>
                                                                       {{option.data.description}}
                                                                   </span>
