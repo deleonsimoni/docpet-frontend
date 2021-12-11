@@ -27,6 +27,14 @@ const routes: Routes = [
     path: 'cadastro',
     loadChildren: () => import('./form-contato/form-contato.module').then((m) => m.FormContatoModule),
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then((m) => m.LoginModule),
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule),
+  },
 ];
 
 @NgModule({

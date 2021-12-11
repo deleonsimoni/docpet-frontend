@@ -16,6 +16,7 @@ import { DOCUMENT } from '@angular/common';
 
 import { CommonServiceService } from './../../common-service.service';
 import * as $ from 'jquery';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -35,7 +36,7 @@ export class HeaderComponent implements OnInit {
   page;
   splitVal;
   headerTop: boolean = false;
-
+  user;
   base;
   url1;
   constructor(
@@ -43,7 +44,9 @@ export class HeaderComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public router: Router,
     private activeRoute: ActivatedRoute,
-    public commonService: CommonServiceService
+    public commonService: CommonServiceService,
+    public userService: UserService
+
   ) {
     router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
@@ -117,6 +120,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.user = this.userService.getUser();
+
     if (localStorage.getItem('auth') === 'true') {
       this.auth = true;
       this.isPatient =
@@ -147,6 +153,12 @@ export class HeaderComponent implements OnInit {
               $(".header-trans.custom").css("background" , "transparent");
             }
         })
+  }
+
+  sair(){
+    this.userService.logout();
+    this.router.navigate(['/']);
+
   }
 
   ngAfterViewInit() {

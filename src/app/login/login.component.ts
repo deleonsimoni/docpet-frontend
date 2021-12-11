@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CommonServiceService } from '../common-service.service';
 
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -16,10 +17,13 @@ export class LoginComponent implements OnInit {
   patients: any = [];
   username = '';
   password = '';
+  isLoading = false;
+
   constructor(
     public router: Router,
     public commonService: CommonServiceService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userService: UserService,
   ) {
     this.username = '';
     this.password = '';
@@ -28,8 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getpatients();
-    this.getDoctors();
+
   }
 
   checkType(event) {
@@ -37,44 +40,40 @@ export class LoginComponent implements OnInit {
   }
 
   login(name, password) {
-    localStorage.setItem('auth', 'true');
-    localStorage.setItem('patient', this.isPatient.toString());
-    if (this.isPatient) {
-      let filter = this.patients.filter(
-        (a) => a.name == this.username && a.password === this.password
-      );
-      if (filter.length != 0) {
-        localStorage.setItem('id', filter[0]['id']);
-        this.toastr.success('', 'Login success!');
-        this.commonService.nextmessage('patientLogin');
-        this.router.navigate(['/patients/dashboard']);
-      } else {
-        this.toastr.error('', 'Login failed!');
-      }
-    } else {
-      let filter = this.doctors.filter(
-        (a) => a.doctor_name === this.username && a.password === this.password
-      );
-      if (filter.length != 0) {
-        this.toastr.success('', 'Login success!');
-        this.commonService.nextmessage('doctorLogin');
-        localStorage.setItem('id', filter[0]['id']);
-        this.router.navigate(['/doctor/dashboard']);
-      } else {
-        this.toastr.error('', 'Login failed!');
-      }
+
+    this.isLoading = true;
+
+    if (!password) {
+      this.toastr.warning('Preencha o campo senha!', 'Atenção!');
+      return;
     }
+
+    if (!name) {
+      this.toastr.warning('PReencha o campo email!', 'Atenção!');
+      return;
+    }
+
+    this.userService.login(name, password).subscribe(
+      (data: any) => {
+        this.isLoading = false;
+        this.userService.setSession(data.token);
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        this.isLoading = false;
+        console.log(error);
+        if (error.status == 400) {
+          this.toastr.error(error.error.error, 'Erro');
+
+        }
+        if (error.status == 401) {
+          this.toastr.error('Email ou senha inválidos', 'Erro');
+
+        }
+      }
+    );
+
   }
 
-  getDoctors() {
-    this.commonService.getDoctors().subscribe((res) => {
-      this.doctors = res;
-    });
-  }
-
-  getpatients() {
-    this.commonService.getpatients().subscribe((res) => {
-      this.patients = res;
-    });
-  }
+  
 }
