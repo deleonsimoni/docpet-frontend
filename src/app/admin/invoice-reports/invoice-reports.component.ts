@@ -2,6 +2,8 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, TemplateRef } f
 import { CommonServiceService } from '../../common-service.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import * as $ from 'jquery';
+import { EspecialidadeService } from 'src/app/services/especialidades.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -10,16 +12,21 @@ import * as $ from 'jquery';
   styleUrls: ['./invoice-reports.component.css']
 })
 export class InvoiceReportsComponent implements OnInit {
-  transactions: any = [];
+  especialidades: any = [];
   errorMessage: string;
   modalRef: BsModalRef;
   id;
   dtOptions: DataTables.Settings = {};
+  nome;
 
-  constructor(public commonService: CommonServiceService, private modalService: BsModalService) { }
+  constructor(
+    public commonService: CommonServiceService,
+    private modalService: BsModalService,
+    private toastService: ToastrService,
+    private especialidadeService: EspecialidadeService) { }
 
   ngOnInit(): void {
-    this.getTransactions();
+    this.getEspecialidades();
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
@@ -27,29 +34,62 @@ export class InvoiceReportsComponent implements OnInit {
     };
   }
 
-  getTransactions() {
-    this.commonService.getTransactions()
+  getEspecialidades() {
+    this.especialidadeService.getAll()
       .subscribe(res => {
-        this.transactions = res;
-        $(function () {
-          $("table").DataTable();
-        });
+        this.especialidades = res;
+
       },
-        error => this.errorMessage = <any>error);
+        error => this.toastService.error('Ocorreu um erro ao listar ' + error, 'Atenção'));
   }
 
   deleteModal(template: TemplateRef<any>, trans) {
-    this.id = trans.id;
+    this.id = trans._id;
     this.modalRef = this.modalService.show(template, { class: 'modal-sm modal-dialog-centered' });
   }
 
-  deleteReport() {
-    this.transactions = this.transactions.filter(a => a.id !== this.id);
+  deleteEspecialidade() {
+    this.especialidadeService.delete(this.id)
+      .subscribe(res => {
+        this.toastService.success('Especialidade excluída com sucesso', 'Sucesso');
+
+        this.getEspecialidades();
+
+      },
+        error => {
+          if (error.status == 400) {
+            this.toastService.warning('Essa especialidade já está vinculada aos usuários', 'Atenção');
+
+          } else {
+            this.toastService.error('Ocorreu um erro ao excluir ' + error, 'Atenção');
+          }
+        }
+      );
     this.modalRef.hide();
-    // this.commonService.deleteSpeciality(this.id).subscribe((data : any[])=>{
-    //   this.modalRef.hide();
-    //   this.getTransactions();
-    // })
+
+  }
+
+  create() {
+
+    if (!this.nome) {
+      this.toastService.warning('Digite o nome da especialidade', 'Atenção')
+      return
+    }
+
+    this.especialidadeService.create(this.nome)
+      .subscribe(res => {
+        this.toastService.success('Especialidade cadastrada com sucesso', 'Sucesso');
+        this.nome = "";
+        this.getEspecialidades();
+
+      },
+        error => {
+
+          this.toastService.error('Ocorreu um erro ao excluir ' + error, 'Atenção');
+
+        }
+      );
+
   }
 
   btnColor() {

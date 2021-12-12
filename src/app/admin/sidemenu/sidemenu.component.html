@@ -3,7 +3,7 @@
 	<!-- Logo -->
 	<div class="header-left">
 		<a (click)="changeScope()" href="#/index" class="logo">
-			<img src="assets/img/logo.png" alt="Logo">
+			<img src="assets/img/logo-admin.png" alt="Logo">
 		</a>
 		<a (click)="changeScope()" href="#/index" class="logo logo-small">
 			<img src="assets/admin/img/logo-small.png" alt="Logo" width="30" height="30">
@@ -173,7 +173,7 @@
 				<li class="submenu">
 					<a href="javascript:void(0)"><i class="fe fe-vector"></i> <span> Parâmetros</span> <span class="menu-arrow"></span></a>
 					<ul style="display: none;">
-						<li [class.active]="page === 'Invoice Report'" ><a (click)="change('Invoice Report')" [routerLink]="'/admin/invoice-reports'">Invoice Reports</a></li>
+						<li [class.active]="page === 'especialidades'" ><a (click)="change('especialidades')" [routerLink]="'/admin/invoice-reports'">Especialidades</a></li>
 					</ul>
 				</li>
 

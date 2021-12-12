@@ -4,10 +4,12 @@
 		<div class="page-header">
 			<div class="row">
 				<div class="col-sm-12">
-					<h3 class="page-title">Invoice Report</h3>
+					<h3 class="page-title">Especialidades</h3>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a [routerLink]="''">Dashboard</a></li>
-						<li class="breadcrumb-item active">Invoice Report</li>
+						<li class="breadcrumb-item">Parâmetros</li>
+
+						<li class="breadcrumb-item active">Especialidades</li>
 					</ul>
 				</div>
 			</div>
@@ -18,34 +20,54 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="table-responsive">
+
+
 							<table class="datatable table table-hover table-center mb-0">
 								<thead>
 									<tr>
-										<th>Invoice Number</th>
-										<th>Patient ID</th>
-										<th>Patient Name</th>
-										<th>Total Amount</th>
-										<th class="text-center">Status</th>
-										<th class="text-right">Actions</th>
+										<th>Criar Especialidade</th>
+										<th class="text-right">Incluir</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr *ngFor="let trans of transactions">
-										<td><a>{{trans.invoiceNumber}}</a></td>
-										<td>{{trans.patient_id}}</td>
+									<tr >
 										<td>
-											<h2 class="table-avatar">
-												<a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" [src]="trans.profile" alt="User Image"></a>
-												<a  [routerLink]="'doc-profile'">{{trans.patient_name}} </a>
-											</h2>
+											<div class="form-group form-focus">
+												<input type="text" name="name" id="username" class="form-control floating" [(ngModel)]="nome">
+												<label class="focus-label">Nome da Especialidade<span class="required">*</span></label>
+			
+											</div>
 										</td>
-										<td>{{trans.total_amount}}</td>
-										<td class="text-center">
-											<span class="badge badge-pill bg-success inv-badge">{{trans.status}}</span>
-										</td>
+	
 										<td class="text-right">
 											<div class="actions">
-												<a data-toggle="modal" (click)="deleteModal(delete,trans)"
+												<a data-toggle="modal" (click)="create()"
+                                                    class="btn btn-sm bg-success-light">
+                                                    <i class="fe fe-pencil"></i> Cadastrar
+                                                </a>
+											</div>
+										</td>
+									</tr>
+									
+								</tbody>
+							</table>
+
+
+
+							<table class="datatable table table-hover table-center mb-0">
+								<thead>
+									<tr>
+										<th>Especialidade</th>
+										<th class="text-right">Ações</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let especialidade of especialidades">
+										<td><a>{{especialidade.nome}}</a></td>
+	
+										<td class="text-right">
+											<div class="actions">
+												<a data-toggle="modal" (click)="deleteModal(delete,especialidade)"
                                                     class="btn btn-sm bg-danger-light">
                                                     <i class="fe fe-trash"></i> Delete
                                                 </a>
@@ -65,16 +87,16 @@
 </div>
 <ng-template #delete>
     <div class="modal-header">
-        <h4 class="modal-title pull-left">Delete</h4>
+        <h4 class="modal-title pull-left">Deletar</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body text-center">
-      Are you sure want to delete this speciality?
+      Tem certeza que deseja excluir esta especialidade?
       <div style="margin-top:25px">
-        <button type="button" class="btn btn-default" (mouseover)="btnColor()" id="btn-yes" (click)="deleteReport()" >Yes</button>
-        <button type="button" class="btn btn-primary" (mouseover)="btnColorNo()" id="btn-no" >No</button>
+        <button type="button" class="btn btn-default" (mouseover)="btnColor()" id="btn-yes" (click)="deleteEspecialidade()" >Sim</button>
+        <button type="button" class="btn btn-primary" (click)="modalRef.hide()" (mouseover)="btnColorNo()" id="btn-no" >Não</button>
       </div>
     </div>
 </ng-template>

@@ -30,7 +30,7 @@ export class EspecialidadeService {
   }
 
   create(data): Observable<any> {
-    return this.http.post(baseUrl, data);
+    return this.http.post(baseUrl, {nome: data});
   }
 
   update(id, data): Observable<any> {
