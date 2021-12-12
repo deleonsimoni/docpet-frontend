@@ -317,11 +317,12 @@
 																	dia(s)</p>
 															</span>
 															<div class="review-count rating" >
-																<i [ngClass]="{ 'fas fa-star': review.score < 1, 'fas fa-star filled': review.score >= 1}"></i>
-																<i [ngClass]="{ 'fas fa-star': review.score < 2, 'fas fa-star filled': review.score >= 2}"></i>
-																<i [ngClass]="{ 'fas fa-star': review.score < 3, 'fas fa-star filled': review.score >= 3}"></i>
-																<i [ngClass]="{ 'fas fa-star': review.score < 4, 'fas fa-star filled': review.score >= 4}"></i>
-																<i [ngClass]="{ 'fas fa-star': review.score < 5, 'fas fa-star filled': review.score >= 5}"></i>
+																<label *ngFor="let item of [1,2,3,4,5]">
+																	<i *ngIf="review.score >= item" class="fas fa-star filled"></i>
+																	<i *ngIf="review.score < item" class="fas fa-star"></i>
+																</label>
+															
+
 															</div>
 														</div>
 														<p class="comment-content">
