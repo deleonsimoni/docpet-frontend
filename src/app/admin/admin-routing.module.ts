@@ -24,6 +24,39 @@ const routes: Routes = [
           import('./dashboard-admin/dashboard-admin.module').then((m) => m.DashboardAdminModule),
       },
       {
+        path: 'list-veterinario',
+        loadChildren: () =>
+          import('./veterinario/lista/lista-veterinario.module').then((m) => m.ListaModule),
+      },
+      {
+        path: 'cadastro-veterinario',
+        loadChildren: () =>
+          import('./veterinario/cadastro/cadastro-veterinario.module').then((m) => m.CadastroVeterinarioModule),
+      },
+      {
+        path: 'cadastro-veterinario/:id',
+        loadChildren: () =>
+          import('./veterinario/cadastro/cadastro-veterinario.module').then((m) => m.CadastroVeterinarioModule),
+      },
+
+      {
+        path: 'list-estabelecimento',
+        loadChildren: () =>
+          import('./estabelecimento/lista/lista.module').then((m) => m.ListaModule),
+      },
+      {
+        path: 'cadastro-estabelecimento',
+        loadChildren: () =>
+          import('./estabelecimento/cadastro/cadastro.module').then((m) => m.CadastroModule),
+      },
+      {
+        path: 'cadastro-estabelecimento/:id',
+        loadChildren: () =>
+          import('./estabelecimento/cadastro/cadastro.module').then((m) => m.CadastroModule),
+      },
+
+      
+      {
         path: 'forgot-pass',
         loadChildren: () =>
           import(

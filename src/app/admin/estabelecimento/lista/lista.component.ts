@@ -1,5 +1,5 @@
-import { LanguageDataApp } from './../../common/datatable/language';
-import { EstabelecimentoService } from './../../services/estabelecimento.service';
+import { LanguageDataApp } from './../../../common/datatable/language';
+import { EstabelecimentoService } from './../../../services/estabelecimento.service';
 import { Component, OnDestroy, OnInit} from '@angular/core';
 import { Event, NavigationStart, Router } from '@angular/router';
 import * as $ from 'jquery';
@@ -57,7 +57,7 @@ export class ListaComponent implements OnInit, OnDestroy {
     estabelecimento.status = !estabelecimento.status
     this.estabelecimentosevice.update(estabelecimento._id, estabelecimento).subscribe(
       () => {
-        this.router.navigate(['/estabelecimento/lista/']);
+        this.router.navigate(['/admin/list-estabelecimento']);
       },
       (error) => {
         console.log(error);

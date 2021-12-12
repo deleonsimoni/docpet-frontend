@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LanguageDataApp } from './../../common/datatable/language';
-import { VeterinarioService } from './../../services/veterinario.service';
+import { LanguageDataApp } from './../../../common/datatable/language';
+import { VeterinarioService } from './../../../services/veterinario.service';
 import { Event, NavigationStart, Router } from '@angular/router';
 import * as $ from 'jquery';
 import 'datatables.net';
@@ -55,7 +55,7 @@ changeStatus(veterinario){
   veterinario.status = !veterinario.status
   this.veterinarioSevice.update(veterinario._id, veterinario).subscribe(
     () => {
-      this.router.navigate(['/veterinario/lista/']);
+      this.router.navigate(['/admin/list-veterinario']);
     },
     (error) => {
       console.log(error);

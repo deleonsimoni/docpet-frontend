@@ -1,7 +1,7 @@
-import { Estabelecimento } from './../../models/estabelecimento';
-import { VeterinarioService } from './../../services/veterinario.service';
-import { CEPService } from './../../services/cep.service';
-import { EstabelecimentoService } from '../../services/estabelecimento.service';
+import { Estabelecimento } from './../../../models/estabelecimento';
+import { VeterinarioService } from './../../../services/veterinario.service';
+import { CEPService } from './../../../services/cep.service';
+import { EstabelecimentoService } from '../../../services/estabelecimento.service';
 
 import { Component, OnInit, Type } from '@angular/core';
 import { ActivatedRoute, Event, NavigationStart, Router } from '@angular/router';
@@ -201,7 +201,7 @@ export class CadastroVeterinarioComponent implements OnInit {
       if(this.id){
         this.veterinarioService.update(this.id, novoVeterinario).subscribe(
           () => {
-            this.router.navigate(['/veterinario/lista/']);
+            this.router.navigate(['/admin/list-veterinario']);
           },
           (error) => {
             console.log(error);
@@ -211,7 +211,7 @@ export class CadastroVeterinarioComponent implements OnInit {
       }else{
       this.veterinarioService.create(novoVeterinario).subscribe(
           () => {
-            this.router.navigate(['/veterinario/lista/']);
+            this.router.navigate(['/admin/list-veterinario']);
           },
           (error) => {
             console.log(error);

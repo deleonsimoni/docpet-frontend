@@ -7,14 +7,7 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
-  {
-    path: 'estabelecimento',
-    loadChildren: () => import('./estabelecimento/estabelecimento.module').then((m) => m.EstabelecimentoModule),
-  },
-  {
-    path: 'veterinario',
-    loadChildren: () => import('./veterinario/veterinario.module').then((m) => m.VeterinarioModule),
-  },
+
   {
     path: 'list/:id/:municipio',
     loadChildren: () => import('./search-doctor/search-doctor.module').then((m) => m.SearchDoctorModule),

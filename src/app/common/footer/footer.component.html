@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer *ngIf="!user || (user.role == 0 && !user.isAdmin)" class="footer">
 	<!-- Footer Top -->
 	<div class="footer-top">
 		<div class="container-fluid">

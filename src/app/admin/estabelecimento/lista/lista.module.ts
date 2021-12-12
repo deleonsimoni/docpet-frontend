@@ -1,35 +1,29 @@
 
 
-import { MensagemModule } from './../../componentes/mensagem/mensagem.module';
+import { MensagemModule } from './../../../componentes/mensagem/mensagem.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DataTablesModule } from 'angular-datatables';
 
-
-import { CadastroRoutingModule } from './cadastro-routing.module';
+import { ListaRoutingModule } from './lista-routing.module';
+import { ListaComponent } from './lista.component';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { AngularTagsInputModule } from '@iomechs/angular-tags-input';
-import { CadastroComponent } from './cadastro.component';
-import { AgmCoreModule } from '@agm/core';
-import { NgxMaskModule} from 'ngx-mask'
 
 @NgModule({
-  declarations: [CadastroComponent],
+  declarations: [ListaComponent],
   imports: [
     CommonModule,
-    CadastroRoutingModule,
+    ListaRoutingModule,
 	  NgxDropzoneModule,
 	  AngularTagsInputModule,
     FormsModule,
     NgSelectModule,
     MensagemModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyC39y1TCyvZP0bU7Pur_SBfySWjSy5qhEg'
-    }),
     ReactiveFormsModule,
-    NgxMaskModule.forChild()
-
+    DataTablesModule
   ]
 })
-export class CadastroModule { }
+export class ListaModule { }

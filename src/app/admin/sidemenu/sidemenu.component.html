@@ -159,14 +159,14 @@
 				<li *ngIf="userLogged.isAdmin" class="submenu">
 					<a href="javascript:void(0)"><i class="fe fe-document"></i> <span> Veterinários</span> <span class="menu-arrow"></span></a>
 					<ul style="display: none;">
-						<li [class.active]="page === 'Invoice Report'" ><a (click)="change('Invoice Report')" [routerLink]="'/admin/invoice-reports'">Manter</a></li>
+						<li [class.active]="page === 'veterinario'" ><a (click)="change('veterinario')" [routerLink]="'/admin/list-veterinario'">Manter</a></li>
 					</ul>
 				</li>
 
 				<li *ngIf="userLogged.isAdmin" class="submenu">
 					<a href="javascript:void(0)"><i class="fe fe-document"></i> <span> Clínicas</span> <span class="menu-arrow"></span></a>
 					<ul style="display: none;">
-						<li [class.active]="page === 'Invoice Report'" ><a (click)="change('Invoice Report')" [routerLink]="'/admin/invoice-reports'">Manter</a></li>
+						<li [class.active]="page === 'clinica'" ><a (click)="change('clinica')" [routerLink]="'/admin/list-estabelecimento'">Manter</a></li>
 					</ul>
 				</li>
 
