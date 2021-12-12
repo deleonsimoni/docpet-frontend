@@ -2,10 +2,10 @@
 <div class="header">			
 	<!-- Logo -->
 	<div class="header-left">
-		<a href="#/index" class="logo">
+		<a (click)="changeScope()" href="#/index" class="logo">
 			<img src="assets/img/logo.png" alt="Logo">
 		</a>
-		<a href="#/index" class="logo logo-small">
+		<a (click)="changeScope()" href="#/index" class="logo logo-small">
 			<img src="assets/admin/img/logo-small.png" alt="Logo" width="30" height="30">
 		</a>
 	</div>
@@ -117,12 +117,13 @@
 						<img src="assets/admin/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">
 					</div>
 					<div class="user-text">
-						<h6>Ryan Taylor</h6>
-						<p class="text-muted mb-0">Administrator</p>
+						<h6>{{userLogged.login}}</h6>
+						<p *ngIf="userLogged.isAdmin" class="text-muted mb-0">Administrator</p>
+						<p  *ngIf="userLogged.role == 1" class="text-muted mb-0">Veterinário</p>
+
 					</div>
 				</div>
-				<a class="dropdown-item" [routerLink]="'doc-profile'">My Profile</a>
-				<a class="dropdown-item" [routerLink]="'settings'">Settings</a>
+				
 				<a class="dropdown-item" (click)="clickLogout()">Logout</a>
 			</div>
 		</li>
@@ -139,129 +140,60 @@
 	<div class="sidebar-inner slimscroll">
 		<div id="sidebar-menu" class="sidebar-menu">
 			<ul>
-				<li class="menu-title"> 
-					<span>Main</span>
+
+
+
+				<li *ngIf="userLogged.isAdmin"  class="menu-title"> 
+					<span>Administrador</span>
 				</li>
-				<li [routerLink]="'/admin/dashboard'" [class.active]="page === 'Dashboard'"> 
-					<a  (click)="change('Dashboard')"><i class="fe fe-home" style="color: #fff"></i> 
+
+				<li *ngIf="userLogged.isAdmin" [routerLink]="'/admin/dashboard-admin'" [class.active]="page === 'Dashboard-admin'"> 
+					<a  (click)="change('Dashboard-admin')"><i class="fe fe-home" style="color: #fff"></i> 
 						<span style="color: #fff">Dashboard</span></a>
 				</li>
-				<li [class.active]="page === 'Appointments'"> 
-					<a  (click)="change('Appointments')" [routerLink]="'/admin/appointment'"><i class="fe fe-layout"></i> <span>Appointments</span></a>
+
+				<li *ngIf="userLogged.isAdmin" [class.active]="page === 'Patients'"> 
+					<a (click)="change('Patients')" [routerLink]="'/admin/patients'" ><i class="fe fe-user"></i> <span>Usuários</span></a>
 				</li>
-				<li [class.active]="page === 'Specialities'"> 
-					<a  (click)="change('Specialities')" [routerLink]="'/admin/specialities'"><i class="fe fe-users"></i> <span>Specialities</span></a>
+
+				<li *ngIf="userLogged.isAdmin" class="submenu">
+					<a href="javascript:void(0)"><i class="fe fe-document"></i> <span> Veterinários</span> <span class="menu-arrow"></span></a>
+					<ul style="display: none;">
+						<li [class.active]="page === 'Invoice Report'" ><a (click)="change('Invoice Report')" [routerLink]="'/admin/invoice-reports'">Manter</a></li>
+					</ul>
 				</li>
-				<!-- <li [class.active]="page === 'Blog'"> 
-					<a  (click)="change('Blog')" [routerLink]="'/admin/blog'"><i class="fe fe-users"></i> <span>Blog</span></a>
-				</li> -->
-				<li [class.active]="page === 'Doctors'" > 
-					<a (click)="change('Doctors')" [routerLink]="'/admin/doctor'"><i class="fe fe-user-plus"></i> <span>Doctors</span></a>
+
+				<li *ngIf="userLogged.isAdmin" class="submenu">
+					<a href="javascript:void(0)"><i class="fe fe-document"></i> <span> Clínicas</span> <span class="menu-arrow"></span></a>
+					<ul style="display: none;">
+						<li [class.active]="page === 'Invoice Report'" ><a (click)="change('Invoice Report')" [routerLink]="'/admin/invoice-reports'">Manter</a></li>
+					</ul>
 				</li>
-				<li [class.active]="page === 'Patients'"> 
-					<a (click)="change('Patients')" [routerLink]="'/admin/patients'" ><i class="fe fe-user"></i> <span>Patients</span></a>
-				</li>
-				<li  [class.active]="page === 'Reviews'"> 
-					<a (click)="change('Reviews')" [routerLink]="'/admin/reviews'" ><i class="fe fe-star-o"></i> <span>Reviews</span></a>
-				</li>
-				<li [class.active]="page === 'Transactions'"> 
-					<a (click)="change('Transactions')" [routerLink]="'/admin/transactions'"><i class="fe fe-activity"></i> <span>Transactions</span></a>
-				</li>
-				<li  [class.active]="page === 'Settings'"> 
-					<a (click)="change('Settings')" [routerLink]="'/admin/settings'"><i class="fe fe-vector"></i> <span>Settings</span></a>
-				</li>
+
 				<li class="submenu">
-					<a href="javascript:void(0)"><i class="fe fe-document"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
+					<a href="javascript:void(0)"><i class="fe fe-vector"></i> <span> Parâmetros</span> <span class="menu-arrow"></span></a>
 					<ul style="display: none;">
 						<li [class.active]="page === 'Invoice Report'" ><a (click)="change('Invoice Report')" [routerLink]="'/admin/invoice-reports'">Invoice Reports</a></li>
 					</ul>
 				</li>
-				<li class="menu-title"> 
-					<span>Pages</span>
+
+				
+
+				<li *ngIf="userLogged.role == 1"  class="menu-title"> 
+					<span>Veterinário</span>
 				</li>
-				<li class="submenu">
-					<a href="javascript:void(0)"><i class="fe fe-document"></i> <span> Blog </span> <span class="menu-arrow"></span></a>
-					<ul style="display: none;">
-						<li [class.active]="page === 'Blog'" ><a (click)="change('Blog')"  [routerLink]="'blog'"> Blog </a></li>
-						<li [class.active]="page === 'Blog Details'" ><a (click)="change('Blog Details')" [routerLink]="'blog-details'"> Blog Details </a></li>
-						<li [class.active]="page === 'Add Blog'" ><a (click)="change('Add Blog')" [routerLink]="'add-blog'"> Add Blog </a></li>
-						<li [class.active]="page === 'Edit Blog'" ><a (click)="change('Edit Blog')" [routerLink]="'edit-blog'"> Edit Blog </a></li>
-					</ul>
+
+				<li *ngIf="userLogged.role == 1" [routerLink]="'/admin/dashboard'" [class.active]="page === 'Dashboard'"> 
+					<a  (click)="change('Dashboard')"><i class="fe fe-home" style="color: #fff"></i> 
+						<span style="color: #fff">Dashboard</span></a>
 				</li>
-				<li [class.active]="page === 'Product List'"> 
-					<a (click)="change('Product List')" [routerLink]="'product-list'"><i class="fe fe-user-plus"></i> <span>Product List</span></a>
+
+				<li *ngIf="userLogged.role == 1" [class.active]="page === 'Appointments'"> 
+					<a  (click)="change('Appointments')" [routerLink]="'/admin/appointment'"><i class="fe fe-layout"></i> <span>Agendamentos</span></a>
 				</li>
-				<li [class.active]="page === 'Pharmacy List'"> 
-					<a (click)="change('Pharmacy List')" [routerLink]="'pharmacy-list'"><i class="fe fe-user-plus"></i> <span>Pharmacy List</span></a>
-				</li>
-				<li> 
-					<a [routerLink]="'doc-profile'"><i class="fe fe-user-plus"></i> <span>Profile</span></a>
-				</li>
-				<li class="submenu">
-					<a href="javascript:void(0)"><i class="fe fe-document"></i> <span> Authentication </span> <span class="menu-arrow"></span></a>
-					<ul style="display: none;">
-						<li><a [routerLink]="'login-form'"> Login </a></li>
-						<li><a [routerLink]="'register'"> Register </a></li>
-						<li><a [routerLink]="'forgot-pass'"> Forgot Password </a></li>
-						<li><a [routerLink]="'lock-screen'"> Lock Screen </a></li>
-					</ul>
-				</li>
-				<li class="submenu">
-					<a href="javascript:void(0)"><i class="fe fe-warning"></i> <span> Error Pages </span><span class="menu-arrow"></span></a>
-					<ul style="display: none;">
-						<li><a [routerLink]="'error-first'">404 Error </a></li>
-						<li><a [routerLink]="'error-second'">500 Error </a></li>
-					</ul>
-				</li>
-				<li> 
-					<a [routerLink]="'blank-page'"><i class="fe fe-file"></i> <span>Blank Page</span></a>
-				</li>
-				<li class="menu-title"> 
-					<span>UI Interface</span>
-				</li>
-				<li> 
-					<a [routerLink]="'components'"><i class="fe fe-vector"></i> <span>Components</span></a>
-				</li>
-				<li class="submenu">
-					<a href="javascript:void(0)"><i class="fe fe-layout"></i> <span> Forms </span> <span class="menu-arrow"></span></a>
-					<ul style="display: none;">
-						<li><a [routerLink]="'basic-input'">Basic Inputs </a></li>
-						<li><a [routerLink]="'input-groups'">Input Groups </a></li>
-						<li><a [routerLink]="'horizondal-form'">Horizontal Form </a></li>
-						<li><a [routerLink]="'vertical-form'"> Vertical Form </a></li>
-						<li><a [routerLink]="'form-mask'"> Form Mask </a></li>
-						<li><a [routerLink]="'form-validation'"> Form Validation </a></li>
-					</ul>
-				</li>
-				<li class="submenu">
-					<a href="javascript:void(0)"><i class="fe fe-table"></i> <span> Tables </span> <span class="menu-arrow"></span></a>
-					<ul style="display: none;">
-						<li><a [routerLink]="'basic-tables'">Basic Tables </a></li>
-						<li><a [routerLink]="'admin-data-table'">Data Table </a></li>
-					</ul>
-				</li>
-				<li class="submenu">
-					<a href="javascript:void(0);"><i class="fe fe-code"></i> <span>Multi Level</span> <span class="menu-arrow"></span></a>
-					<ul style="display: none;">
-						<li class="submenu">
-							<a href="javascript:void(0);"> <span>Level 1</span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="javascript:void(0);"><span>Level 2</span></a></li>
-								<li class="submenu">
-									<a href="javascript:void(0);"> <span> Level 2</span><span class="menu-arrow"></span></a>
-									<ul style="display: none;">
-										<li><a href="javascript:void(0);">Level 3</a></li>
-										<li><a href="javascript:void(0);">Level 3</a></li>
-									</ul>
-								</li>
-								<li><a href="javascript:void(0);"> <span>Level 2</span></a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="javascript:void(0);"> <span>Level 1</span></a>
-						</li>
-					</ul>
-				</li>
+				
+			
+				
 			</ul>
 		</div>
 	</div>

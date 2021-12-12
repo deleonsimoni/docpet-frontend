@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { INgxSelectOption } from 'ngx-select-ex';
 import { ToastrService } from 'ngx-toastr';
 import { CEPService } from '../services/cep.service';
+import { DashboardService } from '../services/dashboard.service';
 import { EspecialidadeService } from '../services/especialidades.service';
 //import {} from 'googlemaps';
 
@@ -30,13 +31,21 @@ export class HomeComponent implements OnInit {
   constructor(
     private especialidadeSevice: EspecialidadeService,
     private cepService: CEPService,
-
+    private dashboardService: DashboardService,
     private toastr: ToastrService,
     private router: Router) { }
 
   ngOnInit(): void {
     this.listarEspecialidades();
     this.listarEspecialidadesTotal();
+    this.dashboardService.markAccess().subscribe(
+      (counts: any) => {
+       console.log('access');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
     this.places=[
       {"description":"São Paulo", "placeId":"ChIJ0WGkg4FEzpQRrlsz_whLqZs"},
       {"description":"Rio de Janeiro", "placeId":"ChIJW6AIkVXemwARTtIvZ2xC3FA"},

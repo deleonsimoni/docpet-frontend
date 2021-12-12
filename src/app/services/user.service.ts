@@ -22,6 +22,14 @@ export class UserService {
     return this.http.post(baseUrl, data);
   }
 
+  getUsers(): Observable<any> {
+    return this.http.get(baseUrl + '/users');
+  }
+
+  changeAdmin(id, isAdmin) {
+    return this.http.get(`${baseUrl}/changeAdmin/${id}?isAdmin=${isAdmin}`);
+  }
+
   login(email: string, password: string) {
     return this.http.post(baseUrl + '/login', { email, password });
   }

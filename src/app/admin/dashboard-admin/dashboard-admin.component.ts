@@ -4,37 +4,43 @@ import {
   AfterViewInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { DashboardService } from 'src/app/services/dashboard.service';
 import { UserService } from 'src/app/services/user.service';
 declare var $: any;
 declare var Morris: any;
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  selector: 'app-dashboard-admin',
+  templateUrl: './dashboard-admin.component.html',
+  styleUrls: ['./dashboard-admin.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardAdminComponent implements OnInit {
 
   user;
-
+  totalUsers;
+  totalVets;
+  totalClinics;
+  totalAccess;
   constructor(
     private userService: UserService,
-    public router: Router,
+    private dashboardService: DashboardService,
   ) {}
 
-  ngAfterViewInit() {
-    if(this.user.isAdmin){
-      this.router.navigate(['/admin/dashboard-admin']);
-
-    } else if (this.user.role == 0){
-      this.userService.logout();
-      window.location.href = '/home';
-    }
-  }
-
   ngOnInit(): void {
-    this.user = this.userService.getUser()
 
+    this.user = this.userService.getUser();
+
+    this.dashboardService.getDashboardAdmin().subscribe(
+      (counts: any) => {
+        this.totalAccess = counts.counts.totalAccess.access;
+        this.totalVets = counts.counts.totalVets;
+        this.totalClinics = counts.counts.totalClinics;
+        this.totalUsers = counts.counts.totalUsers;
+
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
    
 
     let chartAreaData = [

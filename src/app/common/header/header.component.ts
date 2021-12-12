@@ -157,8 +157,7 @@ export class HeaderComponent implements OnInit {
 
   sair(){
     this.userService.logout();
-    this.router.navigate(['/']);
-
+    window.location.href = '/home';
   }
 
   ngAfterViewInit() {

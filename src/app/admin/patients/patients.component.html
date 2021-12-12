@@ -4,11 +4,11 @@
 		<div class="page-header">
 			<div class="row">
 				<div class="col-sm-12">
-					<h3 class="page-title">List of Patient</h3>
+					<h3 class="page-title">Lista de Usuários</h3>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a [routerLink]="''">Dashboard</a></li>
-						<li class="breadcrumb-item"><a href="javascript:(0);">Users</a></li>
-						<li class="breadcrumb-item active">Patient</li>
+						<li class="breadcrumb-item"><a href="javascript:(0);">Usuários</a></li>
+						<li class="breadcrumb-item active">Lista</li>
 					</ul>
 				</div>
 			</div>
@@ -24,29 +24,43 @@
 							<table class="datatable table table-hover table-center mb-0">
 								<thead>
 									<tr>
-										<th>Patient ID</th>
-										<th>Patient Name</th>
-										<th>Age</th>
-										<th>Address</th>
-										<th>Phone</th>
-										<th>Last Visit</th>
-										<th class="text-right">Paid</th>
+										<th>Nome</th>
+										<th>Email</th>
+										<th>Perfil</th>
+										<th>Data de Criação</th>
+										<th class="text-right">Administrador</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr *ngFor="let patient of patientsList">
-										<td>{{patient.key}}</td>
+									<tr *ngFor="let user of users">
 										<td>
 											<h2 class="table-avatar">
-												<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" [src]="patient.img" alt="User Image"></a>
-												<a>{{patient.name}} </a>
+												<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" [src]="user.img ? user.img : 'assets/img/addphoto.jpg'" alt="User Image"></a>
+												<a>{{user.nome}} </a>
 											</h2>
 										</td>
-										<td>{{patient.age}}</td>
-										<td>{{patient.address}}</td>
-										<td>{{patient.phone}}</td>
-										<td>{{patient.lastvisit | date : 'dd MMM yyyy'}}</td>
-										<td class="text-right">${{patient.paid}}</td>
+										<td>{{user.email}}</td>
+										<td *ngIf="user.role == 0">Cliente</td>
+										<td *ngIf="user.role == 1">Veterinário</td>
+										<td *ngIf="user.role == 2">Clínica</td>
+
+										<td>{{user.createdAt | date : 'dd/MM/yyyy'}}</td>
+										<td class="text-right">
+
+											<div>
+												<div class="btn-group" role="group">
+													<button (click)="changeAdmin(user, true)"
+														style="color: white; margin: 0"
+														type="button" [ngClass]="{'btn btn-success': user.isAdmin, 'btn btn-outline-success': !user.isAdmin}"
+														class="btn">Sim</button>
+													<button (click)="changeAdmin(user, false)"
+														style="color: white; margin: 0"
+														type="button" [ngClass]="{'btn btn-danger': !user.isAdmin, 'btn btn-outline-danger': user.isAdmin}"
+														class="btn">Não</button>
+												</div>
+											</div>
+
+										</td>
 									</tr>
 									
 								</tbody>

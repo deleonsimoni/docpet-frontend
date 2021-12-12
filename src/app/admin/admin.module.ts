@@ -5,6 +5,7 @@ import { AdminComponent } from './admin.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 
 @NgModule({
   declarations: [AdminComponent, SidemenuComponent],

@@ -14,6 +14,16 @@ const routes: Routes = [
           import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
       },
       {
+        path: 'dashboard-admin',
+        loadChildren: () =>
+          import('./dashboard-admin/dashboard-admin.module').then((m) => m.DashboardAdminModule),
+      },
+      {
+        path: 'list-user',
+        loadChildren: () =>
+          import('./dashboard-admin/dashboard-admin.module').then((m) => m.DashboardAdminModule),
+      },
+      {
         path: 'forgot-pass',
         loadChildren: () =>
           import(

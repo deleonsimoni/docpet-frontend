@@ -233,8 +233,14 @@ export class FormContatoComponent implements OnInit {
       (data) => {
         this.isLoading = false;
         this.userService.setSession(data.token);
-        this.router.navigate(['/']);
-      },
+        let user = this.userService.getUser();
+        if(user.isAdmin ){
+          this.router.navigate(['/admin/dashboard-admin']);
+        } else  if( user.role == 1 || user.role == 2){
+          this.router.navigate(['/admin']);
+        } else {
+          window.location.href = '/home';
+        }    },
       (error) => {
         this.isLoading = false;
         console.log(error);

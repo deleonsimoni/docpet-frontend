@@ -3,6 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { CommonServiceService } from '../../common-service.service';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-sidemenu',
   templateUrl: './sidemenu.component.html',
@@ -13,13 +14,26 @@ export class SidemenuComponent implements OnInit {
   showDropdown = true;
   public bellCollapsed = true;
   public userCollapsed = true;
+  userLogged;
 
   constructor(
     @Inject(DOCUMENT) private document,
     public router: Router,
-    private commonService: CommonServiceService
+    private commonService: CommonServiceService,
+    private userService: UserService,
+
   ) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userLogged = this.userService.getUser();
+    if(this.userLogged.isAdmin){
+      this.page = 'Dashboard-admin';
+      this.router.navigate(['/admin/dashboard-admin']);
+
+    } else if (this.userLogged.role == 0){
+      this.userService.logout();
+      window.location.href = '/home';
+    }
+  }
 
   ngAfterViewInit() {
     this.loadDynmicallyScript('assets/admin/js/script.js');
@@ -42,8 +56,14 @@ export class SidemenuComponent implements OnInit {
     this.commonService.nextmessage('main');
   }
   clickLogout() {
+    this.userService.logout();
     window.location.href = '/home';
   }
+
+  changeScope(){
+    window.location.href = '/home';
+  }
+
   bell() {
     this.bellCollapsed = !this.bellCollapsed;
     if (!this.userCollapsed) {
