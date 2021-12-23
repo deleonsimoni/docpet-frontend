@@ -21,6 +21,10 @@ export class DoctorProfileComponent implements OnInit {
   review: any = {};
   user;
   isLoading = true;
+  totalStar = 0;
+  totalStarFormated = 0;
+  isLikedComment = 0;
+  totalLike = 100;
 
 
   meses = [{ id: 1, mes: 'Janeiro', abreviado: 'Jan' },
@@ -86,7 +90,7 @@ export class DoctorProfileComponent implements OnInit {
       (data: any) => {
         this.isLoading = false;
         this.doctorDetails.reviews = data.reviews.reviews;
-
+        this.countScore(this.doctorDetails);
       },
       (error) => {
         this.isLoading = false;
@@ -98,13 +102,45 @@ export class DoctorProfileComponent implements OnInit {
 
   sendReview() {
 
-    this.review.user = this.user.id;
+    if (!this.review.score) {
+      this.toast.warning('Selecione a quantidade de estrelas', 'Atenção');
+      return;
+    }
+
+    if (!this.user && !this.review.nameUser) {
+      this.toast.warning('Digite seu nome', 'Atenção');
+      return;
+    }
+
+
+    if (!this.review.description) {
+      this.toast.warning('Digite a descrição', 'Atenção');
+      return;
+    }
+
+    if (this.isLikedComment > 0) {
+      if (this.isLikedComment == 1) {
+        this.review.like = true;
+      } else {
+        this.review.like = false;
+      }
+    }
+
+    if (this.user) {
+      this.review.user = this.user.id;
+    }
 
     this.veterinarioService.createReview(this.doctorDetails._id, this.review).subscribe(
       (data: any) => {
         this.isLoading = false;
         this.toast.success('Feedback enviado com sucesso', ':)');
         this.listReviews();
+        this.review = {
+          nameUser: '',
+          score: 0,
+          description: '',
+        }
+        this.isLikedComment = 0;
 
       },
       (error) => {
@@ -128,10 +164,60 @@ export class DoctorProfileComponent implements OnInit {
       this.veterinarioService.getByName(this.docNameFormated).subscribe(
         (res) => {
           this.doctorDetails = res;
+          this.countScore(this.doctorDetails);
           //this.dtTrigger.next();
         },
         //(error) => (this.errorMessage = <any>error)
       );
+
+    }
+
+  }
+
+  countScore(doctorDetails) {
+
+    //calculate rates
+    if (doctorDetails.reviews.length > 0) {
+
+      //star
+      //this.totalStar = this.doctorDetails.reviews.reduce((previous, next) => (previous.score + next.score));
+      let to = 0;
+      for (let item of doctorDetails.reviews) {
+        if (item.score) {
+          to += item.score;
+        }
+      }
+
+      if (to > 0) {
+        this.totalStar = (to / 5);
+        this.totalStarFormated = Math.round((to / 5));
+
+        if (this.totalStarFormated >= 5) {
+          this.totalStar = 5;
+          this.totalStarFormated = 5;
+        }
+
+      }
+
+      //like
+      let totalLike = 0;
+      let totalDislike = 0;
+
+      for (let item of doctorDetails.reviews) {
+        if (item.like === true) {
+          totalLike+=1;
+        } else if (item.like === false){
+          totalDislike+=1;
+        }
+      }
+
+      this.totalLike = (totalLike/(totalLike + totalDislike)) * 100;
+
+      if(isNaN(this.totalLike) || this.totalLike < 0){
+        this.totalLike = 0;
+      } else {
+        this.totalLike = Math.round(this.totalLike);
+      }
 
     }
 

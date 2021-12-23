@@ -34,12 +34,12 @@
 							<h4 class="doc-name" *ngIf="doctorDetails">{{doctorDetails.nome}} - {{doctorDetails.crmv}}
 							</h4>
 							<div class="rating">
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star"></i>
-								<span class="d-inline-block average-rating">(4)</span>
+
+								<label *ngFor="let item of [1,2,3,4,5]">
+									<i *ngIf="totalStarFormated >= item" class="fas fa-star filled"></i>
+									<i *ngIf="totalStarFormated < item" class="fas fa-star"></i>
+								</label>
+								<span class="d-inline-block average-rating">({{totalStar}})</span>
 							</div>
 							<p class="doc-speciality" *ngIf="!doctorDetails">BDS, MDS - Oral & Maxillofacial Surgery</p>
 							<p class="doc-speciality" *ngIf="doctorDetails">{{doctorDetails.Education}}</p>
@@ -64,15 +64,15 @@
 
 						<div class="row">
 							<div class="col-12">
-								<div class="placement">
+								<!--<div class="placement">
 									<div (click)="likeIt()" [className]="like ? 'heart is-active' : 'heart'"></div>
 									Marcar como favorito
 								</div>
-								<hr />
+								<hr />-->
 
 							</div>
 							<div class="col-12">
-								<h1><a><i class="fa fa-thumbs-up"></i> 98%</a></h1>
+								<h1><a><i class="fa fa-thumbs-up"></i> {{totalLike}}%</a></h1>
 								<p>
 									Dos clientes recomendam
 								</p>
@@ -247,9 +247,9 @@
 															{{doctorDetails.endereco?.municipio}},
 															{{doctorDetails.endereco?.estado}}</p>
 
-														<p class=""> <i class="fas fa-phone"></i>
+														<!--<p class=""> <i class="fas fa-phone"></i>
 															{{doctorDetails.contato?.telefone}} -
-															{{doctorDetails.contato?.email}}</p>
+															{{doctorDetails.contato?.email}}</p>-->
 													</div>
 
 
@@ -311,94 +311,153 @@
 														src="https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg">
 													<div class="comment-body">
 														<div class="meta-data">
-															<span class="comment-author">{{review.user.nome}}</span>
+															<span class="comment-author">{{review?.user?.nome ||
+																review.nameUser}}</span>
 															<span class="comment-date">
 																<p>Enviado há {{getDataFormatada(review.createdAt)}}
 																	dia(s)</p>
 															</span>
-															<div class="review-count rating" >
+															<div class="review-count rating">
 																<label *ngFor="let item of [1,2,3,4,5]">
-																	<i *ngIf="review.score >= item" class="fas fa-star filled"></i>
-																	<i *ngIf="review.score < item" class="fas fa-star"></i>
+																	<i *ngIf="review.score >= item"
+																		class="fas fa-star filled"></i>
+																	<i *ngIf="review.score < item"
+																		class="fas fa-star"></i>
 																</label>
-															
 
+																
 															</div>
 														</div>
 														<p class="comment-content">
 															{{review.description}}
 														</p>
-
+														<div class="comment-reply">
+																	
+															<p class="recommend-btn">
+															<a *ngIf="review.like == true"  class="like-btn">
+																<i class="far fa-thumbs-up"></i> Recomenda
+															</a>
+															<a *ngIf="review.like == false"  class="dislike-btn">
+																<i class="far fa-thumbs-down"></i> Não recomenda
+															</a>
+														</p>
+														</div>
 													</div>
+													<hr />
 												</div>
-												<hr />
+												
+												
 											</div>
 
 											<div class="write-review">
-												<h4>Como foi sua consulta com <strong>{{doctorDetails.nome}}</strong></h4>
-												
+												<h4>O que você tem a dizer sobre <strong>{{doctorDetails.nome}}</strong>
+												</h4>
+
 												<!-- Write Review Form -->
 												<form>
+													<div *ngIf="!user" class="form-group">
+														<label>Nome</label>
+														<input class="form-control" [(ngModel)]="review.nameUser"
+															[ngModelOptions]="{standalone: true}" type="text"
+															placeholder="Digite seu nome">
+													</div>
 													<div class="form-group">
 														<label>Nota</label>
 														<div class="star-rating">
-															<input id="star-5" [(ngModel)]="review.score" type="radio" name="rating" [value]="5">
+															<input id="star-5" [(ngModel)]="review.score" type="radio"
+																name="rating" [value]="5">
 															<label for="star-5" title="5 stars">
 																<i class="active fa fa-star"></i>
 															</label>
-															<input id="star-4" [(ngModel)]="review.score" type="radio" name="rating" [value]="4">
+															<input id="star-4" [(ngModel)]="review.score" type="radio"
+																name="rating" [value]="4">
 															<label for="star-4" title="4 stars">
 																<i class="active fa fa-star"></i>
 															</label>
-															<input id="star-3" [(ngModel)]="review.score" type="radio" name="rating" [value]="3">
+															<input id="star-3" [(ngModel)]="review.score" type="radio"
+																name="rating" [value]="3">
 															<label for="star-3" title="3 stars">
 																<i class="active fa fa-star"></i>
 															</label>
-															<input id="star-2" [(ngModel)]="review.score" type="radio" name="rating" [value]="2">
+															<input id="star-2" [(ngModel)]="review.score" type="radio"
+																name="rating" [value]="2">
 															<label for="star-2" title="2 stars">
 																<i class="active fa fa-star"></i>
 															</label>
-															<input id="star-1" [(ngModel)]="review.score" type="radio" name="rating" [value]="1">
+															<input id="star-1" [(ngModel)]="review.score" type="radio"
+																name="rating" [value]="1">
 															<label for="star-1" title="1 star">
 																<i class="active fa fa-star"></i>
 															</label>
 														</div>
 													</div>
-													
+
 													<div class="form-group">
 														<label>Comentário</label>
-														<textarea id="review_desc" [(ngModel)]="review.description" maxlength="100" name="message" #message='ngModel' class="form-control"></textarea>
-													  
-													  <div class="d-flex justify-content-between mt-3"><small class="text-muted"><span id="chars">100</span> characters remaining</small></div>
+														<textarea id="review_desc"
+															placeholder="Conte mais sobre seu atendimento"
+															[(ngModel)]="review.description" maxlength="100"
+															name="message" #message='ngModel'
+															class="form-control"></textarea>
+
+														<div class="d-flex justify-content-between mt-3"><small
+																class="text-muted"><span id="chars">100</span>
+																caracteres</small></div>
+
+
+													</div>
+													<div class="comment">
+														<div class="comment-body">
+															<div class="comment-reply">
+															
+																<p class="recommend-btn">
+																	<span>Recomenda? </span>
+																	<a style="cursor: pointer;" 
+																	[ngClass]="{'': isLikedComment == 0, 'btn btn-success': isLikedComment == 1}"
+																	(click)="isLikedComment = 1" 
+																	class="btn">
+																		<i class="far fa-thumbs-up"></i> Sim
+																	</a>
+
+																	<a style="cursor: pointer;" 
+																	[ngClass]="{'': isLikedComment == 0, 'btn btn-danger': isLikedComment == 2}"
+																	(click)="isLikedComment = 2"
+																	 class="btn">
+																		<i class="far fa-thumbs-down"></i> Não
+																	</a>
+																</p>
+															</div>
+														</div>
 													</div>
 													<hr>
 													<div class="form-group">
 														<div class="terms-accept">
 															<div class="custom-checkbox">
-															   <input type="checkbox" id="terms_accept">
-															   <label for="terms_accept">Li e concordo com os termos <a href="javascript:void(0)">Terms &amp; Conditions</a></label>
+																<input type="checkbox" id="terms_accept">
+																<label for="terms_accept">Li e concordo com os termos <a
+																		href="javascript:void(0)">Termos &amp;
+																		Condições</a></label>
 															</div>
 														</div>
 													</div>
-													<div *ngIf="user" class="submit-section">
-														<button (click)="sendReview()" class="btn btn-primary submit-btn">Adicionar Feedback</button>
+													<div class="submit-section">
+														<button (click)="sendReview()"
+															class="btn btn-primary submit-btn">Adicionar
+															Feedback</button>
 													</div>
-													<div *ngIf="!user" class="submit-section">
-														<p>Para enviar seu comentário você precisa estar <a style="color: blue;" [routerLink]="'/login'">
-															logado</a></p>
-													</div>
+
 												</form>
 												<!-- /Write Review Form -->
-												
+
 											</div>
 
 
 										</div>
 
-										
+
 										<!-- FIM TAB COMENTARIOS-->
 									</div>
-<!--
+									<!--
 									<div class="tab-pane" id="bottom-justified-tab4">
 
 										<div class="row">
