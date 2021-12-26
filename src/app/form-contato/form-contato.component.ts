@@ -136,16 +136,17 @@ export class FormContatoComponent implements OnInit {
 
 
         crmv: [null, [Validators.minLength(4)]],
-        status: [true, []],
-        atendePlano: [null],
-        especialidades: [null],
+        celular: ['',[Validators.required]],
+        //status: [true, []],
+        //atendePlano: [null],
+        //especialidades: [null],
         endereco: this.createEnderecoFormGroup(),
         contato: this.createContatoFormGroup(),
         estabelecimentos: new FormBuilder().array([this.createEstabelecimento()]),
-        sobre: [null],
-        formacoes: new FormBuilder().array([this.createFormacao()]),
-        experiencias: new FormBuilder().array([this.createExperiencias()]),
-        conquistas: new FormBuilder().array([this.createConquistas()]),
+        //sobre: [null],
+        //formacoes: new FormBuilder().array([this.createFormacao()]),
+        //experiencias: new FormBuilder().array([this.createExperiencias()]),
+        //conquistas: new FormBuilder().array([this.createConquistas()]),
         veterinarios: new FormBuilder().array([this.createVeterinario()]),
         cnpj: [null, [Validators.minLength(11)]],
       }
@@ -161,7 +162,15 @@ export class FormContatoComponent implements OnInit {
         this.toastr.warning('Preencha o campo CRMV!', 'Atenção!');
         return;
       }
-      if (!this.form.get('formacoes').value[0].nomeInstituicao
+      if (!this.form.get('celular').value) {
+        this.toastr.warning('Preencha o campo Celular!', 'Atenção!');
+        return;
+      }
+      this.form.get('contato').value.celular = this.form.get('celular').value;
+      this.form.get('contato').value.nome = this.form.get('nome').value;
+      this.form.get('contato').value.email = this.form.get('email').value;
+
+      /*if (!this.form.get('formacoes').value[0].nomeInstituicao
         || !this.form.get('formacoes').value[0].curso
         || !this.form.get('formacoes').value[0].anoInicio
         || !this.form.get('formacoes').value[0].anoFim) {
@@ -182,17 +191,13 @@ export class FormContatoComponent implements OnInit {
         this.toastr.warning('Preencha o campo conquistas!', 'Atenção!');
         return;
       }
+      */
 
-      if (!this.form.get('contato').value.celular) {
-        this.toastr.warning('Preencha o campo Celular!', 'Atenção!');
-        return;
-      }
-
-      if (!this.form.get('endereco').value.cep
+     /* if (!this.form.get('endereco').value.cep
       || !this.form.get('endereco').value.numero) {
       this.toastr.warning('Preencha o campo endereco!', 'Atenção!');
       return;
-    }
+    }*/
 
     } else if (this.role == 2) {
       //clinica

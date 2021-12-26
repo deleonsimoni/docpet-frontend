@@ -11,6 +11,7 @@ export interface Veterinario {
   endereco: Endereco,
   especialidade: [],
   estabelecimentos: [Estabelecimento],
+  user:any,
 
   sobre:{
     type:String,

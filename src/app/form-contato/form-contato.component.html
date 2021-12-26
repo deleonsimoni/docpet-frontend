@@ -108,7 +108,7 @@
                     <label>Sou um(a):<span class="text-danger">*</span></label><br />
                     <input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role"
                       [value]="0">
-                    Mãe/Pai de Pet <br />
+                      Tutor de Pet <br />
                     <input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role"
                       [value]="1">
                     Veterinário<br />
@@ -139,7 +139,7 @@
             <div class="row form-row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>CRMV<span class="text-danger">*</span></label>
+                  <label>CRMV-UF<span class="text-danger">*</span></label>
                   <input type="text" class="form-control" formControlName="crmv" #crmv>
                   <app-mensagem *ngIf="
                           form.get('crmv')?.errors?.required &&
@@ -147,26 +147,36 @@
                   </app-mensagem>
                 </div>
               </div>
+              <!--
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Sobre<span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" formControlName="sobre">
+                  <label>Nome<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" formControlName="nome">
                   <app-mensagem *ngIf="
-                          form.get('sobre')?.errors?.required &&
-                          form.get('sobre')?.touched
-                          " mensagem="Sobre é obrigatório"></app-mensagem>
+                          form.get('nome')?.errors?.required &&
+                          form.get('nome')?.touched
+                          " mensagem="Nome é obrigatório"></app-mensagem>
+                </div>
+              </div> -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Celular</label>
+                  <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000"
+                    placeholder="(00) 00000-0000">
                 </div>
               </div>
+              <!--
               <div class="col-md-12">
                 <div class="form-group">
                   <label>Especialidade</label>
                   <ng-select [multiple]="true" formControlName="especialidades">
                     <ng-option *ngFor="let espc of listaEspecialidade" [value]="espc._id">{{espc.nome}}</ng-option>
-                    <!--<ng-option [value]="'custom'">Custom</ng-option> -->
                   </ng-select>
                 </div>
               </div>
+              -->
             </div>
+            <!--
             <div class="row form-row">
               <div class="col-md-3">
                 <div class="form-group mb-0">
@@ -200,6 +210,7 @@
                 </div>
               </div>
             </div>
+          -->
           </div>
         </div>
 
@@ -207,6 +218,7 @@
 
         <!-- /Basic Information -->
         <!-- Information formação-->
+        <!--
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Formação</h4>
@@ -256,8 +268,10 @@
             </div>
           </div>
         </div>
+        -->
         <!-- /Basic formação -->
         <!-- Information Experiencia-->
+        <!--
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Experiencia</h4>
@@ -301,8 +315,10 @@
             </div>
           </div>
         </div>
+        -->
         <!-- /Basic experiencia -->
         <!-- Information conquistas-->
+        <!--
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Conquista</h4>
@@ -355,9 +371,11 @@
             </div>
           </div>
         </div>
+        -->
         <!-- /Basic formação -->
 
         <!-- Contato -->
+        <!--
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Contato</h4>
@@ -404,8 +422,10 @@
             </div>
           </div>
         </div>
+        -->
         <!-- /Contato-->
         <!-- Endereço -->
+        <!--
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Endereço</h4>
@@ -505,7 +525,9 @@
           </div>
 
         </div>
+        -->
         <!-- Contato -->
+        <!--
         <div class="card" id="customInfoVeterinario" [hidden]="!checkIsEstabelecimento.checked">
           <div class="card-body">
             <h4 class="card-title">Estabelecimento</h4>
@@ -541,7 +563,7 @@
             </div>
           </div>
         </div>
-
+      -->
 
 
       </div>

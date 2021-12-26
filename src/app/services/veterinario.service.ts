@@ -55,4 +55,7 @@ export class VeterinarioService {
     return this.http.post(`${baseUrl}/review/${id}`, data);
   }
 
+  getByUser(id): Observable<any> {
+    return this.http.get(`${baseUrl}/usuario/${id}`);
+  }
 }

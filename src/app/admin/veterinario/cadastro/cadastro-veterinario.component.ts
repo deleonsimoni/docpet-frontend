@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service';
 import { Estabelecimento } from './../../../models/estabelecimento';
 import { VeterinarioService } from './../../../services/veterinario.service';
 import { CEPService } from './../../../services/cep.service';
@@ -35,6 +36,7 @@ export class CadastroVeterinarioComponent implements OnInit {
   formacoes: FormArray;
   experiencias: FormArray;
   conquistas: FormArray;
+  userLogged;
 
   listaAnos = [];
   meses = [ {id:1, mes:'Janeiro', abreviado:'Jan'},
@@ -57,12 +59,13 @@ export class CadastroVeterinarioComponent implements OnInit {
               private formBuilder: FormBuilder,
               private estabelecimentoSevice: EstabelecimentoService,
               private cepService: CEPService,
-              private veterinarioService: VeterinarioService ) {
+              private veterinarioService: VeterinarioService,
+              private userService: UserService, ) {
 
   }
 
   ngOnInit(): void {
-
+    this.userLogged = this.userService.getUser();
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
     var ano = new Date().getFullYear();
@@ -201,7 +204,11 @@ export class CadastroVeterinarioComponent implements OnInit {
       if(this.id){
         this.veterinarioService.update(this.id, novoVeterinario).subscribe(
           () => {
-            this.router.navigate(['/admin/list-veterinario']);
+            if(this.userLogged.isAdmin){
+              this.router.navigate(['/admin/list-veterinario']);
+            }else{
+              this.router.navigate(['/admin/dashboard']);
+            }
           },
           (error) => {
             console.log(error);

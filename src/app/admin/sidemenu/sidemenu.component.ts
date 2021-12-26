@@ -1,9 +1,12 @@
+import { VeterinarioService } from './../../services/veterinario.service';
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { CommonServiceService } from '../../common-service.service';
 import { UserService } from 'src/app/services/user.service';
+import { Veterinario } from 'src/app/models/veterinario';
 @Component({
   selector: 'app-sidemenu',
   templateUrl: './sidemenu.component.html',
@@ -15,16 +18,19 @@ export class SidemenuComponent implements OnInit {
   public bellCollapsed = true;
   public userCollapsed = true;
   userLogged;
+  veterinario;
 
   constructor(
     @Inject(DOCUMENT) private document,
     public router: Router,
     private commonService: CommonServiceService,
     private userService: UserService,
+    private veterinarioService: VeterinarioService
 
   ) {}
   ngOnInit(): void {
     this.userLogged = this.userService.getUser();
+
     if(this.userLogged.isAdmin){
       this.page = 'Dashboard-admin';
       this.router.navigate(['/admin/dashboard-admin']);
@@ -32,7 +38,19 @@ export class SidemenuComponent implements OnInit {
     } else if (this.userLogged.role == 0){
       this.userService.logout();
       window.location.href = '/home';
+    } else if(this.userLogged.role == 1){
+      console.log(this.userLogged.id);
+      this.getVeterinario(this.userLogged.id);
+      console.log(this.veterinario);
     }
+  }
+
+  getVeterinario(idUser){
+    this.veterinarioService.getByUser(idUser).subscribe(vet => {
+
+      this.veterinario = vet as Veterinario;
+
+    })
   }
 
   ngAfterViewInit() {
