@@ -181,18 +181,35 @@ export class DoctorProfileComponent implements OnInit {
 
       //star
       //this.totalStar = this.doctorDetails.reviews.reduce((previous, next) => (previous.score + next.score));
-      let to = 0;
+      let total = 0;
+      let divisor = 5;
+      let rates = [0,0,0,0,0];
+
       for (let item of doctorDetails.reviews) {
         if (item.score) {
-          to += item.score;
+          total += 1;
+
+          if(item.score == 1){
+            rates[0] += 1;
+          } else if (item.score == 2) {
+            rates[1] += 1;
+          } else if (item.score == 3) {
+            rates[2] += 1;
+          } else if (item.score == 4) {
+            rates[3] += 1;
+          } else if (item.score == 5) {
+            rates[4] += 1;
+          }
+
         }
       }
 
-      if (to > 0) {
-        this.totalStar = (to / 5);
-        this.totalStarFormated = Math.round((to / 5));
-
-        if (this.totalStarFormated >= 5) {
+      if (total > 0) {
+       
+          this.totalStar = (rates[0]*1 + rates[1]*2 + rates[2]*3 + rates[3]*4 + rates[4]*5) / total
+          this.totalStarFormated = Math.round(this.totalStar);
+        
+        if (this.totalStar >= 5) {
           this.totalStar = 5;
           this.totalStarFormated = 5;
         }

@@ -39,7 +39,7 @@
 									<i *ngIf="totalStarFormated >= item" class="fas fa-star filled"></i>
 									<i *ngIf="totalStarFormated < item" class="fas fa-star"></i>
 								</label>
-								<span class="d-inline-block average-rating">({{totalStar}})</span>
+								<span class="d-inline-block average-rating">({{totalStar.toFixed(1)}})</span>
 							</div>
 							<p class="doc-speciality" *ngIf="!doctorDetails">BDS, MDS - Oral & Maxillofacial Surgery</p>
 							<p class="doc-speciality" *ngIf="doctorDetails">{{doctorDetails.Education}}</p>
