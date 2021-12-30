@@ -47,10 +47,4 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  verificarAtualizacaoPerfil(){
-    if(this.veterinario){
-     return !this.veterinario.especialidade;
-    }
-  }
-
 }

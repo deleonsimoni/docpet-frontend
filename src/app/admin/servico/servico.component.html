@@ -1,0 +1,116 @@
+<div class="page-wrapper">
+	<div class="content container-fluid">
+
+		<div class="page-header">
+			<div class="row">
+				<div class="col-sm-12">
+					<h3 class="page-title">Especialidades</h3>
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a [routerLink]="''">Dashboard</a></li>
+						<li class="breadcrumb-item">Parâmetros</li>
+
+						<li class="breadcrumb-item active">Serviços</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="datatable table table-hover table-center mb-0">
+								<thead>
+									<tr>
+										<th colspan="2">Criar Serviço</th>
+										<th class="text-right">Incluir</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+                    <td style="width:30%">
+                      <div class="change-avatar">
+                        <div class="service-img" for="fileInput">
+                          <img class="img-avatar" [src]="img ? img : 'assets/img/img64x64.jpg'">
+                        </div>
+                        <div class="upload-img">
+                          <div class="change-photo-btn" style="margin-left: 10px;">
+                              <span><i class="fa fa-upload"></i> Escolha sua Foto</span>
+                              <input id="fileInput" type='file' class="upload" (change)="onFileChanged($event)">
+                          </div>
+                          <!--<small class="form-text text-muted">Allowed JPG, PNG. Max size of 2MB</small> -->
+                        </div>
+                      </div>
+                    </td>
+										<td style="width:50%">
+											<div class="form-group form-focus">
+												<input type="text" name="name" id="username" class="form-control floating" [(ngModel)]="nome">
+												<label class="focus-label">Nome do Serviço<span class="required">*</span></label>
+											</div>
+										</td>
+
+										<td class="text-right" style="width:20%">
+											<div class="actions">
+												<a data-toggle="modal" (click)="create()"
+                                                    class="btn btn-sm bg-success-light">
+                                                    <i class="fe fe-pencil"></i> Cadastrar
+                                                </a>
+                        <button *ngIf="img" (click)="deleteImg()" class="btn btn-sm bg-danger "> <i class="far fa-trash-alt"></i> Excluir foto</button>
+											</div>
+										</td>
+									</tr>
+
+								</tbody>
+							</table>
+
+
+
+							<table class="datatable table table-hover table-center mb-0">
+								<thead>
+									<tr>
+										<th colspan="2">Serviço</th>
+										<th class="text-right">Ações</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let servico of servicos">
+                    <td style="width:10%"> <img class="img-avatar" [src]="servico.img ? servico.img : ''"> </td>
+                    <td style="width:80%" class="text-left"><a (click)="getServico(servico._id)"> {{servico.nome}}</a></td>
+
+
+										<td class="text-right" style="width:10%">
+											<div class="actions">
+												<a data-toggle="modal" (click)="deleteModal(delete,servico)"
+                                                    class="btn btn-sm bg-danger-light">
+                                                    <i class="fe fe-trash"></i> Delete
+                                                </a>
+											</div>
+										</td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<ng-template #delete>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Deletar</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body text-center">
+      Tem certeza que deseja excluir este serviço?
+      <div style="margin-top:25px">
+        <button type="button" class="btn btn-default" (mouseover)="btnColor()" id="btn-yes" (click)="deleteServico()" >Sim</button>
+        <button type="button" class="btn btn-primary" (click)="modalRef.hide()" (mouseover)="btnColorNo()" id="btn-no" >Não</button>
+      </div>
+    </div>
+</ng-template>
