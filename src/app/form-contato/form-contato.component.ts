@@ -136,6 +136,7 @@ export class FormContatoComponent implements OnInit {
 
 
         crmv: [null, [Validators.minLength(4)]],
+        rg: [null, [Validators.minLength(4)]],
         celular: ['',[Validators.required]],
         //status: [true, []],
         //atendePlano: [null],
@@ -206,6 +207,28 @@ export class FormContatoComponent implements OnInit {
         return;
       }
 
+    } else if (this.role == 3) {
+      //adestrador
+      if (!this.form.get('rg').value) {
+        this.toastr.warning('Preencha o campo RG!', 'Atenção!');
+        return;
+      }
+      if (!this.form.get('celular').value) {
+        this.toastr.warning('Preencha o campo Celular!', 'Atenção!');
+        return;
+      }
+
+    } else if (this.role == 4) {
+      //estetica
+      if (!this.form.get('rg').value) {
+        this.toastr.warning('Preencha o campo RG!', 'Atenção!');
+        return;
+      }
+      if (!this.form.get('celular').value) {
+        this.toastr.warning('Preencha o campo Celular!', 'Atenção!');
+        return;
+      }
+
     }
 
     if (!this.form.get('nome').value) {
@@ -241,7 +264,7 @@ export class FormContatoComponent implements OnInit {
         let user = this.userService.getUser();
         if(user.isAdmin ){
           this.router.navigate(['/admin/dashboard-admin']);
-        } else  if( user.role == 1 || user.role == 2){
+        } else  if( user.role == 1 || user.role == 2 || user.role == 3 || user.role == 4){
           this.router.navigate(['/admin']);
         } else {
           window.location.href = '/home';

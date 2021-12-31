@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { CommonServiceService } from '../../common-service.service';
 import { UserService } from 'src/app/services/user.service';
 import { Veterinario } from 'src/app/models/veterinario';
+import { AdestradorService } from 'src/app/services/adestrador.service';
+import { EsteticaService } from 'src/app/services/estetica.service';
 @Component({
   selector: 'app-sidemenu',
   templateUrl: './sidemenu.component.html',
@@ -19,13 +21,16 @@ export class SidemenuComponent implements OnInit {
   public userCollapsed = true;
   userLogged;
   veterinario;
+  userRole;
 
   constructor(
     @Inject(DOCUMENT) private document,
     public router: Router,
     private commonService: CommonServiceService,
     private userService: UserService,
-    private veterinarioService: VeterinarioService
+    private veterinarioService: VeterinarioService,
+    private adestradorService: AdestradorService,
+    private esteticaService: EsteticaService
 
   ) {}
   ngOnInit(): void {
@@ -39,10 +44,24 @@ export class SidemenuComponent implements OnInit {
       this.userService.logout();
       window.location.href = '/home';
     } else if(this.userLogged.role == 1){
-      console.log(this.userLogged.id);
       this.getVeterinario(this.userLogged.id);
-      console.log(this.veterinario);
+    } else if(this.userLogged.role == 3){
+      this.getAdestrador(this.userLogged.id);
+    } else if(this.userLogged.role == 4){
+      this.getEstetica(this.userLogged.id);
     }
+  }
+
+  getAdestrador(idUser){
+    this.veterinarioService.getByUser(idUser).subscribe(res => {
+      this.userRole = res;
+    })
+  }
+
+  getEstetica(idUser){
+    this.veterinarioService.getByUser(idUser).subscribe(res => {
+      this.userRole = res;
+    })
   }
 
   getVeterinario(idUser){

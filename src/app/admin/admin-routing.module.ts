@@ -39,6 +39,42 @@ const routes: Routes = [
           import('./veterinario/cadastro/cadastro-veterinario.module').then((m) => m.CadastroVeterinarioModule),
       },
 
+
+      {
+        path: 'list-adestrador',
+        loadChildren: () =>
+          import('./adestrador/lista/lista.module').then((m) => m.ListaModule),
+      },
+      {
+        path: 'cadastro-adestrador',
+        loadChildren: () =>
+          import('./adestrador/cadastro/cadastro.module').then((m) => m.CadastroModule),
+      },
+      {
+        path: 'dashboard-adestrador',
+        loadChildren: () =>
+          import('./adestrador/dashboard-adestrador/dashboard-adestrador.module').then((m) => m.DashboardAdestradorModule),
+      },
+      {
+        path: 'list-estetica',
+        loadChildren: () =>
+          import('./estetica/lista/lista.module').then((m) => m.ListaModule),
+      },
+      {
+        path: 'cadastro-estetica',
+        loadChildren: () =>
+          import('./estetica/cadastro/cadastro.module').then((m) => m.CadastroModule),
+      },
+      {
+        path: 'dashboard-estetica',
+        loadChildren: () =>
+          import('./estetica/dashboard-estetica/dashboard-estetica.module').then((m) => m.DashboardEsteticaModule),
+      },
+
+
+
+
+
       {
         path: 'list-estabelecimento',
         loadChildren: () =>
