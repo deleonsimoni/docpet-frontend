@@ -14,6 +14,7 @@ import {
 } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { CommonServiceService } from '../common-service.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-admin',
@@ -21,13 +22,16 @@ import { CommonServiceService } from '../common-service.service';
   styleUrls: ['./admin.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class AdminComponent implements OnInit {  
+export class AdminComponent implements OnInit {
   adminShow: boolean = true;
+  user;
+
   constructor(
     @Inject(DOCUMENT) private document,
     public commonService: CommonServiceService,
     private route: ActivatedRoute,
-    public Router: Router
+    public Router: Router,
+    private userService: UserService,
   ) {
     Router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
@@ -47,10 +51,19 @@ export class AdminComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.user = this.userService.getUser()
+
     this.commonService.nextmessage('admin');
     let scope = this;
     setTimeout(() => {
-      scope.Router.navigateByUrl('/admin/dashboard');
+      if(this.user.isAdmin){
+        scope.Router.navigateByUrl('/admin/dashboard-admin');
+
+      }else{
+        scope.Router.navigateByUrl('/admin/dashboard');
+      }
+
     }, 100);
   }
+
 }

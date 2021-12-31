@@ -9,6 +9,7 @@ export interface Veterinario {
   atendePlano: Boolean,
   contato: Contato,
   endereco: Endereco,
+  uf:String,
   especialidade: [],
   estabelecimentos: [Estabelecimento],
   user:any,
@@ -27,7 +28,7 @@ export interface Veterinario {
 
   experiencias:[{
       nomeEstabelecimento:String,
-      anoIncio:Number,
+      anoInicio:Number,
       anoFim:Number,
   }],
 

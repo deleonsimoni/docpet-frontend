@@ -70,11 +70,12 @@ export class CadastroVeterinarioComponent implements OnInit {
     this.isAddMode = !this.id;
     var ano = new Date().getFullYear();
     var anos=[];
-
     anos.push(ano);
     for (var i = 1; i < 40; i++) {
       anos.push(ano - i);
     }
+
+
     this.listaAnos = anos;
 
     this.veterinarioForm = this.formBuilder.group(
@@ -82,16 +83,17 @@ export class CadastroVeterinarioComponent implements OnInit {
         _id: [null],
         crmv: [null, [Validators.required, Validators.minLength(4)]],
         nome: [null, [Validators.required, Validators.minLength(4)]],
-        status:[true, [Validators.required]],
+        status:[null],
         atendePlano: [null],
         especialidades: [null],
+        uf:[null, [Validators.required, Validators.minLength(2)]],
         endereco: this.createEnderecoFormGroup(),
         contato: this.createContatoFormGroup(),
         estabelecimentos: new FormBuilder().array([this.createEstabelecimento()]),
         sobre: [null],
         formacoes: new FormBuilder().array([this.createFormacao()]),
         experiencias: new FormBuilder().array([this.createExperiencias()]),
-        conquistas: new FormBuilder().array([this.createConquistas()]),
+        conquistas: new FormBuilder().array([]),
 
       }
     );
@@ -156,34 +158,36 @@ export class CadastroVeterinarioComponent implements OnInit {
         this.veterinarioForm.get('estabelecimentos').patchValue(vet.estabelecimentos);
       }
 
-      if(vet.formacoes.length > 0){
+      if(vet.formacoes && vet.formacoes.length > 0){
 
         this.formacoes = this.veterinarioForm.get('formacoes') as FormArray;
 
         for(var i=1; i < vet.formacoes.length; i++){
           this.addFormacao();
         }
+
         this.veterinarioForm.get('formacoes').patchValue(vet.formacoes);
       }
 
-      if(vet.experiencias.length > 0){
+      if(vet.experiencias && vet.experiencias.length > 0){
 
         this.experiencias = this.veterinarioForm.get('experiencias') as FormArray;
 
         for(var i=1; i < vet.experiencias.length; i++){
           this.addExperiencia();
         }
-        this.veterinarioForm.get('experiencias').patchValue(vet.formacoes);
+
+        this.veterinarioForm.get('experiencias').patchValue(vet.experiencias);
       }
 
-      if(vet.conquistas.length > 0){
+      if(vet.conquistas && vet.conquistas.length > 0){
 
         this.conquistas = this.veterinarioForm.get('conquistas') as FormArray;
 
         for(var i=1; i < vet.conquistas.length; i++){
           this.addConquista();
         }
-        this.veterinarioForm.get('conquistas').patchValue(vet.formacoes);
+        this.veterinarioForm.get('conquistas').patchValue(vet.conquistas);
       }
 
     }),(error) => {
@@ -287,7 +291,7 @@ export class CadastroVeterinarioComponent implements OnInit {
       nome:[null, [Validators.required, Validators.minLength(4)]],
       email:[null, [Validators.required, Validators.email]],
       telefone:[''],
-      celular:['']
+      celular:[null, [Validators.required]]
     });
   }
 
@@ -325,7 +329,7 @@ export class CadastroVeterinarioComponent implements OnInit {
       nomeInstituicao:[null, [Validators.required, Validators.minLength(4)]],
       curso:[null, Validators.required],
       anoInicio:[null, Validators.required],
-      anoFim:[null, Validators.required],
+      anoFim:[null],
     });
   }
 
@@ -359,7 +363,7 @@ export class CadastroVeterinarioComponent implements OnInit {
     return this.formBuilder.group({
       nome:[null, [Validators.required, Validators.minLength(4)]],
       mes:[null, Validators.required],
-      ano:[null, Validators.required],
+      ano:[null],
       descricao:[null, Validators.required],
     });
   }

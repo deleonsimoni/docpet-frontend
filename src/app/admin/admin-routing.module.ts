@@ -91,7 +91,7 @@ const routes: Routes = [
           import('./estabelecimento/cadastro/cadastro.module').then((m) => m.CadastroModule),
       },
 
-      
+
       {
         path: 'forgot-pass',
         loadChildren: () =>
@@ -298,6 +298,14 @@ const routes: Routes = [
         path: 'invoice-reports',
         loadChildren: () =>
           import('./invoice-reports/invoice-reports.module').then(
+            (m) => m.InvoiceReportsModule
+          ),
+      },
+
+      {
+        path: 'servicos',
+        loadChildren: () =>
+          import('./servico/servico.module').then(
             (m) => m.InvoiceReportsModule
           ),
       },
