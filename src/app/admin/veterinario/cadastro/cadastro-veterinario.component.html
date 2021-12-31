@@ -30,17 +30,27 @@
             </div>
             <div class="col-md-8 ml-5">
               <div class="row form-row ">
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <div class="form-group">
                     <label>CRMV<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" formControlName="crmv" #crmv>
+                    <input type="text" class="form-control" formControlName="crmv" #crmv maxlength="10" style="text-transform: uppercase;">
                     <app-mensagem *ngIf="
                           veterinarioForm.get('crmv')?.errors?.required &&
                           veterinarioForm.get('crmv')?.touched" mensagem="CRMV é obrigatório">
                     </app-mensagem>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-1">
+                  <div class="form-group">
+                    <label>UF<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="uf" maxlength="2" minlength="2" style="text-transform: uppercase;">
+                    <app-mensagem *ngIf="
+                          veterinarioForm.get('uf')?.errors?.required &&
+                          veterinarioForm.get('uf')?.touched" mensagem="UF é obrigatório">
+                    </app-mensagem>
+                  </div>
+                </div>
+                <div class="col-md-7">
                   <div class="form-group">
                     <label>Nome<span class="text-danger">*</span></label>
                     <input type="text" class="form-control" formControlName="nome" [readonly]="!crmv.value">
@@ -116,32 +126,32 @@
           <div class="formacao-info" formArrayName="formacoes"
             *ngFor="let formacao of veterinarioForm.get('formacoes')['controls']; let i = index;">
             <div class="row form-row" [formGroupName]="i">
-              <div class="col-md-5">
+              <div class="col-md-4">
                 <div class="form-group">
                   <label>Instituição<span class="text-danger">*</span></label>
                   <input type="text" class="form-control" formControlName="nomeInstituicao" #nomeInstituicao>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <div class="form-group">
                   <label>Curso<span class="text-danger">*</span></label>
                   <input type="text" class="form-control" formControlName="curso">
                 </div>
               </div>
-              <div class="col-md-1 col-lg-1">
+              <div class="col-md-2 col-lg-2">
                 <div class="form-group">
                   <label>Início <span class="text-danger">*</span></label>
                   <select class="form-control" formControlName="anoInicio">
-                    <option>-</option>
+                    <option></option>
                     <option *ngFor="let ano of listaAnos">{{ano}}</option>
                   </select>
                 </div>
               </div>
-              <div class="col-md-1 col-lg-1">
+              <div class="col-md-2 col-lg-2">
                 <div class="form-group">
                   <label>Termino <span class="text-danger">*</span></label>
                   <select class="form-control" formControlName="anoFim">
-                    <option>-</option>
+                    <option value="null" selected="selected">Em curso</option>
                     <option *ngFor="let ano of listaAnos">{{ano}}</option>
                   </select>
                 </div>
@@ -167,26 +177,26 @@
           <div class="formacao-info" formArrayName="experiencias"
             *ngFor="let experiencia of veterinarioForm.get('experiencias')['controls']; let i = index;">
             <div class="row form-row" [formGroupName]="i">
-              <div class="col-md-9">
+              <div class="col-md-7">
                 <div class="form-group">
                   <label>Nome da empresa<span class="text-danger">*</span></label>
                   <input type="text" class="form-control" formControlName="nomeEstabelecimento">
                 </div>
               </div>
-              <div class="col-md-1 col-lg-1">
+              <div class="col-md-2 col-lg-2">
                 <div class="form-group">
                   <label>Início <span class="text-danger">*</span></label>
                   <select class="form-control" formControlName="anoInicio">
-                    <option>-</option>
+                    <option></option>
                     <option *ngFor="let ano of listaAnos">{{ano}}</option>
                   </select>
                 </div>
               </div>
-              <div class="col-md-1 col-lg-1">
+              <div class="col-md-2 col-lg-2">
                 <div class="form-group">
                   <label>Termino <span class="text-danger">*</span></label>
                   <select class="form-control" formControlName="anoFim">
-                    <option>-</option>
+                    <option [ngValue]=null>Em curso</option>
                     <option *ngFor="let ano of listaAnos">{{ano}}</option>
                   </select>
                 </div>
@@ -212,26 +222,26 @@
           <div class="formacao-info" formArrayName="conquistas"
             *ngFor="let conquista of veterinarioForm.get('conquistas')['controls']; let i = index;">
             <div class="row form-row" [formGroupName]="i">
-              <div class="col-md-9">
+              <div class="col-md-7">
                 <div class="form-group">
                   <label>Nome<span class="text-danger">*</span></label>
                   <input type="text" class="form-control" formControlName="nome">
                 </div>
               </div>
-              <div class="col-md-1 col-lg-1">
+              <div class="col-md-2 col-lg-2">
                 <div class="form-group">
                   <label>Mês <span class="text-danger">*</span></label>
                   <select class="form-control" formControlName="mes">
-                    <option>-</option>
+                    <option>Em curso</option>
                     <option *ngFor="let mes of meses" [ngValue]="mes.id">{{mes.abreviado}} </option>
                   </select>
                 </div>
               </div>
-              <div class="col-md-1 col-lg-1">
+              <div class="col-md-2 col-lg-2">
                 <div class="form-group">
                   <label>Termino <span class="text-danger">*</span></label>
                   <select class="form-control" formControlName="ano">
-                    <option>-</option>
+                    <option value="">Em curso</option>
                     <option *ngFor="let ano of listaAnos">{{ano}}</option>
                   </select>
                 </div>
@@ -243,7 +253,7 @@
                     formControlName="descricao"></textarea>
                 </div>
               </div>
-              <div class="col-1 col-md-1 col-lg-1" *ngIf="!isAddMode || i != 0">
+              <div class="col-1 col-md-1 col-lg-1" *ngIf="!isAddMode || i >= 0">
                 <label class="d-md-block d-sm-none d-none">&nbsp;</label>
                 <a href="javascript:void(0);" (click)="removeConquista(i)" class="btn btn-danger trash"><i
                     class="far fa-trash-alt"></i></a>
