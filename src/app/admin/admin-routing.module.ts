@@ -51,6 +51,11 @@ const routes: Routes = [
           import('./adestrador/cadastro/cadastro.module').then((m) => m.CadastroModule),
       },
       {
+        path: 'cadastro-adestrador',
+        loadChildren: () =>
+          import('./adestrador/cadastro/cadastro.module').then((m) => m.CadastroModule),
+      },
+      {
         path: 'dashboard-adestrador',
         loadChildren: () =>
           import('./adestrador/dashboard-adestrador/dashboard-adestrador.module').then((m) => m.DashboardAdestradorModule),
@@ -62,6 +67,11 @@ const routes: Routes = [
       },
       {
         path: 'cadastro-estetica/:id',
+        loadChildren: () =>
+          import('./estetica/cadastro/cadastro.module').then((m) => m.CadastroModule),
+      },
+      {
+        path: 'cadastro-estetica',
         loadChildren: () =>
           import('./estetica/cadastro/cadastro.module').then((m) => m.CadastroModule),
       },
