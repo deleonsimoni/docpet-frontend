@@ -61,11 +61,11 @@ export class LoginComponent implements OnInit {
 
         if(user.isAdmin ){
           this.router.navigate(['/admin/dashboard-admin']);
-        } else  if( user.role == 1 || user.role == 2){
+        } else  if( user.role == 1 || user.role == 2 || user.role == 3 || user.role == 4){
           this.router.navigate(['/admin']);
         } else {
           window.location.href = '/home';
-        }
+        }    
 
       },
       (error) => {

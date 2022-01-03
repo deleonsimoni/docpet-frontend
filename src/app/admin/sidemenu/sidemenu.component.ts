@@ -33,6 +33,8 @@ export class SidemenuComponent implements OnInit {
     private esteticaService: EsteticaService
 
   ) {}
+
+  
   ngOnInit(): void {
     this.userLogged = this.userService.getUser();
 
@@ -53,13 +55,13 @@ export class SidemenuComponent implements OnInit {
   }
 
   getAdestrador(idUser){
-    this.veterinarioService.getByUser(idUser).subscribe(res => {
+    this.adestradorService.getByUser(idUser).subscribe(res => {
       this.userRole = res;
     })
   }
 
   getEstetica(idUser){
-    this.veterinarioService.getByUser(idUser).subscribe(res => {
+    this.esteticaService.getByUser(idUser).subscribe(res => {
       this.userRole = res;
     })
   }

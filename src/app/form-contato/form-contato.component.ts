@@ -268,7 +268,8 @@ export class FormContatoComponent implements OnInit {
           this.router.navigate(['/admin']);
         } else {
           window.location.href = '/home';
-        }    },
+        }    
+      },
       (error) => {
         this.isLoading = false;
         console.log(error);

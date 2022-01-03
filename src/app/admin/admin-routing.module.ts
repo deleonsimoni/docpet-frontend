@@ -46,7 +46,7 @@ const routes: Routes = [
           import('./adestrador/lista/lista.module').then((m) => m.ListaModule),
       },
       {
-        path: 'cadastro-adestrador',
+        path: 'cadastro-adestrador/:id',
         loadChildren: () =>
           import('./adestrador/cadastro/cadastro.module').then((m) => m.CadastroModule),
       },
@@ -61,7 +61,7 @@ const routes: Routes = [
           import('./estetica/lista/lista.module').then((m) => m.ListaModule),
       },
       {
-        path: 'cadastro-estetica',
+        path: 'cadastro-estetica/:id',
         loadChildren: () =>
           import('./estetica/cadastro/cadastro.module').then((m) => m.CadastroModule),
       },

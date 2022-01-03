@@ -59,8 +59,12 @@ export class AdminComponent implements OnInit {
       if(this.user.isAdmin){
         scope.Router.navigateByUrl('/admin/dashboard-admin');
 
-      }else{
+      }else if(this.user.role == 1){
         scope.Router.navigateByUrl('/admin/dashboard');
+      }else if(this.user.role == 3){
+        scope.Router.navigateByUrl('/admin/dashboard-adestrador');
+      }else if(this.user.role == 4){
+        scope.Router.navigateByUrl('/admin/dashboard-estetica');
       }
 
     }, 100);

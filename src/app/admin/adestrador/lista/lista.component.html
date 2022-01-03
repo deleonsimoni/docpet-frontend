@@ -1,1 +1,66 @@
-<p>lista works!</p>
+<div class="page-wrapper">
+
+    <div class="content container-fluid">
+  
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="table-responsive" *ngIf="adestradores">
+                <table class="datatable table table-hover table-center mb-0" datatable [dtOptions]="dtOptions"
+                  [dtTrigger]="dtTrigger">
+                  <thead>
+                    <tr>
+                      <th>RG</th>
+                      <th>Nome</th>
+                      <th>Atende Plano</th>
+                      <th>Especialidades</th>
+                      <th>Endereço</th>
+                      <th>Data</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let adestrador of adestradores">
+                      <td>
+                        <h2 class="table-avatar">
+                          <!-- <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" [src]="doctor.profile" alt="User Image"></a> -->
+                          <a [routerLink]="['/admin/cadastro-adestrador/',adestrador._id]"> {{adestrador.rg}}</a>
+                        </h2>
+                      </td>
+                      <td>{{adestrador.nome}}</td>
+                      <td>{{adestrador.atendePlano ? 'Sim': 'Não'}}</td>
+                      <td>
+                        <p *ngFor="let especialidade of adestrador.especialidades"> {{especialidade.nome}}</p>
+                      </td>
+                      <td>{{adestrador.endereco?.logradouro}}</td>
+                      <td>{{adestrador.dtCriacao | date : 'dd/MM/yyyy'}}</td>
+                      <td>
+                        <div class="status-toggle">
+                          <input type="checkbox" id="{{adestrador._id}}" class="check" [checked]="adestrador.status"
+                            (change)="changeStatus(adestrador)">
+                          <label for="{{adestrador._id}}" class="checktoggle">checkbox</label>
+                        </div>
+                      </td>
+  
+                    </tr>
+  
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="row form-row">
+            <div class="submit-section submit-btn-bottom">
+              <a [routerLink]="['/admin/cadastro-adestrador']" class="btn submit-btn btn-primary"><i
+                  class="fa fa-plus-circle"></i> Cadastrar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

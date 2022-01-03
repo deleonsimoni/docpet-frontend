@@ -46,13 +46,13 @@
                 </a>
             </div>
 
+
             <div *ngIf="user?.role == 1">
                 <ul class="main-nav" [ngClass]="[base === 'home-seven' ? 'white-font' : '' ]">
 
                     <li><a [routerLink]="'veterinario'">Meu Perfil</a></li>
                     <li><a [routerLink]="'veterinario'">Meus Pacientes</a></li>
                     <li><a [routerLink]="'veterinario'">Agendamentos</a></li>
-                    <li><a [routerLink]="'/'" (click)="sair()">Sair</a></li>
 
                 </ul>
 
@@ -64,18 +64,19 @@
 
                     <li><a [routerLink]="'estabelecimento'">Meu Estabelecimento</a></li>
                     <li><a [routerLink]="'estabelecimento'">Consultas em minha clinica</a></li>
-                    <li><a (click)="sair()">Sair</a></li>
 
                 </ul>
             </div>
 
             <div *ngIf="user?.role == 0">
                 <ul class="main-nav" [ngClass]="[base === 'home-seven' ? 'white-font' : '' ]">
-                    <li><a (click)="sair()">Sair</a></li>
 
                 </ul>
             </div>
 
+            <div *ngIf="user?.role">
+                <li><a [routerLink]="'/'" (click)="sair()">Sair</a></li>
+            </div>
 
         </div>
         <ul class="nav header-navbar-rht" *ngIf="comrytmenu">

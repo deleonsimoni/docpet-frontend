@@ -1,1 +1,79 @@
-<p>dashboard-estetica works!</p>
+<div class="page-wrapper">
+
+    <div class="content container-fluid">
+
+                  <!-- Page Header -->
+                  <div class="page-header">
+                      <div class="row">
+                          <div class="col-sm-12">
+                              <h3 class="page-title">Olá Esteticista!</h3>
+                              <ul class="breadcrumb">
+                                  <li class="breadcrumb-item active">Dashboard</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+        <div class="row">
+          <div class="col-lg-12 d-flex">
+              <div class="card flex-fill">
+                  <div class="card-header">
+                      <div class="row">
+                          <div class="col-sm-6">
+                              <h3 class="card-title">Informações do Perfil</h3>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="text-right">
+                                  <a title="Editar perfil" class="btn btn-primary btn-sm" [routerLink]="['/admin/cadastro-estetica/',estetica._id]" data-toggle="modal"><i class="fa fa-pencil"></i> Atualizar</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card-body">
+                      <div class="profile-view-bottom">
+                          <div class="row">
+                              <div class="col-lg-6">
+                                  <div class="info-list">
+                                      <div class="title">RG <span [ngClass]="[estetica.rg ? 'badge rounded-pill bg-success-light' : 'badge rounded-pill bg-danger-light']" class="1">{{estetica.rg ? 'Ok' :'Atualizar'}}</span></div>
+                                      <div class="text" id="bank_name">{{estetica.rg}}</div>
+                                  </div>
+                              </div>
+                              <div class="col-lg-6">
+                                  <div class="info-list">
+                                      <div class="title">Name <span [ngClass]="[estetica.nome ? 'badge rounded-pill bg-success-light' : 'badge rounded-pill bg-danger-light']" class="1">{{estetica.nome ? 'Ok' :'Atualizar'}}</span></div>
+                                      <div class="text" id="branch_name">{{estetica.nome}}</div>
+                                  </div>
+                              </div>
+                              <div class="col-lg-6">
+                                  <div class="info-list">
+                                      <div class="title">Contato <span [ngClass]="[estetica.contato ? 'badge rounded-pill bg-success-light' : 'badge rounded-pill bg-danger-light']" class="1">{{estetica.contato ? 'Ok' :'Atualizar'}}</span> </div>
+                                      <div class="text" id="account_no">{{estetica.contato?.email}}</div>
+                                      <div class="text" id="account_no">{{estetica.contato?.celular}}</div>
+                                  </div>
+                              </div>
+                              <div class="col-lg-6">
+                                  <div class="info-list">
+                                      <div class="title">Especialidade <span [ngClass]="[estetica.especialidades.length ? 'badge rounded-pill bg-success-light' : 'badge rounded-pill bg-danger-light']" class="1">{{estetica.especialidades.length ? 'Ok' :'Atualizar'}}</span></div>
+                                      <div class="text" id="account_name"  *ngFor="let especialidade of estetica.especialidades"> {{especialidade.nome}}</div>
+                                  </div>
+                              </div>
+                              <div class="col-lg-6">
+                                <div class="info-list">
+                                    <div class="title">Estabelecimentos <span [ngClass]="[estetica.estabelecimento ? 'badge rounded-pill bg-success-light' : 'badge rounded-pill bg-danger-light']" class="1">{{estetica.estabelecimento ? 'Ok' :'Atualizar'}}</span></div>
+                                    <div class="text" id="account_name"  *ngFor="let estabelecimento of estetica.estebelecimentos"> {{estabelecimento.nome}}</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                              <div class="info-list">
+                                  <div class="title">Sobre <span [ngClass]="[estetica.sobre ? 'badge rounded-pill bg-success-light' : 'badge rounded-pill bg-danger-light']" class="1">{{estetica.sobre ? 'Ok' :'Atualizar'}}</span></div>
+                                  <div class="text" id="account_name">{{estetica.sobre}}</div>
+                              </div>
+                          </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+                  
+              </div>
+          </div>

@@ -17,7 +17,7 @@
 
 	<div class="top-nav-search">
 		<form>
-			<input type="text" class="form-control" placeholder="Search here">
+			<input type="text" class="form-control" placeholder="Digite...">
 			<button class="btn" type="submit"><i class="fa fa-search"></i></button>
 		</form>
 	</div>
@@ -188,6 +188,24 @@
 				</li>
 
 				<li *ngIf="userLogged.isAdmin" class="submenu">
+					<a href="javascript:void(0)"><i class="fe fe-document"></i> <span> Adestradores</span> <span
+							class="menu-arrow"></span></a>
+					<ul style="display: none;">
+						<li [class.active]="page === 'adestrador'"><a (click)="change('adestrador')"
+								[routerLink]="'/admin/list-adestrador'">Manter</a></li>
+					</ul>
+				</li>
+
+				<li *ngIf="userLogged.isAdmin" class="submenu">
+					<a href="javascript:void(0)"><i class="fe fe-document"></i> <span> Esteticistas</span> <span
+							class="menu-arrow"></span></a>
+					<ul style="display: none;">
+						<li [class.active]="page === 'estetica'"><a (click)="change('estetica')"
+								[routerLink]="'/admin/list-estetica'">Manter</a></li>
+					</ul>
+				</li>
+
+				<li *ngIf="userLogged.isAdmin" class="submenu">
 					<a href="javascript:void(0)"><i class="fe fe-vector"></i> <span> Parâmetros</span> <span
 							class="menu-arrow"></span></a>
 					<ul style="display: none;">
@@ -200,7 +218,7 @@
 				<li *ngIf="userLogged.role == 3" class="menu-title">
 					<span>Adestrador</span>
 				</li>
-				<li *ngIf="userLogged.role == 3" [routerLink]="['/admin/cadastro-adestrador/',userRole._id]"
+				<li *ngIf="userLogged.role == 3" [routerLink]="['/admin/cadastro-adestrador/',userRole?._id]"
 					[class.active]="page === 'Dashboard'">
 					<a (click)="change('Dashboard')"><i class="fe fe-home" style="color: #fff"></i>
 						<span style="color: #fff">Perfil</span></a>
@@ -208,9 +226,9 @@
 
 
 				<li *ngIf="userLogged.role == 4" class="menu-title">
-					<span>EStética</span>
+					<span>Esteticista</span>
 				</li>
-				<li *ngIf="userLogged.role == 4" [routerLink]="['/admin/cadastro-estetica/',userRole._id]"
+				<li *ngIf="userLogged.role == 4" [routerLink]="['/admin/cadastro-estetica/',userRole?._id]"
 					[class.active]="page === 'Dashboard'">
 					<a (click)="change('Dashboard')"><i class="fe fe-home" style="color: #fff"></i>
 						<span style="color: #fff">Perfil</span></a>
@@ -220,7 +238,7 @@
 				<li *ngIf="userLogged.role == 1" class="menu-title">
 					<span>Veterinário</span>
 				</li>
-				<li *ngIf="userLogged.role == 1" [routerLink]="['/admin/cadastro-veterinario/',veterinario._id]"
+				<li *ngIf="userLogged.role == 1" [routerLink]="['/admin/cadastro-veterinario/',veterinario?._id]"
 					[class.active]="page === 'Dashboard'">
 					<a (click)="change('Dashboard')"><i class="fe fe-home" style="color: #fff"></i>
 						<span style="color: #fff">Perfil</span></a>
