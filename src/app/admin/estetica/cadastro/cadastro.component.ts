@@ -134,8 +134,6 @@ export class CadastroComponent implements OnInit {
 
       let vet = res;
 
-      this.esteticaForm.patchValue(vet);
-
       if(res.img){
         this.url = res.img;
       }
@@ -155,7 +153,6 @@ export class CadastroComponent implements OnInit {
         for(var i=1; i < vet.estabelecimentos.length; i++){
           this.addEstabelecimento();
         }
-        this.esteticaForm.get('estabelecimentos').patchValue(vet.estabelecimentos);
       }
 
       if(vet.formacoes && vet.formacoes.length > 0){
@@ -165,8 +162,6 @@ export class CadastroComponent implements OnInit {
         for(var i=1; i < vet.formacoes.length; i++){
           this.addFormacao();
         }
-
-        this.esteticaForm.get('formacoes').patchValue(vet.formacoes);
       }
 
       if(vet.experiencias && vet.experiencias.length > 0){
@@ -176,8 +171,6 @@ export class CadastroComponent implements OnInit {
         for(var i=1; i < vet.experiencias.length; i++){
           this.addExperiencia();
         }
-
-        this.esteticaForm.get('experiencias').patchValue(vet.experiencias);
       }
 
       if(vet.conquistas && vet.conquistas.length > 0){
@@ -187,8 +180,11 @@ export class CadastroComponent implements OnInit {
         for(var i=1; i < vet.conquistas.length; i++){
           this.addConquista();
         }
-        this.esteticaForm.get('conquistas').patchValue(vet.conquistas);
       }
+
+      setTimeout( () => {      
+        this.esteticaForm.patchValue(vet);
+      }, 200 );
 
     }),(error) => {
       console.log(error);
