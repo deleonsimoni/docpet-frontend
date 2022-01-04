@@ -11,6 +11,7 @@ import {
 import {
   Event,
   NavigationStart,
+  NavigationEnd,
   Router,
   ActivatedRoute,
 } from '@angular/router';
@@ -33,6 +34,10 @@ import {
   ApexTheme,
   ApexPlotOptions
 } from "ng-apexcharts";
+/* -- imports incluidos por regina Weigert --- */
+import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
+import { seoSitemap } from './seo-sitemap';
+/* -- fim imports incluidos por regina Weigert --- */
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -103,8 +108,30 @@ export class AppComponent implements OnInit, AfterViewChecked {
     private changeDetector: ChangeDetectorRef,
     public Router: Router,
     location: Location,
+    private titulo: Title,
+    private meta: Meta,
     public commonServic: CommonServiceService
   ) {
+    /* --- inicio bloco criado por Regina weigert --- */
+    Router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        const item = seoSitemap.find((i) => event.urlAfterRedirects === i.customUrl);
+        if (item) {
+          if (item.title){ 
+            this.updateTitle(item.title);
+          }
+    
+          this.updateTags([
+            item.description ? { name: 'description', content: item.description } : null,
+            item.image ? { name: 'keywords', content: item.image } : null,
+          ]);
+          this.updateTag({ property: 'og:url', content: window.location.href });
+        } else {
+          this.updateTitle('Common title there');
+        }
+      }
+    });
+    /* --- fim bloco criado por Regina weigert --- */
     Router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         if (
@@ -388,4 +415,19 @@ export class AppComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked() {
     this.changeDetector.detectChanges();
   }
+  /* -- inicio funcoes incluidas por regina Weigert --- */
+  updateTitle(title: string) {
+    this.titulo.setTitle(title);
+  }
+
+  updateTag(tag: MetaDefinition) {
+    this.meta.updateTag(tag);
+  }
+
+  updateTags(tags: Array<MetaDefinition | null>) {
+    tags.forEach((tag) => {
+      tag && this.meta.updateTag(tag);
+    });
+  }
+  /* -- fim funcoes incluidas por regina Weigert --- */
 }
