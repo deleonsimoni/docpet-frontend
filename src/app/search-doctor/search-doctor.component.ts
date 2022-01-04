@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CommonServiceService } from '../common-service.service'
 import { FormsModule } from '@angular/forms';
 import { latLng, tileLayer } from 'leaflet';
-
+import { Globals } from '../global';
 
 @Component({
   selector: 'app-search-doctor',
@@ -23,6 +23,7 @@ export class SearchDoctorComponent implements OnInit {
   dsMunicipio;
   lat;
   lng;
+  descEspecialidade = Globals['DESC_SEARCH_DOCTOR'];
 
 
   options = {

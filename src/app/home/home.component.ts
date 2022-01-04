@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CEPService } from '../services/cep.service';
 import { DashboardService } from '../services/dashboard.service';
 import { EspecialidadeService } from '../services/especialidades.service';
+import { Globals } from '../global';
 //import {} from 'googlemaps';
 
 
@@ -119,7 +120,7 @@ export class HomeComponent implements OnInit {
 
     this.isload = true;
     let filtro: any = this.especialidades.filter(e => e._id == pesquisa)[0];
-
+    Globals['DESC_SEARCH_DOCTOR'] = filtro.nome;
     setTimeout(() => {
       if (!filtro.type || filtro.type == 1) {
         this.router.navigate([`/list/${filtro._id}/${this.cidadeEscolhida}`]);
