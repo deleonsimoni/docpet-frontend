@@ -23,7 +23,7 @@ export const seoSitemap: ISitemapTag[] = [
       customUrl: '/login', 
       title: 'Faça login para acessar sua conta na plataforma de veterinários, clínicas e locais de pet | VetzCo', 
       description: 'Acesso restrito a plataforma de veterinários, clínicas e locais de pet', 
-      image: 'login para a plataforma Vetzco' 
+      image: 'login, acesso restrito' 
     },
     { 
       customUrl: '/doctor/' + Globals['DOCTOR_URL'], 
