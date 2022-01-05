@@ -1,3 +1,5 @@
+import { Globals } from './global';
+
 export const seoSitemap: ISitemapTag[] = [
     { 
         customUrl: '/home', 
@@ -6,7 +8,7 @@ export const seoSitemap: ISitemapTag[] = [
         image: 'clinica veterinaria, 550.000' 
     },
     { 
-      customUrl: '/alergista-veterinario', 
+      customUrl: '/list/' + Globals['LIST_SEARCH_URL'], 
       title: 'Alergista Veterinário: Encontre aqui! | VetzCo', 
       description: 'Some description about', 
       image: 'veterinario alergista sp 40, alergia veterinaria 40, alergista veterinário 30, alergia em pets 10, alergista veterinario 10' 
