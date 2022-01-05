@@ -120,12 +120,14 @@ export class HomeComponent implements OnInit {
 
     this.isload = true;
     let filtro: any = this.especialidades.filter(e => e._id == pesquisa)[0];
-    Globals['DESC_SEARCH_DOCTOR'] = filtro.nome;
+    
     setTimeout(() => {
       if (!filtro.type || filtro.type == 1) {
         this.router.navigate([`/list/${filtro._id}/${this.cidadeEscolhida}`]);
+        Globals['DESC_SEARCH_DOCTOR'] = filtro.nome+' - '+this.cidadeEscolhida;
       } else if (filtro.type == 2) {
         //Veterinario
+        Globals['DOCTOR_URL'] = filtro.nome;
         this.router.navigate([`/doctor/${filtro.nome}`]);
       } else if (filtro.type == 3) {
         //clinica
