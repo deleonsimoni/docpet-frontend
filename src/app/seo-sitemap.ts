@@ -9,9 +9,9 @@ export const seoSitemap: ISitemapTag[] = [
     },
     { 
       customUrl: '/list/' + Globals['LIST_SEARCH_URL'], 
-      title: 'Alergista Veterinário: Encontre aqui! | VetzCo', 
-      description: 'Some description about', 
-      image: 'veterinario alergista sp 40, alergia veterinaria 40, alergista veterinário 30, alergia em pets 10, alergista veterinario 10' 
+      title: Globals['DESC_SEARCH_DOCTOR'] + ' Veterinário: Encontre aqui! | VetzCo', 
+      description: 'Seu PET está com problemas? Na VetzCo você encontra uma variedade de veterinários e clínicas especializadas em '+Globals['DESC_SEARCH_DOCTOR']+' animal. Agende hoje sua consulta!', 
+      image: Globals['KEYWORDS_META'] 
     },
     { 
       customUrl: '/cadastro', 
@@ -24,6 +24,12 @@ export const seoSitemap: ISitemapTag[] = [
       title: 'Faça login para acessar sua conta na plataforma de veterinários, clínicas e locais de pet | VetzCo', 
       description: 'Acesso restrito a plataforma de veterinários, clínicas e locais de pet', 
       image: 'login para a plataforma Vetzco' 
+    },
+    { 
+      customUrl: '/doctor/' + Globals['DOCTOR_URL'], 
+      title: 'Consulta com '+Globals['DOCTOR_URL']+'em'+Globals['DESC_SEARCH_DOCTOR']+'. Agende hoje sua consulta! | VetzCo', 
+      description: 'Seu PET está com problemas? precisa de uma consulta em '+Globals['DESC_SEARCH_DOCTOR']+'? Na VetzCo temos a especialista '+Globals['DOCTOR_URL']+'. Agende hoje sua consulta!', 
+      image: Globals['KEYWORDS_META'] 
     }
   ];
   
