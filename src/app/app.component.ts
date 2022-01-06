@@ -37,6 +37,7 @@ import {
 /* -- imports incluidos por regina Weigert --- */
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { seoSitemap } from './seo-sitemap';
+import { Globals } from './global';
 /* -- fim imports incluidos por regina Weigert --- */
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -114,6 +115,9 @@ export class AppComponent implements OnInit, AfterViewChecked {
   ) {
     /* --- inicio bloco criado por Regina weigert --- */
     Router.events.subscribe((event: Event) => {
+      var tit = "";
+      var dsc = "";
+      var img = "";
       if (event instanceof NavigationEnd) {
         const item = seoSitemap.find((i) => event.urlAfterRedirects === i.customUrl);
         if (item) {
@@ -127,7 +131,28 @@ export class AppComponent implements OnInit, AfterViewChecked {
           ]);
           this.updateTag({ property: 'og:url', content: window.location.href });
         } else {
-          this.updateTitle('Common title there');
+          console.log(event.urlAfterRedirects);
+          Globals['DOCTOR_NAME'] = event.urlAfterRedirects.split('/')[2];
+          if (event.urlAfterRedirects.split('/')[1] == 'doctor'){
+           tit = 'Deseja consulta com '+event.urlAfterRedirects.split('/')[2]+'. Agende hoje sua consulta! | VetzCo';
+           console.log(tit);
+           dsc = 'Seu PET está com problemas? Precisa de uma consulta? Na VetzCo temos o(a) especialista '+event.urlAfterRedirects.split('/')[2]+'. Agende hoje sua consulta!';
+           img = 'palavras';
+          seoSitemap.push({
+            customUrl: event.urlAfterRedirects, 
+            title: tit,
+            description: dsc,
+            image: img 
+          });
+          console.log(seoSitemap);
+          }
+          this.updateTitle(tit);
+          const item = seoSitemap.find((i) => event.urlAfterRedirects === i.customUrl);
+          this.updateTags([
+            item.description ? { name: 'description', content: dsc } : null,
+            item.image ? { name: 'keywords', content: img } : null,
+          ]);
+          this.updateTag({ property: 'og:url', content: window.location.href });
         }
       }
     });
