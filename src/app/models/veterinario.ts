@@ -4,6 +4,7 @@ import { Estabelecimento } from './estabelecimento';
 export interface Veterinario {
   id?: String,
   nome: String,
+  nomeFormated: String,
   crmv: String,
   img: String;
   atendePlano: Boolean,

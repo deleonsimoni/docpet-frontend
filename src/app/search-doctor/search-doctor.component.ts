@@ -19,7 +19,7 @@ export class SearchDoctorComponent implements OnInit {
   specialist = "";
   speciality;
   selDate;
-  idEspecialidade;
+  especialidade;
   dsMunicipio;
   lat;
   lng;
@@ -52,15 +52,15 @@ export class SearchDoctorComponent implements OnInit {
     },
   ];
   ngOnInit(): void {
-    this.idEspecialidade = this.route.snapshot.params['id'];
+    this.especialidade = this.route.snapshot.params['especialidade'];
     this.dsMunicipio = this.route.snapshot.params['municipio'];
 
-    this.getEstabelecimentos(this.idEspecialidade, this.dsMunicipio);
+    this.getEstabelecimentos(this.especialidade, this.dsMunicipio);
   }
 
-  getEstabelecimentos(id, municipio) {
-   
-    this.veterinarioService.getByEspecialidadeMunicipio(id, municipio).subscribe(
+  getEstabelecimentos(especialidade, municipio) {
+
+    this.veterinarioService.getByNoEspecialidadeMunicipio(especialidade, municipio).subscribe(
       (res) => {
         this.doctors = res;
         if(this.doctors.length > 0){

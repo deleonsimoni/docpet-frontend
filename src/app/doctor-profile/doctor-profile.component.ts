@@ -17,6 +17,9 @@ export class DoctorProfileComponent implements OnInit {
   docNameFormated;
   doctorDetails;
   estabelecimentos;
+  especialidadeFormated;
+  municipioFormated;
+
   like = false;
   review: any = {};
   user;
@@ -66,7 +69,12 @@ export class DoctorProfileComponent implements OnInit {
   ];
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.docNameFormated = this.route.snapshot.params['nome'];
+    this.docNameFormated = this.formatarParamUrl(this.route.snapshot.params['nome']);
+
+    this.especialidadeFormated = this.formatarParamUrl(this.route.snapshot.params['especialidade']);
+    this.municipioFormated = this.formatarParamUrl(this.route.snapshot.params['municipio']);
+
+    //.trim().split(' ').join('_')
     this.getDoctorsDetails();
     this.user = this.userService.getUser();
     window.scrollTo(0, 0);
@@ -161,9 +169,10 @@ export class DoctorProfileComponent implements OnInit {
 
   getDoctorsDetails() {
     if (this.docNameFormated) {
-      this.veterinarioService.getByName(this.docNameFormated).subscribe(
+      this.veterinarioService.getByNameEspecialidadeMunicipio(this.docNameFormated, this.especialidadeFormated, this.municipioFormated).subscribe(
         (res) => {
           this.doctorDetails = res;
+          console.log(res);
           this.countScore(this.doctorDetails);
           //this.dtTrigger.next();
         },
@@ -205,10 +214,10 @@ export class DoctorProfileComponent implements OnInit {
       }
 
       if (total > 0) {
-       
+
           this.totalStar = (rates[0]*1 + rates[1]*2 + rates[2]*3 + rates[3]*4 + rates[4]*5) / total
           this.totalStarFormated = Math.round(this.totalStar);
-        
+
         if (this.totalStar >= 5) {
           this.totalStar = 5;
           this.totalStarFormated = 5;
@@ -242,5 +251,14 @@ export class DoctorProfileComponent implements OnInit {
 
   getMes(i) {
     return this.meses[i - 1].abreviado;
+  }
+
+  formatarParamUrl(str){
+    if(str){
+      return str.trim().split(' ').join('-');
+    }else{
+      return "";
+    }
+
   }
 }

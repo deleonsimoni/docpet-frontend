@@ -1,3 +1,4 @@
+import { VeterinarioService } from './../services/veterinario.service';
 import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -34,7 +35,8 @@ export class HomeComponent implements OnInit {
     private cepService: CEPService,
     private dashboardService: DashboardService,
     private toastr: ToastrService,
-    private router: Router) { }
+    private router: Router,
+    private veterinarioService: VeterinarioService) { }
 
   ngOnInit(): void {
     this.listarEspecialidades();
@@ -98,13 +100,42 @@ export class HomeComponent implements OnInit {
 
     if (tipo == 2) {
       //Veterinario
-      this.router.navigate([`/doctor/${options[0].text}`]);
+      this.veterinarioService.get(options[0].data._id).subscribe(
+        data => {
+          const urlFomatada = this.formataUrl(data);
+          if(!urlFomatada){
+            this.toastr.warning('Não foi possível efetuar a busca', 'Atenção!');
+            console.log("Erro ao efetuar a busca. Nome, Especialidade ou Endereço não encontrado");
+            return;
+          }else{
+            Globals['DOCTOR_URL'] = urlFomatada;
+            this.router.navigate([`/doctor/${urlFomatada}`]);
+          }
+        },
+        error => {
+          console.log(error);
+          this.toastr.warning('Não foi possível efetuar a busca', 'Atenção!');
+          return;
+
+        });
+
+
     } else if (tipo == 3) {
       //clinica
+
       this.router.navigate([`/detail/${options[0].text}`]);
     }
 
   }
+
+  formataUrl(data){
+    if(data.nomeFormated && data.especialidades && data.endereco){
+      return (data.nomeFormated.trim().split(' ').join('-')+"/"+data.especialidades[0].nomeFormated.trim().split(' ').join('-')+"/"+data.endereco.municipio.trim().split(' ').join('-')).toLowerCase();
+
+    }
+    return "";
+  }
+
 
   consultar(pesquisa) {
 
@@ -120,15 +151,19 @@ export class HomeComponent implements OnInit {
 
     this.isload = true;
     let filtro: any = this.especialidades.filter(e => e._id == pesquisa)[0];
-    
+    let places: any = this.places.filter(p => p.placeId ==  this.cidadeEscolhida)[0];
+
     setTimeout(() => {
       if (!filtro.type || filtro.type == 1) {
-        this.router.navigate([`/list/${filtro._id}/${this.cidadeEscolhida}`]);
-        Globals['DESC_SEARCH_DOCTOR'] = filtro.nome+' - '+this.cidadeEscolhida;
+        this.router.navigate([`/list/${this.formataUrlEspec(filtro.nome, places.description)}`]);
+        Globals['DESC_SEARCH_DOCTOR'] = filtro.nome+ "- "+ places.description;
+
       } else if (filtro.type == 2) {
         //Veterinario
         Globals['DOCTOR_URL'] = filtro.nome;
+        console.log(filtro);
         this.router.navigate([`/doctor/${filtro.nome}`]);
+
       } else if (filtro.type == 3) {
         //clinica
         this.router.navigate([`/detail/${filtro.nome}`]);
@@ -201,6 +236,12 @@ export class HomeComponent implements OnInit {
 
 
 
+  formataUrlEspec(especialidade, municipio){
+    if(especialidade && municipio){
+      return (especialidade.normalize('NFD').replace(/[\u0300-\u036f]/g, "").trim().split(' ').join('-')+"/"+municipio.trim().split(' ').join('-')).toLowerCase();
+    }
 
+    return "";
+  }
 
 }

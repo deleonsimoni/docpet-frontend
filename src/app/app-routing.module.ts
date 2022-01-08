@@ -9,11 +9,11 @@ const routes: Routes = [
   },
 
   {
-    path: 'list/:id/:municipio',
+    path: 'list/:especialidade/:municipio',
     loadChildren: () => import('./search-doctor/search-doctor.module').then((m) => m.SearchDoctorModule),
   },
   {
-    path: 'doctor/:nome',
+    path: 'doctor/:nome/:especialidade/:municipio',
     loadChildren: () => import('./doctor-profile/doctor-profile.module').then((m) => m.DoctorProfileModule),
   },
   {
