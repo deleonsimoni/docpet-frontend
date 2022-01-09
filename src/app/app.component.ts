@@ -145,7 +145,19 @@ export class AppComponent implements OnInit, AfterViewChecked {
             image: img 
           });
           console.log(seoSitemap);
-          }
+          }else if (event.urlAfterRedirects.split('/')[1] == 'list'){
+            tit = 'Deseja consulta em '+event.urlAfterRedirects.split('/')[2]+' - '+event.urlAfterRedirects.split('/')[3]+'. Agende hoje sua consulta! | VetzCo';
+            console.log(tit);
+            dsc = 'Seu PET está com problemas? Precisa de uma consulta? Na VetzCo temos vários especialistas em '+event.urlAfterRedirects.split('/')[2]+' na cidade '+event.urlAfterRedirects.split('/')[3]+'. Veja os profissionais e agende hoje sua consulta!';
+            img = 'palavras';
+           seoSitemap.push({
+             customUrl: event.urlAfterRedirects, 
+             title: tit,
+             description: dsc,
+             image: img 
+           });
+           console.log(seoSitemap);
+           }
           this.updateTitle(tit);
           const item = seoSitemap.find((i) => event.urlAfterRedirects === i.customUrl);
           this.updateTags([

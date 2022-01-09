@@ -30,9 +30,16 @@ export class VeterinarioService {
     return this.http.get(`${baseUrl}/especialidades/${id}/municipio/${municipio}`);
   }
 
+  getByNoEspecialidadeMunicipio(especialidade, municipio): Observable<any> {
+    return this.http.get(`${baseUrl}/pesquisa/${especialidade}/${municipio}`);
+  }
 
   getByName(nomeFormated): Observable<any> {
     return this.http.get(`${baseUrl}/perfil/${nomeFormated}`);
+  }
+
+  getByNameEspecialidadeMunicipio(nomeFormated, especialidadeFormated, municipioFormated): Observable<any> {
+    return this.http.get(`${baseUrl}/perfil/${nomeFormated}/${especialidadeFormated}/${municipioFormated}`);
   }
 
   get(id): Observable<any> {
