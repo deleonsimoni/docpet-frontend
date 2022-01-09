@@ -74,7 +74,7 @@
                 </ul>
             </div>
 
-            <div *ngIf="user?.role">
+            <div *ngIf="user?.role || user?.role == 0">
                 <li><a [routerLink]="'/'" (click)="sair()">Sair</a></li>
             </div>
 

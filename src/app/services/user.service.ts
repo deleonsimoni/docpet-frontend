@@ -30,6 +30,14 @@ export class UserService {
     return this.http.get(`${baseUrl}/changeAdmin/${id}?isAdmin=${isAdmin}`);
   }
 
+  changePassword(email): Observable<any> {
+    return this.http.post(`${baseUrl}/changePassword`, { email: email });
+  }
+
+  updatePassword(token, pass): Observable<any> {
+    return this.http.post(`${baseUrl}/updatePassword/${token}`, { pass: pass });
+  }
+
   login(email: string, password: string) {
     return this.http.post(baseUrl + '/login', { email, password });
   }
