@@ -173,7 +173,7 @@
                   <div class="special-body">
                       <img  src="assets/img/shapes/{{especialidadeTotal.nomeFormated.trim().split(' ').join('_')}}.png" onerror="this.onerror=null;this.src='assets/img/shapes/Comportamento_Animal.png';"  alt=""/>
                       <h4>{{especialidadeTotal.nome}}</h4>
-                      <a  [routerLink]="['/list', especialidadeTotal._id, 'ChIJzyjM68dZnAARYz4p8gYVWik']" class="spc-book">Agende agora<i class="fas fa-caret-right"></i> </a>
+                      <a  [routerLink]="['/list', especialidadeTotal.nomeFormated.trim().split(' ').join('-').toLowerCase(), '']" class="spc-book">Agende agora<i class="fas fa-caret-right"></i> </a>
                   </div>
                   <div class="row row-sm special-footer">
                       <div class="col-6 text-left">

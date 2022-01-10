@@ -36,6 +36,8 @@ export class HeaderComponent implements OnInit {
   page;
   splitVal;
   headerTop: boolean = false;
+  menuTopLogin: boolean = false;
+
   user;
   base;
   url1;
@@ -67,38 +69,16 @@ export class HeaderComponent implements OnInit {
         if (event.url == '/doctor/scheduletiming'){
           this.auth = true;
         }
-        // if (event.url == '/home-four'){
-        //   this.comrytmenu = false;
-        //   this.hi4 = true;
-        //   this.comlogo = false;
-        //   this.whitelogo = true;
-        // }
-        // else if (event.url == '/home-six'){
-        //   this.comrytmenu = false;
-        //   this.hi7 = false;
-        //   this.hi6 = true;
-        // }
-        // else if (event.url == '/home-seven'){
-        //   this.comrytmenu = false;
-        //   this.hi6 = false;
-        //   this.hi7 = true;
-        //   this.comlogo = false;
-        //   this.whitelogo = true;
-        // }
-        // else if (event.url == '/home-eight'){
-        //   this.comrytmenu = false;
-        //   this.hi6 = false;
-        //   this.hi7 = false;
-        //   this.hi8 = true;
-        //   this.comlogo = true;
-        //   this.whitelogo = false;
-        // }
-        // else {
-        //   this.comrytmenu = true;
-        //   this.hi4 = false;
-        //   this.hi7 = false;
-        //   this.hi8 = false;
-        // }
+
+        if (event.url.indexOf('/admin') !== -1){
+          this.menuTopLogin = false;
+          this.comrytmenu = false;
+        }else{
+          this.user ? this.menuTopLogin = true : this.menuTopLogin = false;
+        }
+
+        console.log(event.url);
+
       }
     });
     this.url1 = this.router.url;

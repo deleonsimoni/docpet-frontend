@@ -25,6 +25,7 @@ import { UserService } from '../services/user.service';
 export class AdminComponent implements OnInit {
   adminShow: boolean = true;
   user;
+  menuTopLogin: boolean = false;
 
   constructor(
     @Inject(DOCUMENT) private document,
@@ -58,9 +59,10 @@ export class AdminComponent implements OnInit {
     setTimeout(() => {
       if(this.user.isAdmin){
         scope.Router.navigateByUrl('/admin/dashboard-admin');
-
       }else if(this.user.role == 1){
         scope.Router.navigateByUrl('/admin/dashboard');
+      }else if(this.user.role == 2){
+        scope.Router.navigateByUrl('/admin/dashboard-estab');
       }else if(this.user.role == 3){
         scope.Router.navigateByUrl('/admin/dashboard-adestrador');
       }else if(this.user.role == 4){

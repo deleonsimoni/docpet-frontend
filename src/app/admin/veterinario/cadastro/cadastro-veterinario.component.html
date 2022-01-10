@@ -104,8 +104,8 @@
                 </div> -->
                 <div class="col-md-12 col-lg-12">
                   <div class="form-group">
-                    <label>Sobre <span class="text-danger">*</span></label>
-                    <textarea id="sobre" class="form-control service-desc" name="sobre"
+                    <label>Sobre mim<span class="text-danger">*</span></label>
+                    <textarea id="sobre" class="form-control service-desc" name="sobre" placeholder="Fale um pouco mais sobre você"
                       formControlName="sobre"></textarea>
                   </div>
                 </div>
@@ -201,7 +201,7 @@
                   </select>
                 </div>
               </div>
-              <div class="col-1 col-md-1 col-lg-1" *ngIf="!isAddMode || i != 0">
+              <div class="col-1 col-md-1 col-lg-1" *ngIf="!isAddMode || i >= 0">
                 <label class="d-md-block d-sm-none d-none">&nbsp;</label>
                 <a href="javascript:void(0);" (click)="removeExperiencia(i)" class="btn btn-danger trash"><i
                     class="far fa-trash-alt"></i></a>
@@ -461,7 +461,9 @@
             <div class="submit-section submit-btn-bottom">
               <button type="submit"
                 [class]="veterinarioForm.invalid ? 'btn submit-btn btn-light' : 'btn submit-btn btn-primary'">Salvar</button>
+                <button type="submit" [routerLink]="'/admin/dashboard'" class="btn btn-success submit-btn">Voltar</button>
             </div>
+
           </div>
         </div>
       </div>

@@ -19,6 +19,9 @@ export class DashboardComponent implements OnInit {
 
   user;
   veterinario;
+  hideFooter: boolean = true;
+  showheader1:boolean = false;
+  menuTopLogin : boolean = false;
 
   constructor(
     private userService: UserService,

@@ -53,7 +53,7 @@ export class SearchDoctorComponent implements OnInit {
   ];
   ngOnInit(): void {
     this.especialidade = this.route.snapshot.params['especialidade'];
-    this.dsMunicipio = this.route.snapshot.params['municipio'];
+    this.dsMunicipio = this.route.snapshot.params['municipio'] ?  this.route.snapshot.params['municipio'] : 'Brasil' ;
 
     this.getEstabelecimentos(this.especialidade, this.dsMunicipio);
   }

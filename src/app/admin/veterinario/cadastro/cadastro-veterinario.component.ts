@@ -37,7 +37,7 @@ export class CadastroVeterinarioComponent implements OnInit {
   experiencias: FormArray;
   conquistas: FormArray;
   userLogged;
-
+  hideFooter: boolean = true;
   listaAnos = [];
   meses = [ {id:1, mes:'Janeiro', abreviado:'Jan'},
             {id:2, mes:'Fevereiro', abreviado:'Fev'},
@@ -92,7 +92,7 @@ export class CadastroVeterinarioComponent implements OnInit {
         estabelecimentos: new FormBuilder().array([this.createEstabelecimento()]),
         sobre: [null],
         formacoes: new FormBuilder().array([this.createFormacao()]),
-        experiencias: new FormBuilder().array([this.createExperiencias()]),
+        experiencias: new FormBuilder().array([]),
         conquistas: new FormBuilder().array([]),
 
       }
@@ -182,7 +182,7 @@ export class CadastroVeterinarioComponent implements OnInit {
         }
       }
 
-      setTimeout( () => {      
+      setTimeout( () => {
         this.veterinarioForm.patchValue(vet);
       }, 200 );
 

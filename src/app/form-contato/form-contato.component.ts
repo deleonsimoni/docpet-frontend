@@ -136,6 +136,7 @@ export class FormContatoComponent implements OnInit {
 
 
         crmv: [null, [Validators.minLength(4)]],
+        uf:[null, [Validators.required, Validators.minLength(2)]],
         rg: [null, [Validators.minLength(4)]],
         celular: ['',[Validators.required]],
         //status: [true, []],
@@ -163,6 +164,11 @@ export class FormContatoComponent implements OnInit {
         this.toastr.warning('Preencha o campo CRMV!', 'Atenção!');
         return;
       }
+      if (!this.form.get('uf').value) {
+        this.toastr.warning('Preencha o campo UF!', 'Atenção!');
+        return;
+      }
+
       if (!this.form.get('celular').value) {
         this.toastr.warning('Preencha o campo Celular!', 'Atenção!');
         return;
@@ -268,7 +274,7 @@ export class FormContatoComponent implements OnInit {
           this.router.navigate(['/admin']);
         } else {
           window.location.href = '/home';
-        }    
+        }
       },
       (error) => {
         this.isLoading = false;

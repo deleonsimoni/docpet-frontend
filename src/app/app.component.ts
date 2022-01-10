@@ -121,10 +121,10 @@ export class AppComponent implements OnInit, AfterViewChecked {
       if (event instanceof NavigationEnd) {
         const item = seoSitemap.find((i) => event.urlAfterRedirects === i.customUrl);
         if (item) {
-          if (item.title){ 
+          if (item.title){
             this.updateTitle(item.title);
           }
-    
+
           this.updateTags([
             item.description ? { name: 'description', content: item.description } : null,
             item.image ? { name: 'keywords', content: item.image } : null,
@@ -139,10 +139,10 @@ export class AppComponent implements OnInit, AfterViewChecked {
            dsc = 'Seu PET está com problemas? Precisa de uma consulta? Na VetzCo temos o(a) especialista '+event.urlAfterRedirects.split('/')[2]+'. Agende hoje sua consulta!';
            img = 'palavras';
           seoSitemap.push({
-            customUrl: event.urlAfterRedirects, 
+            customUrl: event.urlAfterRedirects,
             title: tit,
             description: dsc,
-            image: img 
+            image: img
           });
           console.log(seoSitemap);
           }else if (event.urlAfterRedirects.split('/')[1] == 'list'){
@@ -151,10 +151,10 @@ export class AppComponent implements OnInit, AfterViewChecked {
             dsc = 'Seu PET está com problemas? Precisa de uma consulta? Na VetzCo temos vários especialistas em '+event.urlAfterRedirects.split('/')[2]+' na cidade '+event.urlAfterRedirects.split('/')[3]+'. Veja os profissionais e agende hoje sua consulta!';
             img = 'palavras';
            seoSitemap.push({
-             customUrl: event.urlAfterRedirects, 
+             customUrl: event.urlAfterRedirects,
              title: tit,
              description: dsc,
-             image: img 
+             image: img
            });
            console.log(seoSitemap);
            }
@@ -240,7 +240,16 @@ export class AppComponent implements OnInit, AfterViewChecked {
           document.querySelector('body').classList.remove('chat-page');
           document.querySelector('body').classList.add('mat-typography');
         }
+
+
+        if (event.url.indexOf('/admin') !== -1){
+          this.hideFooter = true;
+
+        }
+
       }
+
+
     });
     this.url = location.path();
     this.show = this.url.includes('admin') ? false : true;
