@@ -14,6 +14,7 @@ import { Globals } from '../global';
 })
 export class SearchDoctorComponent implements OnInit {
   doctors: any = [];
+  specialitydoctors: any = [];
   specialityList: any = [];
   type;
   specialist = "";
@@ -23,7 +24,7 @@ export class SearchDoctorComponent implements OnInit {
   dsMunicipio;
   lat;
   lng;
-  descEspecialidade = Globals['DESC_SEARCH_DOCTOR'];
+  descEspecialidade;
 
 
   options = {
@@ -54,12 +55,10 @@ export class SearchDoctorComponent implements OnInit {
   ngOnInit(): void {
     this.especialidade = this.route.snapshot.params['especialidade'];
     this.dsMunicipio = this.route.snapshot.params['municipio'] ?  this.route.snapshot.params['municipio'] : 'Brasil' ;
-
     this.getEstabelecimentos(this.especialidade, this.dsMunicipio);
+    
   }
-
   getEstabelecimentos(especialidade, municipio) {
-
     this.veterinarioService.getByNoEspecialidadeMunicipio(especialidade, municipio).subscribe(
       (res) => {
         this.doctors = res;
@@ -72,8 +71,9 @@ export class SearchDoctorComponent implements OnInit {
 
       },
     );
+    
   }
-
+  
     checkType(event) {
     if (event.target.checked) {
       this.type = event.target.value;
