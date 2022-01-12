@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { latLng, tileLayer } from 'leaflet';
 import { Globals } from '../global';
 
+
 @Component({
   selector: 'app-search-doctor',
   templateUrl: './search-doctor.component.html',
@@ -17,6 +18,7 @@ export class SearchDoctorComponent implements OnInit {
   specialitydoctors: any = [];
   specialityList: any = [];
   specialitiesDoctors: any = [];
+  municipioDoctors: any = [];
   urlatual: any = [];
   type;
   specialist = "";
@@ -65,7 +67,6 @@ export class SearchDoctorComponent implements OnInit {
       (res) => {
         this.doctors = res;
         this.specialitiesDoctors = this.doctors[0].especialidades;
-      
         this.getNomeEspecialidade(this.specialitiesDoctors);
         if(this.doctors.length > 0){
 
@@ -85,8 +86,12 @@ export class SearchDoctorComponent implements OnInit {
     
     especialidadesVeterinario.forEach(index => {
       var nm = index.nome;
+      if (this.urlatual[5] != null){
+        var mun = this.urlatual[5].replace(/-/g, ' ');
+        var muns = mun.toUpperCase();
+      }
       if (nm.toLowerCase() == this.urlatual[4]) {
-        this.descEspecialidade = index.nome;
+        this.descEspecialidade = index.nome+ '  ' +muns;
         
       }
     })
