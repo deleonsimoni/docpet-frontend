@@ -16,6 +16,8 @@ export class SearchDoctorComponent implements OnInit {
   doctors: any = [];
   specialitydoctors: any = [];
   specialityList: any = [];
+  specialitiesDoctors: any = [];
+  urlatual: any = [];
   type;
   specialist = "";
   speciality;
@@ -62,6 +64,9 @@ export class SearchDoctorComponent implements OnInit {
     this.veterinarioService.getByNoEspecialidadeMunicipio(especialidade, municipio).subscribe(
       (res) => {
         this.doctors = res;
+        this.specialitiesDoctors = this.doctors[0].especialidades;
+      
+        this.getNomeEspecialidade(this.specialitiesDoctors);
         if(this.doctors.length > 0){
 
           this.lat = this.doctors[0].location.coordinates[1];
@@ -73,7 +78,19 @@ export class SearchDoctorComponent implements OnInit {
     );
     
   }
-  
+  getNomeEspecialidade(especialidadesVeterinario){
+    
+    var urls  = window.location.href; 
+    this.urlatual = urls.split('/');
+    
+    especialidadesVeterinario.forEach(index => {
+      var nm = index.nome;
+      if (nm.toLowerCase() == this.urlatual[4]) {
+        this.descEspecialidade = index.nome;
+        
+      }
+    })
+  }
     checkType(event) {
     if (event.target.checked) {
       this.type = event.target.value;

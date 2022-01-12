@@ -131,12 +131,9 @@ export class AppComponent implements OnInit, AfterViewChecked {
           ]);
           this.updateTag({ property: 'og:url', content: window.location.href });
         } else {
-          console.log(event.urlAfterRedirects);
-          
           if (event.urlAfterRedirects.split('/')[1] == 'doctor'){
             Globals['DOCTOR_NAME'] = event.urlAfterRedirects.split('/')[2];
            tit = 'Deseja consulta com '+event.urlAfterRedirects.split('/')[2]+'. Agende hoje sua consulta! | VetzCo';
-           console.log(tit);
            dsc = 'Seu PET está com problemas? Precisa de uma consulta? Na VetzCo temos o(a) especialista '+event.urlAfterRedirects.split('/')[2]+'. Agende hoje sua consulta!';
            img = 'palavras';
           seoSitemap.push({
@@ -145,7 +142,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
             description: dsc,
             image: img
           });
-          console.log(seoSitemap);
+          
           }else if (event.urlAfterRedirects.split('/')[1] == 'list'){
             Globals['DESC_SEARCH_DOCTOR'] = event.urlAfterRedirects.split('/')[2];
             tit = 'Deseja consulta em '+event.urlAfterRedirects.split('/')[2]+' - '+event.urlAfterRedirects.split('/')[3]+'. Agende hoje sua consulta! | VetzCo';
@@ -158,7 +155,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
              description: dsc,
              image: img
            });
-           console.log(seoSitemap);
+           
            }
           this.updateTitle(tit);
           const item = seoSitemap.find((i) => event.urlAfterRedirects === i.customUrl);
