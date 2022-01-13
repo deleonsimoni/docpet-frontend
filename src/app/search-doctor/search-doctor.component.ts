@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { latLng, tileLayer } from 'leaflet';
 import { Globals } from '../global';
 
+
 @Component({
   selector: 'app-search-doctor',
   templateUrl: './search-doctor.component.html',
@@ -14,7 +15,11 @@ import { Globals } from '../global';
 })
 export class SearchDoctorComponent implements OnInit {
   doctors: any = [];
+  specialitydoctors: any = [];
   specialityList: any = [];
+  specialitiesDoctors: any = [];
+  municipioDoctors: any = [];
+  urlatual: any = [];
   type;
   specialist = "";
   speciality;
@@ -23,7 +28,7 @@ export class SearchDoctorComponent implements OnInit {
   dsMunicipio;
   lat;
   lng;
-  descEspecialidade = Globals['DESC_SEARCH_DOCTOR'];
+  descEspecialidade;
 
 
   options = {
@@ -54,15 +59,15 @@ export class SearchDoctorComponent implements OnInit {
   ngOnInit(): void {
     this.especialidade = this.route.snapshot.params['especialidade'];
     this.dsMunicipio = this.route.snapshot.params['municipio'] ?  this.route.snapshot.params['municipio'] : 'Brasil' ;
-
     this.getEstabelecimentos(this.especialidade, this.dsMunicipio);
+    
   }
-
   getEstabelecimentos(especialidade, municipio) {
-
     this.veterinarioService.getByNoEspecialidadeMunicipio(especialidade, municipio).subscribe(
       (res) => {
         this.doctors = res;
+        this.specialitiesDoctors = this.doctors[0].especialidades;
+        this.getNomeEspecialidade(this.specialitiesDoctors);
         if(this.doctors.length > 0){
 
           this.lat = this.doctors[0].location.coordinates[1];
@@ -72,8 +77,25 @@ export class SearchDoctorComponent implements OnInit {
 
       },
     );
+    
   }
-
+  getNomeEspecialidade(especialidadesVeterinario){
+    
+    var urls  = window.location.href; 
+    this.urlatual = urls.split('/');
+    
+    especialidadesVeterinario.forEach(index => {
+      var nm = index.nome;
+      if (this.urlatual[5] != null){
+        var mun = this.urlatual[5].replace(/-/g, ' ');
+        var muns = mun.toUpperCase();
+      }
+      if (nm.toLowerCase() == this.urlatual[4]) {
+        this.descEspecialidade = index.nome+ '  ' +muns;
+        
+      }
+    })
+  }
     checkType(event) {
     if (event.target.checked) {
       this.type = event.target.value;
