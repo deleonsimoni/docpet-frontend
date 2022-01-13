@@ -38,6 +38,10 @@
                           veterinarioForm.get('crmv')?.errors?.required &&
                           veterinarioForm.get('crmv')?.touched" mensagem="CRMV é obrigatório">
                     </app-mensagem>
+                    <app-mensagem *ngIf="
+                      veterinarioForm.get('crmv')?.errors?.minlength &&
+                      veterinarioForm.get('crmv')?.touched" mensagem="Tamanho inválido">
+                    </app-mensagem> 
                   </div>
                 </div>
                 <div class="col-md-1">
@@ -47,6 +51,10 @@
                     <app-mensagem *ngIf="
                           veterinarioForm.get('uf')?.errors?.required &&
                           veterinarioForm.get('uf')?.touched" mensagem="UF é obrigatório">
+                    </app-mensagem>
+                    <app-mensagem *ngIf="
+                      veterinarioForm.get('uf')?.errors?.minlength &&
+                      veterinarioForm.get('uf')?.touched" mensagem="Tamanho inválido">
                     </app-mensagem>
                   </div>
                 </div>
@@ -58,6 +66,10 @@
                           veterinarioForm.get('nome')?.errors?.required &&
                           veterinarioForm.get('nome')?.touched
                           " mensagem="O nome é obrigatório"></app-mensagem>
+                    <app-mensagem *ngIf="
+                          veterinarioForm.get('uf')?.errors?.minlength &&
+                          veterinarioForm.get('uf')?.touched" mensagem="Tamanho inválido">
+                        </app-mensagem>
                   </div>
                 </div>
                 <div class="col-md-12">
@@ -130,12 +142,24 @@
                 <div class="form-group">
                   <label>Instituição<span class="text-danger">*</span></label>
                   <input type="text" class="form-control" formControlName="nomeInstituicao" #nomeInstituicao>
+                  <app-mensagem *ngIf="
+                  veterinarioForm.get('formacoes')['controls'][i].get('nomeInstituicao')?.errors?.required &&
+                  veterinarioForm.get('formacoes')['controls'][i].get('nomeInstituicao')?.touched" mensagem="Nome é obrigatório">
+                </app-mensagem>
+                <app-mensagem *ngIf="
+                  veterinarioForm.get('formacoes')['controls'][i].get('nomeInstituicao')?.errors?.minlength &&
+                  veterinarioForm.get('formacoes')['controls'][i].get('nomeInstituicao')?.touched" mensagem="tamanho inválido">
+                </app-mensagem>
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
                   <label>Curso<span class="text-danger">*</span></label>
                   <input type="text" class="form-control" formControlName="curso">
+                  <app-mensagem *ngIf="
+                  veterinarioForm.get('formacoes')['controls'][i].get('curso')?.errors?.required &&
+                  veterinarioForm.get('formacoes')['controls'][i].get('curso')?.touched" mensagem="Curso é obrigatório">
+                </app-mensagem>
                 </div>
               </div>
               <div class="col-md-2 col-lg-2">
@@ -461,7 +485,8 @@
             <div class="submit-section submit-btn-bottom">
               <button type="submit"
                 [class]="veterinarioForm.invalid ? 'btn submit-btn btn-light' : 'btn submit-btn btn-primary'">Salvar</button>
-                <button type="submit" [routerLink]="'/admin/dashboard'" class="btn btn-success submit-btn">Voltar</button>
+                <button type="submit" *ngIf="userLogged.isAdmin" [routerLink]="'/admin/dashboard-admin/'" class="btn btn-success submit-btn">Voltar</button>
+                <button type="submit" *ngIf="!userLogged.isAdmin" [routerLink]="'/admin/dashboard'" class="btn btn-success submit-btn">Voltar</button>
             </div>
 
           </div>
