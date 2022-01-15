@@ -180,7 +180,7 @@
                           <a href="#" class="doc-count">{{especialidadeTotal.totalVet}} <span>Veterinários</span></a>
                       </div>
                       <div class="col-6 text-right">
-                          <a href="#" class="clin-count">{{especialidadeTotal.totalEstab}} <span>Estabelecimentos</span></a>
+                          <a href="#" class="clin-count">{{especialidadeTotal.totalEstab}} <span>Clínicas</span></a>
                       </div>
                   </div>
               </div>
@@ -323,16 +323,21 @@
               </div>
           </div>-->
       </div>
-      <!---<div class="view-all-more text-center">
-          <a [routerLink]="'/patients/doctor-profile'" class="btn btn-primary">View More</a>
-      </div> -->
+      
+        <div class="view-all-more-home text-center" *ngIf="totalListaEspecialidade.length > especialidadesTotal.length">
+            <a (click)="showMoreEspecialidade()" class="btn btn-primary">Veja Mais</a>
+        </div>
+        <div class="view-all-more-home text-center" *ngIf="totalListaEspecialidade.length == especialidadesTotal.length">
+            <a (click)="showLessEspecialidade()" class="btn btn-primary">Fechar</a>
+        </div>
+
   </div>
 </section>
 <!-- /Clinic Section -->
 
 <!-- Doctor Section-->
 <section class="doctor-divison">
-  <div class="d-flex">
+  <div class="">
       <div class="doc-background">
           <h3>Você é um especialista?</h3>
           <p>Construa sua reputação online rapidamente e seja encontrado por tutores de todo país.</p>

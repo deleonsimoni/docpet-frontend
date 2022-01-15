@@ -10,6 +10,7 @@ export interface Estabelecimento {
   endereco: Endereco,
   especialidade: [],
   veterinarios: [Veterinario],
+  img: String,
   location:{
     coordinates: [0, 0]
   }

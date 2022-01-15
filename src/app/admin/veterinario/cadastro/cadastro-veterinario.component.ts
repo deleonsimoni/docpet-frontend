@@ -284,7 +284,6 @@ export class CadastroVeterinarioComponent implements OnInit {
 
   createContatoFormGroup(): FormGroup{
     return this.formBuilder.group({
-      nome:[null, [Validators.required, Validators.minLength(4)]],
       email:[null, [Validators.required, Validators.email]],
       telefone:[''],
       celular:[null, [Validators.required]]
@@ -371,5 +370,12 @@ export class CadastroVeterinarioComponent implements OnInit {
 
   removeConquista(i:number) {
     this.conquistas.removeAt(i);
+  }
+
+  validaTelefone (){
+    if(!this.veterinarioForm.get('contato')?.get('celular').value && !this.veterinarioForm.get('contato')?.get('telefone').value){
+      return true;
+    }
+    return false;
   }
 }

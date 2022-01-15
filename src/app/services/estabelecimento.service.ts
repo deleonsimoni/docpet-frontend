@@ -29,6 +29,10 @@ export class EstabelecimentoService {
     return this.http.get(`${baseUrl}/veterinario/${id}`);
   }
 
+  getByName(name): Observable<any> {
+    return this.http.get(`${baseUrl}/nome/${name}`);
+  }
+
   create(data): Observable<any> {
     return this.http.post(baseUrl, data);
   }

@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CEPService } from '../services/cep.service';
 import { DashboardService } from '../services/dashboard.service';
 import { EspecialidadeService } from '../services/especialidades.service';
+import { EstabelecimentoService } from '../services/estabelecimento.service';
 import { Globals } from '../global';
 //import {} from 'googlemaps';
 
@@ -20,6 +21,9 @@ export class HomeComponent implements OnInit {
 
   public especialidades: any[];
   public especialidadesTotal: any[];
+
+  public totalListaEspecialidade : any[];
+  public showTotalEspecialidade = 6; 
 
   public places: any[];
 
@@ -36,7 +40,8 @@ export class HomeComponent implements OnInit {
     private dashboardService: DashboardService,
     private toastr: ToastrService,
     private router: Router,
-    private veterinarioService: VeterinarioService) { }
+    private veterinarioService: VeterinarioService,
+    private estabelecimentoService: EstabelecimentoService) { }
 
   ngOnInit(): void {
     this.listarEspecialidades();
@@ -122,8 +127,25 @@ export class HomeComponent implements OnInit {
 
     } else if (tipo == 3) {
       //clinica
+      this.estabelecimentoService.get(options[0].data._id).subscribe(
+        data => {
+          const urlFomatada = data.nomeFormated.trim().split(' ').join('-').toLowerCase();
+          if(!urlFomatada){
+            this.toastr.warning('Não foi possível efetuar a busca', 'Atenção!');
+            console.log("Erro ao efetuar a busca por clínica");
+            return;
+          }else{
+            //@Regina
+            //Globals['DOCTOR_URL'] = urlFomatada;
+            this.router.navigate([`/clinic/${urlFomatada}`]);
+          }
+        },
+        error => {
+          console.log(error);
+          this.toastr.warning('Não foi possível efetuar a busca', 'Atenção!');
+          return;
 
-      this.router.navigate([`/detail/${options[0].text}`]);
+        });
     }
 
   }
@@ -223,11 +245,20 @@ export class HomeComponent implements OnInit {
     this.especialidadeSevice.getAllTotalEspcEstab()
       .subscribe(
         data => {
-          this.especialidadesTotal = data;
+          this.totalListaEspecialidade = data;
+          this.especialidadesTotal = data.slice(0, this.showTotalEspecialidade);
         },
         error => {
           console.log(error);
         });
+  }
+
+  showMoreEspecialidade(){
+    this.especialidadesTotal = this.totalListaEspecialidade.slice(0, this.especialidadesTotal.length + this.showTotalEspecialidade);
+  }
+
+  showLessEspecialidade(){
+    this.especialidadesTotal = this.totalListaEspecialidade.slice(0, this.showTotalEspecialidade);
   }
 
   getURLImgEspc(nome){

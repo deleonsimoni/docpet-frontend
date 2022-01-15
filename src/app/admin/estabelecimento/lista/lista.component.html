@@ -15,6 +15,7 @@
                     <th>Nome</th>
                     <th>Atende Plano</th>
                     <th>Especialidades</th>
+                    <th>Serviços</th>
                     <th>Endereço</th>
                     <th>Data</th>
                     <th>Status</th>
@@ -32,6 +33,9 @@
                     <td>{{estabelecimento.atendePlano ? 'Sim': 'Não'}}</td>
                     <td>
                       <p *ngFor="let especialidade of estabelecimento.especialidades"> {{especialidade.nome}}</p>
+                    </td>
+                    <td>
+                      <p *ngFor="let servico of estabelecimento.servicos"> {{servico.nome}}</p>
                     </td>
                     <td>{{estabelecimento.endereco?.logradouro}}</td>
                     <td>{{estabelecimento.dtCriacao | date : 'dd/MM/yyyy'}}</td>

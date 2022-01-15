@@ -36,8 +36,7 @@
                 <img src="assets/img/footer-logo.png" class="img-fluid" alt="Logo" *ngIf="whitelogo">
             </a>
         </div>
-
-          <div class="main-menu-wrapper" *ngIf="menuTopLogin">
+        <div class="main-menu-wrapper">
             <div class="menu-header">
                 <a class="menu-logo">
                     <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
@@ -46,91 +45,196 @@
                     <i class="fas fa-times"></i>
                 </a>
             </div>
+            <ul class="main-nav" [ngClass]="[base === 'home-seven' ? 'white-font' : '' ]">
+                <li>
+                    <a href="#">Home</a>
+                </li>
+               <!-- <li [class.active]="base === 'home'" (click)="addStyle('home')" class="has-submenu" style="cursor: pointer;">
+                    <a (click)="home()">Home <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu" id="home">
 
-
+                        <li [class.active]="base === 'home'" ><a [routerLink]="'home'">Home</a></li>
+                        <li [class.active]="base === 'home-one'" ><a [routerLink]="'home-one'">Home 1</a></li>
+                        <li [class.active]="base === 'home-two'" ><a [routerLink]="'home-two'">Home 2</a></li>
+                        <li [class.active]="base === 'home-slider-one'" ><a [routerLink]="'home-slider-one'">Home 3</a></li>
+                        <li [class.active]="base === 'home-four'" ><a [routerLink]="'home-four'">Home 4</a></li>
+                        <li [class.active]="base === 'home-slider-two'" ><a [routerLink]="'home-slider-two'">Home 5</a></li>
+                        <li [class.active]="base === 'home-six'" ><a [routerLink]="'home-six'">Home 6</a></li>
+                        <li [class.active]="base === 'home-seven'" ><a [routerLink]="'home-seven'">Home 7</a></li>
+                        <li [class.active]="base === 'home-eight'" ><a [routerLink]="'home-eight'">Home 8</a></li>
+                    </ul>
+                </li> -->
+                <!--
+                <li [class.active]="base === 'doctor' || (base === 'patients' && page === 'patient-profile')" (click)="addStyle('doctor')" class="has-submenu"  style="cursor: pointer;" >
+                    <a href="javascript:void(0)" (click)="doctor('doctor')">Doctors <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu" id="doctor">
+                        <li [class.active]="base === 'doctor' && page === 'dashboard'"><a [routerLink]="'doctor/dashboard'">Dashboard</a></li>
+                        <li [class.active]="base === 'doctor' && page === 'appointment'"><a [routerLink]="'doctor/appointment'">Appointments</a></li>
+                        <li [class.active]="base === 'doctor' && page === 'scheduletiming'"><a [routerLink]="'doctor/scheduletiming'">Schedule Timing</a></li>
+                        <li [class.active]="base === 'doctor' && page === 'patients'"><a [routerLink]="'doctor/patients'">Patients List</a></li>
+                        <li [class.active]="base === 'patients' && page === 'patient-profile'"><a [routerLink]="'patients/patient-profile'">Patients Profile</a></li>
+                        <li [class.active]="base === 'doctor' && page === 'message'"><a [routerLink]="'doctor/message'">Chat</a></li>
+                        <li [class.active]="base === 'doctor' && page === 'invoice'"><a [routerLink]="'doctor/invoice'">Invoices</a></li>
+                        <li [class.active]="base === 'doctor' && page === 'settings'"><a [routerLink]="'doctor/settings'">Profile Settings</a></li>
+                        <li [class.active]="base === 'doctor' && page === 'reviews'"><a [routerLink]="'doctor/reviews'">Reviews</a></li>
+                        <li [class.active]="base === 'Register'"><a [routerLink]="'Register'">Doctor Register</a></li>
+                    </ul>
+                </li> -->
+                <li class="login-link" *ngIf="!user">
+                    <a class="nav-link header-login" [routerLink]="'login'"><i class="fas fa-user-circle"></i> Login / Inscreva-se </a>
+                </li>
+                <li class="login-link" *ngIf="user">
+                    <a class="nav-link header-login" (click)="clickLogout()"><i class="fas fa-sign-out-alt"></i> Sair </a>
+                </li>
+            </ul>
+        </div>
+        
+        <ul class="nav header-navbar-rht right-menu" *ngIf="!user">
+            <li class="nav-item contact-item">
+                <div class="header-contact-img">
+                    <i class="fas fa-phone-alt"></i>					
+                </div>
+                <div class="header-contact-detail">
+                    <p class="contact-info-header">21 99770-1809</p>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link header-login white-bg" [routerLink]="'login'"><i class="fas fa-user-circle mr-2"></i>Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link header-login" [routerLink]="'cadastro'"><i class="fas fa-lock mr-2"></i>Inscreva-se</a>
+            </li>
+        </ul>
+        <ul class="nav header-navbar-rht right-menu" *ngIf="user">
+            
+            <li class="nav-item">
+                <a class="nav-link header-login white-bg" (click)="clickLogout()"><i class="fas fa-sign-out-alt mr-2"></i>Sair</a>
+            </li>
+            
+        </ul>
+        <!--Retirar depois dos teste com cada perfil-->
+        <ul class="nav header-navbar-rht" *ngIf="comrytmenu">
+            <li class="nav-item contact-item">
+                <div class="header-contact-img">
+                    <i class="far fa-hospital"></i>
+                </div>
+                <div class="header-contact-detail">
+                    <p class="contact-header">Contact</p>
+                    <p class="contact-info-header"> 21 99770-1809</p>
+                </div>
+            </li>
+            <li [class.active]="base === 'login-page'" class="nav-item" *ngIf="!auth">
+                <a *ngIf="!user" class="nav-link header-login" [routerLink]="'cadastro'">Você é um Especialista?
+                    Inscreva-se</a>
+                <p *ngIf="user">Bem vindo {{user.login}}</p>
+            </li>
+            <!-- User Menu -->
             <div *ngIf="user?.role == 1">
-                <ul class="main-nav" [ngClass]="[base === 'home-seven' ? 'white-font' : '' ]">
+                <!--<ul class="main-nav" [ngClass]="[base === 'home-seven' ? 'white-font' : '' ]">
 
                     <li><a [routerLink]="'veterinario'">Meu Perfil</a></li>
                     <li><a [routerLink]="'veterinario'">Meus Pacientes</a></li>
                     <li><a [routerLink]="'veterinario'">Agendamentos</a></li>
                     <li><a [routerLink]="'/'" (click)="sair()">Sair</a></li>
                 </ul>
-
+                -->
+                <li class="nav-item dropdown has-arrow logged-item" *ngIf="auth">
+                    <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <span class="user-img">
+                            <img class="rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" width="31" alt="Darren Elder">
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" style="right:0;left:auto;">
+                        <div class="user-header">
+                            <div class="avatar avatar-sm">
+                                <img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle">
+                            </div>
+                            <div class="user-text">
+                                <h6>Darren Elder</h6>
+                                <p class="text-muted mb-0" *ngIf="!isPatient">Doctor</p>
+                                <p class="text-muted mb-0" *ngIf="isPatient">Patient</p>
+                            </div>
+                        </div>
+                        <a class="dropdown-item" *ngIf="!isPatient" [routerLink]="'/doctor/dashboard'"  style="cursor: pointer;">Dashboard</a>
+                        <a class="dropdown-item" *ngIf="!isPatient" [routerLink]="'/doctor/settings'"  style="cursor: pointer;">Profile Settings</a>
+                        <a class="dropdown-item" *ngIf="isPatient"  [routerLink]="'/patients/dashboard'"  style="cursor: pointer;">Dashboard</a>
+                        <a class="dropdown-item" *ngIf="isPatient" [routerLink]="'/patients/settings'"  style="cursor: pointer;">Profile Settings</a>
+                        <a class="dropdown-item" (click)="logout()" style="cursor: pointer;">Logout</a>
+                    </div>
+                </li>
 
             </div>
 
             <div *ngIf="user?.role == 2">
-                <ul class="main-nav" [ngClass]="[base === 'home-seven' ? 'white-font' : '' ]">
+                <!--<ul class="main-nav" [ngClass]="[base === 'home-seven' ? 'white-font' : '' ]">
 
                     <li><a [routerLink]="'estabelecimento'">Meu Estabelecimento</a></li>
                     <li><a [routerLink]="'estabelecimento'">Consultas em minha clinica</a></li>
                     <li><a [routerLink]="'/'" (click)="sair()">Sair</a></li>
-                </ul>
+                </ul> -->
+                <li class="nav-item dropdown has-arrow logged-item" *ngIf="auth">
+                    <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <span class="user-img">
+                            <img class="rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" width="31" alt="Darren Elder">
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" style="right:0;left:auto;">
+                        <div class="user-header">
+                            <div class="avatar avatar-sm">
+                                <img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle">
+                            </div>
+                            <div class="user-text">
+                                <h6>Darren Elder</h6>
+                                <p class="text-muted mb-0" *ngIf="!isPatient">Doctor</p>
+                                <p class="text-muted mb-0" *ngIf="isPatient">Patient</p>
+                            </div>
+                        </div>
+                        <a class="dropdown-item" *ngIf="!isPatient" [routerLink]="'/doctor/dashboard'"  style="cursor: pointer;">Dashboard</a>
+                        <a class="dropdown-item" *ngIf="!isPatient" [routerLink]="'/doctor/settings'"  style="cursor: pointer;">Profile Settings</a>
+                        <a class="dropdown-item" *ngIf="isPatient"  [routerLink]="'/patients/dashboard'"  style="cursor: pointer;">Dashboard</a>
+                        <a class="dropdown-item" *ngIf="isPatient" [routerLink]="'/patients/settings'"  style="cursor: pointer;">Profile Settings</a>
+                        <a class="dropdown-item" (click)="logout()" style="cursor: pointer;">Logout</a>
+                    </div>
+                </li>
             </div>
 
             <div *ngIf="user?.role == 0">
-                <ul class="main-nav" [ngClass]="[base === 'home-seven' ? 'white-font' : '' ]">
+                <!--<ul class="main-nav" [ngClass]="[base === 'home-seven' ? 'white-font' : '' ]">
                   <li><a [routerLink]="'/'" (click)="sair()">Sair</a></li>
-                </ul>
+                </ul> -->
+                <li class="nav-item dropdown has-arrow logged-item" *ngIf="auth">
+                    <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <span class="user-img">
+                            <img class="rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" width="31" alt="Darren Elder">
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" style="right:0;left:auto;">
+                        <div class="user-header">
+                            <div class="avatar avatar-sm">
+                                <img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle">
+                            </div>
+                            <div class="user-text">
+                                <h6>Darren Elder</h6>
+                                <p class="text-muted mb-0" *ngIf="!isPatient">Doctor</p>
+                                <p class="text-muted mb-0" *ngIf="isPatient">Patient</p>
+                            </div>
+                        </div>
+                        <a class="dropdown-item" *ngIf="!isPatient" [routerLink]="'/doctor/dashboard'"  style="cursor: pointer;">Dashboard</a>
+                        <a class="dropdown-item" *ngIf="!isPatient" [routerLink]="'/doctor/settings'"  style="cursor: pointer;">Profile Settings</a>
+                        <a class="dropdown-item" *ngIf="isPatient"  [routerLink]="'/patients/dashboard'"  style="cursor: pointer;">Dashboard</a>
+                        <a class="dropdown-item" *ngIf="isPatient" [routerLink]="'/patients/settings'"  style="cursor: pointer;">Profile Settings</a>
+                        <a class="dropdown-item" (click)="logout()" style="cursor: pointer;">Logout</a>
+                    </div>
+                </li>
             </div>
 
             <div *ngIf="user?.role || user?.role == 0">
 
             </div>
-
-        </div>
-
-        <ul class="nav header-navbar-rht" *ngIf="comrytmenu">
-            <!--<li class="nav-item contact-item">
-                    <div class="header-contact-img">
-                        <i class="far fa-hospital"></i>
-                    </div>
-                    <div class="header-contact-detail">
-                        <p class="contact-header">Contact</p>
-                        <p class="contact-info-header"> +1 315 369 5943</p>
-                    </div>
-                </li> -->
-            <li [class.active]="base === 'login-page'" class="nav-item" *ngIf="!auth">
-                <!--<a class="nav-link header-login"  [routerLink]="'login-page'">login / Signup </a> -->
-                <a *ngIf="!user" class="nav-link header-login" [routerLink]="'cadastro'">Você é um Especialista?
-                    Inscreva-se</a>
-                <p *ngIf="user">Bem vindo {{user.login}}</p>
-            </li>
-            <!-- User Menu -->
-            <li class="nav-item dropdown has-arrow logged-item" *ngIf="auth">
-                <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                    <span class="user-img">
-                        <img class="rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" width="31"
-                            alt="Darren Elder">
-                    </span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" style="right:0;left:auto;">
-                    <div class="user-header">
-                        <div class="avatar avatar-sm">
-                            <img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image"
-                                class="avatar-img rounded-circle">
-                        </div>
-                        <div class="user-text">
-                            <h6>Darren Elder</h6>
-                            <p class="text-muted mb-0" *ngIf="!isPatient">Doctor</p>
-                            <p class="text-muted mb-0" *ngIf="isPatient">Patient</p>
-                        </div>
-                    </div>
-                    <a class="dropdown-item" *ngIf="!isPatient" [routerLink]="'/doctor/dashboard'"
-                        style="cursor: pointer;">Dashboard</a>
-                    <a class="dropdown-item" *ngIf="!isPatient" [routerLink]="'/doctor/settings'"
-                        style="cursor: pointer;">Profile Settings</a>
-                    <a class="dropdown-item" *ngIf="isPatient" [routerLink]="'/patients/dashboard'"
-                        style="cursor: pointer;">Dashboard</a>
-                    <a class="dropdown-item" *ngIf="isPatient" [routerLink]="'/patients/settings'"
-                        style="cursor: pointer;">Profile Settings</a>
-                    <a class="dropdown-item" (click)="logout()" style="cursor: pointer;">Logout</a>
-                </div>
-            </li>
-            <!-- /User Menu -->
-
+            
+                <!-- /User Menu -->
+                    
         </ul>
-
+       
     </nav>
 </header>

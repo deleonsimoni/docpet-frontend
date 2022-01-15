@@ -4394,6 +4394,18 @@ html.menu-opened body {
 	padding: 9px 30px;
 	margin-top: 20px;
 }
+.view-all-more-home .btn {
+	background: #000000;
+    border-radius: 30px;
+	border-color: #000000;
+    color: #fff;
+	padding: 9px 30px;
+	margin-top: 20px;
+}
+.view-all-more-home .btn:hover {
+    background: #023f41;
+    color: #fff;
+}
 .browse-section {
 	background-color: #E5F6FD;
 	padding: 60px 0;
@@ -4442,7 +4454,6 @@ html.menu-opened body {
 	background: url('../img/shapes/doctor-bg.jpg');
 	background-position: center;
 	min-height: 350px;
-	min-width: 1350px;
 	background-size: cover;
 	padding: 40px 30px;
 	display: flex;
@@ -12138,6 +12149,12 @@ ul.benifits-col li i{
 		font-size: 14px;
 		padding: 6px 20px;
 	}
+
+	.view-all-more-home .btn {
+		font-size: 14px;
+		padding: 6px 20px;
+	}
+
 	.section-header-three {
 		margin-bottom: 30px;
 	}

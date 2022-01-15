@@ -39,8 +39,8 @@ export class ServicoComponent implements OnInit {
 
   getServicos() {
     this.nome = ""
-        this.id = "";
-        this.img = "";
+    this.id = "";
+    this.img = "";
     this.servicoService.getAll()
       .subscribe(res => {
         this.servicos = res;

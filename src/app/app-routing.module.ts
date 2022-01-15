@@ -17,6 +17,10 @@ const routes: Routes = [
     loadChildren: () => import('./doctor-profile/doctor-profile.module').then((m) => m.DoctorProfileModule),
   },
   {
+    path: 'clinic/:nome',
+    loadChildren: () => import('./clinic-profile/clinic-profile.module').then((m) => m.ClinicProfileModule),
+  },
+  {
     path: 'cadastro',
     loadChildren: () => import('./form-contato/form-contato.module').then((m) => m.FormContatoModule),
   },

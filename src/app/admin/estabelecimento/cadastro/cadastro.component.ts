@@ -7,6 +7,9 @@ import { ActivatedRoute, Event, NavigationStart, Router } from '@angular/router'
 
 import { EspecialidadeService } from 'src/app/services/especialidades.service';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { ServicoService } from 'src/app/services/servico.service';
+import { UserService } from 'src/app/services/user.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-cadastro',
@@ -20,10 +23,12 @@ export class CadastroComponent implements OnInit {
   base = 'Estabelecimento';
   page = 'Cadastro';
   listaEspecialidade: any;
+  listaServicos: any;
   estabelecimento:Estabelecimento;
   isVeterinario: Boolean;
   isAddMode!: boolean;
   id!: string;
+  userLogged;
 
   lat;
   lng;
@@ -35,16 +40,18 @@ export class CadastroComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private especialidadeSevice: EspecialidadeService,
+              private especialidadeSevice: EspecialidadeService, 
+              private servicoSevice: ServicoService,
               private formBuilder: FormBuilder,
               private estabelecimentosevice: EstabelecimentoService,
               private cepService: CEPService,
-              private veterinarioService: VeterinarioService ) {
+              private veterinarioService: VeterinarioService,
+              private userService: UserService ) {
 
   }
 
   ngOnInit(): void {
-
+    this.userLogged = this.userService.getUser();
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
 
@@ -58,11 +65,13 @@ export class CadastroComponent implements OnInit {
         especialidades: [null],
         endereco: this.createEnderecoFormGroup(),
         contato: this.createContatoFormGroup(),
-        veterinarios: new FormBuilder().array([this.createVeterinario()])
+        veterinarios: new FormBuilder().array([this.createVeterinario()]),
+        servicos: [null],
       }
     );
 
     this.listarEspecialidades();
+    this.listarServicos();
 
     if(!this.isAddMode && this.id){
       this.popular();
@@ -95,6 +104,9 @@ export class CadastroComponent implements OnInit {
       let estab = estabelecimento as Estabelecimento;
 
       this.estabelecimentoForm.patchValue(estab);
+      if(estab.img){
+        this.url = estab.img;
+      }
 
       if(estab.location){
         var location = estab.location;
@@ -123,11 +135,19 @@ export class CadastroComponent implements OnInit {
   salvar(){
     if (this.estabelecimentoForm.valid) {
       const novoEstabelecimento = this.estabelecimentoForm.getRawValue() as Estabelecimento;
+      
+      if(this.url){
+        novoEstabelecimento.img = this.url;
+      }
 
       if(this.id){
         this.estabelecimentosevice.update(this.id, novoEstabelecimento).subscribe(
           () => {
-            this.router.navigate(['/admin/list-estabelecimento']);
+            if(this.userLogged.isAdmin){
+              this.router.navigate(['/admin/list-estabelecimento']);
+            }else{
+              this.router.navigate(['/admin/dashboard']);
+            }
           },
           (error) => {
             console.log(error);
@@ -152,6 +172,18 @@ export class CadastroComponent implements OnInit {
       .subscribe(
         data => {
           this.listaEspecialidade = data;
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  listarServicos(): void {
+    this.servicoSevice.getAll()
+      .subscribe(
+        data => {
+          this.listaServicos = data;
           console.log(data);
         },
         error => {
@@ -239,6 +271,38 @@ export class CadastroComponent implements OnInit {
 
   removeVeterinario(i:number) {
     this.veterinarios.removeAt(i);
+  }
+
+  validaTelefone (){
+    if(!this.estabelecimentoForm.get('contato')?.get('celular').value && !this.estabelecimentoForm.get('contato')?.get('telefone').value){
+      return true;
+    }
+    return false;
+  }
+
+  onFileChanged(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = event.target.result;
+      }
+    }
+  }
+
+  public delete(){
+    this.url = null;
+  }
+
+  getUser(): any {
+    try{
+        return jwt_decode(localStorage.getItem("vetz_token"));
+    }
+    catch(Error){
+        return null;
+    }
   }
 
 }

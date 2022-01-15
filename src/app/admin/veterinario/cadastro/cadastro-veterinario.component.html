@@ -301,16 +301,6 @@
           <div class="row form-row" formGroupName="contato">
             <div class="col-md-6">
               <div class="form-group">
-                <label>Nome<span class="text-danger">* </span></label>
-                <input type="text" class="form-control" formControlName="nome">
-                <app-mensagem *ngIf="
-                      veterinarioForm.get('contato')?.get('nome')?.errors?.required &&
-                      veterinarioForm.get('contato')?.get('nome')?.touched" mensagem="Nome é obrigatório">
-                </app-mensagem>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
                 <label>Email <span class="text-danger">*</span></label>
                 <input type="email" class="form-control" formControlName="email">
                 <app-mensagem *ngIf="
@@ -324,18 +314,21 @@
                 </app-mensagem>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
               <div class="form-group">
                 <label>Telefone</label>
                 <input type="text" class="form-control" formControlName="telefone" mask="(00) 0000-0000"
                   placeholder="(00) 0000-0000">
+                  <app-mensagem *ngIf="veterinarioForm.get('contato')?.get('telefone')?.touched && validaTelefone()" mensagem="Telefone ou Celular é obrigatório">
+                </app-mensagem>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
               <div class="form-group">
                 <label>Celular</label>
                 <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000"
                   placeholder="(00) 00000-0000">
+                  <app-mensagem *ngIf="veterinarioForm.get('contato')?.get('celular')?.touched && validaTelefone()" mensagem="Telefone ou Celular é obrigatório"></app-mensagem>
               </div>
             </div>
           </div>

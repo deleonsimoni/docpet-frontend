@@ -18,6 +18,7 @@ export class InvoiceReportsComponent implements OnInit {
   id;
   dtOptions: DataTables.Settings = {};
   nome;
+  img;
 
   constructor(
     public commonService: CommonServiceService,
@@ -35,12 +36,25 @@ export class InvoiceReportsComponent implements OnInit {
   }
 
   getEspecialidades() {
+    this.nome = ""
+    this.id = "";
+    this.img = "";
     this.especialidadeService.getAll()
       .subscribe(res => {
         this.especialidades = res;
 
       },
         error => this.toastService.error('Ocorreu um erro ao listar ' + error, 'Atenção'));
+  }
+
+  getEspecialidade(id){
+    this.especialidadeService.get(id)
+      .subscribe(res => {
+        this.nome = res.nome;
+        this.id = res._id;
+        this.img = res.img;
+      },
+        error => this.toastService.error('Ocorreu um erro ao consultar por id ' + error, 'Atenção'));
   }
 
   deleteModal(template: TemplateRef<any>, trans) {
@@ -76,22 +90,57 @@ export class InvoiceReportsComponent implements OnInit {
       return
     }
 
-    this.especialidadeService.create(this.nome)
-      .subscribe(res => {
-        this.toastService.success('Especialidade cadastrada com sucesso', 'Sucesso');
-        this.nome = "";
-        this.getEspecialidades();
+    const data = {
+      nome: this.nome,
+      img: this.img ? this.img : ''
+    }
+    if(!this.id){
+      this.especialidadeService.create(data)
+        .subscribe(res => {
+          this.toastService.success('Especialidade cadastrada com sucesso', 'Sucesso');
+          this.nome = "";
+          this.img = "" ;
+          this.getEspecialidades();
 
+        },
+          error => {
+
+            this.toastService.error('Ocorreu um erro ao excluir ' + error, 'Atenção');
+
+          }
+        );
+    }else{
+      this.especialidadeService.update(this.id, data)
+      .subscribe(res => {
+        this.toastService.success('Servico atualizado com sucesso', 'Sucesso');
+        this.nome = "";
+        this.img = "" ;
+        this.getEspecialidades();
       },
         error => {
-
-          this.toastService.error('Ocorreu um erro ao excluir ' + error, 'Atenção');
-
+          this.toastService.error('Ocorreu um erro ao atualizar ' + error, 'Atenção');
         }
       );
 
+
+    }     
+
+  }
+  deleteImg(){
+    this.img = null;
   }
 
+  onFileChanged(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.img = event.target.result;
+      }
+    }
+  }
   btnColor() {
     document.getElementById('btn-yes').style.backgroundColor = "#00d0f1";
     document.getElementById('btn-yes').style.border = "1px solid #00d0f1";

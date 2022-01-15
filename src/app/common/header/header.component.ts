@@ -25,7 +25,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HeaderComponent implements OnInit {
   auth: boolean = false;
-  comrytmenu: boolean = true;
+  comrytmenu: boolean = false;
   isPatient: boolean = false;
   hi4: boolean = false;
   hi6: boolean = false;
@@ -227,6 +227,12 @@ export class HeaderComponent implements OnInit {
     this.auth = false;
     this.isPatient = false;
     this.router.navigate(['/login']);
+  }
+  
+  clickLogout() {
+    localStorage.clear();
+    this.userService.logout();
+    window.location.href = '/home';
   }
 
   home() {

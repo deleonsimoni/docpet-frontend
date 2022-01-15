@@ -18,11 +18,11 @@ export class EspecialidadeService {
   }
 
   getAllTotalEspcEstab(): Observable<any> {
-    return this.http.get(`${baseUrl}/total`);
+    return this.http.get(`${baseUrl}-total`);
   }
 
   getCompletedFind(query): Observable<any> {
-    return this.http.get(`${baseUrl}/search?search=${query}`);
+    return this.http.get(`${baseUrl}-search?search=${query}`);
   }
 
   get(id): Observable<any> {
@@ -30,7 +30,7 @@ export class EspecialidadeService {
   }
 
   create(data): Observable<any> {
-    return this.http.post(baseUrl, {nome: data});
+    return this.http.post(baseUrl, data);
   }
 
   update(id, data): Observable<any> {

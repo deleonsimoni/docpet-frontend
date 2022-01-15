@@ -25,13 +25,27 @@
 							<table class="datatable table table-hover table-center mb-0">
 								<thead>
 									<tr>
-										<th>Criar Especialidade</th>
+										<th colspan="2">Criar Especialidade</th>
 										<th class="text-right">Incluir</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr >
-										<td>
+										<td style="width:30%">
+											<div class="change-avatar">
+											  <div class="service-img" for="fileInput">
+												<img class="img-avatar" [src]="img ? img : 'assets/img/img64x64.jpg'">
+											  </div>
+											  <div class="upload-img">
+												<div class="change-photo-btn" style="margin-left: 10px;">
+													<span><i class="fa fa-upload"></i> Escolha sua Foto</span>
+													<input id="fileInput" type='file' class="upload" (change)="onFileChanged($event)">
+												</div>
+												<!--<small class="form-text text-muted">Allowed JPG, PNG. Max size of 2MB</small> -->
+											  </div>
+											</div>
+										</td>
+										<td style="width:50%">
 											<div class="form-group form-focus">
 												<input type="text" name="name" id="username" class="form-control floating" [(ngModel)]="nome">
 												<label class="focus-label">Nome da Especialidade<span class="required">*</span></label>
@@ -39,12 +53,17 @@
 											</div>
 										</td>
 	
-										<td class="text-right">
+										<td class="text-right" style="width:20%">
 											<div class="actions">
-												<a data-toggle="modal" (click)="create()"
-                                                    class="btn btn-sm bg-success-light">
+												<a *ngIf="!id" data-toggle="modal" (click)="create()"
+                                                    class="btn btn-sm bg-primary-light">
                                                     <i class="fe fe-pencil"></i> Cadastrar
                                                 </a>
+												<a *ngIf="id" data-toggle="modal" (click)="create()"
+                                                    class="btn btn-sm bg-success-light">
+                                                    <i class="fe fe-pencil"></i> Atualizar
+                                                </a>
+                        						<button *ngIf="img" (click)="deleteImg()" class="btn btn-sm bg-warning-light"> <i class="far fa-trash-alt"></i> Excluir foto</button>
 											</div>
 										</td>
 									</tr>
@@ -57,15 +76,15 @@
 							<table class="datatable table table-hover table-center mb-0">
 								<thead>
 									<tr>
-										<th>Especialidade</th>
+										<th colspan="2">Especialidade</th>
 										<th class="text-right">Ações</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr *ngFor="let especialidade of especialidades">
-										<td><a>{{especialidade.nome}}</a></td>
-	
-										<td class="text-right">
+										<td style="width:10%"> <a class="btn" (click)="getEspecialidade(especialidade._id)"><img class="img-avatar" [src]="especialidade.img ? especialidade.img : ''"></a> </td>
+										<td style="width:80%" class="text-left"><a class="btn" (click)="getEspecialidade(especialidade._id)"> {{especialidade.nome}}</a></td>
+										<td class="text-right" style="width:10%">
 											<div class="actions">
 												<a data-toggle="modal" (click)="deleteModal(delete,especialidade)"
                                                     class="btn btn-sm bg-danger-light">

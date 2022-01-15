@@ -8,69 +8,91 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Informações</h4>
-          <div class="row form-row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>CNPJ<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" #cnpj formControlName="cnpj" mask="00.000.000/0000-00">
-                <app-mensagem *ngIf="
-                      estabelecimentoForm.get('cnpj')?.errors?.required &&
-                      estabelecimentoForm.get('cnpj')?.touched" mensagem="CNPJ é obrigatório">
-                </app-mensagem>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Nome<span class="text-danger">*</span></label>
-                <input type="text" class="form-control" formControlName="nome" [readonly]="!cnpj.value">
-                <app-mensagem *ngIf="
-                      estabelecimentoForm.get('nome')?.errors?.required &&
-                      estabelecimentoForm.get('nome')?.touched
-                      " mensagem="O nome é obrigatório"></app-mensagem>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label>Especialidade</label>
-                <ng-select [multiple]="true" formControlName="especialidades">
-                  <ng-option *ngFor="let espc of listaEspecialidade" [value]="espc._id">{{espc.nome}}</ng-option>
-                  <!--<ng-option [value]="'custom'">Custom</ng-option> -->
-                </ng-select>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group mb-0">
-                <div class="status-toggle">
-                  <input type="checkbox" id="isStatus" name="status" formControlName="status" class="check" checked>
-                  Status
-                  <label for="isStatus" class="checktoggle">Status</label>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group mb-0">
-                <div id="isVeterinario_select">
-                  <div class="status-toggle">
-                    <input type="checkbox" id="isVeterinario" name="checkIsVeterinario" #checkIsVeterinario
-                      [checked]="isVeterinario" class="check"> Veterinário
-                    <label for="isVeterinario" class="checktoggle">Veterinário</label>
+            <div class="row form-row">
+              <div class="col-md-2">
+                <div class="row form-row">
+                  <div class="row form-row">
+                    <div class="col-md-12 mb-3">
+                      <label class="hoverable" for="fileInput">
+                        <img class="img-avatar"
+                          [src]="url ? url : 'https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg'">
+                        <div class="hover-text">Escolha sua Foto</div>
+                        <div class="background"></div>
+                      </label>
+                      <br />
+                      <input id="fileInput" type='file' (change)="onFileChanged($event)">
+                      <button *ngIf="url" (click)="delete()">Excluir foto</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-2">
-              <div id="customIsPlanoSaude" [hidden]="!checkIsVeterinario.checked">
-                <div class="form-group">
-                  <div class="status-toggle">
-                    <input type="checkbox" id="isPlanoSaude" class="check" name="atendePlano"
-                      formControlName="atendePlano">Plano de Saúde
-                    <label for="isPlanoSaude" class="checktoggle">Plano de Saúde</label>
+              <div class="col-md-8 ml-5">
+                <div class="row form-row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>CNPJ<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" #cnpj formControlName="cnpj" mask="00.000.000/0000-00">
+                      <app-mensagem *ngIf="
+                            estabelecimentoForm.get('cnpj')?.errors?.required &&
+                            estabelecimentoForm.get('cnpj')?.touched" mensagem="CNPJ é obrigatório">
+                      </app-mensagem>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Nome<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" formControlName="nome" [readonly]="!cnpj.value">
+                      <app-mensagem *ngIf="
+                            estabelecimentoForm.get('nome')?.errors?.required &&
+                            estabelecimentoForm.get('nome')?.touched
+                            " mensagem="O nome é obrigatório"></app-mensagem>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Especialidade</label>
+                      <ng-select [multiple]="true" formControlName="especialidades">
+                        <ng-option *ngFor="let espc of listaEspecialidade" [value]="espc._id">{{espc.nome}}</ng-option>
+                        <!--<ng-option [value]="'custom'">Custom</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Serviços</label>
+                      <ng-select [multiple]="true" formControlName="servicos">
+                        <ng-option *ngFor="let serv of listaServicos" [value]="serv._id">{{serv.nome}}</ng-option>
+                        <!--<ng-option [value]="'custom'">Custom</ng-option> -->
+                      </ng-select>
+                    </div>
+                  </div>                  
+                  <div class="col-md-2">
+                    <div class="form-group mb-0">
+                      <div id="isVeterinario_select">
+                        <div class="status-toggle">
+                          <input type="checkbox" id="isVeterinario" name="checkIsVeterinario" #checkIsVeterinario
+                            [checked]="isVeterinario" class="check"> Veterinário
+                          <label for="isVeterinario" class="checktoggle">Veterinário</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div id="customIsPlanoSaude" [hidden]="!checkIsVeterinario.checked">
+                      <div class="form-group">
+                        <div class="status-toggle">
+                          <input type="checkbox" id="isPlanoSaude" class="check" name="atendePlano"
+                            formControlName="atendePlano">Plano de Saúde
+                          <label for="isPlanoSaude" class="checktoggle">Plano de Saúde</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-          </div>
+                </div>
+              </div>
+            </div>
+            
         </div>
       </div>
       <!-- /Basic Information -->
@@ -109,6 +131,8 @@
                 <label>Telefone</label>
                 <input type="text" class="form-control" formControlName="telefone" mask="(00) 0000-0000"
                   placeholder="(00) 0000-0000">
+                  <app-mensagem *ngIf="estabelecimentoForm.get('contato')?.get('telefone')?.touched && validaTelefone()" mensagem="Telefone ou Celular é obrigatório">
+                  </app-mensagem>
               </div>
             </div>
             <div class="col-md-6">
@@ -116,6 +140,7 @@
                 <label>Celular</label>
                 <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000"
                   placeholder="(00) 00000-0000">
+                  <app-mensagem *ngIf="estabelecimentoForm.get('contato')?.get('celular')?.touched && validaTelefone()" mensagem="Telefone ou Celular é obrigatório"></app-mensagem>
               </div>
             </div>
           </div>
@@ -268,6 +293,8 @@
             <div class="submit-section submit-btn-bottom">
               <button type="submit"
                 [class]="estabelecimentoForm.invalid ? 'btn submit-btn btn-light' : 'btn submit-btn btn-primary'">Salvar</button>
+                <button type="submit" *ngIf="userLogged.isAdmin" [routerLink]="'/admin/dashboard-admin/'" class="btn btn-success submit-btn">Voltar</button>
+                <button type="submit" *ngIf="!userLogged.isAdmin" [routerLink]="'/admin/dashboard'" class="btn btn-success submit-btn">Voltar</button>
             </div>
           </div>
         </div>
