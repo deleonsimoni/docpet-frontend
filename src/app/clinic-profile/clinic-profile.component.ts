@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Veterinario } from '../models/veterinario';
 import { UserService } from '../services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { Globals } from '../global';
 
 
 @Component({
@@ -15,7 +16,6 @@ import { ToastrService } from 'ngx-toastr';
 export class ClinicProfileComponent implements OnInit {
   id;
   nameFormated;
-  doctorDetails;
   clinicDetails;
   estabelecimentos;
   especialidadeFormated;
@@ -29,6 +29,7 @@ export class ClinicProfileComponent implements OnInit {
   totalStarFormated = 0;
   isLikedComment = 0;
   totalLike = 100;
+  toastr;
 
 
   meses = [{ id: 1, mes: 'Janeiro', abreviado: 'Jan' },
@@ -66,8 +67,8 @@ export class ClinicProfileComponent implements OnInit {
 
   }
 
-  getImageDoctor(doctorDetails) {
-    return doctorDetails?.img ? doctorDetails.img : 'https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg'
+  getImage(clinicDetails) {
+    return clinicDetails?.img ? clinicDetails.img : 'https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg'
   }
 
   likeIt() {
@@ -78,11 +79,11 @@ export class ClinicProfileComponent implements OnInit {
 
   listReviews() {
 
-    this.veterinarioService.getReview(this.doctorDetails._id).subscribe(
+    this.veterinarioService.getReview(this.clinicDetails._id).subscribe(
       (data: any) => {
         this.isLoading = false;
-        this.doctorDetails.reviews = data.reviews.reviews;
-        this.countScore(this.doctorDetails);
+        this.clinicDetails.reviews = data.reviews.reviews;
+        this.countScore(this.clinicDetails);
       },
       (error) => {
         this.isLoading = false;
@@ -122,7 +123,7 @@ export class ClinicProfileComponent implements OnInit {
       this.review.user = this.user.id;
     }
 
-    this.veterinarioService.createReview(this.doctorDetails._id, this.review).subscribe(
+    this.veterinarioService.createReview(this.clinicDetails._id, this.review).subscribe(
       (data: any) => {
         this.isLoading = false;
         this.toast.success('Feedback enviado com sucesso', ':)');
@@ -164,10 +165,10 @@ export class ClinicProfileComponent implements OnInit {
 
   }
 
-  countScore(doctorDetails) {
+  countScore(clinicDetails) {
 
     //calculate rates
-    if (doctorDetails.reviews.length > 0) {
+    if (clinicDetails.reviews.length > 0) {
 
       //star
       //this.totalStar = this.doctorDetails.reviews.reduce((previous, next) => (previous.score + next.score));
@@ -175,7 +176,7 @@ export class ClinicProfileComponent implements OnInit {
       let divisor = 5;
       let rates = [0,0,0,0,0];
 
-      for (let item of doctorDetails.reviews) {
+      for (let item of clinicDetails.reviews) {
         if (item.score) {
           total += 1;
 
@@ -210,7 +211,7 @@ export class ClinicProfileComponent implements OnInit {
       let totalLike = 0;
       let totalDislike = 0;
 
-      for (let item of doctorDetails.reviews) {
+      for (let item of clinicDetails.reviews) {
         if (item.like === true) {
           totalLike+=1;
         } else if (item.like === false){
@@ -242,4 +243,36 @@ export class ClinicProfileComponent implements OnInit {
     }
 
   }
+  redirectPerfilVet(vet){
+
+    this.veterinarioService.get(vet._id).subscribe(
+      data => {
+        const urlFomatada = this.formataUrlVet(data);
+        if(!urlFomatada){
+          this.toastr.warning('Não foi possível efetuar a busca', 'Atenção!');
+          console.log("Erro ao efetuar a busca. Nome, Especialidade ou Endereço não encontrado");
+          return;
+        }else{
+          Globals['DOCTOR_URL'] = urlFomatada;
+          this.router.navigate([`/doctor/${urlFomatada}`]);
+        }
+      },
+      error => {
+        console.log(error);
+        this.toastr.warning('Não foi possível efetuar a busca', 'Atenção!');
+        return;
+  
+      });
+  }
+
+  formataUrlVet(data){
+    if(data.nomeFormated && data.especialidades && data.endereco){
+      return (data.nomeFormated.trim().split(' ').join('-')+"/"+data.especialidades[0].nomeFormated.trim().split(' ').join('-')+"/"+data.endereco.municipio.trim().split(' ').join('-')).toLowerCase();
+
+    }
+    return "";
+  }
+
+
+
 }

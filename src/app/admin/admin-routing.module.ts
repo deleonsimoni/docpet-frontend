@@ -243,31 +243,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'blog',
-        loadChildren: () =>
-          import('./blog/blog/blog.module').then((m) => m.BlogModule),
-      },
-      {
-        path: 'blog-details',
-        loadChildren: () =>
-          import('./blog/blog-details/blog-details.module').then((m) => m.BlogDetailsModule),
-      },
-      {
-        path: 'add-blog',
-        loadChildren: () =>
-          import('./blog/add-blog/add-blog.module').then((m) => m.AddBlogModule),
-      },
-      {
-        path: 'pending-blog',
-        loadChildren: () =>
-          import('./blog/pending-blog/pending-blog.module').then((m) => m.PendingBlogModule),
-      },
-      {
-        path: 'edit-blog',
-        loadChildren: () =>
-          import('./blog/add-blog/add-blog.module').then((m) => m.AddBlogModule),
-      },
-      {
         path: 'product-list',
         loadChildren: () =>
           import('./product-list/product-list.module').then((m) => m.ProductListModule),

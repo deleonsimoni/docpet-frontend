@@ -13,5 +13,6 @@ export interface Estabelecimento {
   img: String,
   location:{
     coordinates: [0, 0]
-  }
+  },
+  sobre: [null],
 }

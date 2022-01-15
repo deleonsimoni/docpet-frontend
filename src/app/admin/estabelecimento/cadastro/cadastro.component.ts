@@ -67,6 +67,7 @@ export class CadastroComponent implements OnInit {
         contato: this.createContatoFormGroup(),
         veterinarios: new FormBuilder().array([this.createVeterinario()]),
         servicos: [null],
+        sobre: [null],
       }
     );
 
