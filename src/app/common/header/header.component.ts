@@ -27,10 +27,6 @@ export class HeaderComponent implements OnInit {
   auth: boolean = false;
   comrytmenu: boolean = false;
   isPatient: boolean = false;
-  hi4: boolean = false;
-  hi6: boolean = false;
-  hi7: boolean = false;
-  hi8: boolean = false;
   comlogo: boolean = true;
   whitelogo: boolean = false;
   page;
@@ -55,26 +51,16 @@ export class HeaderComponent implements OnInit {
         var res = event.url.split('/');
         this.base = res[1];
         this.page = res[2];
-        if (event.url == '/home-slider-one') {
-          this.headerTop = true;
-        } else {
-          this.headerTop = false;
-        }
-        if (event.url == '/doctor/dashboard'){
-          this.auth = true;
-        }
-        if (event.url == '/doctor/appointment'){
-          this.auth = true;
-        }
-        if (event.url == '/doctor/scheduletiming'){
-          this.auth = true;
-        }
+        console.log(this.base);
 
         if (event.url.indexOf('/admin') !== -1){
           this.menuTopLogin = false;
           this.comrytmenu = false;
+          this.auth = true;
         }else{
           this.user ? this.menuTopLogin = true : this.menuTopLogin = false;
+          this.user ? this.comrytmenu = true : this.comrytmenu = false;
+          this.auth = false;
         }
 
         console.log(event.url);
@@ -102,7 +88,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
 
     this.user = this.userService.getUser();
-
+    console.log(this.user);
     if (localStorage.getItem('auth') === 'true') {
       this.auth = true;
       this.isPatient =
