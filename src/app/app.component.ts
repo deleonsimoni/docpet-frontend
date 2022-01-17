@@ -155,6 +155,18 @@ export class AppComponent implements OnInit, AfterViewChecked {
              image: img
            });
            
+           }else if (event.urlAfterRedirects.split('/')[1] == 'clinic'){
+            Globals['DESC_SEARCH_DOCTOR'] = event.urlAfterRedirects.split('/')[2];
+            tit = 'Deseja consulta na Clinica '+event.urlAfterRedirects.split('/')[2]+'? Agende hoje sua consulta! | VetzCo';
+            dsc = 'Seu PET está com problemas? Precisa de uma clínica Veterinária? Na VetzCo temos a clínica '+event.urlAfterRedirects.split('/')[2]+' que tem diversos especialistas para atender seu pet . Veja as especialidades e agende hoje sua consulta!';
+            img = 'palavras';
+           seoSitemap.push({
+             customUrl: event.urlAfterRedirects,
+             title: tit,
+             description: dsc,
+             image: img
+           });
+
            }
           this.updateTitle(tit);
           const item = seoSitemap.find((i) => event.urlAfterRedirects === i.customUrl);
