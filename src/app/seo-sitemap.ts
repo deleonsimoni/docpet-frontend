@@ -17,19 +17,19 @@ export const seoSitemap: ISitemapTag[] = [
      description: 'Acesso restrito a plataforma de veterinários, clínicas e locais de pet', 
      image: 'login, acesso restrito' 
    },
-  /* { 
-     customUrl: '/doctor/TesteGuga', 
-     title: 'Consulta com '+Globals['DOCTOR_NAME']+'em'+Globals['DESC_SEARCH_DOCTOR']+'. Agende hoje sua consulta! | VetzCo', 
-     description: 'Seu PET está com problemas? precisa de uma consulta em '+Globals['DESC_SEARCH_DOCTOR']+'? Na VetzCo temos a especialista '+Globals['DOCTOR_URL']+'. Agende hoje sua consulta!', 
-     image: Globals['KEYWORDS_META'] 
+   { 
+     customUrl: '/forgot-password', 
+     title: 'Esqueceu sua senha? Recupere aqui | VetzCo', 
+     description: 'Recuperação de senha para acesso a plataforma Vetzco!', 
+     image: 'recuperar senha, esqueceu a senha' 
    },
    { 
-     customUrl: '/list/' + Globals['LIST_SEARCH_URL'], 
-     title: Globals['DESC_SEARCH_DOCTOR'] + ' Veterinário: Encontre aqui! | VetzCo', 
-     description: 'Seu PET está com problemas? Na VetzCo você encontra uma variedade de veterinários e clínicas especializadas em '+Globals['DESC_SEARCH_DOCTOR']+' animal. Agende hoje sua consulta!', 
-     image: Globals['KEYWORDS_META'] 
+     customUrl: '/admin', 
+     title: 'aplicação de administração | VetzCo', 
+     description: 'Área restrita para manter conteúso da Vetzco', 
+     image: '' 
    }
-   */
+   
  ];
  
  export interface ISitemapTag {
