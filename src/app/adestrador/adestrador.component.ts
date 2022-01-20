@@ -1,5 +1,5 @@
 import { EstabelecimentoService } from '../services/estabelecimento.service';
-import { VeterinarioService } from '../services/veterinario.service';
+import { AdestradorService } from '../services/adestrador.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Veterinario } from '../models/veterinario';
@@ -9,14 +9,14 @@ import { Globals } from '../global';
 
 
 @Component({
-  selector: 'app-clinic-profile',
-  templateUrl: './clinic-profile.component.html',
-  styleUrls: ['./clinic-profile.component.css'],
+  selector: 'app-adestrador',
+  templateUrl: './adestrador.component.html',
+  styleUrls: ['./adestrador.component.css'],
 })
-export class ClinicProfileComponent implements OnInit {
+export class AdestradorComponent implements OnInit {
   id;
   nameFormated;
-  clinicDetails;
+  adestradorDetails;
   estabelecimentos;
   especialidadeFormated;
   municipioFormated;
@@ -47,7 +47,7 @@ export class ClinicProfileComponent implements OnInit {
   ];
 
   constructor(
-    private veterinarioService: VeterinarioService,
+    private adestradorService: AdestradorService,
     private estabelecimentoService: EstabelecimentoService,
     private userService: UserService,
     private toast: ToastrService,
@@ -60,15 +60,15 @@ export class ClinicProfileComponent implements OnInit {
     this.nameFormated = this.formatarParamUrl(this.route.snapshot.params['nome']);
     console.log(this.nameFormated);
   
-    this.getClinicDetails();
+    this.getAdestradorDetails();
     //this.user = this.userService.getUser();
    // window.scrollTo(0, 0);
 
 
   }
 
-  getImage(clinicDetails) {
-    return clinicDetails?.img ? clinicDetails.img : 'https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg'
+  getImage(adestradorDetails) {
+    return adestradorDetails?.img ? adestradorDetails.img : 'https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg'
   }
 
   likeIt() {
@@ -76,7 +76,7 @@ export class ClinicProfileComponent implements OnInit {
     this.like = !this.like;
 
   }
-
+/*
   listReviews() {
 
     this.veterinarioService.getReview(this.clinicDetails._id).subscribe(
@@ -143,7 +143,7 @@ export class ClinicProfileComponent implements OnInit {
     );
 
   }
-
+*/
   getDataFormatada(data) {
     var date2 = new Date();
     var date1 = new Date(data);
@@ -152,12 +152,12 @@ export class ClinicProfileComponent implements OnInit {
     return diffDays;
   }
 
-  getClinicDetails() {
+  getAdestradorDetails() {
     if (this.nameFormated) {
-      this.estabelecimentoService.getByName(this.nameFormated).subscribe(
+      this.adestradorService.getByName(this.nameFormated).subscribe(
         (res) => {
-          this.clinicDetails = res;
-          console.log(this.clinicDetails);
+          this.adestradorDetails = res;
+          console.log(this.adestradorDetails);
           //this.countScore(this.doctorDetails);
         },
       );
@@ -244,6 +244,7 @@ export class ClinicProfileComponent implements OnInit {
     }
 
   }
+  /*
   redirectPerfilVet(vet){
 
     this.veterinarioService.get(vet._id).subscribe(
@@ -265,7 +266,7 @@ export class ClinicProfileComponent implements OnInit {
   
       });
   }
-
+*/
   formataUrlVet(data){
     if(data.nomeFormated && data.especialidades && data.endereco){
       return (data.nomeFormated.trim().split(' ').join('-')+"/"+data.especialidades[0].nomeFormated.trim().split(' ').join('-')+"/"+data.endereco.municipio.trim().split(' ').join('-')).toLowerCase();

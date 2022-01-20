@@ -75,6 +75,7 @@ export class HomeComponent implements OnInit {
 
   inputTyped(text: string) {
     if (text.length) {
+      console.log(text);
       this.listarCompleto(text.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
     } else {
       this.listarEspecialidades();
@@ -102,7 +103,7 @@ export class HomeComponent implements OnInit {
       options[0].text = options[0].data.nome;
 
     }
-
+    console.log('tipo: '+tipo);
     if (tipo == 2) {
       //Veterinario
       this.veterinarioService.get(options[0].data._id).subscribe(
