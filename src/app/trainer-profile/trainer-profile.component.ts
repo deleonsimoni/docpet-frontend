@@ -9,11 +9,11 @@ import { Globals } from '../global';
 
 
 @Component({
-  selector: 'app-adestrador',
-  templateUrl: './adestrador.component.html',
-  styleUrls: ['./adestrador.component.css'],
+  selector: 'app-trainer-profile',
+  templateUrl: './trainer-profile.component.html',
+  styleUrls: ['./trainer-profile.component.css'],
 })
-export class AdestradorComponent implements OnInit {
+export class TrainerProfileComponent implements OnInit {
   id;
   nameFormated;
   adestradorDetails;
@@ -76,14 +76,14 @@ export class AdestradorComponent implements OnInit {
     this.like = !this.like;
 
   }
-/*
+
   listReviews() {
 
-    this.veterinarioService.getReview(this.clinicDetails._id).subscribe(
+    this.adestradorService.getReview(this.adestradorDetails._id).subscribe(
       (data: any) => {
         this.isLoading = false;
-        this.clinicDetails.reviews = data.reviews.reviews;
-        this.countScore(this.clinicDetails);
+        this.adestradorDetails.reviews = data.reviews.reviews;
+        this.countScore(this.adestradorDetails);
       },
       (error) => {
         this.isLoading = false;
@@ -123,7 +123,7 @@ export class AdestradorComponent implements OnInit {
       this.review.user = this.user.id;
     }
 
-    this.veterinarioService.createReview(this.clinicDetails._id, this.review).subscribe(
+    this.adestradorService.createReview(this.adestradorDetails._id, this.review).subscribe(
       (data: any) => {
         this.isLoading = false;
         this.toast.success('Feedback enviado com sucesso', ':)');
@@ -143,7 +143,6 @@ export class AdestradorComponent implements OnInit {
     );
 
   }
-*/
   getDataFormatada(data) {
     var date2 = new Date();
     var date1 = new Date(data);
@@ -154,22 +153,22 @@ export class AdestradorComponent implements OnInit {
 
   getAdestradorDetails() {
     if (this.nameFormated) {
-      this.adestradorService.getByName(this.nameFormated).subscribe(
-        (res) => {
-          this.adestradorDetails = res;
-          console.log(this.adestradorDetails);
-          //this.countScore(this.doctorDetails);
-        },
-      );
-
-    }
+        this.adestradorService.getByNameMunicipio(this.nameFormated,this.municipioFormated).subscribe(
+          (res) => {
+            this.adestradorDetails = res;
+            console.log(this.adestradorDetails);
+            //this.countScore(this.doctorDetails);
+          },
+        );
+  
+      }
 
   }
 
-  countScore(clinicDetails) {
+  countScore(adestradorDetails) {
 
     //calculate rates
-    if (clinicDetails.reviews.length > 0) {
+    if (adestradorDetails.reviews.length > 0) {
 
       //star
       //this.totalStar = this.doctorDetails.reviews.reduce((previous, next) => (previous.score + next.score));
@@ -177,7 +176,7 @@ export class AdestradorComponent implements OnInit {
       let divisor = 5;
       let rates = [0,0,0,0,0];
 
-      for (let item of clinicDetails.reviews) {
+      for (let item of adestradorDetails.reviews) {
         if (item.score) {
           total += 1;
 
@@ -212,7 +211,7 @@ export class AdestradorComponent implements OnInit {
       let totalLike = 0;
       let totalDislike = 0;
 
-      for (let item of clinicDetails.reviews) {
+      for (let item of adestradorDetails.reviews) {
         if (item.like === true) {
           totalLike+=1;
         } else if (item.like === false){
@@ -244,10 +243,10 @@ export class AdestradorComponent implements OnInit {
     }
 
   }
-  /*
-  redirectPerfilVet(vet){
+  
+  redirectPerfilTrainer(vet){
 
-    this.veterinarioService.get(vet._id).subscribe(
+    this.adestradorService.get(vet._id).subscribe(
       data => {
         const urlFomatada = this.formataUrlVet(data);
         if(!urlFomatada){
@@ -266,7 +265,7 @@ export class AdestradorComponent implements OnInit {
   
       });
   }
-*/
+
   formataUrlVet(data){
     if(data.nomeFormated && data.especialidades && data.endereco){
       return (data.nomeFormated.trim().split(' ').join('-')+"/"+data.especialidades[0].nomeFormated.trim().split(' ').join('-')+"/"+data.endereco.municipio.trim().split(' ').join('-')).toLowerCase();

@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdestradorRoutingModule } from './adestrador-routing.module';
-import { AdestradorComponent } from './adestrador.component';
+import { TrainerProfileRoutingModule } from './trainer-profile-routing.module';
+import { TrainerProfileComponent } from './trainer-profile.component';
 import { AgmCoreModule } from '@agm/core';
 import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [AdestradorComponent],
+  declarations: [TrainerProfileComponent],
   imports: [
     CommonModule,
     FormsModule,
-    AdestradorRoutingModule,
+    TrainerProfileRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC39y1TCyvZP0bU7Pur_SBfySWjSy5qhEg'
     }),
   ]
 })
-export class AdestradorModule { }
+export class TrainerProfileModule { }
