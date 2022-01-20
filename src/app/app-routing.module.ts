@@ -21,7 +21,7 @@ const routes: Routes = [
     loadChildren: () => import('./clinic-profile/clinic-profile.module').then((m) => m.ClinicProfileModule),
   },
   {
-    path: 'adestrador/:nome',
+    path: 'adestrador/:nome/:municipio',
     loadChildren: () => import('./adestrador/adestrador.module').then((m) => m.AdestradorModule),
   },
   {

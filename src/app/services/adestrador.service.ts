@@ -34,6 +34,10 @@ export class AdestradorService {
     return this.http.get(`${baseUrl}/perfil/${nomeFormated}`);
   }
 
+  getByNameMunicipio(nomeFormated, municipio): Observable<any> {
+    return this.http.get(`${baseUrl}/perfil/${nomeFormated}/municipio/${municipio}`);
+  }
+
   get(id): Observable<any> {
     return this.http.get(`${baseUrl}/${id}`);
   }

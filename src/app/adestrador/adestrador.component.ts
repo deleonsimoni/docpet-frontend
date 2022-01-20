@@ -58,7 +58,7 @@ export class AdestradorComponent implements OnInit {
  
   ngOnInit(): void {
     this.nameFormated = this.formatarParamUrl(this.route.snapshot.params['nome']);
-    console.log(this.nameFormated);
+    this.municipioFormated = this.formatarParamUrl(this.route.snapshot.params['municipio']);
   
     this.getAdestradorDetails();
     //this.user = this.userService.getUser();
