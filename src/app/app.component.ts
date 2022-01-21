@@ -148,7 +148,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
             mundesformatado = event.urlAfterRedirects.split('/')[3];
             tit = 'Deseja consulta em '+nomedesformatado.trim().split('-').join(' ')+' - '+mundesformatado.trim().split('-').join(' ')+'. Agende hoje sua consulta! | VetzCo';
             dsc = 'Seu PET está com problemas? Precisa de uma consulta? Na VetzCo temos vários especialistas em '+nomedesformatado.trim().split('-').join(' ')+' na cidade '+mundesformatado.trim().split('-').join(' ')+'. Veja os profissionais e agende hoje sua consulta!';
-            img = 'palavras';
+            img = nomedesformatado.trim().split('-').join(' ')+' no município '+mundesformatado.trim().split('-').join(' ');
           
            }else if (event.urlAfterRedirects.split('/')[1] == 'clinic'){
             Globals['DESC_SEARCH_DOCTOR'] = event.urlAfterRedirects.split('/')[2];
