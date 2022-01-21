@@ -156,7 +156,7 @@ export class HomeComponent implements OnInit {
           const urlFomatada = data.nomeFormated.trim().split(' ').join('-').toLowerCase()+'/'+data.endereco.municipio.trim().split(' ').join('-').toLowerCase();
           if(!urlFomatada){
             this.toastr.warning('Não foi possível efetuar a busca', 'Atenção!');
-            console.log("Erro ao efetuar a busca por clínica");
+            console.log("Erro ao efetuar a busca por adestrador");
             return;
           }else{
             //@Regina
