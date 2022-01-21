@@ -131,43 +131,58 @@ export class AppComponent implements OnInit, AfterViewChecked {
           ]);
           this.updateTag({ property: 'og:url', content: window.location.href });
         } else {
+          let nomedesformatado = '';
+          let mundesformatado = '';
+          let espdesformatado = '';
+            
           if (event.urlAfterRedirects.split('/')[1] == 'doctor'){
             Globals['DOCTOR_NAME'] = event.urlAfterRedirects.split('/')[2];
-           tit = 'Deseja consulta com '+event.urlAfterRedirects.split('/')[2]+'. Agende hoje sua consulta! | VetzCo';
-           dsc = 'Seu PET está com problemas? Precisa de uma consulta? Na VetzCo temos o(a) especialista '+event.urlAfterRedirects.split('/')[2]+'. Agende hoje sua consulta!';
-           img = 'palavras';
-          seoSitemap.push({
+            nomedesformatado = event.urlAfterRedirects.split('/')[2];
+            tit = 'Deseja consulta com '+nomedesformatado.trim().split('-').join(' ')+'. Agende hoje sua consulta! | VetzCo';
+            dsc = 'Seu PET está com problemas? Precisa de uma consulta? Na VetzCo temos o(a) especialista '+nomedesformatado.trim().split('-').join(' ')+'. Agende hoje sua consulta!';
+            img = 'palavras';
+          
+          }else if (event.urlAfterRedirects.split('/')[1] == 'list'){
+            Globals['DESC_SEARCH_DOCTOR'] = event.urlAfterRedirects.split('/')[2];
+            nomedesformatado = event.urlAfterRedirects.split('/')[2];
+            mundesformatado = event.urlAfterRedirects.split('/')[3];
+            tit = 'Deseja consulta em '+nomedesformatado.trim().split('-').join(' ')+' - '+mundesformatado.trim().split('-').join(' ')+'. Agende hoje sua consulta! | VetzCo';
+            dsc = 'Seu PET está com problemas? Precisa de uma consulta? Na VetzCo temos vários especialistas em '+nomedesformatado.trim().split('-').join(' ')+' na cidade '+mundesformatado.trim().split('-').join(' ')+'. Veja os profissionais e agende hoje sua consulta!';
+            img = 'palavras';
+          
+           }else if (event.urlAfterRedirects.split('/')[1] == 'clinic'){
+            Globals['DESC_SEARCH_DOCTOR'] = event.urlAfterRedirects.split('/')[2];
+            nomedesformatado = event.urlAfterRedirects.split('/')[2];
+            tit = 'Deseja consulta na Clinica '+nomedesformatado.trim().split('-').join(' ')+'? Agende hoje sua consulta! | VetzCo';
+            dsc = 'Seu PET está com problemas? Precisa de uma clínica Veterinária? Na VetzCo temos a clínica '+nomedesformatado.trim().split('-').join(' ')+' que tem diversos especialistas para atender seu pet . Veja as especialidades e agende hoje sua consulta!';
+            img = 'palavras';
+          
+           }else if (event.urlAfterRedirects.split('/')[1] == 'trainer'){
+            Globals['DESC_SEARCH_DOCTOR'] = event.urlAfterRedirects.split('/')[2];
+            nomedesformatado = event.urlAfterRedirects.split('/')[2];
+            mundesformatado = event.urlAfterRedirects.split('/')[3];
+            
+            tit = 'Deseja consulta com adestrador '+nomedesformatado.trim().split('-').join(' ')+' no município '+mundesformatado.trim().split('-').join(' ')+'? Agende hoje sua consulta! | VetzCo';
+            dsc = 'Seu PET precisa de adestramento? Na VetzCo temos o(a) especialista '+nomedesformatado.trim().split('-').join(' ')+' no município '+mundesformatado.trim().split('-').join(' ')+' para atender seu pet . Agende hoje sua consulta!';
+            img = 'adestrador para PET no município '+event.urlAfterRedirects.split('/')[3];
+          
+           }
+           else if (event.urlAfterRedirects.split('/')[1] == 'aesthetics'){
+            Globals['DESC_SEARCH_DOCTOR'] = event.urlAfterRedirects.split('/')[2];
+            nomedesformatado = event.urlAfterRedirects.split('/')[2];
+            mundesformatado = event.urlAfterRedirects.split('/')[3];
+           
+            tit = 'Deseja consulta em estética com '+nomedesformatado.trim().split('-').join(' ')+' no município '+mundesformatado.trim().split('-').join(' ')+'? Agende hoje sua consulta! | VetzCo';
+            dsc = 'Seu PET precisa de estética? Na VetzCo temos o(a) especialista '+nomedesformatado.trim().split('-').join(' ')+' no município '+mundesformatado.trim().split('-').join(' ')+' para atender seu pet . Agende hoje sua consulta!';
+            img = 'estética para PET no município '+mundesformatado.trim().split('-').join(' ');
+          
+           }
+           seoSitemap.push({
             customUrl: event.urlAfterRedirects,
             title: tit,
             description: dsc,
             image: img
           });
-          
-          }else if (event.urlAfterRedirects.split('/')[1] == 'list'){
-            Globals['DESC_SEARCH_DOCTOR'] = event.urlAfterRedirects.split('/')[2];
-            tit = 'Deseja consulta em '+event.urlAfterRedirects.split('/')[2]+' - '+event.urlAfterRedirects.split('/')[3]+'. Agende hoje sua consulta! | VetzCo';
-            dsc = 'Seu PET está com problemas? Precisa de uma consulta? Na VetzCo temos vários especialistas em '+event.urlAfterRedirects.split('/')[2]+' na cidade '+event.urlAfterRedirects.split('/')[3]+'. Veja os profissionais e agende hoje sua consulta!';
-            img = 'palavras';
-           seoSitemap.push({
-             customUrl: event.urlAfterRedirects,
-             title: tit,
-             description: dsc,
-             image: img
-           });
-           
-           }else if (event.urlAfterRedirects.split('/')[1] == 'clinic'){
-            Globals['DESC_SEARCH_DOCTOR'] = event.urlAfterRedirects.split('/')[2];
-            tit = 'Deseja consulta na Clinica '+event.urlAfterRedirects.split('/')[2]+'? Agende hoje sua consulta! | VetzCo';
-            dsc = 'Seu PET está com problemas? Precisa de uma clínica Veterinária? Na VetzCo temos a clínica '+event.urlAfterRedirects.split('/')[2]+' que tem diversos especialistas para atender seu pet . Veja as especialidades e agende hoje sua consulta!';
-            img = 'palavras';
-           seoSitemap.push({
-             customUrl: event.urlAfterRedirects,
-             title: tit,
-             description: dsc,
-             image: img
-           });
-
-           }
           this.updateTitle(tit);
           const item = seoSitemap.find((i) => event.urlAfterRedirects === i.customUrl);
           this.updateTags([

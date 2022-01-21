@@ -139,7 +139,7 @@ export class HomeComponent implements OnInit {
             return;
           }else{
             //@Regina
-            //Globals['DOCTOR_URL'] = urlFomatada;
+            Globals['URL_FORMATADA'] = urlFomatada;
             this.router.navigate([`/clinic/${urlFomatada}`]);
           }
         },
@@ -160,7 +160,7 @@ export class HomeComponent implements OnInit {
             return;
           }else{
             //@Regina
-            //Globals['DOCTOR_URL'] = urlFomatada;
+            Globals['URL_FORMATADA'] = urlFomatada;
             this.router.navigate([`/trainer/${urlFomatada}`]);
           }
         },
@@ -181,7 +181,7 @@ export class HomeComponent implements OnInit {
             return;
           }else{
             //@Regina
-            //Globals['DOCTOR_URL'] = urlFomatada;
+            Globals['URL_FORMATADA'] = urlFomatada;
             this.router.navigate([`/aesthetics/${urlFomatada}`]);
           }
         },

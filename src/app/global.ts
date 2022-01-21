@@ -9,6 +9,7 @@ export class Globals{
     public TITLE_META = 'value5';
     public KEYWORDS_META = 'value6';
     public DOCTOR_NAME = 'value7';
+    public URL_FORMATADA = 'value8';
     
     
 }
