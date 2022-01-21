@@ -25,6 +25,10 @@ const routes: Routes = [
     loadChildren: () => import('./trainer-profile/trainer-profile.module').then((m) => m.TrainerProfileModule),
   },
   {
+    path: 'aesthetics/:nome/:municipio',
+    loadChildren: () => import('./aesthetics-profile/aesthetics-profile.module').then((m) => m.AestheticsProfileModule),
+  },
+  {
     path: 'cadastro',
     loadChildren: () => import('./form-contato/form-contato.module').then((m) => m.FormContatoModule),
   },

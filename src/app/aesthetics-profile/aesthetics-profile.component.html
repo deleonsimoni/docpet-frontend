@@ -1,0 +1,343 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="''">Home</a></li>
+
+                    </ol>
+                </nav>
+                <h1 class="breadcrumb-title">{{esteticaDetails.nome}} - {{esteticaDetails.endereco.municipio}}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+<!-- Page Content -->
+<div class="content">
+    <div class="container">
+        <!-- Doctor Widget -->
+        <div class="card">
+            <div class="card-body">
+                <div class="doctor-widget">
+                    <div class="doc-info-left">
+                        <div class="doctor-img">
+
+                            <img class="img-fluid" [src]="getImage(esteticaDetails)">
+
+                        </div>
+                        <div class="doc-info-cont">
+                            <h4 class="doc-name" *ngIf="esteticaDetails">{{esteticaDetails.nome}} - {{esteticaDetails.rg}}</h4>
+                            <div class="rating">
+                                <label *ngFor="let item of [1,2,3,4,5]">
+									<i *ngIf="totalStarFormated >= item" class="fas fa-star filled"></i>
+									<i *ngIf="totalStarFormated < item" class="fas fa-star"></i>
+								</label>
+                                <span class="d-inline-block average-rating">({{totalStar.toFixed(1)}})</span>
+                            </div>
+                            <div id="module-especialidade">
+                                <span class="collapse" id="collapseExample" aria-expanded="false">
+                                    <p class="doc-department" *ngFor="let especialidade of esteticaDetails.especialidades">
+                                    	<img src="assets/img/icons/set-cat-02.png" class="img-fluid" alt={{especialidade.nome}}>
+                                    	<span> {{especialidade.nome}}</span>
+                                </p>
+                                </span>
+                                <span class="text-center" *ngIf="esteticaDetails.especialidades?.length > 3">
+									<a role="button" class="collapsed" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"></a>
+								</span>
+                            </div>
+                            <div class="clinic-details">
+                                <p class="doc-location" *ngIf="esteticaDetails.endereco"><i class="fas fa-map-marker-alt"></i> {{esteticaDetails.endereco.logradouro}} - {{esteticaDetails.endereco.numero}} - {{esteticaDetails.endereco.bairro}} - {{esteticaDetails.endereco.municipio}} - {{esteticaDetails.endereco.estado}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doc-info-right">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <!--<div class="placement">
+									<div (click)="likeIt()" [className]="like ? 'heart is-active' : 'heart'"></div>
+									Marcar como favorito
+								</div>
+								<hr />-->
+
+                            </div>
+                            <div class="col-12">
+                                <h1><a><i class="fa fa-thumbs-up"></i> {{totalLike}}%</a></h1>
+                                <p>
+                                    Dos clientes recomendam
+                                </p>
+                            </div>
+
+                            <div class="col-12">
+                                <!--<a [routerLink]="'/cadastro'">
+									<button type="button" class="btn btn-dark">Cadastre-se</button>
+								</a> -->
+
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Doctor Widget -->
+        <!-- Doctor Details Tab -->
+        <div class="card">
+            <div class="card-body pt-0">
+
+
+                <!-- Tab Content -->
+                <br />
+                <div class="tab-content pt-0">
+
+                    <!-- Overview Content -->
+                    <div role="tabpanel" id="doc_overview" class="tab-pane fade show active">
+
+                        <div class="">
+                            <div class="">
+
+                                <div class="card-body">
+                                    <ul style="font-weight: bold;font-size: 20px;" class="nav nav-tabs nav-tabs-bottom nav-justified">
+                                        <li class="nav-item"><a class="nav-link active" href="#bottom-justified-tab1" data-toggle="tab">Visão geral</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#bottom-justified-tab2" data-toggle="tab">Localização</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#bottom-justified-tab3" data-toggle="tab">Comentários</a></li>
+
+                                    </ul>
+                                    <div class="tab-content">
+                                        <!-- inicio DA ABA1 visão geral -->
+                                        <div class="tab-pane show active" id="bottom-justified-tab1">
+
+
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-9">
+
+                                                    <!-- About Details -->
+                                                    <div class="widget about-widget">
+                                                        <h4 class="widget-title"><b>Sobre</b></h4>
+                                                        <p>{{esteticaDetails.sobre}}</p>
+                                                    </div>
+                                                    <!-- /About Details -->
+
+                                                    <!-- Especialidades List -->
+                                                    <div class="service-list">
+                                                        <h4 class="widget-title"><b>Planos</b></h4>
+                                                        <p>{{esteticaDetails.atendePlano ? 'Sim' : 'Não'}}</p>
+                                                        <!--ul class="clearfix">
+                                                            <li></li>
+                                                        </ul> -->
+                                                    </div>
+                                                    <!-- Especialidades List -->
+                                                    <div class="service-list">
+                                                        <h4 class="widget-title"><b>Especialidade</b></h4>
+                                                        <ul class="clearfix">
+                                                            <li *ngFor="let especialidade of  esteticaDetails.especialidades">{{especialidade.nome}}</li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- /Services List -->
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <!-- FIM DA ABA1 visão geral -->
+                                        <!-- inicio TAB2 localização-->
+                                        <div class="tab-pane" id="bottom-justified-tab2">
+
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-9">
+
+                                                    <div *ngIf="esteticaDetails.endereco" class="widget awards-widget">
+
+                                                        <div style="width: 100%;">
+                                                            <agm-map [latitude]="esteticaDetails.location.coordinates[1]" [zoom]="10" [longitude]="esteticaDetails.location.coordinates[0]">
+                                                                <agm-marker [latitude]="esteticaDetails.location.coordinates[1]" [longitude]="esteticaDetails.location.coordinates[0]">
+                                                                </agm-marker>
+                                                            </agm-map>
+                                                        </div>
+
+                                                        <p class=""> <i class="fas fa-map-marker-alt"></i> {{esteticaDetails.endereco?.logradouro}}, {{esteticaDetails.endereco?.numero}}, {{esteticaDetails.endereco?.bairro}}, {{esteticaDetails.endereco?.municipio}},
+                                                            {{esteticaDetails.endereco?.estado}}
+                                                        </p>
+
+                                                        <p class=""> <i class="fas fa-phone"></i> {{esteticaDetails.contato?.telefone}} - {{esteticaDetails.contato?.email}}
+                                                        </p>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                        <!-- FIM TAB2 localização-->
+                                        <!-- inicio TAB3 COMENTARIOS-->
+                                        <div class="tab-pane" id="bottom-justified-tab3">
+
+                                            <!--<div *ngIf="!doctorDetails.reviews">
+												<h4>Este médico ainda não possui feedback</h4>
+												<hr>
+											</div>-->
+                                            <hr>
+                                            <div *ngIf="esteticaDetails.reviews">
+                                                <div class="comment" *ngFor="let review of esteticaDetails.reviews">
+                                                    <img class="avatar rounded-circle" alt="User Image" src="https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg">
+                                                    <div class="comment-body">
+                                                        <div class="meta-data">
+                                                            <span class="comment-author">{{review?.user?.nome ||
+																review.nameUser}}</span>
+                                                            <span class="comment-date">
+																<p>Enviado há {{getDataFormatada(review.createdAt)}}
+																	dia(s)</p>
+															</span>
+                                                            <div class="review-count rating">
+                                                                <label *ngFor="let item of [1,2,3,4,5]">
+																	<i *ngIf="review.score >= item"
+																		class="fas fa-star filled"></i>
+																	<i *ngIf="review.score < item"
+																		class="fas fa-star"></i>
+																</label>
+
+
+                                                            </div>
+                                                        </div>
+                                                        <p class="comment-content">
+                                                            {{review.description}}
+                                                        </p>
+                                                        <div class="comment-reply">
+
+                                                            <p class="recommend-btn">
+                                                                <a *ngIf="review.like == true" class="like-btn">
+                                                                    <i class="far fa-thumbs-up"></i> Recomenda
+                                                                </a>
+                                                                <a *ngIf="review.like == false" class="dislike-btn">
+                                                                    <i class="far fa-thumbs-down"></i> Não recomenda
+                                                                </a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="write-review">
+                                                <h4>O que você tem a dizer sobre <strong>{{esteticaDetails.nome}}</strong>
+                                                </h4>
+
+                                                <!-- Write Review Form -->
+                                                <form>
+                                                    <div *ngIf="!user" class="form-group">
+                                                        <label>Nome</label>
+                                                        <input class="form-control" [(ngModel)]="review.nameUser" [ngModelOptions]="{standalone: true}" type="text" placeholder="Digite seu nome">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Nota</label>
+                                                        <div class="star-rating">
+                                                            <input id="star-5" [(ngModel)]="review.score" type="radio" name="rating" [value]="5">
+                                                            <label for="star-5" title="5 stars">
+																<i class="active fa fa-star"></i>
+															</label>
+                                                            <input id="star-4" [(ngModel)]="review.score" type="radio" name="rating" [value]="4">
+                                                            <label for="star-4" title="4 stars">
+																<i class="active fa fa-star"></i>
+															</label>
+                                                            <input id="star-3" [(ngModel)]="review.score" type="radio" name="rating" [value]="3">
+                                                            <label for="star-3" title="3 stars">
+																<i class="active fa fa-star"></i>
+															</label>
+                                                            <input id="star-2" [(ngModel)]="review.score" type="radio" name="rating" [value]="2">
+                                                            <label for="star-2" title="2 stars">
+																<i class="active fa fa-star"></i>
+															</label>
+                                                            <input id="star-1" [(ngModel)]="review.score" type="radio" name="rating" [value]="1">
+                                                            <label for="star-1" title="1 star">
+																<i class="active fa fa-star"></i>
+															</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>Comentário</label>
+                                                        <textarea id="review_desc" placeholder="Conte mais sobre seu atendimento" [(ngModel)]="review.description" maxlength="100" name="message" #message='ngModel' class="form-control"></textarea>
+
+                                                        <div class="d-flex justify-content-between mt-3"><small class="text-muted"><span id="chars">100</span>
+																caracteres</small></div>
+
+
+                                                    </div>
+                                                    <div class="comment">
+                                                        <div class="comment-body">
+                                                            <div class="comment-reply">
+
+                                                                <p class="recommend-btn">
+                                                                    <span>Recomenda? </span>
+                                                                    <a style="cursor: pointer;" [ngClass]="{'': isLikedComment == 0, 'btn btn-success': isLikedComment == 1}" (click)="isLikedComment = 1" class="btn">
+                                                                        <i class="far fa-thumbs-up"></i> Sim
+                                                                    </a>
+
+                                                                    <a style="cursor: pointer;" [ngClass]="{'': isLikedComment == 0, 'btn btn-danger': isLikedComment == 2}" (click)="isLikedComment = 2" class="btn">
+                                                                        <i class="far fa-thumbs-down"></i> Não
+                                                                    </a>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="form-group">
+                                                        <div class="terms-accept">
+                                                            <div class="custom-checkbox">
+                                                                <input type="checkbox" id="terms_accept">
+                                                                <label for="terms_accept">Li e concordo com os termos <a
+																		href="javascript:void(0)">Termos &amp;
+																		Condições</a></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="submit-section">
+                                                        <button (click)="sendReview()" class="btn btn-primary submit-btn">Adicionar
+															Feedback</button>
+                                                    </div>
+
+                                                </form>
+                                                <!-- /Write Review Form -->
+
+                                            </div>
+
+
+                                        </div>
+                                        <!-- FIM TAB3 COMENTARIOS-->
+
+
+                                    </div>
+
+                                    <!-- FIM TAB HORARIOS -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- /Tab Content -->
+
+            </div>
+        </div>
+        <!-- /Doctor Details Tab -->
+
+
+    </div>
+</div>
+<!-- \Page Content -->

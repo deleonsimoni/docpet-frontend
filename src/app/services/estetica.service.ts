@@ -57,4 +57,9 @@ export class EsteticaService {
   getByUser(id): Observable<any> {
     return this.http.get(`${baseUrl}/usuario/${id}`);
   }
+
+  getByNameMunicipio(nomeFormated, municipio): Observable<any> {
+    return this.http.get(`${baseUrl}/perfil/${nomeFormated}/municipio/${municipio}`);
+  }
+
 }

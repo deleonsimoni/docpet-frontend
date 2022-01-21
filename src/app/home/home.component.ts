@@ -8,7 +8,10 @@ import { CEPService } from '../services/cep.service';
 import { DashboardService } from '../services/dashboard.service';
 import { EspecialidadeService } from '../services/especialidades.service';
 import { EstabelecimentoService } from '../services/estabelecimento.service';
+
 import { Globals } from '../global';
+import { AdestradorService } from '../services/adestrador.service';
+import { EsteticaService } from '../services/estetica.service';
 //import {} from 'googlemaps';
 
 
@@ -41,7 +44,9 @@ export class HomeComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private veterinarioService: VeterinarioService,
-    private estabelecimentoService: EstabelecimentoService) { }
+    private estabelecimentoService: EstabelecimentoService,
+    private adestradorService: AdestradorService,
+    private esteticaService: EsteticaService) { }
 
   ngOnInit(): void {
     this.listarEspecialidades();
@@ -67,8 +72,6 @@ export class HomeComponent implements OnInit {
       {"description":"Goiânia", "placeId":"ChIJZwjYWL32XpMRjmfSIK0rae8"},
       {"description":"Belém", "placeId":"ChIJ4Wx1hK9hpJIRNUyGFQJUDVc"},
       {"description":"Porto Alegre", "placeId":"ChIJHctqVtKcGZURH-mHn6gRMWA"},
-      //{"description":"Guarulhos", "placeId":"ChIJbeK1sT_1zpQRW1XDIo3hTJc"},
-      //{"description":"Campinas", "placeId":"ChIJJWNL5x3GyJQRKsJ4IWo65Rc"},
       {"description":"São Luís", "placeId":"ChIJIW1_b_CP9gcRR96jWeQCMZg"},
     ];
   }
@@ -103,7 +106,6 @@ export class HomeComponent implements OnInit {
       options[0].text = options[0].data.nome;
 
     }
-    console.log('tipo: '+tipo);
     if (tipo == 2) {
       //Veterinario
       this.veterinarioService.get(options[0].data._id).subscribe(
@@ -139,6 +141,48 @@ export class HomeComponent implements OnInit {
             //@Regina
             //Globals['DOCTOR_URL'] = urlFomatada;
             this.router.navigate([`/clinic/${urlFomatada}`]);
+          }
+        },
+        error => {
+          console.log(error);
+          this.toastr.warning('Não foi possível efetuar a busca', 'Atenção!');
+          return;
+
+        });
+    } else if (tipo == 4) {
+      //adestrador
+      this.adestradorService.get(options[0].data._id).subscribe(
+        data => {
+          const urlFomatada = data.nomeFormated.trim().split(' ').join('-').toLowerCase()+'/'+data.endereco.municipio.trim().split(' ').join('-').toLowerCase();
+          if(!urlFomatada){
+            this.toastr.warning('Não foi possível efetuar a busca', 'Atenção!');
+            console.log("Erro ao efetuar a busca por clínica");
+            return;
+          }else{
+            //@Regina
+            //Globals['DOCTOR_URL'] = urlFomatada;
+            this.router.navigate([`/trainer/${urlFomatada}`]);
+          }
+        },
+        error => {
+          console.log(error);
+          this.toastr.warning('Não foi possível efetuar a busca', 'Atenção!');
+          return;
+
+        });
+    } else if (tipo == 5) {
+      //estetica
+      this.esteticaService.get(options[0].data._id).subscribe(
+        data => {
+          const urlFomatada = data.nomeFormated.trim().split(' ').join('-').toLowerCase()+'/'+data.endereco.municipio.trim().split(' ').join('-').toLowerCase();
+          if(!urlFomatada){
+            this.toastr.warning('Não foi possível efetuar a busca', 'Atenção!');
+            console.log("Erro ao efetuar a busca por clínica");
+            return;
+          }else{
+            //@Regina
+            //Globals['DOCTOR_URL'] = urlFomatada;
+            this.router.navigate([`/aesthetics/${urlFomatada}`]);
           }
         },
         error => {
