@@ -110,7 +110,7 @@
                                         <li class="nav-item"><a class="nav-link active" href="#bottom-justified-tab1" data-toggle="tab">Visão geral</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#bottom-justified-tab2" data-toggle="tab">Localização</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#bottom-justified-tab3" data-toggle="tab">Comentários</a></li>
-                                        
+
                                     </ul>
                                     <div class="tab-content">
                                         <!-- inicio DA ABA1 visão geral -->
@@ -146,7 +146,7 @@
                                                 </div>
                                             </div>
 
-                                            
+
                                         </div>
                                         <!-- FIM DA ABA1 visão geral -->
                                         <!-- inicio TAB2 localização-->
@@ -164,21 +164,22 @@
                                                             </agm-map>
                                                         </div>
 
-                                                        <p class=""> <i class="fas fa-map-marker-alt"></i> {{adestradorDetails.endereco?.logradouro}}, {{adestradorDetails.endereco?.numero}}, {{adestradorDetails.endereco?.bairro}}, {{adestradorDetails.endereco?.municipio}}, {{adestradorDetails.endereco?.estado}}
+                                                        <p class=""> <i class="fas fa-map-marker-alt"></i> {{adestradorDetails.endereco?.logradouro}}, {{adestradorDetails.endereco?.numero}}, {{adestradorDetails.endereco?.bairro}}, {{adestradorDetails.endereco?.municipio}},
+                                                            {{adestradorDetails.endereco?.estado}}
                                                         </p>
 
                                                         <p class=""> <i class="fas fa-phone"></i> {{adestradorDetails.contato?.telefone}} - {{adestradorDetails.contato?.email}}
                                                         </p>
                                                     </div>
 
-                                                    
+
                                                 </div>
                                             </div>
 
 
 
 
-                                            
+
                                         </div>
                                         <!-- FIM TAB2 localização-->
                                         <!-- inicio TAB3 COMENTARIOS-->
@@ -270,9 +271,9 @@
 
                                                     <div class="form-group">
                                                         <label>Comentário</label>
-                                                        <textarea id="review_desc" placeholder="Conte mais sobre seu atendimento" [(ngModel)]="review.description" maxlength="100" name="message" #message='ngModel' class="form-control"></textarea>
+                                                        <textarea id="review_desc" placeholder="Conte mais sobre seu atendimento" [(ngModel)]="review.description" maxlength="1000" name="message" #message='ngModel' class="form-control"></textarea>
 
-                                                        <div class="d-flex justify-content-between mt-3"><small class="text-muted"><span id="chars">100</span>
+                                                        <div class="d-flex justify-content-between mt-3"><small class="text-muted"><span id="chars">1000</span>
 																caracteres</small></div>
 
 
@@ -319,9 +320,9 @@
                                         </div>
                                         <!-- FIM TAB3 COMENTARIOS-->
 
-                                        
+
                                     </div>
-                                    
+
                                     <!-- FIM TAB HORARIOS -->
                                 </div>
                             </div>
@@ -336,7 +337,7 @@
         </div>
         <!-- /Doctor Details Tab -->
 
-        
+
     </div>
 </div>
 <!-- \Page Content -->
