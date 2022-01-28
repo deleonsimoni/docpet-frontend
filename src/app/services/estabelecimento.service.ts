@@ -56,4 +56,15 @@ export class EstabelecimentoService {
   getLocale(cep): Observable<any> {
     return this.http.get(`${baseUrl}/cep/${cep}`);
   }
+
+  getReview(id): Observable<any> {
+    return this.http.get(`${baseUrl}/review/${id}`);
+  }
+
+  createReview(id, data): Observable<any> {
+    console.log(`${baseUrl}/review/${id}`);
+    return this.http.post(`${baseUrl}/review/${id}`, data);
+  }
+
+  
 }

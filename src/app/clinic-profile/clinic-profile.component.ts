@@ -79,7 +79,7 @@ export class ClinicProfileComponent implements OnInit {
 
   listReviews() {
 
-    this.veterinarioService.getReview(this.clinicDetails._id).subscribe(
+    this.estabelecimentoService.getReview(this.clinicDetails._id).subscribe(
       (data: any) => {
         this.isLoading = false;
         this.clinicDetails.reviews = data.reviews.reviews;
@@ -123,7 +123,7 @@ export class ClinicProfileComponent implements OnInit {
       this.review.user = this.user.id;
     }
 
-    this.veterinarioService.createReview(this.clinicDetails._id, this.review).subscribe(
+    this.estabelecimentoService.createReview(this.clinicDetails._id, this.review).subscribe(
       (data: any) => {
         this.isLoading = false;
         this.toast.success('Feedback enviado com sucesso', ':)');

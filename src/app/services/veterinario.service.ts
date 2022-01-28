@@ -59,6 +59,7 @@ export class VeterinarioService {
   }
 
   createReview(id, data): Observable<any> {
+    console.log(`${baseUrl}/review/${id}`);
     return this.http.post(`${baseUrl}/review/${id}`, data);
   }
 
