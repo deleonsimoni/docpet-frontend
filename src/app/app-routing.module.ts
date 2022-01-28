@@ -45,6 +45,10 @@ const routes: Routes = [
     loadChildren: () => import('./update-password/update-password.module').then((m) => m.UpdatePasswordModule),
   },
   {
+    path: 'politica-privacidade',
+    loadChildren: () => import('./privacy-policy/privacy-policy.module').then((m) => m.PrivacyPolicyModule),
+  },
+  {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule),
   },
