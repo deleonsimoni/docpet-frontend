@@ -10,6 +10,7 @@ import { EspecialidadeService } from '../services/especialidades.service';
 import { EstabelecimentoService } from '../services/estabelecimento.service';
 
 import { Globals } from '../global';
+import { SlickCarouselComponent } from 'ngx-slick-carousel';
 import { AdestradorService } from '../services/adestrador.service';
 import { EsteticaService } from '../services/estetica.service';
 //import {} from 'googlemaps';
@@ -21,7 +22,8 @@ import { EsteticaService } from '../services/estetica.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  @ViewChild('slickModal1') slickModal1: SlickCarouselComponent;
+  
   public especialidades: any[];
   public especialidadesTotal: any[];
 
@@ -297,7 +299,39 @@ export class HomeComponent implements OnInit {
           console.log(error);
         });
   }
+  slideConfig3 = {
+    dots: true,
+    arrows: false,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+  next() {
+    this.slickModal1.slickNext();
+  }
 
+  prev() {
+    this.slickModal1.slickPrev();
+  }
   showMoreEspecialidade(){
     this.especialidadesTotal = this.totalListaEspecialidade.slice(0, this.especialidadesTotal.length + this.showTotalEspecialidade);
   }

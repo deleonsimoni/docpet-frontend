@@ -7,7 +7,7 @@ import { NgxSelectModule } from 'ngx-select-ex';
 import { FormsModule } from '@angular/forms';
 import { MensagemModule } from '../componentes/mensagem/mensagem.module';
 import { ToastrModule } from 'ngx-toastr';
-
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -16,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
     HomeRoutingModule,
     NgxSelectModule,
     MensagemModule,
+    SlickCarouselModule,
     ToastrModule.forRoot(),
     FormsModule
   ]
