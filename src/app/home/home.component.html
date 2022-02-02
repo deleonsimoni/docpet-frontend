@@ -154,7 +154,7 @@
 <section class="section section-specialities">
     <div class="container-fluid">
             <div class="section-header text-center aos aos-init aos-animate" data-aos="fade-up">
-                <h2>Especialidades</h2>
+                <h2 style="color:#0071DC;">Especialidades</h2>
                 <p class="sub-title">Encontre o melhor especialista para seu pet.</p>
             </div>
             <div class="row justify-content-center">
@@ -164,7 +164,7 @@
                     <div class="specialities-slider slider">
                         <div class="speicality-item text-center">
                             <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig3">
-                                <div ngxSlickItem *ngFor="let especialidadeTotal of especialidadesTotal" class="slide col-md-4">
+                                <div ngxSlickItem *ngFor="let especialidadeTotal of especialidadesTotal" class="slide col-md-4 text-center">
                                         <div class="speicality-img">
                                             <img src="assets/img/shapes/{{especialidadeTotal.nomeFormated.trim().split(' ').join('_')}}.png" class="img-fluid" alt="Speciality">
                                             <span><i class="fa fa-circle" aria-hidden="true"></i></span>
