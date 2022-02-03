@@ -28,13 +28,15 @@ export class HomeComponent implements OnInit {
   public especialidadesTotal: any[];
 
   public totalListaEspecialidade : any[];
-  public showTotalEspecialidade = 6; 
+  public showTotalEspecialidade = 14; 
 
   public places: any[];
 
   public especialidadeEscolhida: any = [];
   public cidadeEscolhida: any = [];
   isload = false;
+  visivel = true;
+  esconde = false;
   public ngxDisabled = false;
   autocompleteInput: string;
   queryWait: boolean;
@@ -333,6 +335,8 @@ export class HomeComponent implements OnInit {
     this.slickModal1.slickPrev();
   }
   showMoreEspecialidade(){
+    this.visivel = false;
+    this.esconde = true;
     this.especialidadesTotal = this.totalListaEspecialidade.slice(0, this.especialidadesTotal.length + this.showTotalEspecialidade);
   }
 

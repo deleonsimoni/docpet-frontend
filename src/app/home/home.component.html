@@ -157,13 +157,25 @@
                 <h2 style="color:#0071DC;">Especialidades</h2>
                 <p class="sub-title">Encontre o melhor especialista para seu pet.</p>
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center text-center">
                 <div class="col-md-9">
-                    <!-- Slider -->
-
-                    <div class="specialities-slider slider">
-                        <div class="speicality-item text-center">
-                            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig3">
+                    <ul class="entry-meta meta-item">
+                        <li class="slide text-center"  *ngFor="let especialidadeTotal of especialidadesTotal">
+                            <div class="speicality-img">
+                                <img src="assets/img/shapes/{{especialidadeTotal.nomeFormated.trim().split(' ').join('_')}}.png" class="img-fluid" alt="Speciality">
+                                
+                            </div>
+                            <p><a [routerLink]="['/list', especialidadeTotal.nomeFormated.trim().split(' ').join('-').toLowerCase(), '']" class="linkEsp" style="color:#000000">{{especialidadeTotal.nome}}</a></p>
+                        </li>
+                    </ul>
+                    <div class="col-md-12 text-end">
+                        <div class="slick-view-btn me-2">
+                            <button ng-hide="esconde" class="btn btn-primary" (click)="showLessEspecialidade()"><i class="fas fa-arrow-left ms-2"></i> Veja Menos</button>
+                            <button ng-show="exibe" class="btn btn-primary" (click)="showMoreEspecialidade()">Veja Mais <i class="fas fa-arrow-right ms-2"></i></button>
+                            
+                        </div>
+                    </div>
+                    <!--<ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig3">
                                 <div ngxSlickItem *ngFor="let especialidadeTotal of especialidadesTotal" class="slide col-md-4 text-center">
                                         <div class="speicality-img">
                                             <img src="assets/img/shapes/{{especialidadeTotal.nomeFormated.trim().split(' ').join('_')}}.png" class="img-fluid" alt="Speciality">
@@ -171,7 +183,7 @@
                                         </div>
                                         <p><a [routerLink]="['/list', especialidadeTotal.nomeFormated.trim().split(' ').join('-').toLowerCase(), '']" class="linkEsp" style="color:#000000">{{especialidadeTotal.nome}}</a></p>
                                 </div>
-                            </ngx-slick-carousel>
+                            </ngx-slick-carousel>-->
                             <!--<div class="text-center client-navbtn">
                                 <button class="btn-next" (click)="next()"><i
                                         class="las la-caret-square-left"></i></button>
@@ -179,8 +191,8 @@
                                         class="las la-caret-square-right"></i></button>
                             </div>-->
                         
-                        </div>
-                    </div>
+                        
+                    
                     <!-- /Slider -->
 
                 </div>
