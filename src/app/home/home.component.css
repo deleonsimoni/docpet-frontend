@@ -18,10 +18,10 @@
 }
 .speicality-img {
 	position: relative;
-	height: 150px;
+	height: 180px;
 	box-shadow: 2px 2px 13px rgba(0, 0, 0, 0.1);
 	border-radius: 100%;
-	width: 150px;
+	width: 180px;
 	background: #fff;
     margin-bottom: 30px;
 }

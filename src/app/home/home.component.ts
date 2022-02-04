@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   public especialidadesTotal: any[];
 
   public totalListaEspecialidade : any[];
-  public showTotalEspecialidade = 14; 
+  public showTotalEspecialidade = 12; 
 
   public places: any[];
 
@@ -341,6 +341,10 @@ export class HomeComponent implements OnInit {
   }
 
   showLessEspecialidade(){
+    this.visivel = true;
+    this.esconde = false;
+    var scrollPos = document.getElementById("top-scroll").offsetTop;
+    $("body,html").animate({scrollTop: scrollPos}, "slow");
     this.especialidadesTotal = this.totalListaEspecialidade.slice(0, this.showTotalEspecialidade);
   }
 
