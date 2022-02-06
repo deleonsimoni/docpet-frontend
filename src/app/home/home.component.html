@@ -169,12 +169,12 @@
                         </li>
                     </ul>
                     <div class="col-md-12 text-end">
-                        <div *ngIf="visivel" class="slick-view-btn me-2">
-                            <button  class="btn btn-primary" (click)="showMoreEspecialidade()">Veja Mais <i class="fas fa-arrow-right ms-2"></i></button>
+                        <div class="view-all-more-home text-center">
+                            <button  class="btn btn-primary" (click)="showMoreEspecialidade()" *ngIf="totalListaEspecialidade.length > especialidadesTotal.length">Veja Mais <i class="fas fa-arrow-right ms-2"></i></button>
                             
                         </div>
-                        <div *ngIf="esconde" class="slick-view-btn me-2">
-                            <button scroll-to-item="#top-scroll"  class="btn btn-primary" (click)="showLessEspecialidade()"><i class="fas fa-arrow-left ms-2"></i> Veja Menos</button>
+                        <div class="view-all-more-home text-center" *ngIf="totalListaEspecialidade.length == especialidadesTotal.length">
+                            <a (click)="showLessEspecialidade()" class="btn btn-primary">Fechar</a>
                         </div>
                     </div>
                     
