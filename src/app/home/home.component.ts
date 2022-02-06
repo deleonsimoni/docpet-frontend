@@ -1,7 +1,7 @@
 import { VeterinarioService } from './../services/veterinario.service';
 import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { INgxSelectOption } from 'ngx-select-ex';
 import { ToastrService } from 'ngx-toastr';
 import { CEPService } from '../services/cep.service';
@@ -15,6 +15,13 @@ import { AdestradorService } from '../services/adestrador.service';
 import { EsteticaService } from '../services/estetica.service';
 //import {} from 'googlemaps';
 
+export interface Doctors {
+  id: number;
+  doctor_name: string;
+  speciality: string;
+  Education: string;
+  location: string;
+}
 
 @Component({
   selector: 'app-home',
@@ -23,7 +30,9 @@ import { EsteticaService } from '../services/estetica.service';
 })
 export class HomeComponent implements OnInit {
   @ViewChild('slickModal1') slickModal1: SlickCarouselComponent;
-  
+  @ViewChild('slickModal2') slickModal2: SlickCarouselComponent;
+  docNameFormated;
+  doctors: any = [];
   public especialidades: any[];
   public especialidadesTotal: any[];
 
@@ -45,12 +54,15 @@ export class HomeComponent implements OnInit {
     private dashboardService: DashboardService,
     private toastr: ToastrService,
     private router: Router,
+    private route: ActivatedRoute,
     private veterinarioService: VeterinarioService,
     private estabelecimentoService: EstabelecimentoService,
     private adestradorService: AdestradorService,
     private esteticaService: EsteticaService) { }
 
   ngOnInit(): void {
+    this.docNameFormated = this.formatarParamUrl(this.route.snapshot.params['nome']);
+    this.getDoctorsDetails();
     this.listarEspecialidades();
     this.listarEspecialidadesTotal();
     this.dashboardService.markAccess().subscribe(
@@ -77,7 +89,9 @@ export class HomeComponent implements OnInit {
       {"description":"São Luís", "placeId":"ChIJIW1_b_CP9gcRR96jWeQCMZg"},
     ];
   }
-
+  getImageDoctor(doctorDetails) {
+    return doctorDetails?.img ? doctorDetails.img : 'https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg'
+  }
   inputTyped(text: string) {
     if (text.length) {
       console.log(text);
@@ -100,7 +114,21 @@ export class HomeComponent implements OnInit {
     }
 
   }
+  getDoctorsDetails() {
+    this.veterinarioService.getAll().subscribe(
+        (res) => {
+          this.doctors = res;
+          console.log(res);
+         // this.countScore(this.doctorDetails);
+          //this.dtTrigger.next();
+        },
+        //(error) => (this.errorMessage = <any>error)
+      );
 
+    
+
+  }
+  
   normalizeNome(options: INgxSelectOption[]) {
     let tipo = 0;
     if (options) {
@@ -299,6 +327,14 @@ export class HomeComponent implements OnInit {
           console.log(error);
         });
   }
+  formatarParamUrl(str){
+    if(str){
+      return str.trim().split(' ').join('-');
+    }else{
+      return "";
+    }
+
+  }
   slideConfig3 = {
     dots: true,
     arrows: false,
@@ -342,7 +378,20 @@ export class HomeComponent implements OnInit {
     $("body,html").animate({scrollTop: scrollPos}, "slow");
     this.especialidadesTotal = this.totalListaEspecialidade.slice(0, this.showTotalEspecialidade);
   }
+  
+  slideConfigure = {
+    dots: false,
+    autoplay: false,
+    infinite: true,
+    variableWidth: true,
+  };
+  nextslide() {
+    this.slickModal2.slickNext();
+  }
 
+  prevslide() {
+    this.slickModal2.slickPrev();
+  }
   getURLImgEspc(nome){
     return 'assets/img/shapes/'+nome+'.png';
   }
