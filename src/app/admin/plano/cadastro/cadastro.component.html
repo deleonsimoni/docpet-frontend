@@ -1,0 +1,176 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">Plano</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"></li>
+                        <li class="breadcrumb-item active">Cadastor</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <!-- Add Medicine -->
+        <form [formGroup]="planoForm" (ngSubmit)="salvar()">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="service-fields mb-3">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group form-focus">
+                                            <label class="focus-label">Nome <span class="text-danger">*</span></label>
+                                            <input class="form-control floating" type="text" name="nome" formControlName="nome">
+                                            <app-mensagem *ngIf="
+                                                planoForm.get('nome')?.errors?.required 
+                                                && planoForm.get('nome')?.touched" mensagem="Nome é obrigatório">
+                                            </app-mensagem>
+                                            <app-mensagem *ngIf="
+                                                    planoForm.get('nome')?.errors?.minlength &&
+                                                    planoForm.get('nome')?.touched" mensagem="Tamanho inválido">
+                                            </app-mensagem>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group form-focus">
+                                            <label class="focus-label">Validade em dias<span class="text-danger">*</span></label>
+                                            <input class="form-control floating" type="number" name="diasVencimento" formControlName="diasVencimento">
+                                            <app-mensagem *ngIf="
+                                                planoForm.get('diasVencimento')?.errors?.required 
+                                                && planoForm.get('diasVencimento')?.touched" mensagem="Validade é obrigatório">
+                                            </app-mensagem>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group form-focus">
+                                            <textarea class="form-control bg-grey floating" formControlName="descricao" name="descricao"></textarea>
+                                            <label class="focus-label">Descrição <span class="text-danger">*</span></label>
+                                            <app-mensagem *ngIf="
+                                                planoForm.get('descricao')?.errors?.required 
+                                                && planoForm.get('descricao')?.touched" mensagem="Descrição é obrigatório">
+                                            </app-mensagem>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Dados de cobrança</h4>
+                            <div class="row" formGroupName="cobranca">
+                                <div class="col-lg-4">
+                                    <div class="form-group form-focus">
+                                        <label class="focus-label">Valor Total <span class="text-danger">*</span></label>
+                                        <input class="form-control floating" type="text" name="valor" formControlName="valor">
+                                        <app-mensagem *ngIf="
+                                                planoForm.get('valor')?.errors?.required 
+                                                && planoForm.get('valor')?.touched" mensagem="valor é obrigatório">
+                                        </app-mensagem>
+                                    </div>
+
+                                </div>
+
+                                <!--<div class="col-md-1">
+                                    <div class="form-group mb-0">
+                                        <div id="isEstabelecimento_select">
+                                            <div class="status-toggle">
+                                                <input type="checkbox" id="parcela" name="parcela" formControlName="parcela" #checkParcela class="check"> Parcela?
+                                                <label for="parcela" class="checktoggle">Parcela?</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="col-lg-2">
+                                    <div class="form-group form-focus">
+                                        <label class="focus-label">Parcela</label>
+                                        <select class="form-control floating" formControlName="quantidadeParcela"> 
+                                            <option value="1">1x</option>
+                                            <option value="2">2x</option>
+                                            <option value="3">3x</option>
+                                            <option value="4">4x</option>
+                                            <option value="5">5x</option>
+                                            <option value="6">6x</option>
+                                            <option value="7">7x</option>
+                                            <option value="8">8x</option>
+                                            <option value="9">9x</option>
+                                            <option value="10">10x</option>
+                                            <option value="11">11x</option>
+                                            <option value="12">12x</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group form-focus">
+                                        <label class="focus-label">cupom</label>
+                                        <input class="form-control floating" type="text" name="cupom" formControlName="cupom">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Características</h4>
+                            <div class="formacao-info" formArrayName="caracteristicas" *ngFor="let caracteristica of planoForm.get('caracteristicas')['controls']; let i = index;">
+                                <div class="row form-row" [formGroupName]="i">
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group form-focus">
+                                            <label class="focus-label">Título <span class="text-danger">*</span></label>
+                                            <input class="form-control floating" type="text" name="titulo" formControlName="titulo">
+                                            <app-mensagem *ngIf="
+                                                planoForm.get('nome')?.errors?.required 
+                                                && planoForm.get('nome')?.touched" mensagem="Título é obrigatório">
+                                            </app-mensagem>
+                                            <app-mensagem *ngIf="
+                                                    planoForm.get('nome')?.errors?.minlength &&
+                                                    planoForm.get('nome')?.touched" mensagem="Tamanho inválido">
+                                            </app-mensagem>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <div class="form-group form-focus">
+                                            <textarea class="form-control floating" rows="5" formControlName="descricao" name="descricao"></textarea>
+                                            <label class="focus-label">Descrição </label>
+                                            <app-mensagem *ngIf="
+                                                planoForm.get('descricao')?.errors?.required 
+                                                && planoForm.get('descricao')?.touched" mensagem="Descrição é obrigatório">
+                                            </app-mensagem>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-1 col-md-1 col-lg-1" *ngIf="!isAddMode || i >= 0">
+                                        <a href="javascript:void(0);" (click)="removeCaracteristica(i)" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-more">
+                                <a href="javascript:void(0);" (click)="addCaracteristica()" class="add-formacao"><i class="fa fa-plus-circle"></i> Adicionar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-section submit-btn-bottom text-left">
+                        <button type="submit" [class]="planoForm.invalid ? 'btn submit-btn btn-light' : 'btn submit-btn btn-primary'">Salvar</button>
+                        <button type="submit" [routerLink]="'/admin/list-plano'" class="btn btn-success submit-btn">Voltar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- /Add Medicine -->
+    </div>
+</div>
+<!-- /Page Wrapper -->

@@ -1,0 +1,74 @@
+<div class="page-wrapper">
+
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">Plano</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"></li>
+                        <li class="breadcrumb-item active">Lista</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive" *ngIf="planos">
+                            <table class="datatable table table-hover table-center mb-0" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Descrição</th>
+                                        <th>Valor</th>
+                                        <th>Parcela</th>
+                                        <th>Caracteristicas</th>
+                                        <th>Vencimento(Dias)</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let plano of planos">
+                                        <td>
+                                            <h2 class="table-avatar">
+                                                <!-- <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" [src]="doctor.profile" alt="User Image"></a> -->
+                                                <a [routerLink]="['/admin/cadastro-plano/',plano._id]"> {{plano.nome}}</a>
+                                            </h2>
+                                        </td>
+                                        <td>{{plano.descricao}}</td>
+                                        <td>{{plano.cobranca?.valor}}</td>
+                                        <td>{{plano.cobranca?.quantidadeParcela}}</td>
+
+                                        <td>
+                                            <p *ngFor="let caracteristica of plano.caracteristicas"> {{caracteristica.titulo}}</p>
+                                        </td>
+
+                                        <td>{{plano.diasVencimento}}</td>
+                                        <td>
+                                            <div class="status-toggle">
+                                                <input type="checkbox" id="{{plano._id}}" class="check" [checked]="plano.status" (change)="changeStatus(plano)">
+                                                <label for="{{plano._id}}" class="checktoggle">checkbox</label>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="submit-section submit-btn-bottom text-left">
+            <a [routerLink]="['/admin/cadastro-plano']" class="btn submit-btn btn-primary"><i
+                class="fa fa-plus-circle"></i> Cadastrar</a>
+        </div>
+    </div>
+</div>

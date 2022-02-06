@@ -1,77 +1,77 @@
 <div class="page-wrapper">
 
     <div class="content container-fluid">
-  
-  
-      <form [formGroup]="esteticaForm" (ngSubmit)="salvar()">
-        <!-- Basic Information -->
-  
-  
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Informações</h4>
-            <div class="row form-row">
-              <div class="col-md-2">
-                <div class="row form-row">
-                  <div class="row form-row">
-                    <div class="col-md-12 mb-3">
-                      <label class="hoverable" for="fileInput">
+
+
+        <form [formGroup]="esteticaForm" (ngSubmit)="salvar()">
+            <!-- Basic Information -->
+
+
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Informações</h4>
+                    <div class="row form-row">
+                        <div class="col-md-2">
+                            <div class="row form-row">
+                                <div class="row form-row">
+                                    <div class="col-md-12 mb-3">
+                                        <label class="hoverable" for="fileInput">
                         <img class="img-avatar"
                           [src]="url ? url : 'https://i.pinimg.com/736x/96/83/2b/96832b52aa16d5a1244ece8a43b72f92.jpg'">
                         <div class="hover-text">Escolha sua Foto</div>
                         <div class="background"></div>
                       </label>
-                      <br />
-                      <input id="fileInput" type='file' (change)="onFileChanged($event)">
-                      <button *ngIf="url" (click)="delete()">Excluir foto</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-8 ml-5">
-                <div class="row form-row ">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>RG<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" formControlName="rg" #crmv maxlength="10" style="text-transform: uppercase;">
-                      <app-mensagem *ngIf="
+                                        <br />
+                                        <input id="fileInput" type='file' (change)="onFileChanged($event)">
+                                        <button *ngIf="url" (click)="delete()">Excluir foto</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 ml-5">
+                            <div class="row form-row ">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>RG<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" formControlName="rg" #crmv maxlength="10" style="text-transform: uppercase;">
+                                        <app-mensagem *ngIf="
                             esteticaForm.get('rg')?.errors?.required &&
                             esteticaForm.get('rg')?.touched" mensagem="RG é obrigatório">
-                      </app-mensagem>
-                    </div>
-                  </div>
-                  <div class="col-md-1">
-                    <div class="form-group">
-                      <label>UF<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" formControlName="uf" maxlength="2" minlength="2" style="text-transform: uppercase;">
-                      <app-mensagem *ngIf="
+                                        </app-mensagem>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label>UF<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" formControlName="uf" maxlength="2" minlength="2" style="text-transform: uppercase;">
+                                        <app-mensagem *ngIf="
                             esteticaForm.get('uf')?.errors?.required &&
                             esteticaForm.get('uf')?.touched" mensagem="UF é obrigatório">
-                      </app-mensagem>
-                    </div>
-                  </div>
-                  <div class="col-md-7">
-                    <div class="form-group">
-                      <label>Nome<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" formControlName="nome" [readonly]="!crmv.value">
-                      <app-mensagem *ngIf="
+                                        </app-mensagem>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label>Nome<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" formControlName="nome" [readonly]="!crmv.value">
+                                        <app-mensagem *ngIf="
                             esteticaForm.get('nome')?.errors?.required &&
                             esteticaForm.get('nome')?.touched
                             " mensagem="O nome é obrigatório"></app-mensagem>
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label>Especialidade</label>
-                      <ng-select [multiple]="true" formControlName="especialidades">
-                        <ng-option *ngFor="let espc of listaEspecialidade" [value]="espc._id">{{espc.nome}}</ng-option>
-                        <!--<ng-option [value]="'custom'">Custom</ng-option> -->
-                      </ng-select>
-                    </div>
-                  </div>
-                </div>
-                <div class="row form-row">
-                  <!--<div class="col-md-3">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Especialidade</label>
+                                        <ng-select [multiple]="true" formControlName="especialidades">
+                                            <ng-option *ngFor="let espc of listaEspecialidade" [value]="espc._id">{{espc.nome}}</ng-option>
+                                            <!--<ng-option [value]="'custom'">Custom</ng-option> -->
+                                        </ng-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-row">
+                                <!--<div class="col-md-3">
                     <div class="form-group mb-0">
                       <div class="status-toggle">
                         <input type="checkbox" id="isStatus" name="status" formControlName="status" class="check" checked>
@@ -80,18 +80,17 @@
                       </div>
                     </div>
                   </div> -->
-                  <div class="col-md-6">
-                    <div class="form-group mb-0">
-                      <div id="isEstabelecimento_select">
-                        <div class="status-toggle">
-                          <input type="checkbox" id="isEstabelecimento" name="checkIsEstabelecimento"
-                            #checkIsEstabelecimento [checked]="isEstabelecimento" class="check"> Atende em Estabelecimento
-                          <label for="isEstabelecimento" class="checktoggle">Atende em Estabelecimento</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!--<div class="col-md-3">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-0">
+                                        <div id="isEstabelecimento_select">
+                                            <div class="status-toggle">
+                                                <input type="checkbox" id="isEstabelecimento" name="checkIsEstabelecimento" #checkIsEstabelecimento [checked]="isEstabelecimento" class="check"> Atende em Estabelecimento
+                                                <label for="isEstabelecimento" class="checktoggle">Atende em Estabelecimento</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div class="col-md-3">
                     <div id="customIsPlanoSaude">
                       <div class="form-group">
                         <div class="status-toggle">
@@ -102,370 +101,356 @@
                       </div>
                     </div>
                   </div> -->
-                  <div class="col-md-12 col-lg-12">
-                    <div class="form-group">
-                      <label>Sobre <span class="text-danger">*</span></label>
-                      <textarea id="sobre" class="form-control service-desc" name="sobre"
-                        formControlName="sobre"></textarea>
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                        <label>Sobre <span class="text-danger">*</span></label>
+                                        <textarea id="sobre" class="form-control service-desc" name="sobre" formControlName="sobre"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
                     </div>
-                  </div>
-  
+
                 </div>
-  
-  
-              </div>
             </div>
-  
-          </div>
-        </div>
-        <!-- /Basic Information -->
-        <!-- Information formação-->
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Formação</h4>
-            <div class="formacao-info" formArrayName="formacoes"
-              *ngFor="let formacao of esteticaForm.get('formacoes')['controls']; let i = index;">
-              <div class="row form-row" [formGroupName]="i">
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label>Instituição<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" formControlName="nomeInstituicao" #nomeInstituicao>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label>Curso<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" formControlName="curso">
-                  </div>
-                </div>
-                <div class="col-md-2 col-lg-2">
-                  <div class="form-group">
-                    <label>Início <span class="text-danger">*</span></label>
-                    <select class="form-control" formControlName="anoInicio">
+            <!-- /Basic Information -->
+            <!-- Information formação-->
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Formação</h4>
+                    <div class="formacao-info" formArrayName="formacoes" *ngFor="let formacao of esteticaForm.get('formacoes')['controls']; let i = index;">
+                        <div class="row form-row" [formGroupName]="i">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Instituição<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="nomeInstituicao" #nomeInstituicao>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Curso<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="curso">
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-lg-2">
+                                <div class="form-group">
+                                    <label>Início <span class="text-danger">*</span></label>
+                                    <select class="form-control" formControlName="anoInicio">
                       <option></option>
                       <option *ngFor="let ano of listaAnos">{{ano}}</option>
                     </select>
-                  </div>
-                </div>
-                <div class="col-md-2 col-lg-2">
-                  <div class="form-group">
-                    <label>Termino <span class="text-danger">*</span></label>
-                    <select class="form-control" formControlName="anoFim">
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-lg-2">
+                                <div class="form-group">
+                                    <label>Termino <span class="text-danger">*</span></label>
+                                    <select class="form-control" formControlName="anoFim">
                       <option value="null" selected="selected">Em curso</option>
                       <option *ngFor="let ano of listaAnos">{{ano}}</option>
                     </select>
-                  </div>
-                </div>
-                <div class="col-1 col-md-1 col-lg-1" *ngIf="!isAddMode || i != 0">
-                  <label class="d-md-block d-sm-none d-none">&nbsp;</label>
-                  <a href="javascript:void(0);" (click)="removeFormacao(i)" class="btn btn-danger trash"><i
+                                </div>
+                            </div>
+                            <div class="col-1 col-md-1 col-lg-1" *ngIf="!isAddMode || i != 0">
+                                <label class="d-md-block d-sm-none d-none">&nbsp;</label>
+                                <a href="javascript:void(0);" (click)="removeFormacao(i)" class="btn btn-danger trash"><i
                       class="far fa-trash-alt"></i></a>
-                </div>
-              </div>
-            </div>
-            <div class="add-more">
-              <a href="javascript:void(0);" (click)="addFormacao()" class="add-formacao"><i class="fa fa-plus-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-more">
+                        <a href="javascript:void(0);" (click)="addFormacao()" class="add-formacao"><i class="fa fa-plus-circle"></i>
                 Adicionar</a>
-            </div>
-          </div>
-        </div>
-        <!-- /Basic formação -->
-        <!-- Information Experiencia-->
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Experiencia</h4>
-            <div class="formacao-info" formArrayName="experiencias"
-              *ngFor="let experiencia of esteticaForm.get('experiencias')['controls']; let i = index;">
-              <div class="row form-row" [formGroupName]="i">
-                <div class="col-md-7">
-                  <div class="form-group">
-                    <label>Nome da empresa<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" formControlName="nomeEstabelecimento">
-                  </div>
+                    </div>
                 </div>
-                <div class="col-md-2 col-lg-2">
-                  <div class="form-group">
-                    <label>Início <span class="text-danger">*</span></label>
-                    <select class="form-control" formControlName="anoInicio">
+            </div>
+            <!-- /Basic formação -->
+            <!-- Information Experiencia-->
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Experiencia</h4>
+                    <div class="formacao-info" formArrayName="experiencias" *ngFor="let experiencia of esteticaForm.get('experiencias')['controls']; let i = index;">
+                        <div class="row form-row" [formGroupName]="i">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label>Nome da empresa<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="nomeEstabelecimento">
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-lg-2">
+                                <div class="form-group">
+                                    <label>Início <span class="text-danger">*</span></label>
+                                    <select class="form-control" formControlName="anoInicio">
                       <option></option>
                       <option *ngFor="let ano of listaAnos">{{ano}}</option>
                     </select>
-                  </div>
-                </div>
-                <div class="col-md-2 col-lg-2">
-                  <div class="form-group">
-                    <label>Termino <span class="text-danger">*</span></label>
-                    <select class="form-control" formControlName="anoFim">
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-lg-2">
+                                <div class="form-group">
+                                    <label>Termino <span class="text-danger">*</span></label>
+                                    <select class="form-control" formControlName="anoFim">
                       <option [ngValue]=null>Em curso</option>
                       <option *ngFor="let ano of listaAnos">{{ano}}</option>
                     </select>
-                  </div>
-                </div>
-                <div class="col-1 col-md-1 col-lg-1" *ngIf="!isAddMode || i != 0">
-                  <label class="d-md-block d-sm-none d-none">&nbsp;</label>
-                  <a href="javascript:void(0);" (click)="removeExperiencia(i)" class="btn btn-danger trash"><i
+                                </div>
+                            </div>
+                            <div class="col-1 col-md-1 col-lg-1" *ngIf="!isAddMode || i != 0">
+                                <label class="d-md-block d-sm-none d-none">&nbsp;</label>
+                                <a href="javascript:void(0);" (click)="removeExperiencia(i)" class="btn btn-danger trash"><i
                       class="far fa-trash-alt"></i></a>
-                </div>
-              </div>
-            </div>
-            <div class="add-more">
-              <a href="javascript:void(0);" (click)="addExperiencia()" class="add-formacao"><i
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-more">
+                        <a href="javascript:void(0);" (click)="addExperiencia()" class="add-formacao"><i
                   class="fa fa-plus-circle"></i> Adicionar</a>
-            </div>
-          </div>
-        </div>
-        <!-- /Basic experiencia -->
-        <!-- Information conquistas-->
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Conquista</h4>
-            <div class="formacao-info" formArrayName="conquistas"
-              *ngFor="let conquista of esteticaForm.get('conquistas')['controls']; let i = index;">
-              <div class="row form-row" [formGroupName]="i">
-                <div class="col-md-7">
-                  <div class="form-group">
-                    <label>Nome<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" formControlName="nome">
-                  </div>
+                    </div>
                 </div>
-                <div class="col-md-2 col-lg-2">
-                  <div class="form-group">
-                    <label>Mês <span class="text-danger">*</span></label>
-                    <select class="form-control" formControlName="mes">
+            </div>
+            <!-- /Basic experiencia -->
+            <!-- Information conquistas-->
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Conquista</h4>
+                    <div class="formacao-info" formArrayName="conquistas" *ngFor="let conquista of esteticaForm.get('conquistas')['controls']; let i = index;">
+                        <div class="row form-row" [formGroupName]="i">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label>Nome<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="nome">
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-lg-2">
+                                <div class="form-group">
+                                    <label>Mês <span class="text-danger">*</span></label>
+                                    <select class="form-control" formControlName="mes">
                       <option>Em curso</option>
                       <option *ngFor="let mes of meses" [ngValue]="mes.id">{{mes.abreviado}} </option>
                     </select>
-                  </div>
-                </div>
-                <div class="col-md-2 col-lg-2">
-                  <div class="form-group">
-                    <label>Termino <span class="text-danger">*</span></label>
-                    <select class="form-control" formControlName="ano">
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-lg-2">
+                                <div class="form-group">
+                                    <label>Termino <span class="text-danger">*</span></label>
+                                    <select class="form-control" formControlName="ano">
                       <option value="">Em curso</option>
                       <option *ngFor="let ano of listaAnos">{{ano}}</option>
                     </select>
-                  </div>
-                </div>
-                <div class="col-md-11 col-lg-11">
-                  <div class="form-group">
-                    <label>Descrição<span class="text-danger">*</span></label>
-                    <textarea id="descricao" class="form-control service-desc" name="descricao"
-                      formControlName="descricao"></textarea>
-                  </div>
-                </div>
-                <div class="col-1 col-md-1 col-lg-1" *ngIf="!isAddMode || i >= 0">
-                  <label class="d-md-block d-sm-none d-none">&nbsp;</label>
-                  <a href="javascript:void(0);" (click)="removeConquista(i)" class="btn btn-danger trash"><i
+                                </div>
+                            </div>
+                            <div class="col-md-11 col-lg-11">
+                                <div class="form-group">
+                                    <label>Descrição<span class="text-danger">*</span></label>
+                                    <textarea id="descricao" class="form-control service-desc" name="descricao" formControlName="descricao"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-1 col-md-1 col-lg-1" *ngIf="!isAddMode || i >= 0">
+                                <label class="d-md-block d-sm-none d-none">&nbsp;</label>
+                                <a href="javascript:void(0);" (click)="removeConquista(i)" class="btn btn-danger trash"><i
                       class="far fa-trash-alt"></i></a>
-                </div>
-  
-  
-              </div>
-            </div>
-            <div class="add-more">
-              <a href="javascript:void(0);" (click)="addConquista()" class="add-formacao"><i
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="add-more">
+                        <a href="javascript:void(0);" (click)="addConquista()" class="add-formacao"><i
                   class="fa fa-plus-circle"></i> Adicionar</a>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <!-- /Basic formação -->
-  
-        <!-- Contato -->
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Contato</h4>
-            <div class="row form-row" formGroupName="contato">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Nome<span class="text-danger">* </span></label>
-                  <input type="text" class="form-control" formControlName="nome">
-                  <app-mensagem *ngIf="
+            <!-- /Basic formação -->
+
+            <!-- Contato -->
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Contato</h4>
+                    <div class="row form-row" formGroupName="contato">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Nome<span class="text-danger">* </span></label>
+                                <input type="text" class="form-control" formControlName="nome">
+                                <app-mensagem *ngIf="
                         esteticaForm.get('contato')?.get('nome')?.errors?.required &&
                         esteticaForm.get('contato')?.get('nome')?.touched" mensagem="Nome é obrigatório">
-                  </app-mensagem>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Email <span class="text-danger">*</span></label>
-                  <input type="email" class="form-control" formControlName="email">
-                  <app-mensagem *ngIf="
+                                </app-mensagem>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Email <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" formControlName="email">
+                                <app-mensagem *ngIf="
                       esteticaForm.get('contato')?.get('email')?.errors?.required &&
                       esteticaForm.get('contato')?.get('email')?.touched" mensagem="E-mail é obrigatório">
-                  </app-mensagem>
-                  <app-mensagem *ngIf="
+                                </app-mensagem>
+                                <app-mensagem *ngIf="
                     esteticaForm.get('contato')?.get('email')?.errors?.email &&
                     esteticaForm.get('contato')?.get('email')?.touched
                     " mensagem="E-mail no formato incorreto">
-                  </app-mensagem>
+                                </app-mensagem>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Telefone (Número de telefone com 8) </label>
+                                <input type="text" class="form-control" formControlName="telefone" mask="(00) 0000-0000" placeholder="(00) 0000-0000">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Celular (Número de telefone com 9)</label>
+                                <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Telefone</label>
-                  <input type="text" class="form-control" formControlName="telefone" mask="(00) 0000-0000"
-                    placeholder="(00) 0000-0000">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Celular</label>
-                  <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000"
-                    placeholder="(00) 00000-0000">
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-        <!-- /Contato-->
-        <!-- Endereço -->
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Endereço</h4>
-            <div class="row form-row" formGroupName="endereco">
-              <div class="col-md-7">
-                <div class="row form-row">
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>CEP<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" formControlName="cep" mask="00000-000">
-                      <app-mensagem *ngIf="
+            <!-- /Contato-->
+            <!-- Endereço -->
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Endereço</h4>
+                    <div class="row form-row" formGroupName="endereco">
+                        <div class="col-md-7">
+                            <div class="row form-row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>CEP<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" formControlName="cep" mask="00000-000">
+                                        <app-mensagem *ngIf="
                         esteticaForm.get('endereco')?.get('cep')?.errors?.required &&
                         esteticaForm.get('endereco')?.get('cep')?.touched" mensagem="CEP é obrigatório">
-                      </app-mensagem>
-                    </div>
-                  </div>
-                  <div class="col-md-1">
-                    <div class="form-group">
-                      <label></label>
-                      <div class="btn-search">
-                        <button type="button" class="btn btn-block" style="margin-top: 7px; width: 45px;"
-                          (click)="buscarCEP(esteticaForm.get('endereco')?.get('cep')?.value)"><i
+                                        </app-mensagem>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <label></label>
+                                        <div class="btn-search">
+                                            <button type="button" class="btn btn-block" style="margin-top: 7px; width: 45px;" (click)="buscarCEP(esteticaForm.get('endereco')?.get('cep')?.value)"><i
                             class="fas fa-search"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Logradouro<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" formControlName="logradouro" readonly>
-                      <app-mensagem *ngIf="
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Logradouro<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" formControlName="logradouro" readonly>
+                                        <app-mensagem *ngIf="
                         esteticaForm.get('endereco')?.get('logradouro')?.errors?.required &&
                         esteticaForm.get('endereco')?.get('logradouro')?.touched" mensagem="Logradouro é obrigatório">
-                      </app-mensagem>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>N°<span class="text-danger">*</span></label>
-                      <input [readonly]="esteticaForm.get('endereco')?.get('logradouro').value == null"
-                        (change)="buscarMap()" type="text" class="form-control" formControlName="numero">
-                      <app-mensagem *ngIf="
+                                        </app-mensagem>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>N°<span class="text-danger">*</span></label>
+                                        <input [readonly]="esteticaForm.get('endereco')?.get('logradouro').value == null" (change)="buscarMap()" type="text" class="form-control" formControlName="numero">
+                                        <app-mensagem *ngIf="
                         esteticaForm.get('endereco')?.get('numero')?.errors?.required &&
                         esteticaForm.get('endereco')?.get('numero')?.touched" mensagem="Numero é obrigatório">
-                      </app-mensagem>
-  
-                    </div>
-                  </div>
-                  <div class="col-md-5">
-                    <div class="form-group">
-                      <label>Complemento<span class="text-danger"></span></label>
-                      <input type="text" class="form-control" formControlName="complemento">
-                    </div>
-                  </div>
-                  <div class="col-md-7">
-                    <div class="form-group">
-                      <label>Bairro<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" formControlName="bairro" readonly>
-                      <app-mensagem *ngIf="
+                                        </app-mensagem>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>Complemento<span class="text-danger"></span></label>
+                                        <input type="text" class="form-control" formControlName="complemento">
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label>Bairro<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" formControlName="bairro" readonly>
+                                        <app-mensagem *ngIf="
                         esteticaForm.get('endereco')?.get('bairro')?.errors?.required &&
                         esteticaForm.get('endereco')?.get('bairro')?.touched" mensagem="Bairro é obrigatório">
-                      </app-mensagem>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Município<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" formControlName="municipio" readonly>
-                      <app-mensagem *ngIf="
+                                        </app-mensagem>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Município<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" formControlName="municipio" readonly>
+                                        <app-mensagem *ngIf="
                         esteticaForm.get('endereco')?.get('municipio')?.errors?.required &&
                         esteticaForm.get('endereco')?.get('municipio')?.touched" mensagem="Nunicipio é obrigatório">
-                      </app-mensagem>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <label>Estado<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" formControlName="estado" readonly>
-                      <app-mensagem *ngIf="
+                                        </app-mensagem>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Estado<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" formControlName="estado" readonly>
+                                        <app-mensagem *ngIf="
                         esteticaForm.get('endereco')?.get('estado')?.errors?.required &&
                         esteticaForm.get('endereco')?.get('estado')?.touched" mensagem="Estado é obrigatório">
-                      </app-mensagem>
+                                        </app-mensagem>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="row form-row">
+                                <div class="col-md-12">
+                                    <agm-map *ngIf="showMap" [latitude]="lat" [zoom]="15" [longitude]="lng">
+                                        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                                    </agm-map>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-              <div class="col-md-5">
-                <div class="row form-row">
-                  <div class="col-md-12">
-                    <agm-map *ngIf="showMap" [latitude]="lat" [zoom]="15" [longitude]="lng">
-                      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-                    </agm-map>
-                  </div>
-                </div>
-              </div>
+
             </div>
-          </div>
-  
-        </div>
-        <!-- Contato -->
-        <div class="card" id="customInfoEstetica" [hidden]="!checkIsEstabelecimento.checked">
-          <div class="card-body">
-            <h4 class="card-title">Estabelecimento</h4>
-            <div class="estabelecimento-info" formArrayName="estabelecimentos"
-              *ngFor="let estabelecimento of esteticaForm.get('estabelecimentos')['controls']; let i = index;">
-              <div class="row form-row Estetica-cont" [formGroupName]="i">
-                <div class="col-md-2">
-                  <div class="form-group">
-                    <label>CNPJ<span class="text-danger">*</span></label>
-                    <input #cnpj type="text" class="form-control" formControlName="cnpj" placeholder="CNPJ"
-                      mask="00.000.000/0000-00" (change)="findEstab(i)">
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <div class="form-group">
-                    <label>Nome<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" formControlName="nome" placeholder="Nome"
-                      [readonly]="!cnpj.value">
-                  </div>
-                </div>
-  
-  
-                <div class="col-12 col-md-2 col-lg-1" *ngIf="!isAddMode || i != 0">
-                  <label class="d-md-block d-sm-none d-none">&nbsp;</label>
-                  <a href="javascript:void(0);" (click)="removeEstabelecimento(i)" class="btn btn-danger trash"><i
+            <!-- Contato -->
+            <div class="card" id="customInfoEstetica" [hidden]="!checkIsEstabelecimento.checked">
+                <div class="card-body">
+                    <h4 class="card-title">Estabelecimento</h4>
+                    <div class="estabelecimento-info" formArrayName="estabelecimentos" *ngFor="let estabelecimento of esteticaForm.get('estabelecimentos')['controls']; let i = index;">
+                        <div class="row form-row Estetica-cont" [formGroupName]="i">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>CNPJ<span class="text-danger">*</span></label>
+                                    <input #cnpj type="text" class="form-control" formControlName="cnpj" placeholder="CNPJ" mask="00.000.000/0000-00" (change)="findEstab(i)">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label>Nome<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="nome" placeholder="Nome" [readonly]="!cnpj.value">
+                                </div>
+                            </div>
+
+
+                            <div class="col-12 col-md-2 col-lg-1" *ngIf="!isAddMode || i != 0">
+                                <label class="d-md-block d-sm-none d-none">&nbsp;</label>
+                                <a href="javascript:void(0);" (click)="removeEstabelecimento(i)" class="btn btn-danger trash"><i
                       class="far fa-trash-alt"></i></a>
-                </div>
-              </div>
-            </div>
-            <div class="add-more">
-              <a href="javascript:void(0);" (click)="addEstabelecimento()" class="add-estabelecimento"><i
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-more">
+                        <a href="javascript:void(0);" (click)="addEstabelecimento()" class="add-estabelecimento"><i
                   class="fa fa-plus-circle"></i> Add More</a>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <!-- /Contato-->
-        <div class="card">
-          <div class="card-body">
-            <div class="row form-row">
-              <div class="submit-section submit-btn-bottom">
-                <button type="submit"
-                  [class]="esteticaForm.invalid ? 'btn submit-btn btn-light' : 'btn submit-btn btn-primary'">Salvar</button>
-              </div>
+            <!-- /Contato-->
+            <div class="card">
+                <div class="card-body">
+                    <div class="row form-row">
+                        <div class="submit-section submit-btn-bottom">
+                            <button type="submit" [class]="esteticaForm.invalid ? 'btn submit-btn btn-light' : 'btn submit-btn btn-primary'">Salvar</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </form>
+        </form>
     </div>
-  </div>
-  
+</div>

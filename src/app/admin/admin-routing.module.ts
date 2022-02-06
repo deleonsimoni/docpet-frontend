@@ -81,9 +81,21 @@ const routes: Routes = [
           import('./estetica/dashboard-estetica/dashboard-estetica.module').then((m) => m.DashboardEsteticaModule),
       },
 
-
-
-
+      {
+        path: 'list-plano',
+        loadChildren: () =>
+          import('./plano/lista/lista.module').then((m) => m.ListaModule),
+      },
+      {
+        path: 'cadastro-plano',
+        loadChildren: () =>
+          import('./plano/cadastro/cadastro.module').then((m) => m.CadastroModule),
+      },
+      {
+        path: 'cadastro-plano/:id',
+        loadChildren: () =>
+          import('./plano/cadastro/cadastro.module').then((m) => m.CadastroModule),
+      },
 
       {
         path: 'list-estabelecimento',
