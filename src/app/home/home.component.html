@@ -208,7 +208,7 @@
                                 <div ngxSlickItem>
                                     <div class="profile-widget" style="width: 100%; display: inline-block;">
                                         <div class="doc-img">
-                                            <a [routerLink]="'/doctor/'+doctor.nomeFormated"
+                                            <a [routerLink]="'/doctor/'+formatarParamUrl(doctor.nome)"
                                              tabindex="-1">
                                                 <img class="img-fluid" alt="Imagem" [src]="getImageDoctor(doctor)">
                                             </a>
@@ -218,12 +218,13 @@
                                         </div>
                                         <div class="pro-content">
                                             <h3 class="title">
-                                                <a [routerLink]="'/patients/doctor-profile'"
-                                                    [queryParams]="{id: doctor.id}"
-                                                    tabindex="-1">{{doctor.nome}}</a>
+                                                <a [routerLink]="'/doctor/'+formatarParamUrl(doctor.nome)"
+                                                    tabindex="-1" style="color:#000000">{{doctor.nome}}</a>
                                                 <i class="fas fa-check-circle verified"></i>
                                             </h3>
-                                            <p class="speciality">{{doctor.Education}}</p>
+                                            <ul>
+                                                <li *ngFor="let especialidade of doctor.especialidades;let g=index" class="speciality">{{especialidade.nome}}</li>
+                                            </ul>
                                             <div class="rating">
                                                 <i class="fas fa-star filled"></i>
                                                 <i class="fas fa-star filled"></i>
