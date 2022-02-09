@@ -160,9 +160,10 @@
             <div class="row justify-content-center text-center">
                 <div class="col-md-9">
                     <ul class="entry-meta meta-item">
-                        <li class="slide text-center"  *ngFor="let especialidadeTotal of especialidadesTotal">
+                        <li class="slide text-center col-lg-3 col-md-3 col-sm-12"  *ngFor="let especialidadeTotal of especialidadesTotal">
                             <div class="speicality-img">
                                 <img src="assets/img/shapes/{{especialidadeTotal.nomeFormated.trim().split(' ').join('_')}}.png" class="img-fluid" alt="Speciality">
+                                
                                 
                             </div>
                             <p><a [routerLink]="['/list', especialidadeTotal.nomeFormated.trim().split(' ').join('-').toLowerCase(), '']" class="linkEsp" style="color:#000000">{{especialidadeTotal.nome}}</a></p>
@@ -217,7 +218,7 @@
                                             </a>
                                         </div>
                                         <div class="pro-content">
-                                            <h3 class="title">
+                                            <h3 class="title" style="height:60px;">
                                                 <a [routerLink]="'/doctor/'+formatarParamUrl(doctor.nome)"
                                                     tabindex="-1" style="color:#000000">{{doctor.nome}}</a>
                                                 <i class="fas fa-check-circle verified"></i>
@@ -237,13 +238,13 @@
                                                 <li>
                                                     <i class="fas fa-map-marker-alt"></i> {{doctor.Price}}
                                                 </li>
-                                                <li>
+                                                <!--<li>
                                                     <i class="far fa-clock"></i> {{doctor.Available}}
                                                 </li>
                                                 <li>
                                                     <i class="far fa-money-bill-alt"></i> {{doctor.Price}}
                                                     <a href="javascript:void(0)" tooltip="Lorem Ipsum" placement="top"><i class="fas fa-info-circle"></i></a>
-                                                </li>
+                                                </li>-->
                                             </ul>
                                             <div class="row row-sm">
                                                 <div class="col-6">
