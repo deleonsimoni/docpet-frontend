@@ -227,16 +227,15 @@
                                                 <li *ngFor="let especialidade of doctor.especialidades;let g=index" class="speciality">{{especialidade.nome}}</li>
                                             </ul>
                                             <div class="rating">
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star"></i>
-                                                <span class="d-inline-block average-rating">(49)</span>
+                                                <label *ngFor="let item of [1,2,3,4,5]">
+                                                    <i *ngIf="totalStarFormated >= item" class="fas fa-star filled"></i>
+                                                    <i *ngIf="totalStarFormated < item" class="fas fa-star"></i>
+                                                </label>
+                                                <span class="d-inline-block average-rating"> ({{doctor.reviews.length}})</span>
                                             </div>
                                             <ul class="available-info">
                                                 <li>
-                                                    <i class="fas fa-map-marker-alt"></i> {{doctor.Price}}
+                                                    <i class="fas fa-map-marker-alt"></i> {{doctor.uf}}
                                                 </li>
                                                 <!--<li>
                                                     <i class="far fa-clock"></i> {{doctor.Available}}

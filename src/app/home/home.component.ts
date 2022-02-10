@@ -43,7 +43,12 @@ export class HomeComponent implements OnInit {
 
   public especialidadeEscolhida: any = [];
   public cidadeEscolhida: any = [];
+  public starsRate: any = [];
   isload = false;
+  totalStar = 0;
+  totalStarFormated = 0;
+  isLikedComment = 0;
+  totalLike = 100;
   public ngxDisabled = false;
   autocompleteInput: string;
   queryWait: boolean;
@@ -89,6 +94,43 @@ export class HomeComponent implements OnInit {
       {"description":"São Luís", "placeId":"ChIJIW1_b_CP9gcRR96jWeQCMZg"},
     ];
   }
+  countScore(doctorReviews) {
+    let ind = 0;
+    let rates = [0,0,0,0,0];
+    let total = 0;
+    for (let item of doctorReviews) {
+      //calculate rates
+      total = item.reviews.length;
+      if (item.reviews.length > 0) {
+        for (let review of item.reviews) {
+          if (review.score){
+            if(review.score == 1){
+              rates[0] += 1;
+            } else if (review.score == 2) {
+              rates[1] += 1;
+            } else if (review.score == 3) {
+              rates[2] += 1;
+            } else if (review.score == 4) {
+              rates[3] += 1;
+            } else if (review.score == 5) {
+              rates[4] += 1;
+            }
+            if (total > 0) {
+              this.totalStar = (rates[0]*1 + rates[1]*2 + rates[2]*3 + rates[3]*4 + rates[4]*5) / total
+              this.totalStarFormated = Math.round(this.totalStar);
+    
+              if (this.totalStar >= 5) {
+                this.totalStar = 5;
+                this.totalStarFormated = 5;
+              }
+            }
+          }
+        }
+        this.starsRate[ind] = this.totalStarFormated;
+        ind += 1;
+      }
+    }
+  }
   getImageDoctor(doctorDetails) {
     return doctorDetails?.img ? doctorDetails.img : 'https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg'
   }
@@ -115,11 +157,12 @@ export class HomeComponent implements OnInit {
 
   }
   getDoctorsDetails() {
-    this.veterinarioService.getAll().subscribe(
+    this.veterinarioService.getListReviews().subscribe(
         (res) => {
           this.doctors = res;
           console.log(res);
-         // this.countScore(this.doctorDetails);
+          this.countScore(this.doctors);
+          console.log(this.starsRate);
           //this.dtTrigger.next();
         },
         //(error) => (this.errorMessage = <any>error)
@@ -129,6 +172,7 @@ export class HomeComponent implements OnInit {
 
   }
   
+
   normalizeNome(options: INgxSelectOption[]) {
     let tipo = 0;
     if (options) {

@@ -21,6 +21,9 @@ export class VeterinarioService {
   getAll(): Observable<any> {
     return this.http.get(baseUrl);
   }
+  getListReviews(): Observable<any> {
+    return this.http.get(`${baseUrl}/reviews/sort`);
+  }
 
   getByEspecialidade(id): Observable<any> {
     return this.http.get(`${baseUrl}/especialidades/${id}`);
