@@ -223,8 +223,8 @@
                                                     tabindex="-1" style="color:#000000">{{doctor.nome}}</a>
                                                 <i class="fas fa-check-circle verified"></i>
                                             </h3>
-                                            <ul style="height:100px;">
-                                                <li *ngFor="let especialidade of doctor.especialidades;let g=index" class="speciality">{{especialidade.nome}}</li>
+                                            <ul style="height:40px;">
+                                                <li *ngIf="doctor.especialidades[0]" class="speciality">{{doctor.especialidades[0]?.nome}}</li>
                                             </ul>
                                             <div class="rating">
                                                 <label *ngFor="let item of [1,2,3,4,5]">
@@ -312,7 +312,7 @@
         <div class="doc-background">
             <h3>Você é um especialista?</h3>
             <p>Construa sua reputação online rapidamente e seja encontrado por tutores de todo país.</p>
-            <p> São mais de 141 milhões de pets no Brasil em busca de um profissional.</p>
+            <p> São mais de 141 milhões de p    ets no Brasil em busca de um profissional.</p>
             <a [routerLink]="'/cadastro'" class="doc-bok-btn">cadastre-se</a>
         </div>
         <!--<div class="pat-background">
