@@ -205,7 +205,7 @@
                 <div class="col-lg-8">                    
                     <div class="doctor-slider">
                         <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfigure">
-                            <div class="slick-slide" *ngFor="let doctor of doctors;let i=index">
+                            <div class="slick-slide" *ngFor="let doctor of doctors; index as i">
                                 <div ngxSlickItem>
                                     <div class="profile-widget" style="width: 100%; display: inline-block;">
                                         <div class="doc-img">
@@ -228,8 +228,8 @@
                                             </ul>
                                             <div class="rating">
                                                 <label *ngFor="let item of [1,2,3,4,5]">
-                                                    <i *ngIf="totalStarFormated >= item" class="fas fa-star filled"></i>
-                                                    <i *ngIf="totalStarFormated < item" class="fas fa-star"></i>
+                                                    <i *ngIf="starsRate[i] >= item" class="fas fa-star filled"></i>
+                                                    <i *ngIf="starsRate[i] < item" class="fas fa-star"></i>
                                                 </label>
                                                 <span class="d-inline-block average-rating"> ({{doctor.reviews.length}})</span>
                                             </div>
