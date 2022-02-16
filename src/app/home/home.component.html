@@ -205,7 +205,7 @@
             <div class="col-lg-8">
                 <div class="doctor-slider">
                     <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfigure">
-                        <div class="slick-slide" *ngFor="let doctor of doctors;let i=index">
+                        <div class="slick-slide" *ngFor="let doctor of doctors; index as i">
                             <div ngxSlickItem>
                                 <div class="profile-widget" style="width: 100%; display: inline-block;">
                                     <div class="doc-img">
@@ -221,13 +221,13 @@
                                             <a [routerLink]="'/doctor/'+formatarParamUrl(doctor.nome)" tabindex="-1" style="color:#000000">{{doctor.nome}}</a>
                                             <i class="fas fa-check-circle verified"></i>
                                         </h3>
-                                        <ul style="height:100px;">
-                                            <li *ngFor="let especialidade of doctor.especialidades;let g=index" class="speciality">{{especialidade.nome}}</li>
+                                        <ul style="height:40px;">
+                                            <li *ngIf="doctor.especialidades[0]" class="speciality">{{doctor.especialidades[0]?.nome}}</li>
                                         </ul>
                                         <div class="rating">
                                             <label *ngFor="let item of [1,2,3,4,5]">
-                                                    <i *ngIf="totalStarFormated >= item" class="fas fa-star filled"></i>
-                                                    <i *ngIf="totalStarFormated < item" class="fas fa-star"></i>
+                                                    <i *ngIf="starsRate[i] >= item" class="fas fa-star filled"></i>
+                                                    <i *ngIf="starsRate[i] < item" class="fas fa-star"></i>
                                                 </label>
                                             <span class="d-inline-block average-rating"> ({{doctor.reviews.length}})</span>
                                         </div>
@@ -306,7 +306,7 @@
         <div class="doc-background">
             <h3>Você é um especialista?</h3>
             <p>Construa sua reputação online rapidamente e seja encontrado por tutores de todo país.</p>
-            <p> São mais de 141 milhões de pets no Brasil em busca de um profissional.</p>
+            <p> São mais de 141 milhões de p ets no Brasil em busca de um profissional.</p>
             <a [routerLink]="'/cadastro'" class="doc-bok-btn">cadastre-se</a>
         </div>
         <!--<div class="pat-background">

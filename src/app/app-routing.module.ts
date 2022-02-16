@@ -33,6 +33,11 @@ const routes: Routes = [
     loadChildren: () => import('./form-contato/form-contato.module').then((m) => m.FormContatoModule),
   },
   {
+    path: 'registro',
+    loadChildren: () =>
+    import('./register/register.module').then((m) => m.RegisterModule),
+  },
+  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then((m) => m.LoginModule),
   },

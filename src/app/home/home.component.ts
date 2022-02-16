@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
   public starsRate: any = [];
   isload = false;
   totalStar = 0;
+  
   totalStarFormated = 0;
   isLikedComment = 0;
   totalLike = 100;
@@ -96,9 +97,11 @@ export class HomeComponent implements OnInit {
   }
   countScore(doctorReviews) {
     let ind = 0;
+    let id = 0;
     let rates = [0,0,0,0,0];
     let total = 0;
     for (let item of doctorReviews) {
+      id = item._id;
       //calculate rates
       total = item.reviews.length;
       if (item.reviews.length > 0) {
@@ -124,12 +127,21 @@ export class HomeComponent implements OnInit {
                 this.totalStarFormated = 5;
               }
             }
+            
           }
+          
         }
-        this.starsRate[ind] = this.totalStarFormated;
-        ind += 1;
+        
+        
       }
+      this.starsRate.push(this.totalStarFormated);
+      ind += 1;
     }
+     console.log(this.starsRate);
+  }
+  pushDoctorsStar(stars,ind){
+    this.doctors[ind].push({star:stars});
+    
   }
   getImageDoctor(doctorDetails) {
     return doctorDetails?.img ? doctorDetails.img : 'https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg'
@@ -160,9 +172,9 @@ export class HomeComponent implements OnInit {
     this.veterinarioService.getListReviews().subscribe(
         (res) => {
           this.doctors = res;
-          console.log(res);
+          console.log(this.doctors);
           this.countScore(this.doctors);
-          console.log(this.starsRate);
+          
           //this.dtTrigger.next();
         },
         //(error) => (this.errorMessage = <any>error)
