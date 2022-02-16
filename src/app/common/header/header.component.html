@@ -49,6 +49,9 @@
                 <li>
                     <a href="#">Home</a>
                 </li>
+                <li>
+                    <a [class.active]="base === 'planos'" [routerLink]="'planos'">Planos</a>
+                </li>
                 <!-- <li [class.active]="base === 'home'" (click)="addStyle('home')" class="has-submenu" style="cursor: pointer;">
                     <a (click)="home()">Home <i class="fas fa-chevron-down"></i></a>
                     <ul class="submenu" id="home">

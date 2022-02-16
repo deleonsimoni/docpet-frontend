@@ -13,6 +13,22 @@ import { AngularTagsInputModule } from '@iomechs/angular-tags-input';
 import { CadastroComponent } from './cadastro.component';
 import { NgxMaskModule} from 'ngx-mask'
 import { AgmCoreModule } from '@agm/core';
+import { CurrencyMaskInputMode, NgxCurrencyModule } from "ngx-currency";
+
+export const customCurrencyMaskConfig = {
+  align: null,
+  allowNegative: true,
+  allowZero: true,
+  decimal: ",",
+  precision: 2,
+  prefix: "R$ ",
+  suffix: "",
+  thousands: ".",
+  nullable: true,
+  min: null,
+  max: null,
+  inputMode: CurrencyMaskInputMode.FINANCIAL
+};
 
 
 @NgModule({
@@ -32,6 +48,7 @@ import { AgmCoreModule } from '@agm/core';
     ReactiveFormsModule,
 
     NgxMaskModule.forChild(),
+    NgxCurrencyModule.forRoot(customCurrencyMaskConfig)
 
   ]
 })

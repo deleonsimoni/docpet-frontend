@@ -70,7 +70,7 @@
                                 <div class="col-lg-4">
                                     <div class="form-group form-focus">
                                         <label class="focus-label">Valor Total <span class="text-danger">*</span></label>
-                                        <input class="form-control floating" type="text" name="valor" formControlName="valor">
+                                        <input class="form-control floating" currencyMask type="text" name="valor" formControlName="valor">
                                         <app-mensagem *ngIf="
                                                 planoForm.get('valor')?.errors?.required 
                                                 && planoForm.get('valor')?.touched" mensagem="valor é obrigatório">

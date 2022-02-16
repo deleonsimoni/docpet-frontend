@@ -158,12 +158,12 @@
                 </li>
 
                 <li *ngIf="userLogged.isAdmin" [class.active]="page === 'Patients'">
-                    <a (click)="change('Patients')" [routerLink]="'/admin/patients'"><i class="fe fe-user"></i>
+                    <a (click)="change('Patients')" [routerLink]="'/admin/patients'"><i class="fas fa-users"  style="font-size: 20px;"></i>
 						<span>Usuários</span></a>
                 </li>
 
                 <li *ngIf="userLogged.isAdmin" class="submenu">
-                    <a href="javascript:void(0)"><i class="fe fe-document"></i> <span> Veterinários</span> <span
+                    <a href="javascript:void(0)"><i class="fas fa-user-md"></i> <span> Veterinários</span> <span
 							class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li [class.active]="page === 'veterinario'"><a (click)="change('veterinario')" [routerLink]="'/admin/list-veterinario'">Manter</a></li>
@@ -171,7 +171,7 @@
                 </li>
 
                 <li *ngIf="userLogged.isAdmin" class="submenu">
-                    <a href="javascript:void(0)"><i class="fe fe-document"></i> <span> Clínicas</span> <span
+                    <a href="javascript:void(0)"><i class="fas fa-clinic-medical" style="font-size: 20px;"></i> <span> Clínicas</span> <span
 							class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li [class.active]="page === 'clinica'"><a (click)="change('clinica')" [routerLink]="'/admin/list-estabelecimento'">Manter</a></li>
@@ -179,7 +179,7 @@
                 </li>
 
                 <li *ngIf="userLogged.isAdmin" class="submenu">
-                    <a href="javascript:void(0)"><i class="fe fe-document"></i> <span> Adestradores</span> <span
+                    <a href="javascript:void(0)"><i class="fas fa-diagnoses" style="font-size: 20px;"></i> <span> Adestradores</span> <span
 							class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li [class.active]="page === 'adestrador'"><a (click)="change('adestrador')" [routerLink]="'/admin/list-adestrador'">Manter</a></li>
@@ -187,7 +187,7 @@
                 </li>
 
                 <li *ngIf="userLogged.isAdmin" class="submenu">
-                    <a href="javascript:void(0)"><i class="fe fe-document"></i> <span> Esteticistas</span> <span
+                    <a href="javascript:void(0)"><i class="fas fa-dog" style="font-size: 22px;"></i> <span> Esteticistas</span> <span
 							class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li [class.active]="page === 'estetica'"><a (click)="change('estetica')" [routerLink]="'/admin/list-estetica'">Manter</a></li>
