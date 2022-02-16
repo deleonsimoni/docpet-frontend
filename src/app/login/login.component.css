@@ -4,7 +4,26 @@
 }
 .content {
 	padding-bottom: 50px;
+	min-height: 200px;
+  background-size: 130%;
+  background-image: url("http://www.gugaweigert.com.br/vetzcoImagens/VetzCo-01.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-bottom: 30px;
 }
+@media (min-width: 320px) and (max-width: 800px) {
+	.content {
+	  background-size: 100%;
+	  background-image: url(http://www.gugaweigert.com.br/vetzcoImagens/VetzCo-01.jpg);
+	  background-position: top;
+	  background-repeat: no-repeat;
+	  padding-bottom: 30px;
+	}
+	.login-right {
+		margin: 130px 15px;
+		padding: 15px;
+	  }
+   }
 .form-focus .focus-label {
     font-size: 13px; 
 }

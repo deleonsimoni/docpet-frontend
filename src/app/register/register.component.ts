@@ -14,11 +14,13 @@ export class RegisterComponent implements OnInit {
   name = '';
   mobile = '';
   password = '';
-  isPatient: boolean = true;
+  passwordconfirm = '';
+  role = 0;
+  isPatient: boolean = false;
   doctors: any = [];
   patients: any = [];
-  reg_type = 'Patient Register';
-  doc_patient = 'Are you a Doctor?';
+  reg_type = 'Cadastro de Profissional';
+  doc_patient = 'É um Pet?';
   constructor(
     private toastr: ToastrService,
     public commonService: CommonServiceService,
@@ -31,20 +33,20 @@ export class RegisterComponent implements OnInit {
   }
 
   changeRegType() {
-    if (this.reg_type === 'Doctor Register') {
-      this.reg_type = 'Patient Register';
-      this.doc_patient = 'Are you a Doctor?';
-      this.isPatient = true;
-    } else {
-      this.reg_type = 'Doctor Register';
-      this.doc_patient = 'Not a Doctor?';
+    if (this.reg_type === 'Cadastro de Profissional') {
+      this.reg_type = 'Cadastro de Pet';
+      this.doc_patient = 'É um profissional?';
       this.isPatient = false;
+    } else {
+      this.reg_type = 'Cadastro de Profissional';
+      this.doc_patient = 'É um Pet?';
+      this.isPatient = true;
     }
   }
 
   signup() {
     if (this.name === '' || this.mobile === '' || this.password === '') {
-      this.toastr.error('', 'Please enter mandatory field!');
+      this.toastr.error('', 'Preencha este campo que é obrigatorio!');
     } else {
       if (!this.isPatient) {
         let params = {

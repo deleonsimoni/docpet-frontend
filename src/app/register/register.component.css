@@ -1,7 +1,17 @@
 .required {
-	color : red;
-	padding-left: 3px;
+    color : red;
+    padding-left: 3px;
 }
 .content {
-	padding-bottom: 50px;
+    min-height: 200px;
+    background-size: 100%;
+    background-image: url("http://www.gugaweigert.com.br/vetzcoImagens/VetzCo-02.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-bottom: 30px;
+    
+}
+body {
+    background-color: transparent;
+    
 }

@@ -8,7 +8,7 @@
 							<div class="account-content">
 								<div class="row align-items-center justify-content-center">
 									<div class="col-md-7 col-lg-6 login-left">
-										<img src="assets/img/login-banner.png" class="img-fluid" alt="Doccure Register">	
+											
 									</div>
 									<div class="col-md-12 col-lg-6 login-right">
 										<div class="login-header">
@@ -19,23 +19,53 @@
 										<form>
 											<div class="form-group form-focus">
 												<input type="text" name="name"  class="form-control floating" [(ngModel)]="name">
-												<label class="focus-label">Name<span class="required">*</span></label>
+												<label class="focus-label">Nome<span class="required">*</span></label>
 											</div>
 
 											<div class="form-group form-focus">
 												<input type="text" name="mobile"  class="form-control floating" [(ngModel)]="mobile" max="9">
-												<label class="focus-label">Mobile Number<span class="required">*</span></label>
+												<label class="focus-label">Celular<span class="required">*</span></label>
 											</div>
 
 											<div class="form-group form-focus">
 												<input type="password" name="password" class="form-control floating"  [(ngModel)]="password">
-												<label class="focus-label">Create Password<span class="required">*</span></label>
+												<label class="focus-label">Criar Password<span class="required">*</span></label>
+											</div>
+											<div class="form-group form-focus">
+												<input type="passwordconfirm" name="passwordconfirm" class="form-control floating"  [(ngModel)]="passwordconfirm">
+												<label class="focus-label">Confirmar Password<span class="required">*</span></label>
+											</div>
+											<div class="form-group form-focus">
+												<label>Profissional:<span class="text-danger">*</span></label><br />
+												<div class="row col-md-12">
+													<div class="col-md-6">
+														<input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role"
+														[value]="0">
+														Tutor de Pet <br />
+														<input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role"
+														[value]="1">
+														Veterinário<br />
+														<input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role"
+														[value]="2">
+														Cliníca
+													</div>
+
+													<div class="col-md-6">
+														<input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role"
+														[value]="3">
+														Adestrador <br />
+														<input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role"
+														[value]="4">
+														Estética<br />
+													</div>
+												</div>
+
 											</div>
 											<div class="text-right">
-												<a class="forgot-link" [routerLink]="'/login-page'">Already have an account?</a>
+												<a class="forgot-link" [routerLink]="'/login'">Já tem uma conta?</a>
 											</div>
-											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" (click)="signup()">Signup</button>
-											<div class="login-or">
+											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" (click)="signup()">Enviar</button>
+											<!--<div class="login-or">
 												<span class="or-line"></span>
 												<span class="span-or">or</span>
 											</div>
@@ -46,7 +76,7 @@
 												<div class="col-6">
 													<a href="javascript:void(0)" class="btn btn-google btn-block"><i class="fab fa-google mr-1"></i> Login</a>
 												</div>
-											</div>
+											</div>-->
 										</form>
 										<!-- /Register Form -->
 										
