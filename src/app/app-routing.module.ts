@@ -57,7 +57,16 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule),
   },
-
+  {
+    path: 'blog',
+    loadChildren: () =>
+    import('./blog-grid/blog-grid.module').then((m) => m.BlogGridModule),
+  },
+  {
+    path: 'blog-details',
+    loadChildren: () =>
+    import('./blog-details/blog-details.module').then((m) => m.BlogDetailsModule),
+  },
   {
     path: 'planos',
     loadChildren: () => import('./plan/plan.module').then((m) => m.PlanModule),
