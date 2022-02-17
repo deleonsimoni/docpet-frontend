@@ -8,6 +8,7 @@ import { EspecialidadeService } from '../services/especialidades.service';
 import { EstabelecimentoService } from '../services/estabelecimento.service';
 import { UserService } from '../services/user.service';
 import { VeterinarioService } from '../services/veterinario.service';
+import { Globals } from '../global';
 
 @Component({
   selector: 'app-form-contato',
@@ -35,6 +36,7 @@ export class FormContatoComponent implements OnInit {
   isVeterinario: Boolean;
   veterinarios: FormArray;
   isLoading = false;
+  pathImage;
 
   listaAnos = [];
   meses = [{ id: 1, mes: 'Janeiro', abreviado: 'Jan' },
@@ -60,11 +62,14 @@ export class FormContatoComponent implements OnInit {
     private veterinarioService: VeterinarioService,
     private toastr: ToastrService,
     private userService: UserService,
+    
 
   ) { }
 
   ngOnInit(): void {
     var ano = new Date().getFullYear();
+    this.pathImage = 'http://www.gugaweigert.com.br/vetzcoImagens/';
+    console.log("path:"+this.pathImage);
     var anos=[];
     anos.push(ano);
     for (var i = 1; i < 40; i++) {

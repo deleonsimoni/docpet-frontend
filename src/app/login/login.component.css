@@ -19,13 +19,13 @@
 @media (min-width: 320px) and (max-width: 800px) {
 	.content {
 	  background-size: 100%;
-	  background-image: url(http://www.gugaweigert.com.br/vetzcoImagens/VetzCo-01.jpg);
+	  background-image: url(http://www.gugaweigert.com.br/vetzcoImagens/img-transparente.png);
 	  background-position: top;
 	  background-repeat: no-repeat;
 	  padding-bottom: 30px;
 	}
 	.login-right {
-		margin: 250px 15px 15px 15px;
+		margin: 15px 15px 15px 15px;
 		padding: 15px;
 	  }
    }

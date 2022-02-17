@@ -66,6 +66,7 @@ export class SearchDoctorComponent implements OnInit {
     this.veterinarioService.getByNoEspecialidadeMunicipio(especialidade, municipio).subscribe(
       (res) => {
         this.doctors = res;
+        console.log(this.doctors);
         this.specialitiesDoctors = this.doctors[0].especialidades;
         this.getNomeEspecialidade(this.specialitiesDoctors);
         if(this.doctors.length > 0){
@@ -130,7 +131,13 @@ export class SearchDoctorComponent implements OnInit {
       }
     })
   }
+  formataUrldados(nome,especialidade, municipio){
+    if(nome && especialidade && municipio){
+      return (nome.trim().split(' ').join('-')+"/"+especialidade.normalize('NFD').replace(/[\u0300-\u036f]/g, "").trim().split(' ').join('-')+"/"+municipio.trim().split(' ').join('-')).toLowerCase();
+    }
 
+    return "";
+  }
   bookAppointment(id) {
     // if((localStorage.getItem('auth') === 'true') && (localStorage.getItem('patient') === 'true')) {
     this.router.navigateByUrl('/patients/booking?id=' + id);

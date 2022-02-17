@@ -32,26 +32,26 @@
                             <!-- Register Form -->
                             <form [formGroup]="form">
                                 <div class="row form-row">
-                                    <div class="col-md-4">
-                                        <div class="row form-row">
-                                            <div class="row form-row">
+                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                        <!--<div class="row form-row">-->
+                                            <!--<div class="row form-row">-->
 
-                                                <div class="col-md-12 ">
+                                                <!--<div class="col-md-12 ">-->
                                                     <label class="hoverable" for="fileInput">
-                                  <img class="img-avatar" [src]="url ? url : 'http://www.gugaweigert.com.br/vetzcoImagens/digital-camera-5771.png'">
+                                  <img class="img-avatar" [src]="url ? url : pathImage+'digital-camera-5771.png'">
                                   <div class="hover-text">Escolha sua Foto</div>
                                   <div class="background"></div>
                                 </label>
-                                                    <br />
+                                                    
                                                     <input id="fileInput" type='file' (change)="onFileChanged($event)">
                                                     <button *ngIf="url" (click)="delete()">Excluir foto</button>
-                                                </div>
+                                                <!--</div>-->
 
-                                            </div>
-                                        </div>
+                                            <!--</div>-->
+                                        <!--</div>-->
 
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-9">
                                         <div class="row form-row">
                                             <div class="col-md-12">
                                                 <div class="form-group form-focus">
@@ -132,6 +132,7 @@
                                     </div>
                                 </div>
                                 <div class="row form-row">
+                                    
                                     <div class="col-md-6">
                                         <div class="form-group form-focus">
                                             <label>Senha<span class="text-danger">*</span></label>

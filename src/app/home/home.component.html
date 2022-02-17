@@ -209,7 +209,7 @@
                             <div ngxSlickItem>
                                 <div class="profile-widget" style="width: 100%; display: inline-block;">
                                     <div class="doc-img">
-                                        <a [routerLink]="'/doctor/'+formatarParamUrl(doctor.nome)" tabindex="-1">
+                                        <a [routerLink]="'/doctor/'+formataUrldados(doctor.nome,doctor.especialidades[0]?.nome,doctor.endereco.municipio)" tabindex="-1">
                                             <img class="img-fluid" alt="Imagem" [src]="getImageDoctor(doctor)">
                                         </a>
                                         <a href="javascript:void(0)" class="fav-btn" tabindex="-1">
@@ -218,7 +218,7 @@
                                     </div>
                                     <div class="pro-content">
                                         <h3 class="title" style="height:60px;">
-                                            <a [routerLink]="'/doctor/'+formatarParamUrl(doctor.nome)" tabindex="-1" style="color:#000000">{{doctor.nome}}</a>
+                                            <a [routerLink]="'/doctor/'+formataUrldados(doctor.nome,doctor.especialidades[0]?.nome,doctor.endereco.municipio)" tabindex="-1" style="color:#000000">{{doctor.nome}}</a>
                                             <i class="fas fa-check-circle verified"></i>
                                         </h3>
                                         <ul style="height:40px;">
@@ -245,7 +245,7 @@
                                         </ul>
                                         <div class="row row-sm">
                                             <div class="col-6">
-                                                <a [routerLink]="'/doctor/'+formatarParamUrl(doctor.nome)"  class="btn view-btn" tabindex="-1">Veja</a>
+                                                <a [routerLink]="'/doctor/'+formataUrldados(doctor.nome,doctor.especialidades[0]?.nome,doctor.endereco.municipio)"  class="btn view-btn" tabindex="-1">Veja</a>
                                             </div>
                                             <div class="col-6">
                                                 <!--<a [routerLink]="'/patients/booking'" [queryParams]="{id: doctor.id}" class="btn book-btn" tabindex="-1">Agendar</a>-->

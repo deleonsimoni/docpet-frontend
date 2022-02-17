@@ -10,6 +10,7 @@ export class Globals{
     public KEYWORDS_META = 'value6';
     public DOCTOR_NAME = 'value7';
     public URL_FORMATADA = 'value8';
+    public path_image = 'http://www.gugaweigert.com.br/vetzcoImagens/';
     
     
 }

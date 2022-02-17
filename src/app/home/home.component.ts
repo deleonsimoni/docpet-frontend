@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   public especialidadesTotal: any[];
 
   public totalListaEspecialidade : any[];
-  public showTotalEspecialidade = 6; 
+  public showTotalEspecialidade = 3; 
 
   public places: any[];
 
@@ -457,6 +457,13 @@ export class HomeComponent implements OnInit {
   formataUrlEspec(especialidade, municipio){
     if(especialidade && municipio){
       return (especialidade.normalize('NFD').replace(/[\u0300-\u036f]/g, "").trim().split(' ').join('-')+"/"+municipio.trim().split(' ').join('-')).toLowerCase();
+    }
+
+    return "";
+  }
+  formataUrldados(nome,especialidade, municipio){
+    if(nome && especialidade && municipio){
+      return (nome.trim().split(' ').join('-')+"/"+especialidade.normalize('NFD').replace(/[\u0300-\u036f]/g, "").trim().split(' ').join('-')+"/"+municipio.trim().split(' ').join('-')).toLowerCase();
     }
 
     return "";

@@ -60,7 +60,7 @@
 									<div class="doctor-widget">
 										<div class="doc-info-left">
 											<div class="doctor-img">
-												<a [routerLink]="'/doctor/'+doctor.nome">
+												<a [routerLink]="'/doctor/'+formataUrldados(doctor.nome,doctor.especialidades[0]?.nome,doctor.endereco.municipio)">
 													<!--<img [src]="doctor.profile" class="img-fluid" alt="User Image"> -->
                           <img
 						  [src]="doctor.img ? doctor.img : 'assets/img/doctors/veterinaria.png'"
@@ -110,7 +110,7 @@
 												</ul>
 											</div>
 											<div class="clinic-booking">
-												<a class="view-pro-btn" style="cursor: pointer;" [routerLink]="'/doctor/'+doctor.nome">Perfil</a>
+												<a class="view-pro-btn" style="cursor: pointer;" [routerLink]="'/doctor/'+formataUrldados(doctor.nome,doctor.especialidades[0]?.nome,doctor.endereco.municipio)">Perfil</a>
 												<!--<a class="apt-btn" style="cursor: pointer;" (click)="bookAppointment(doctor.id)">Book Appointment</a> -->
 											</div>
 										</div>
