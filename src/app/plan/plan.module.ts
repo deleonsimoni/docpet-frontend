@@ -4,14 +4,15 @@ import { FormsModule } from '@angular/forms';
 
 import { LoginRoutingModule } from './plan-routing.module';
 import { PlanComponent } from './plan.component';
-
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
   declarations: [PlanComponent],
   imports: [
     CommonModule,
     FormsModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    SlickCarouselModule
   ]
 })
 export class PlanModule { }

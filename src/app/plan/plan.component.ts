@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CommonServiceService } from '../common-service.service';
 
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../services/user.service';
+import { SlickCarouselComponent } from 'ngx-slick-carousel';
 
 @Component({
   selector: 'app-plan',
@@ -12,6 +13,8 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./plan.component.css'],
 })
 export class PlanComponent implements OnInit {
+  @ViewChild('slickModal1') slickModal1: SlickCarouselComponent;
+  @ViewChild('slickModal2') slickModal2: SlickCarouselComponent;
   isPatient: boolean = false;
   doctors: any = [];
   patients: any = [];
@@ -84,5 +87,18 @@ export class PlanComponent implements OnInit {
 
   }
 
+  next() {
+    this.slickModal1.slickNext();
+  }
+
+  prev() {
+    this.slickModal1.slickPrev();
+  }
+  slideConfigure = {
+    dots: false,
+    autoplay: false,
+    infinite: true,
+    variableWidth: true,
+  };
   
 }
