@@ -199,7 +199,7 @@
                 <div class="about-content">
                     <p>Nossos profissionais no Brasil todo vem atendendo seu Pets com muito carinho e sucesso.</p>
                     <p>Aqui você pode encontrar atendimento para seus animais em diversas especialidades desde consulta veterinária a atividades de adestramento, estética e e pets shop</p>
-                    <a href="javascript:;">Saiba mais..</a>
+                    <!--<a href="javascript:;">Saiba mais..</a>-->
                 </div>
             </div>
             <div class="col-lg-8">
@@ -245,10 +245,10 @@
                                         </ul>
                                         <div class="row row-sm">
                                             <div class="col-6">
-                                                <a [routerLink]="'/patients/doctor-profile'" [queryParams]="{id: doctor.id}" class="btn view-btn" tabindex="-1">Veja</a>
+                                                <a [routerLink]="'/doctor/'+formatarParamUrl(doctor.nome)"  class="btn view-btn" tabindex="-1">Veja</a>
                                             </div>
                                             <div class="col-6">
-                                                <a [routerLink]="'/patients/booking'" [queryParams]="{id: doctor.id}" class="btn book-btn" tabindex="-1">Agendar</a>
+                                                <!--<a [routerLink]="'/patients/booking'" [queryParams]="{id: doctor.id}" class="btn book-btn" tabindex="-1">Agendar</a>-->
                                             </div>
                                         </div>
                                     </div>
