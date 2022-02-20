@@ -1,13 +1,36 @@
 .required {
-	color : red;
-	padding-left: 3px;
+    color: red;
+    padding-left: 3px;
 }
-.content {
-	padding-bottom: 50px;
+
+.section-plan {
+    background-color: #f8f9fb;
+    padding: 80px 0;
 }
-.form-focus .focus-label {
-    font-size: 13px; 
+
+.dog-caramelo {
+    margin-left: auto;
+    -ms-flex: 0 0 205px;
+    flex: 0 0 205px;
+    min-width: 325px;
 }
-.form-control {
-    font-size: 14px !important;
+
+.section-plan .profile-widget {
+    box-shadow: 2px 2px 13px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0;
+    height: 500px;
+    width: 350px !important;
+    text-align: center;
+}
+
+.footer-slick {
+    position: absolute;
+    width: 92%;
+    height: 15%;
+    bottom: 0;
+    margin-bottom: 5px;
+}
+
+body {
+    background-color: transparent;
 }

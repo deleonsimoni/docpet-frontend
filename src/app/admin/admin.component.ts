@@ -57,12 +57,13 @@ export class AdminComponent implements OnInit {
     this.commonService.nextmessage('admin');
     let scope = this;
     setTimeout(() => {
+
       if(this.user.isAdmin){
         scope.Router.navigateByUrl('/admin/dashboard-admin');
       }else if(this.user.role == 1){
         scope.Router.navigateByUrl('/admin/dashboard');
       }else if(this.user.role == 2){
-        scope.Router.navigateByUrl('/admin/dashboard-estab');
+        scope.Router.navigateByUrl('/admin/dashboard-clinica');
       }else if(this.user.role == 3){
         scope.Router.navigateByUrl('/admin/dashboard-adestrador');
       }else if(this.user.role == 4){

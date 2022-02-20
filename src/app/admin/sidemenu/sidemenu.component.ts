@@ -9,6 +9,8 @@ import { UserService } from 'src/app/services/user.service';
 import { Veterinario } from 'src/app/models/veterinario';
 import { AdestradorService } from 'src/app/services/adestrador.service';
 import { EsteticaService } from 'src/app/services/estetica.service';
+import { EstabelecimentoService } from 'src/app/services/estabelecimento.service';
+import { Estabelecimento } from 'src/app/models/estabelecimento';
 @Component({
   selector: 'app-sidemenu',
   templateUrl: './sidemenu.component.html',
@@ -21,6 +23,7 @@ export class SidemenuComponent implements OnInit {
   public userCollapsed = true;
   userLogged;
   veterinario;
+  estabelecimento;
   userRole;
 
   constructor(
@@ -30,7 +33,8 @@ export class SidemenuComponent implements OnInit {
     private userService: UserService,
     private veterinarioService: VeterinarioService,
     private adestradorService: AdestradorService,
-    private esteticaService: EsteticaService
+    private esteticaService: EsteticaService,
+    private estabelecimentoService: EstabelecimentoService
 
   ) {}
 
@@ -45,10 +49,16 @@ export class SidemenuComponent implements OnInit {
     } else if (this.userLogged.role == 0){
       this.userService.logout();
       window.location.href = '/home';
+      
     } else if(this.userLogged.role == 1){
       this.getVeterinario(this.userLogged.id);
+
+    } else if(this.userLogged.role == 2){
+      this.getEstabelecimento(this.userLogged.id);
+
     } else if(this.userLogged.role == 3){
       this.getAdestrador(this.userLogged.id);
+
     } else if(this.userLogged.role == 4){
       this.getEstetica(this.userLogged.id);
     }
@@ -71,6 +81,12 @@ export class SidemenuComponent implements OnInit {
 
       this.veterinario = vet as Veterinario;
 
+    })
+  }
+
+  getEstabelecimento(idUser){
+    this.estabelecimentoService.getByUser(idUser).subscribe(obj =>{
+        this.estabelecimento = obj as Estabelecimento;
     })
   }
 

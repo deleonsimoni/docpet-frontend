@@ -125,6 +125,7 @@
                         <h6>{{userLogged.login}}</h6>
                         <p *ngIf="userLogged.isAdmin" class="text-muted mb-0">Administrator</p>
                         <p *ngIf="userLogged.role == 1" class="text-muted mb-0">Veterinário</p>
+                        <p *ngIf="userLogged.role == 2" class="text-muted mb-0">Clínica</p>
 
                     </div>
                 </div>
@@ -234,6 +235,13 @@
                     <span>Veterinário</span>
                 </li>
                 <li *ngIf="userLogged.role == 1" [routerLink]="['/admin/cadastro-veterinario/',veterinario?._id]" [class.active]="page === 'Dashboard'">
+                    <a (click)="change('Dashboard')"><i class="fe fe-home" style="color: #fff"></i>
+						<span style="color: #fff">Perfil</span></a>
+                </li>
+                <li *ngIf="userLogged.role == 2" class="menu-title">
+                    <span>Clínica</span>
+                </li>
+                <li *ngIf="userLogged.role == 2" [routerLink]="['/admin/cadastro-estabelecimento/',estabelecimento?._id]" [class.active]="page === 'Dashboard'">
                     <a (click)="change('Dashboard')"><i class="fe fe-home" style="color: #fff"></i>
 						<span style="color: #fff">Perfil</span></a>
                 </li>

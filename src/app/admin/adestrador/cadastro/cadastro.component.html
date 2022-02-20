@@ -447,6 +447,8 @@
                     <div class="row form-row">
                         <div class="submit-section submit-btn-bottom">
                             <button type="submit" [class]="adestradorForm.invalid ? 'btn submit-btn btn-light' : 'btn submit-btn btn-primary'">Salvar</button>
+                            <button type="submit" *ngIf="userLogged.isAdmin" [routerLink]="'/admin/dashboard-admin/'" class="btn btn-success submit-btn">Voltar</button>
+                            <button type="submit" *ngIf="!userLogged.isAdmin" [routerLink]="'/admin/dashboard-adestrador'" class="btn btn-success submit-btn">Voltar</button>
                         </div>
                     </div>
                 </div>

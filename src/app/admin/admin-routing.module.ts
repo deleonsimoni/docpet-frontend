@@ -19,6 +19,12 @@ const routes: Routes = [
           import('./dashboard-admin/dashboard-admin.module').then((m) => m.DashboardAdminModule),
       },
       {
+        path: 'dashboard-clinica',
+        loadChildren: () =>
+          import('./estabelecimento/dashboard/dashboard.module').then((m) => m.DashboardModule),
+      },
+      
+      {
         path: 'list-user',
         loadChildren: () =>
           import('./dashboard-admin/dashboard-admin.module').then((m) => m.DashboardAdminModule),

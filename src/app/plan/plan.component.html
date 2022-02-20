@@ -1,19 +1,101 @@
-<!-- Page Content -->
-<div class="content">
+<section class="section section-plan">
     <div class="container-fluid">
+        <div class="row align-items-center pb-3">
+            <div class="col-md-4 col-12 d-md-block d-none custom-short-by">
+                <h3 class="title pharmacy-title">Nossos Planos</h3>
+                <span class="sort-title">Descrição da página ....</span>
+            </div>
+            <div class="col-md-8 col-12 d-md-block d-none custom-short-by">
+                <div class="sort-by pb-3">
+                    <span class="sort-title">Anual/Mensal</span>
+                    <span class="sortby-fliter">
+					<select class="select">
+						<option>Select</option>
+						<option class="sorting">Rating</option>
+						<option class="sorting">Popular</option>
+						<option class="sorting">Latest</option>
+						<option class="sorting">Free</option>
+					</select>
+				</span>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="features-slider slider">
+                            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfigure">
+                                <div class="slick-slide">
+                                    <div ngxSlickItem>
+                                        <div class="profile-widget" style="width: 100%; display: inline-block;">
+                                            <div>
+                                                <h3 style="font-size: 32px;
+											color: #32b7bc;
+											font-weight: 700;
+											margin-bottom: 20px;  font-style: italic;">BÁSICO</h3>
+                                                <!-- <a [routerLink]="'/doctor/'+formatarParamUrl(doctor.nome)" tabindex="-1">
+												<img class="img-fluid" alt="Imagem" [src]="getImageDoctor(doctor)"> 
+                                                </a>-->
+                                                <a href="javascript:void(0)" class="fav-btn" tabindex="-1">
+                                                    <i class="far fa-bookmark"></i>
+                                                </a>
+                                                <h3 class="title">
+                                                    <a tabindex="-1" style="color: #000000;font-size: 70px;">grátis</a>
+                                                </h3>
+                                            </div>
+                                            <div class="body-slick">
+                                                <ul>
+                                                    <li class="speciality"> <i class="fas fa-check-circle verified"></i> caracteristicas 1</li>
+                                                    <li class="speciality"> <i class="fas fa-check-circle verified"></i> caracteristicas 2</li>
+                                                    <li class="speciality"> <i class="fas fa-check-circle verified"></i> caracteristicas 3</li>
+                                                </ul>
+                                            </div>
+                                            <div class="footer-slick">
+                                                <div class="row d-flex justify-content-center">
+                                                    <div class="col-6">
+                                                        <a class="btn view-btn" tabindex="-1">Começar agora</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-        <div class="row">
-            <div class="col-md-12 col-lg-12 col-xl-12">
-
-                <div class="row align-items-center pb-3">
-                    <div class="col-md-4 col-12 d-md-block d-none custom-short-by">
-                        <h3 class="title pharmacy-title">Nossos Planos</h3>
-                        <span class="sort-title">Descrição da página ....</span>
+                            </ngx-slick-carousel>
+                            <!-- <div class="text-center client-navbtn">
+									<button class="btn-next" (click)="nextslide()"><i
+											class="las la-caret-square-left"></i></button>
+									<button class="btn-prev" (click)="prevslide()"><i
+											class="las la-caret-square-right"></i></button>
+								</div> -->
+                        </div>
                     </div>
-                    <div class="col-md-8 col-12 d-md-block d-none custom-short-by">
-                        <div class="sort-by pb-3">
-                            <span class="sort-title">Anual/Mensal</span>
-                            <span class="sortby-fliter">
+                </div>
+            </div>
+            <!-- <div class="col-md-7 col-lg-6 dog-caramelo">
+                <img src="/assets/img/plan/dog-caramelo.jpg" class="img-fluid" alt="Login Banner">
+            </div> -->
+        </div>
+    </div>
+</section>
+
+<!-- Planos
+<section class="section section-doctor">
+    <div class="content-plano">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-xl-12">
+
+                    <div class="row align-items-center pb-3">
+                        <div class="col-md-4 col-12 d-md-block d-none custom-short-by">
+                            <h3 class="title pharmacy-title">Nossos Planos</h3>
+                            <span class="sort-title">Descrição da página ....</span>
+                        </div>
+                        <div class="col-md-8 col-12 d-md-block d-none custom-short-by">
+                            <div class="sort-by pb-3">
+                                <span class="sort-title">Anual/Mensal</span>
+                                <span class="sortby-fliter">
                                 <select class="select">
                                     <option>Select</option>
                                     <option class="sorting">Rating</option>
@@ -22,70 +104,75 @@
                                     <option class="sorting">Free</option>
                                 </select>
                             </span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="container-fluid">
-                    <div class="row">
+                    <div class="container-fluid">
+                        <div class="row">
 
-                        <div class="col-lg-8">
-                            <div class="doctor-slider">
-                                <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfigure">
-                                    <div class="slick-slide">
-                                        <div ngxSlickItem>
-                                            <div class="profile-widget" style="width: 100%; display: inline-block;">
-                                                <div>
-                                                    <h3 style="font-size: 28px;
+                            <div class="col-lg-8">
+                                <div class="doctor-slider">
+                                    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfigure">
+                                        <div class="slick-slide">
+                                            <div ngxSlickItem>
+                                                <div class="profile-widget" style="width: 100%; display: inline-block;">
+                                                    <div>
+                                                        <h3 style="font-size: 28px;
 													color: #32b7bc;
 													font-weight: 700;
 													margin-bottom: 20px;  font-style: italic;">Básico</h3>
-                                                    <!--<a [routerLink]="'/doctor/'+formatarParamUrl(doctor.nome)" tabindex="-1">
+                                                       <a [routerLink]="'/doctor/'+formatarParamUrl(doctor.nome)" tabindex="-1">
                                                         <img class="img-fluid" alt="Imagem" [src]="getImageDoctor(doctor)">
-                                                    </a> -->
-                                                    <a href="javascript:void(0)" class="fav-btn" tabindex="-1">
-                                                        <i class="far fa-bookmark"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="pro-content">
-                                                    <h3 class="title" style="height:60px;">
-                                                        <!--<a [routerLink]="'/doctor/'+formatarParamUrl(doctor.nome)" tabindex="-1" style="color:#000000">{{doctor.nome}}</a> -->
-                                                        grátis
-                                                    </h3>
-                                                    <ul style="height:40px;">
-                                                        <li class="speciality"> <i class="fas fa-check-circle verified"></i> caracteristicas 1</li>
-                                                        <li class="speciality"> <i class="fas fa-check-circle verified"></i> caracteristicas 2</li>
-                                                        <li class="speciality"> <i class="fas fa-check-circle verified"></i> caracteristicas 3</li>
-                                                    </ul>
-                                                    <ul class="available-info">
-                                                        <li>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="row row-sm">
-                                                        <div class="col-6">
-                                                            <a class="btn view-btn" tabindex="-1">Começar agora</a>
+                                                    </a> 
+                                                        <a href="javascript:void(0)" class="fav-btn" tabindex="-1">
+                                                            <i class="far fa-bookmark"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="pro-content">
+                                                        <h3 class="title" style="height:60px;">
+                                                           <a [routerLink]="'/doctor/'+formatarParamUrl(doctor.nome)" tabindex="-1" style="color:#000000">{{doctor.nome}}</a>
+                                                            grátis
+                                                        </h3>
+                                                        <ul style="height:40px;">
+                                                            <li class="speciality"> <i class="fas fa-check-circle verified"></i> caracteristicas 1</li>
+                                                            <li class="speciality"> <i class="fas fa-check-circle verified"></i> caracteristicas 2</li>
+                                                            <li class="speciality"> <i class="fas fa-check-circle verified"></i> caracteristicas 3</li>
+                                                        </ul>
+                                                        <ul class="available-info">
+                                                            <li>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="row row-sm">
+                                                            <div class="col-6">
+                                                                <a class="btn view-btn" tabindex="-1">Começar agora</a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+                                    </ngx-slick-carousel>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="section-plan-right">
+
+                                    <div class="section-">
+                                        <p></p>
                                     </div>
+                                    <div class="about-content">
 
-                                </ngx-slick-carousel>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="section-header ">
-                                <h2 style="color:#0071DC;">Foto do dog</h2>
-                                <p></p>
-                            </div>
-                            <div class="about-content">
-
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+
+</section> -->

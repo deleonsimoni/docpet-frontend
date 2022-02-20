@@ -286,7 +286,7 @@
                         <div class="submit-section submit-btn-bottom">
                             <button type="submit" [class]="estabelecimentoForm.invalid ? 'btn submit-btn btn-light' : 'btn submit-btn btn-primary'">Salvar</button>
                             <button type="submit" *ngIf="userLogged.isAdmin" [routerLink]="'/admin/dashboard-admin/'" class="btn btn-success submit-btn">Voltar</button>
-                            <button type="submit" *ngIf="!userLogged.isAdmin" [routerLink]="'/admin/dashboard'" class="btn btn-success submit-btn">Voltar</button>
+                            <button type="submit" *ngIf="!userLogged.isAdmin" [routerLink]="'/admin/dashboard-clinica'" class="btn btn-success submit-btn">Voltar</button>
                         </div>
                     </div>
                 </div>

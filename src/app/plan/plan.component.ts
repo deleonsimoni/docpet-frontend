@@ -86,7 +86,58 @@ export class PlanComponent implements OnInit {
     );
 
   }
-
+ //// next step 2
+ sliderContent = [
+  {
+    img: 'assets/img/features/feature-01.jpg',
+    msg:
+      '"Lorem Ipsum is simply dummy text of the printing and typesetting industry."',
+    name: 'Patient Ward',
+    position: 'CEO of VoidCoders',
+  },
+  {
+    img: 'assets/img/features/feature-02.jpg',
+    msg:
+      '"Lorem Ipsum is simply dummy text of the printing and typesetting industry."',
+    name: 'Test Room',
+    position: 'CEO of VoidCoders',
+  },
+  {
+    img: 'assets/img/features/feature-03.jpg',
+    msg:
+      '"Lorem Ipsum is simply dummy text of the printing and typesetting industry."',
+    name: 'ICU',
+    position: 'CEO of VoidCoders',
+  },
+  {
+    img: 'assets/img/features/feature-04.jpg',
+    msg:
+      '"Lorem Ipsum is simply dummy text of the printing and typesetting industry."',
+    name: 'Laboratory',
+    position: 'CEO of VoidCoders',
+  },
+  {
+    img: 'assets/img/features/feature-05.jpg',
+    msg:
+      '"Lorem Ipsum is simply dummy text of the printing and typesetting industry."',
+    name: 'Operation',
+    position: 'CEO of VoidCoders',
+  },
+  {
+    img: 'assets/img/features/feature-06.jpg',
+    msg:
+      '"Lorem Ipsum is simply dummy text of the printing and typesetting industry."',
+    name: 'Medical',
+    position: 'CEO of VoidCoders',
+  },
+  {
+    img: 'assets/img/features/feature-05.jpg',
+    msg:
+      '"Lorem Ipsum is simply dummy text of the printing and typesetting industry."',
+    name: 'Patient Ward',
+    position: 'CEO of VoidCoders',
+  },
+];
   next() {
     this.slickModal1.slickNext();
   }
