@@ -63,6 +63,11 @@ const routes: Routes = [
     import('./blog-grid/blog-grid.module').then((m) => m.BlogGridModule),
   },
   {
+    path: 'blog/:especialidade',
+    loadChildren: () =>
+    import('./blog-grid/blog-grid.module').then((m) => m.BlogGridModule),
+  },
+  {
     path: 'blog-detalhe/:titulo',
     loadChildren: () =>
     import('./blog-details/blog-details.module').then((m) => m.BlogDetailsModule),

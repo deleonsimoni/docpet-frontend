@@ -156,7 +156,7 @@
 							<!-- Latest Posts -->
 							<div class="card post-widget">
 								<div class="card-header">
-									<h4 class="card-title">Latest Posts</h4>
+									<h4 class="card-title">Últimos Posts</h4>
 								</div>
 								<div class="card-body">
 									<ul class="latest-posts">
@@ -181,16 +181,12 @@
 							<!-- Categories -->
 							<div class="card category-widget">
 								<div class="card-header">
-									<h4 class="card-title">Blog Categories</h4>
+									<h4 class="card-title">Blogs por Especialidade</h4>
 								</div>
 								<div class="card-body">
 									<ul class="categories">
-										<li><a href="javascript:void(0)">Cardiology <span>(62)</span></a></li>
-										<li><a href="javascript:void(0)">Health Care <span>(27)</span></a></li>
-										<li><a href="javascript:void(0)">Nutritions <span>(41)</span></a></li>
-										<li><a href="javascript:void(0)">Health Tips <span>(16)</span></a></li>
-										<li><a href="javascript:void(0)">Medical Research <span>(55)</span></a></li>
-										<li><a href="javascript:void(0)">Health Treatment <span>(07)</span></a></li>
+										<li *ngFor="let categorie of categories"><a [routerLink]="'/blog/'+categorie.link_author">{{categorie.name}} <span>({{categorie.num_blog}})</span></a></li>
+										
 									</ul>
 								</div>
 							</div>
