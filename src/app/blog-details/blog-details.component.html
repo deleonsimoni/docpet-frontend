@@ -9,7 +9,7 @@
 									<li class="breadcrumb-item active" aria-current="page">Blog</li>
 								</ol>
 							</nav>
-							<h2 class="breadcrumb-title">Blog Details</h2>
+							<h1 class="breadcrumb-title">{{blogdetails.title}}</h1>
 						</div>
 					</div>
 				</div>
@@ -63,17 +63,17 @@
 								</div>
 								<div class="card author-widget clearfix">
 								<div class="card-header">
-									<h4 class="card-title">About Author</h4>
+									<h4 class="card-title">Sobre o Autor</h4>
 									</div>
 								<div class="card-body">
 									<div class="about-author">
 										<div class="about-author-img">
 											<div class="author-img-wrap">
-												<a [routerLink]="'/patients/doctor-profile'"><img class="img-fluid rounded-circle" alt="" src="assets/img/doctors/doctor-thumb-02.jpg"></a>
+												<a [routerLink]="'/doctor/{{blogdetails.link_author}}'"><img class="img-fluid rounded-circle" alt="" src="{{blogdetails.doctor_pic}}"></a>
 											</div>
 										</div>
 										<div class="author-details">
-											<a [routerLink]="'/patients/doctor-profile'" class="blog-author-name">Blog Details</a>
+											<a [routerLink]="'/doctor/{{blogdetails.link_author}}'" class="blog-author-name">Detalhes</a>
 											<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
 										</div>
 									</div>

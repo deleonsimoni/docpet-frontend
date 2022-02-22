@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class BlogDetailsComponent implements OnInit {
   id;
+  titulo;
   blogdetails: any = [];
   blogs: any = [];
   comments: any = [];
@@ -24,7 +25,7 @@ export class BlogDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.queryParams['id'];
+    this.titulo = this.route.snapshot.queryParams['titulo'];
     this.getBlogdetails();
     this.getBlogs();
     this.getComments();
@@ -32,26 +33,65 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   getBlogdetails() {
-    this.commonService.getBlogsDetails(1).subscribe((res) => {
-      this.blogdetails = res;
-    });
+    this.blogdetails = [
+      {
+        id: 1,
+        title: "Fazendo a sua visita clínica indolor?",
+        link_blog: "fazendo-a-sua-visita-clinica-indolor",
+        link_author: "gustavo-weigert/anestesiologia/rio-de-janeiro",
+        specialy: "Clínica Geral",
+        doctor_name: "Dr. Gustavo Weigert",
+        doctor_pic: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-3.jpg",
+        description: "Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.",
+        img: "http://www.gugaweigert.com.br/vetzcoImagens/imagem1.png",
+        comments:[
+          {
+            name: "Regina Weigert",
+            comment: "Achei interessante a matéria!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+            data: "2022-01-15"
+          },
+          {
+            name: "João Silva",
+            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+            data: "2022-02-15"
+          },
+          {
+            name: "Maria F Vargas",
+            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+            data: "2022-02-20"
+          }
+        ],
+        type: "",
+        createdAt: "2022-02-15"
+      }
+    ];
   }
 
   getBlogs() {
-    this.commonService.getBlogs().subscribe((result) => {
-      this.blogs = result;
-    });
+    this.blogs = [
+      {
+        id: 1,
+        title: "Fazendo a sua visita clínica indolor?",
+        link_blog: "fazendo-a-sua-visita-clinica-indolor",
+        link_author: "gustavo-weigert/anestesiologia/rio-de-janeiro",
+        specialy: "Clínica Geral",
+        doctor_name: "Dr. Ruby Perrin",
+        doctor_pic: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-3.jpg",
+        description: "Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.",
+        img: "http://www.gugaweigert.com.br/vetzcoImagens/imagem1.png",
+        createdAt: "2022-02-15"
+      }
+    ];
   }
 
   getComments() {
-    this.commonService.getComments().subscribe((result) => {
-      this.comments = result;
-    });
+    this.comments = this.blogdetails.comments;
+    
   }
 
   navigate(blog) {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigateByUrl('/blog-details?id=' + blog.id);
+      this.router.navigateByUrl('/blog-details/=' + blog.id);
     });
   }
 
