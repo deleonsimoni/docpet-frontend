@@ -2,17 +2,25 @@
 <section class="section section-features">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2 features-img">
-                
-            </div>
-            <div class="col-md-7">
-                <div class="section-header">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="col-md-2 features-img">
+                    
+                    
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 section-header ">
                     <h2 class="mt-2" style="color: #28a745;">Nossos Planos</h2>
                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                </div>
+                    
+                </div> 
+                <div class="col-lg-2 col-md-2 col-sm-12 section-switch text-right mt-2">
+                    <button type="button" class="btn btn-rounded btn-primary">Anual</button>
+                    <button type="button" class="btn btn-rounded btn-danger">Mensal</button>
+                        
                 
+                </div>       
             </div>
         </div>
+        
     </div>
 </section>
 <!-- /Availabe Features -->
@@ -41,7 +49,7 @@
                     </div>
                     
                 </div>
-                <div class="">
+                <div class="br-cao">
                     <br /><br /><br /><br />
                 </div>
             </div>
@@ -66,7 +74,7 @@
                     </div>
                     
                 </div>
-                <div class="">
+                <div class="br-cao">
                     <br /><br />
                 </div>
             </div>
@@ -82,19 +90,42 @@
     </div>
 </section>
 <!-- /Category Section -->
-<div class="content">
-	<!--<div class="container-fluid">		
-		<div class="row">
-			<div class="col-md-8 offset-md-2">
-				
-				
-					
-			</div>
-		</div>
-
-	</div>-->
-
-</div>
+<!-- O que estão falando -->
+<section class="clinic-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 sec-header">
+                <h6 style="color:#ffffff;">DEPOIMENTOS</h6>
+                <h2 style="color:#32b7bc">O que falam de nós</h2>
+                <span class="bottom-border"></span>
+            </div>
+        
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <ngx-slick-carousel class="clinic-slider slider" #slickModal="slick-carousel" [config]="depoimentosliderConfig">
+                   <div ngxSlickItem *ngFor="let slide of depoimentosliderslides" class="profile-widget">
+                        <div class="brower-box">
+                            <p class="text-left">""</p>
+                            <p class="text-left"><strong>{{slide.text}}</strong></p>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">    
+                                    <div class="col-lg-4 col-md-4 col-sm-4 post-author avatar-img">
+                                        <img class="" alt="" src="{{slide.imghover}}"/>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8 avatar-nome">
+                                        
+                                        <p style="height:40px;">{{slide.author}} </p>
+                                    <h6><span>{{slide.department}}</span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+               </ngx-slick-carousel>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /O que estão falando -->
 <!--<section class="section section-plan">
     <div class="container-fluid">
         <div class="row align-items-center pb-3">

@@ -86,6 +86,74 @@ export class PlanComponent implements OnInit {
     );
 
   }
+  
+  depoimentosliderConfig = {
+    dots: false,
+			autoplay:false,
+			infinite: true,
+			slidesToShow: 2,
+			slidesToScroll: 1,
+			rows: 1,
+			responsive: [{
+				breakpoint: 992,
+					settings: {
+						slidesToShow: 3
+				  	}
+			},
+			{
+				breakpoint: 800,
+					settings: {
+						slidesToShow: 3
+				  	}
+			},
+			{
+				breakpoint: 776,
+					settings: {
+						slidesToShow: 3
+				  	}
+			},
+			{
+				breakpoint: 567,
+					settings: {
+						slidesToShow: 1
+					}
+			}]
+  };
+  depoimentosliderslides = [
+    {
+      img: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini.jpg",
+      imghover: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini.jpg",
+      text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      author: "Gustavo Weigert",
+      department: "Anestesiologia",
+      doctors: "124"
+    },
+    {
+      img: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-4.jpg",
+      imghover: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-4.jpg",
+      text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      author: "João Shive",
+      department: "Clinica Geral",
+      doctors: "124"
+    },
+    {
+      img: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-2.jpg",
+      imghover: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-2.jpg",
+      text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      author: "Mercia Toledo",
+      department: "Cardiologia",
+      doctors: "124"
+    },
+    {
+      img: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-3.jpg",
+      imghover: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-3.jpg",
+      text: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      author: "Edson Ribon",
+      department: "Neurologia",
+      doctors: "124"
+    },
+    
+  ];
  //// next step 2
  sliderContent = [
   {
