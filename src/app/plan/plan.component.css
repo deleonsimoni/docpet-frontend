@@ -75,6 +75,11 @@
         height: 100%;
         padding: 15px;
     }
+    .brower-box .quotes {
+        display:block;
+        font-weight:bolder;
+        font-size: 60px;
+    }
     .clinic-slider .brower-box img {
         width: 50px;
          transform: rotate(0deg);
@@ -180,6 +185,11 @@
         background-color: transparent;
         height: 100%;
         padding: 15px;
+    }
+    .brower-box .quotes {
+        display:block;
+        font-weight:bolder;
+        font-size: 60px;
     }
     .clinic-slider .brower-box img {
         width: 50px;
