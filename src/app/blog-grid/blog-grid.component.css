@@ -3,6 +3,15 @@
     padding-bottom: 30px;
     
   }
+  .post-author a {
+    color: #28a745;;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.post-author span {
+  color: #28a745;;
+}
   #login-right {
     margin: 15px 15px;
     padding: 20px;

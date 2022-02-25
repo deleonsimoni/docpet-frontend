@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonServiceService } from '../common-service.service';
+import { BlogService } from './../services/blog.service';
 
 @Component({
   selector: 'app-blog-grid',
@@ -14,20 +15,23 @@ export class BlogGridComponent implements OnInit {
   urlatual: any = [];
   existe_especialidade = false;
   especialidade;
+  titleFormated;
   numblog = 4;
   numpag = 1;
-  constructor(private route: ActivatedRoute,public commonService: CommonServiceService, public router: Router) {}
+  constructor(private blogService: BlogService,private route: ActivatedRoute,public commonService: CommonServiceService, public router: Router) {}
 
   ngOnInit(): void {
     var urls  = window.location.href; 
     this.urlatual = urls.split('/');
     console.log(this.urlatual[4]);
     if (this.urlatual.length == 5){
-      this.especialidade = this.urlatual[5];
+      this.especialidade = this.urlatual[4];
+      this.titleFormated = this.urlatual[3];
       this.existe_especialidade = true;
       this.getBlogsEspecialidade();
     }else{
       this.especialidade = "";
+      this.titleFormated = this.urlatual[3];
       this.existe_especialidade = false;
       this.getBlogs();
     }
@@ -38,109 +42,19 @@ export class BlogGridComponent implements OnInit {
 
   getBlogs() {
     //tamanho da imagem 1200X800
-    
-    this.blogs = [
-      {
-        id: 1,
-        title: "Fazendo a sua visita clínica indolor?",
-        link_blog: "fazendo-a-sua-visita-clinica-indolor",
-        link_author: "gustavo-weigert/anestesiologia/rio-de-janeiro",
-        specialy: "Clínica Geral",
-        doctor_name: "Dr. Gustavo Weigert",
-        doctor_pic: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-3.jpg",
-        description: "Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.",
-        img: "http://www.gugaweigert.com.br/vetzcoImagens/imagem1.png",
-        createdAt: "2022-02-15"
+    this.blogService.getAll().subscribe(
+      (res) => {
+        this.blogs = res;
+        console.log(res);
+        console.log(this.blogs);
+        this.numblog = this.blogs.length;
+        console.log(this.numblog);
+        this.numpag = this.numblog / 4;
+        console.log(this.numpag);
       },
-      {
-          id: 2,
-          title: "Quais são os benefícios do agendamento médico online?",
-          link_blog: "quais-sao-os-beneficios-do-agendamento-medico-online",
-          link_author: "gustavo-weigert/anestesiologia/rio-de-janeiro",
-          specialy: "Dermatologia",
-          doctor_name: "Dr. Darren Elder",
-          doctor_pic: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini.jpg",
-          description: "Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.",
-          img: "http://www.gugaweigert.com.br/vetzcoImagens/imagem3.png",
-          createdAt: "2022-01-15"
-      },
-      {
-        id: 3,
-        title: "Benefícios da consulta com um Médico Online",
-        link_blog: "beneficios-da-consulta-com-um-medico-online",
-        link_author: "gustavo-weigert/anestesiologia/rio-de-janeiro",
-        specialy: "Medicina Preventiva",
-        doctor_name: "Dra. Deborah Angel",
-        doctor_pic: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-2.jpg",
-        description: "Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.",
-        img: "http://www.gugaweigert.com.br/vetzcoImagens/imagem2.png",
-        createdAt: "2021-12-15"
-    },
-    {
-      id: 4,
-      title: "5 Grandes razões para usar um Médico Online",
-      link_blog: "5-grandes-razões-para-usar-um-medico-online",
-      link_author: "gustavo-weigert/anestesiologia/rio-de-janeiro",
-      specialy: "Cardiologia",
-      doctor_name: "Dr. Jerry Brient",
-      doctor_pic: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-4.jpg",
-      description: "Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.",
-      img: "http://www.gugaweigert.com.br/vetzcoImagens/imagem4.png",
-      createdAt: "2021-11-15"
-    },
-    {
-      id: 5,
-      title: "Fazendo a sua visita clínica indolor?",
-      link_blog: "fazendo-a-sua-visita-clinica-indolor",
-      link_author: "gustavo-weigert/anestesiologia/rio-de-janeiro",
-      specialy: "Clínica Geral",
-      doctor_name: "Dr. Ruby Perrin",
-      doctor_pic: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-3.jpg",
-      description: "Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.",
-      img: "http://www.gugaweigert.com.br/vetzcoImagens/imagem1.png",
-      createdAt: "2022-02-15"
-    },
-    {
-        id: 6,
-        title: "Quais são os benefícios do agendamento médico online?",
-        link_blog: "quais-sao-os-beneficios-do-agendamento-medico-online",
-        link_author: "gustavo-weigert/anestesiologia/rio-de-janeiro",
-        specialy: "Dermatologia",
-        doctor_name: "Dr. Darren Elder",
-        doctor_pic: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini.jpg",
-        description: "Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.",
-        img: "http://www.gugaweigert.com.br/vetzcoImagens/imagem3.png",
-        createdAt: "2022-01-15"
-    },
-    {
-      id: 7,
-      title: "Benefícios da consulta com um Médico Online",
-      link_blog: "beneficios-da-consulta-com-um-medico-online",
-      link_author: "gustavo-weigert/anestesiologia/rio-de-janeiro",
-      specialy: "Medicina Preventiva",
-      doctor_name: "Dra. Deborah Angel",
-      doctor_pic: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-2.jpg",
-      description: "Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.",
-      img: "http://www.gugaweigert.com.br/vetzcoImagens/imagem2.png",
-      createdAt: "2021-12-15"
-  },
-  {
-    id: 8,
-    title: "5 Grandes razões para usar um Médico Online",
-    link_blog: "5-grandes-razões-para-usar-um-medico-online",
-    link_author: "gustavo-weigert/anestesiologia/rio-de-janeiro",
-    specialy: "Cardiologia",
-    doctor_name: "Dr. Jerry Brient",
-    doctor_pic: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-4.jpg",
-    description: "Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.",
-    img: "http://www.gugaweigert.com.br/vetzcoImagens/imagem4.png",
-    createdAt: "2021-11-15"
-  }
-  ];
-    console.log(this.blogs);
-    this.numblog = this.blogs.length;
-    this.numpag = this.numblog / 4;
-    if (this.blogs.length > 4){
+      //(error) => (this.errorMessage = <any>error)
+    );
+    if (this.numpag > 1){
       this.blog = true;
     }else{
       this.blog = false;
@@ -294,5 +208,13 @@ export class BlogGridComponent implements OnInit {
         
       }
     ];
+    
+  }
+  formataUrldados(dado){
+    if(dado){
+      return dado.trim().split(' ').join('-').toLowerCase();
+    }
+
+    return "";
   }
 }

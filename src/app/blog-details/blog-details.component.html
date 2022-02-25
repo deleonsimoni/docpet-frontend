@@ -85,16 +85,16 @@
 									</div>
 									<div class="card-body pb-0">
 									<ul class="comments-list">
-										<li *ngFor="let comment of comments">
+										<li *ngFor="let review of reviews">
 											<div class="comment">
 												<div class="comment-author">
 													<img class="avatar" alt="" src="assets/img/patients/patient.jpg">
 												</div>
 												<div class="comment-block">
 													<span class="comment-by">
-														<span class="blog-author-name">{{comment.name}}</span>
+														<span class="blog-author-name">{{review.name}}</span>
 													</span>
-													<p>{{comment.comment}}</p>
+													<p>{{review.comment}}</p>
 													<p class="blog-date">Dec 6, 2017</p>
 													<!-- <a class="comment-btn" href="javascript:void(0)">
 														<i class="fas fa-reply"></i> Reply

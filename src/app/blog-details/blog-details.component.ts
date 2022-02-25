@@ -14,7 +14,7 @@ export class BlogDetailsComponent implements OnInit {
   blogdetails: any = [];
   blogs: any = [];
   categories: any = [];
-  comments: any = [];
+  reviews: any = [];
   name = '';
   email = '';
   usercomment = '';
@@ -40,24 +40,27 @@ export class BlogDetailsComponent implements OnInit {
         title: "Fazendo a sua visita clínica indolor?",
         link_blog: "fazendo-a-sua-visita-clinica-indolor",
         link_author: "gustavo-weigert/anestesiologia/rio-de-janeiro",
-        specialy: "Clínica Geral",
-        doctor_name: "Dr. Gustavo Weigert",
+        especialidade: "Clínica Geral",
+        doctor_name: "Gustavo Weigert",
         doctor_pic: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-3.jpg",
         description: "Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.",
         img: "http://www.gugaweigert.com.br/vetzcoImagens/imagem1.png",
-        comments:[
+        reviews:[
           {
             name: "Regina Weigert",
+            email: "reginaweigert@gmail.com",
             comment: "Achei interessante a matéria!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
             data: "2022-01-15"
           },
           {
             name: "João Silva",
+            email: "reginaweigert@gmail.com",
             comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
             data: "2022-02-15"
           },
           {
             name: "Maria F Vargas",
+            email: "reginaweigert@gmail.com",
             comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
             data: "2022-02-20"
           }
@@ -146,7 +149,7 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   getComments() {
-    this.comments = this.blogdetails.comments;
+    this.reviews = this.blogdetails.reviews;
     
   }
 
@@ -161,7 +164,7 @@ export class BlogDetailsComponent implements OnInit {
       this.toastr.error('', 'Please enter mandatory field');
     } else {
       let params = {
-        id: this.comments.length + 1,
+        id: this.reviews.length + 1,
         name: this.name,
         email: this.email,
         comment: this.usercomment,

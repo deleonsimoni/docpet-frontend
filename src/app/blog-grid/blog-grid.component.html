@@ -29,18 +29,18 @@
                         <!-- Blog Post -->
                         <div class="blog grid-blog">
                             <div class="blog-image">
-                                <a [routerLink]="'/blog-detalhe/'+blog.link_blog" ><img class="img-fluid" src="{{blog.img}}" alt="Post Image"></a>
+                                <a [routerLink]="'/blog-detalhe/'+formataUrldados(blog.link_blog)" ><img class="img-fluid" src="{{blog.img}}" alt="Post Image"></a>
                             </div>
                             <div class="blog-content">
                                 <ul class="entry-meta meta-item">
                                     <li>
                                         <div class="post-author">
-                                            <a [routerLink]="'/doctor/'+blog.link_author"><img src="{{blog.doctor_pic}}" alt="Post Author"> <span>{{blog.doctor_name}}</span></a>
+                                            <a [routerLink]="'/doctor/'+formataUrldados(blog.link_author)"><img src="{{blog.doctor_pic}}" alt="Post Author"> <span>{{blog.doctor_name}}</span></a>
                                         </div>
                                     </li>
                                     <li><i class="far fa-clock rgt-mrgn"></i>{{blog.createdAt | date: "d MMM yyyy"}}</li>
                                 </ul>
-                                <h3 class="blog-title"><a [routerLink]="'/blog-detalhe/'+blog.link_blog">{{blog.title}}</a></h3>
+                                <h3 class="blog-title"><a [routerLink]="'/blog-detalhe/'+formataUrldados(blog.link_blog)">{{blog.title}}</a></h3>
                                 <p class="mb-0 desc-ellipsis">{{blog.description}}</p>
                             </div>
                         </div>
