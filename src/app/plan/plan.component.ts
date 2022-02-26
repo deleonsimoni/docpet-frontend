@@ -6,6 +6,8 @@ import { CommonServiceService } from '../common-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../services/user.service';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
+import { PlanoService } from '../services/plano.service';
+import { Plano } from '../models/plano';
 
 @Component({
   selector: 'app-plan',
@@ -15,78 +17,50 @@ import { SlickCarouselComponent } from 'ngx-slick-carousel';
 export class PlanComponent implements OnInit {
   @ViewChild('slickModal1') slickModal1: SlickCarouselComponent;
   @ViewChild('slickModal2') slickModal2: SlickCarouselComponent;
-  isPatient: boolean = false;
-  doctors: any = [];
-  patients: any = [];
-  username = '';
-  password = '';
+
   isLoading = false;
+  planos: any = [];
 
   constructor(
     public router: Router,
     public commonService: CommonServiceService,
     private toastr: ToastrService,
     private userService: UserService,
-  ) {
-    this.username = '';
-    this.password = '';
-    this.doctors = [];
-    this.patients = [];
-  }
+    private planosService: PlanoService,
+  ) {}
 
   ngOnInit(): void {
-
+    this.listarPlanos();
   }
 
-  checkType(event) {
-    this.isPatient = event.target.checked ? true : false;
-  }
-
-  login(name, password) {
-
-    this.isLoading = true;
-
-    if (!password) {
-      this.toastr.warning('Preencha o campo senha!', 'Atenção!');
-      return;
-    }
-
-    if (!name) {
-      this.toastr.warning('PReencha o campo email!', 'Atenção!');
-      return;
-    }
-
-    this.userService.login(name, password).subscribe(
-      (data: any) => {
-        this.isLoading = false;
-        this.userService.setSession(data.token);
-        let user = this.userService.getUser();
-
-        if(user.isAdmin ){
-          this.router.navigate(['/admin/dashboard-admin']);
-        } else  if( user.role == 1 || user.role == 2 || user.role == 3 || user.role == 4){
-          this.router.navigate(['/admin']);
-        } else {
-          window.location.href = '/home';
-        }    
-
-      },
-      (error) => {
-        this.isLoading = false;
-        console.log(error);
-        if (error.status == 400) {
-          this.toastr.error(error.error.error, 'Erro');
+  listarPlanos() {
+    this.planosService.getAll().subscribe(
+        (res) => {
+          this.planos = res as Plano;
+          console.log(this.planos);
+        },
+        error => {
+          console.log(error);
+          this.toastr.warning('Não foi possível efetuar a busca de planos', 'Atenção!');
+          return;
 
         }
-        if (error.status == 401) {
-          this.toastr.error('Email ou senha inválidos', 'Erro');
-
-        }
-      }
-    );
-
+      );
   }
-  
+
+  getvalorPlano(cobranca){
+    let preco;
+    if(cobranca){
+      if(cobranca.quantidadeParcela > 1){
+        preco = Number(cobranca.valor) / cobranca.quantidadeParcela;
+      }else{
+        preco = cobranca.valor;
+      } 
+      const opcoes = { style: 'currency', currency: 'BRL' };
+      return preco = (Intl.NumberFormat('pt-BR', opcoes).format(preco)); // Retorna R$ 1.200,55
+    }
+  }
+
   depoimentosliderConfig = {
     dots: false,
 			autoplay:false,

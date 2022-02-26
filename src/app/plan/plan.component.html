@@ -4,23 +4,23 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="col-md-2 features-img">
-                    
-                    
+
+
                 </div>
                 <div class="col-lg-7 col-md-7 col-sm-12 section-header ">
                     <h2 class="mt-2" style="color: #28a745;">Nossos Planos</h2>
                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                    
-                </div> 
+
+                </div>
                 <div class="col-lg-2 col-md-2 col-sm-12 section-switch text-right mt-2">
                     <button type="button" class="btn btn-rounded btn-primary">Anual</button>
                     <button type="button" class="btn btn-rounded btn-danger">Mensal</button>
-                        
-                
-                </div>       
+
+
+                </div>
             </div>
         </div>
-        
+
     </div>
 </section>
 <!-- /Availabe Features -->
@@ -28,54 +28,29 @@
 <section class="category-sec">
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="set-category">
+
+            <div class="col-md-4" *ngFor="let plano of planos; let odd = odd">
+                <div class="set-category" [ngClass]="{ lighter: odd }">
                     <div class="d-flex align-items-center">
-                        
+
                         <div id="dados-plano" class="info-holder">
-                            <h3 style="text-align:center;color:#ffffff;">Básico</h3>
-                            <p style="text-align:center;color:#ffffff;">FREE</p>
-                            <h2 style="text-align:center;color:#ffffff;">grátis</h2>
+                            <h3 style="text-align:center;color:#ffffff;">{{plano.nome}}</h3>
+                            <p style="text-align:center;color:#ffffff;">{{plano.descricao}}</p>
+                            <h2 style="text-align:center;color:#ffffff;">{{plano.cobranca?.quantidadeParcela > 1 ? plano.cobranca?.quantidadeParcela+ 'x ': '' }} {{getvalorPlano(plano.cobranca)}}</h2>
+                            <h4 *ngIf="plano.cobranca?.valor!='0'" style="text-align:center;color:#ffffff;">à vista {{plano.cobranca?.valor | currency : 'BRL'}}</h4>
                             <p>&nbsp;</p>
-                            <ins _ngcontent-kyr-c283="" style="margin-bottom:15px;color:#ffffff;">This line of text is meant of text is meant </ins><br />
-                            <ins _ngcontent-kyr-c283="" style="margin-bottom:15px;color:#ffffff;">This line of text is meant of text is meant </ins><br />
-                            <ins _ngcontent-kyr-c283="" style="margin-bottom:15px;color:#ffffff;">This line of text is meant of text is meant </ins><br />
-                            <ins _ngcontent-kyr-c283="" style="margin-bottom:15px;color:#ffffff;">This line of text is meant of text is meant </ins><br />
-                            <ins _ngcontent-kyr-c283="" style="margin-bottom:15px;color:#ffffff;">This line of text is meant of text is meant </ins><br />
-                            <ins _ngcontent-kyr-c283="" style="margin-bottom:15px;color:#ffffff;">This line of text is meant of text is meant </ins><br />
+                            <div *ngFor="let caracteristica of plano.caracteristicas">
+                                <ins _ngcontent-kyr-c283="" style="margin-bottom:15px;color:#ffffff;">{{caracteristica.titulo}} </ins><br />
+                            </div>
+
                             <p>&nbsp;</p>
-                            <a style="text-align:center;color:#ffffff;" [routerLink]="'/patients/booking'" class="btn btn-block btn-outline-primary active">Começar agora </a>
+                            <a style="text-align:center;color:#ffffff;" [routerLink]="'/patients/booking'" [ngClass]="odd ? 'btn btn-block btn-outline-dark active' : 'btn btn-block btn-outline-primary active'">Começar agora </a>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="br-cao">
                     <br /><br /><br /><br />
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="set-category lighter">
-                    <div class="d-flex align-items-center">
-        
-                        <div class="info-holder">
-                            <h3 style="text-align:center;color:#ffffff;">Premium</h3>
-                            <p style="text-align:center;color:#ffffff;">LOREN IPSEN</p>
-                            <h2 style="text-align:center;color:#ffffff;">R$ 50,00</h2>
-                            <p>&nbsp;</p>
-                            <ins _ngcontent-kyr-c283="" style="margin-bottom:15px;color:#ffffff;">This line of text is meant of text is meant </ins><br />
-                            <ins _ngcontent-kyr-c283="" style="margin-bottom:15px;color:#ffffff;">This line of text is meant of text is meant </ins><br />
-                            <ins _ngcontent-kyr-c283="" style="margin-bottom:15px;color:#ffffff;">This line of text is meant of text is meant </ins><br />
-                            <ins _ngcontent-kyr-c283="" style="margin-bottom:15px;color:#ffffff;">This line of text is meant of text is meant </ins><br />
-                            <ins _ngcontent-kyr-c283="" style="margin-bottom:15px;color:#ffffff;">This line of text is meant of text is meant </ins><br />
-                            <ins _ngcontent-kyr-c283="" style="margin-bottom:15px;color:#ffffff;">This line of text is meant of text is meant </ins><br />
-                            <p>&nbsp;</p>
-                            <a  style="text-align:center;color:#ffffff;" [routerLink]="'/patients/booking'" class="btn btn-block btn-outline-dark active">Eu quero </a>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="br-cao">
-                    <br /><br />
                 </div>
             </div>
             <div class="col-md-4">
@@ -83,7 +58,7 @@
                     <br /><br />
                 </div>
                 <div class="cachorro">
-                    
+
                 </div>
             </div>
         </div>
@@ -99,30 +74,30 @@
                 <h2 style="color:#32b7bc">O que falam de nós</h2>
                 <span class="bottom-border"></span>
             </div>
-        
+
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <ngx-slick-carousel class="clinic-slider slider" #slickModal="slick-carousel" [config]="depoimentosliderConfig">
-                   <div ngxSlickItem *ngFor="let slide of depoimentosliderslides" class="profile-widget">
+                    <div ngxSlickItem *ngFor="let slide of depoimentosliderslides" class="profile-widget">
                         <div class="brower-box">
                             <span class="quotes-g" style="display: block;
                             font-weight: bolder;
                             font-size: 40px;text-align:left;">"</span>
                             <p class="text-left"><strong>{{slide.text}}</strong></p>
                             <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">    
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="col-lg-4 col-md-4 col-sm-4 post-author avatar-img">
-                                        <img class="" alt="" src="{{slide.imghover}}"/>
+                                        <img class="" alt="" src="{{slide.imghover}}" />
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-8 avatar-nome">
-                                        
+
                                         <p style="height:40px;">{{slide.author}} </p>
-                                    <h6><span>{{slide.department}}</span></h6>
+                                        <h6><span>{{slide.department}}</span></h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                   </div>
-               </ngx-slick-carousel>
+                    </div>
+                </ngx-slick-carousel>
             </div>
         </div>
     </div>
@@ -164,10 +139,10 @@
 											color: #32b7bc;
 											font-weight: 700;
 											margin-bottom: 20px;  font-style: italic;">BÁSICO</h3>-->
-                                                <!-- <a [routerLink]="'/doctor/'+formatarParamUrl(doctor.nome)" tabindex="-1">
+<!-- <a [routerLink]="'/doctor/'+formatarParamUrl(doctor.nome)" tabindex="-1">
 												<img class="img-fluid" alt="Imagem" [src]="getImageDoctor(doctor)"> 
                                                 </a>-->
-                                              <!--  <a href="javascript:void(0)" class="fav-btn" tabindex="-1">
+<!--  <a href="javascript:void(0)" class="fav-btn" tabindex="-1">
                                                     <i class="far fa-bookmark"></i>
                                                 </a>
                                                 <h3 class="title">
@@ -193,20 +168,20 @@
                                 </div>
 
                             </ngx-slick-carousel>-->
-                            <!-- <div class="text-center client-navbtn">
+<!-- <div class="text-center client-navbtn">
 									<button class="btn-next" (click)="nextslide()"><i
 											class="las la-caret-square-left"></i></button>
 									<button class="btn-prev" (click)="prevslide()"><i
 											class="las la-caret-square-right"></i></button>
 								</div> -->
-                        <!--</div>
+<!--</div>
                     </div>
                 </div>
             </div>-->
-            <!-- <div class="col-md-7 col-lg-6 dog-caramelo">
+<!-- <div class="col-md-7 col-lg-6 dog-caramelo">
                 <img src="/assets/img/plan/dog-caramelo.jpg" class="img-fluid" alt="Login Banner">
             </div> -->
-        <!--</div>
+<!--</div>
     </div>
 </section>-->
 
