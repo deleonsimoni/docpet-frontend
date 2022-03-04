@@ -1,0 +1,149 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">Blog</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item active">Cadastro</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <!-- Add Medicine -->
+        <form [formGroup]="blogForm" (ngSubmit)="salvar()">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="service-fields mb-3">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group form-focus">
+                                            <label class="focus-label">Titulo <span class="text-danger">*</span></label>
+                                            <input class="form-control floating" type="text" name="nome" formControlName="nome">
+                                            <app-mensagem *ngIf="
+                                            blogForm.get('title')?.errors?.required 
+                                                && blogForm.get('title')?.touched" mensagem="Título é obrigatório">
+                                            </app-mensagem>
+                                            <app-mensagem *ngIf="
+                                            blogForm.get('title')?.errors?.minlength &&
+                                            blogForm.get('title')?.touched" mensagem="Tamanho inválido">
+                                            </app-mensagem>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group form-focus">
+                                            <label class="focus-label">Categoria<span class="text-danger">*</span></label>
+                                            <input class="form-control floating" type="text" name="speciality" formControlName="speciality">
+                                            <app-mensagem *ngIf="
+                                            blogForm.get('speciality')?.errors?.required 
+                                                && blogForm.get('speciality')?.touched" mensagem="Categoria é obrigatória">
+                                            </app-mensagem>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group form-focus">
+                                            <label class="focus-label">Autor<span class="text-danger">*</span></label>
+                                            <input class="form-control floating" type="text" name="doctor_name" formControlName="doctor_name">
+                                            <app-mensagem *ngIf="
+                                            blogForm.get('doctor_name')?.errors?.required 
+                                                && blogForm.get('doctor_name')?.touched" mensagem="Autor é obrigatório">
+                                            </app-mensagem>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group form-focus">
+                                            <label class="focus-label">Avatar do Autor <span class="text-danger">*</span></label>
+                                            <input class="form-control bg-grey floating" formControlName="doctor_pic" name="doctor_pic">
+                                            
+                                            <app-mensagem *ngIf="
+                                            blogForm.get('doctor_pic')?.errors?.required 
+                                                && blogForm.get('doctor_pic')?.touched" mensagem="Avatar do autor é obrigatório">
+                                            </app-mensagem>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group form-focus">
+                                            <label class="focus-label">Link do blog<span class="text-danger">*</span></label>
+                                            <input class="form-control floating" type="text" name="link_blog" formControlName="link_blog">
+                                            <app-mensagem *ngIf="
+                                            blogForm.get('link_blog')?.errors?.required 
+                                                && blogForm.get('link_blog')?.touched" mensagem="Link do blog é obrigatório">
+                                            </app-mensagem>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group form-focus">
+                                            <label class="focus-label">Link do autor <span class="text-danger">*</span></label>
+                                            <input class="form-control bg-grey floating" formControlName="link_author" name="link_author">
+                                            
+                                            <app-mensagem *ngIf="
+                                            blogForm.get('link_author')?.errors?.required 
+                                                && blogForm.get('link_author')?.touched" mensagem="Avatar do autor é obrigatório">
+                                            </app-mensagem>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label class="hoverable" for="fileInput">
+                                            <img class="img-avatar"
+                                              [src]="url ? url : pathImage+'digital-camera-5771.png'">
+                                            <div class="hover-text">Buscar a imagem</div>
+                                            <div class="background"></div>
+                                          </label>
+                                                            <br />
+                                                            <input id="fileInput" type='file' (change)="onFileChanged($event)">
+                                                            <button *ngIf="url" (click)="delete()">Excluir foto</button>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="form-group form-focus">
+                                            <textarea class="form-control bg-grey floating" formControlName="short_description" name="short_description"></textarea>
+                                            <label class="focus-label">Descrição Curta <span class="text-danger">*</span></label>
+                                            <app-mensagem *ngIf="
+                                            blogForm.get('short_description')?.errors?.required 
+                                                && blogForm.get('short_description')?.touched" mensagem="Descrição curta é obrigatório">
+                                            </app-mensagem>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group form-focus">
+                                            <textarea class="form-control bg-grey floating" formControlName="description" name="description"></textarea>
+                                            <label class="focus-label">Descrição <span class="text-danger">*</span></label>
+                                            <app-mensagem *ngIf="
+                                            blogForm.get('description')?.errors?.required 
+                                                && blogForm.get('description')?.touched" mensagem="Descrição é obrigatório">
+                                            </app-mensagem>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="submit-section submit-btn-bottom text-left">
+                        <button type="submit" [class]="blogForm.invalid ? 'btn submit-btn btn-light' : 'btn submit-btn btn-primary'">Salvar</button>
+                        <button type="submit" [routerLink]="'/admin/list-blog'" class="btn btn-success submit-btn">Voltar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- /Add Medicine -->
+    </div>
+</div>
+<!-- /Page Wrapper -->

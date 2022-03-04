@@ -1,0 +1,61 @@
+<div class="page-wrapper">
+
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">Blog</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item active">Lista</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive" *ngIf="blogs">
+                            <table class="datatable table table-hover table-center mb-0" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                                <thead>
+                                    <tr>
+                                        <th>Titulo</th>
+                                        <th>Categoria</th>
+                                        <th>Autor</th>
+                                        <th>Avatar Autor</th>
+                                        <th>Descrição Curta</th>
+                                        
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let blog of blogs">
+                                        <td>
+                                            <h2 class="table-avatar">
+                                                <!-- <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" [src]="doctor.profile" alt="User Image"></a> -->
+                                                <a [routerLink]="['/admin/cadastro-blog/',blog._id]"> {{blog.title}}</a>
+                                            </h2>
+                                        </td>
+                                        <td>{{blog.speciality}}</td>
+                                        <td>{{blog.doctor_name}}</td>
+                                        <td>{{blog.doctor_pic}}</td>
+                                        <td>{{blog.short_description}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="submit-section submit-btn-bottom text-left">
+            <a [routerLink]="['/admin/cadastro-plano']" class="btn submit-btn btn-primary"><i
+                class="fa fa-plus-circle"></i> Cadastrar</a>
+        </div>
+    </div>
+</div>

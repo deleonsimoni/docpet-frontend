@@ -202,7 +202,13 @@
                         <li [class.active]="page === 'plano'"><a (click)="change('plano')" [routerLink]="'/admin/list-plano'">Manter</a></li>
                     </ul>
                 </li>
-
+                <li *ngIf="userLogged.isAdmin" class="submenu">
+                    <a href="javascript:void(0)"><i class="fas fa-blog"></i> <span> Blog</span> <span
+							class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li [class.active]="page === 'blog'"><a (click)="change('blog')" [routerLink]="'/admin/list-blog'">Manter</a></li>
+                    </ul>
+                </li>
                 <li *ngIf="userLogged.isAdmin" class="submenu">
                     <a href="javascript:void(0)"><i class="fe fe-vector"></i> <span> Parâmetros</span> <span
 							class="menu-arrow"></span></a>

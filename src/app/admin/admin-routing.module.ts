@@ -102,7 +102,21 @@ const routes: Routes = [
         loadChildren: () =>
           import('./plano/cadastro/cadastro.module').then((m) => m.CadastroModule),
       },
-
+      {
+        path: 'list-blog',
+        loadChildren: () =>
+          import('./blog/blog-lista/blog-lista.module').then((m) => m.BlogListaModule),
+      },
+      {
+        path: 'cadastro-blog',
+        loadChildren: () =>
+          import('./blog/blog-cadastro/blog-cadastro.module').then((m) => m.BlogCadastroModule),
+      },
+      {
+        path: 'cadastro-blog/:id',
+        loadChildren: () =>
+          import('./blog/blog-cadastro/blog-cadastro.module').then((m) => m.BlogCadastroModule),
+      },
       {
         path: 'list-estabelecimento',
         loadChildren: () =>
