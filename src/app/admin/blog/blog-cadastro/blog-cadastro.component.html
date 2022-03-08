@@ -25,7 +25,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group form-focus">
                                             <label class="focus-label">Titulo <span class="text-danger">*</span></label>
-                                            <input class="form-control floating" type="text" name="nome" formControlName="nome">
+                                            <input class="form-control floating" #t ng-model="blog.title" type="text" [value]="var_title" name="title" formControlName="title">
                                             <app-mensagem *ngIf="
                                             blogForm.get('title')?.errors?.required 
                                                 && blogForm.get('title')?.touched" mensagem="Título é obrigatório">
@@ -37,13 +37,46 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
+                                        
                                         <div class="form-group form-focus">
                                             <label class="focus-label">Categoria<span class="text-danger">*</span></label>
-                                            <input class="form-control floating" type="text" name="speciality" formControlName="speciality">
+                                            <select class="form-control floating"  #esp style="color: black;" name="especialidade" 
+                                                        placeholder="especialidade" formControlName="especialidade" (change)="onGetEspecialidade()">
+                                                        
+                                                <option  [selected]="especialidade._id === var_especialidade" [value]="especialidade._id" *ngFor="let especialidade of especialidades">{{especialidade.nome}}</option>
+                                                
+
+
+                                                        
+
+                                                    </select>
+                                            
                                             <app-mensagem *ngIf="
-                                            blogForm.get('speciality')?.errors?.required 
-                                                && blogForm.get('speciality')?.touched" mensagem="Categoria é obrigatória">
+                                            blogForm.get('especialidade')?.errors?.required 
+                                                && blogForm.get('especialidade')?.touched" mensagem="Categoria é obrigatória">
+                                            </app-mensagem>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-2">
+                                        
+                                        <div class="form-group form-focus">
+                                            <label class="focus-label">Local<span class="text-danger">*</span></label>
+                                            <select class="form-control floating"  #loc style="color: black;" name="place" 
+                                                        placeholder="local" formControlName="place" (change)="onGetlocal()">
+                                                        
+                                                <option  [selected]="place.placeId === var_place" [ngValue]="place.placeId" *ngFor="let place of places">{{place.description}}</option>
+                                                
+
+
+                                                        
+
+                                                    </select>
+                                            
+                                            <app-mensagem *ngIf="
+                                            blogForm.get('especialidade')?.errors?.required 
+                                                && blogForm.get('especialidade')?.touched" mensagem="Categoria é obrigatória">
                                             </app-mensagem>
                                         </div>
 
@@ -53,7 +86,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group form-focus">
                                             <label class="focus-label">Autor<span class="text-danger">*</span></label>
-                                            <input class="form-control floating" type="text" name="doctor_name" formControlName="doctor_name">
+                                            <input class="form-control floating" type="text" name="doctor_name" ng-model="blog.doctor_name" [value]="var_doctor_name" formControlName="doctor_name">
                                             <app-mensagem *ngIf="
                                             blogForm.get('doctor_name')?.errors?.required 
                                                 && blogForm.get('doctor_name')?.touched" mensagem="Autor é obrigatório">
@@ -64,7 +97,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group form-focus">
                                             <label class="focus-label">Avatar do Autor <span class="text-danger">*</span></label>
-                                            <input class="form-control bg-grey floating" formControlName="doctor_pic" name="doctor_pic">
+                                            <input class="form-control bg-grey floating" formControlName="doctor_pic" ng-model="blog.doctor_pic" [value]="var_doctor_pic" name="doctor_pic">
                                             
                                             <app-mensagem *ngIf="
                                             blogForm.get('doctor_pic')?.errors?.required 
@@ -77,7 +110,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group form-focus">
                                             <label class="focus-label">Link do blog<span class="text-danger">*</span></label>
-                                            <input class="form-control floating" type="text" name="link_blog" formControlName="link_blog">
+                                            <input class="form-control floating" type="text" name="link_blog" [value]="var_link_blog" ng-model="blog.link_blog" formControlName="link_blog" (focus)="formataUrldados(this.blogForm.get('title').value)">
                                             <app-mensagem *ngIf="
                                             blogForm.get('link_blog')?.errors?.required 
                                                 && blogForm.get('link_blog')?.touched" mensagem="Link do blog é obrigatório">
@@ -88,7 +121,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group form-focus">
                                             <label class="focus-label">Link do autor <span class="text-danger">*</span></label>
-                                            <input class="form-control bg-grey floating" formControlName="link_author" name="link_author">
+                                            <input class="form-control bg-grey floating" formControlName="link_author" [value]="var_link_author" name="link_author" ng-model="blog.link_author" (focus)="formataUrllink(this.blogForm.get('doctor_name').value)">
                                             
                                             <app-mensagem *ngIf="
                                             blogForm.get('link_author')?.errors?.required 
@@ -98,7 +131,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-2">
                                         <label class="hoverable" for="fileInput">
                                             <img class="img-avatar"
                                               [src]="url ? url : pathImage+'digital-camera-5771.png'">
@@ -106,32 +139,38 @@
                                             <div class="background"></div>
                                           </label>
                                                             <br />
-                                                            <input id="fileInput" type='file' (change)="onFileChanged($event)">
-                                                            <button *ngIf="url" (click)="delete()">Excluir foto</button>
+                                                            <input id="fileInput" name="fileInput" type='file' (change)="onFileChanged($event)" ng-model="blog.fileInput">
+                                                            <input id="img" name="img" type='text' formControlName="img" [value]="var_img"  ng-model="blog.img">
+                                                            <button *ngIf="url" (click)="inputFileChange()">Subir imagem</button>
                                     </div>
-                                    <div class="col-lg-8">
-                                        <div class="form-group form-focus">
-                                            <textarea class="form-control bg-grey floating" formControlName="short_description" name="short_description"></textarea>
-                                            <label class="focus-label">Descrição Curta <span class="text-danger">*</span></label>
-                                            <app-mensagem *ngIf="
-                                            blogForm.get('short_description')?.errors?.required 
-                                                && blogForm.get('short_description')?.touched" mensagem="Descrição curta é obrigatório">
-                                            </app-mensagem>
+                                    <div class="col-lg-10">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group form-focus">
+                                                    <textarea class="form-control bg-grey floating"  formControlName="short_description" name="short_description" ng-model="blog.short_description" [value]="var_short_description"></textarea>
+                                                    <label class="focus-label">Descrição Curta <span class="text-danger">*</span></label>
+                                                    <app-mensagem *ngIf="
+                                                    blogForm.get('short_description')?.errors?.required 
+                                                        && blogForm.get('short_description')?.touched" mensagem="Descrição curta é obrigatório">
+                                                    </app-mensagem>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group form-focus">
+                                                    <textarea class="form-control bg-grey floating" style="height:150px;" formControlName="description" name="description" ng-model="blog.description" [value]="var_description"></textarea>
+                                                    <label class="focus-label">Descrição <span class="text-danger">*</span></label>
+                                                    <app-mensagem *ngIf="
+                                                    blogForm.get('description')?.errors?.required 
+                                                        && blogForm.get('description')?.touched" mensagem="Descrição é obrigatório">
+                                                    </app-mensagem>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group form-focus">
-                                            <textarea class="form-control bg-grey floating" formControlName="description" name="description"></textarea>
-                                            <label class="focus-label">Descrição <span class="text-danger">*</span></label>
-                                            <app-mensagem *ngIf="
-                                            blogForm.get('description')?.errors?.required 
-                                                && blogForm.get('description')?.touched" mensagem="Descrição é obrigatório">
-                                            </app-mensagem>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
