@@ -5464,6 +5464,7 @@
   "resolved" "https://registry.npmjs.org/fsevents/-/fsevents-1.2.13.tgz"
   "version" "1.2.13"
   dependencies:
+    "bindings" "^1.5.0"
     "nan" "^2.12.1"
 
 "fsevents@~2.3.1":
@@ -8469,6 +8470,13 @@
   "integrity" "sha512-6YHXtdXkGH3w0NQoaUgNYAcrj064Lv5RTO284ha/hvpNTrh55yQz2cVh0VvwBk3MjyY2tdmLH4SuCJDszYdYiw=="
   "resolved" "https://registry.npmjs.org/ngx-bootstrap/-/ngx-bootstrap-5.6.2.tgz"
   "version" "5.6.2"
+
+"ngx-currency@^2.5.3":
+  "integrity" "sha512-NS58eSK1vTIzrtbK1KI6zUpaZrFZtBHGX8aYQefSSf8qz83alB4rIEzXoMn/ZydPhoVTg2vk8m+3aVs6PiPnOA=="
+  "resolved" "https://registry.npmjs.org/ngx-currency/-/ngx-currency-2.5.3.tgz"
+  "version" "2.5.3"
+  dependencies:
+    "tslib" "^2.0.0"
 
 "ngx-dropzone@^2.2.2":
   "integrity" "sha512-Q6F+veHVvGwJmQlgLA9p7P2GHtzY4kC8xJ2NWlke1YAt0utICC9jSXg8QZD6n1iFBYX1xOooPmd6X6Fo405C0g=="

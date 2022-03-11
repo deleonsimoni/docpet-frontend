@@ -20,10 +20,18 @@ export class DashboardAdminComponent implements OnInit {
   totalVets;
   totalClinics;
   totalAccess;
+
+  totalAccessVets;
+  totalAccessClinics;
+  totalAccessTutors;
+  totalAccessAdestradores;
+  totalAccessEsteticas;
+
+
   constructor(
     private userService: UserService,
     private dashboardService: DashboardService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
 
@@ -36,31 +44,21 @@ export class DashboardAdminComponent implements OnInit {
         this.totalClinics = counts.counts.totalClinics;
         this.totalUsers = counts.counts.totalUsers;
 
+        this.totalAccessVets = counts.counts.totalLogins.filter(e => e.typeUser == 1).length || 0;
+        this.totalAccessClinics = counts.counts.totalLogins.filter(e => e.typeUser == 2).length || 0;
+        this.totalAccessTutors = counts.counts.totalLogins.filter(e => e.typeUser == 0).length || 0;
+        this.totalAccessAdestradores = counts.counts.totalLogins.filter(e => e.typeUser == 3).length || 0;
+        this.totalAccessEsteticas = counts.counts.totalLogins.filter(e => e.typeUser == 4).length || 0;
+
+
+        //let graph = this.getSumByKey(counts.counts.totalLogins);
+
+
       },
       (error) => {
         console.log(error);
       }
     );
-   
-
-    let chartAreaData = [
-      { y: '2006', a: 100, b: 90 },
-      { y: '2007', a: 75, b: 65 },
-      { y: '2008', a: 50, b: 40 },
-      { y: '2009', a: 75, b: 65 },
-      { y: '2010', a: 50, b: 40 },
-      { y: '2011', a: 75, b: 65 },
-      { y: '2012', a: 100, b: 90 },
-    ];
-    let chartLineData = [
-      { y: '2006', a: 100, b: 90 },
-      { y: '2007', a: 75, b: 65 },
-      { y: '2008', a: 50, b: 40 },
-      { y: '2009', a: 75, b: 65 },
-      { y: '2010', a: 50, b: 40 },
-      { y: '2011', a: 75, b: 65 },
-      { y: '2012', a: 100, b: 90 },
-    ];
 
     /* Morris Area Chart */
     Morris.Area({
@@ -108,4 +106,7 @@ export class DashboardAdminComponent implements OnInit {
       redraw: true,
     });
   }
+
+
+
 }

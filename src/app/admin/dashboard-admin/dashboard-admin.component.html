@@ -1,8 +1,8 @@
 <p>dashboard-admin works!</p>
 <div class="page-wrapper">
-			
+
     <div class="content container-fluid">
-        
+
         <!-- Page Header -->
         <div class="page-header">
             <div class="row">
@@ -16,28 +16,11 @@
         </div>
         <!-- /Page Header -->
 
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item active">Quantidade de Cadastros</li>
+        </ul>
+
         <div class="row">
-            <div class="col-xl-3 col-sm-6 col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="dash-widget-header">
-                            <span class="dash-widget-icon text-warning border-warning">
-                                <i class="fe fe-folder"></i>
-                            </span>
-                            <div class="dash-count">
-                                <h3>{{totalAccess}}</h3>
-                            </div>
-                        </div>
-                        <div class="dash-widget-info">
-                            
-                            <h6 class="text-muted">Acessos</h6>
-                            <div class="progress progress-sm">
-                                <div class="progress-bar bg-warning w-50"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-xl-3 col-sm-6 col-12">
                 <div class="card">
                     <div class="card-body">
@@ -70,8 +53,8 @@
                             </div>
                         </div>
                         <div class="dash-widget-info">
-                            
-                            <h6 class="text-muted">Pacientes</h6>
+
+                            <h6 class="text-muted">Tutores</h6>
                             <div class="progress progress-sm">
                                 <div class="progress-bar bg-success w-50"></div>
                             </div>
@@ -91,7 +74,7 @@
                             </div>
                         </div>
                         <div class="dash-widget-info">
-                            
+
                             <h6 class="text-muted">Clínicas</h6>
                             <div class="progress progress-sm">
                                 <div class="progress-bar bg-danger w-50"></div>
@@ -100,11 +83,158 @@
                     </div>
                 </div>
             </div>
-           
+
         </div>
+
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item active">Quantidade de Acessos ao Site</li>
+        </ul>
+        <div class="row">
+
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="dash-widget-icon text-success border-warning">
+                                <i class="fe fe-folder"></i>
+                            </span>
+                            <div class="dash-count">
+                                <h3>{{totalAccess}}</h3>
+                            </div>
+                        </div>
+                        <div class="dash-widget-info">
+
+                            <h6 class="text-muted">Total de acessos ao site</h6>
+                            <div class="progress progress-sm">
+                                <div class="progress-bar bg-warning w-50"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <ul class="breadcrumb">
+            <li class="">Quantidade de Login</li>
+        </ul>
+
+        <div class="row">
+
+            <div class="col-xl-2 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="dash-widget-icon-mini text-info border-warning">
+                                <i class="fas fa-user-md"></i>
+                            </span>
+                            <div class="dash-count">
+                                <h3>{{totalAccessVets}}</h3>
+                            </div>
+                        </div>
+                        <div class="dash-widget-info">
+
+                            <h6 class="text-muted">Veterinários</h6>
+                            <div class="progress progress-sm">
+                                <div class="progress-bar bg-warning w-50"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-2 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="dash-widget-icon-mini text-warning border-warning">
+                                <i class="fe fe-target"></i>
+                            </span>
+                            <div class="dash-count">
+                                <h3>{{totalAccessTutors}}</h3>
+                            </div>
+                        </div>
+                        <div class="dash-widget-info">
+
+                            <h6 class="text-muted">Tutores</h6>
+                            <div class="progress progress-sm">
+                                <div class="progress-bar bg-warning w-50"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-2 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="dash-widget-icon-mini text-danger border-warning">
+                                <i class="fas fa-clinic-medical"></i>
+                            </span>
+                            <div class="dash-count">
+                                <h3>{{totalAccessClinics}}</h3>
+                            </div>
+                        </div>
+                        <div class="dash-widget-info">
+
+                            <h6 class="text-muted">Clínicas</h6>
+                            <div class="progress progress-sm">
+                                <div class="progress-bar bg-warning w-50"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="dash-widget-icon-mini text-dark border-warning">
+                                <i class="fas fa-diagnoses"></i>
+                            </span>
+                            <div class="dash-count">
+                                <h3>{{totalAccessAdestradores}}</h3>
+                            </div>
+                        </div>
+                        <div class="dash-widget-info">
+
+                            <h6 class="text-muted">Adestradores</h6>
+                            <div class="progress progress-sm">
+                                <div class="progress-bar bg-warning w-50"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-2 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="dash-widget-icon-mini text-success border-warning">
+                                <i class="fas fa-dog"></i>
+                            </span>
+                            <div class="dash-count">
+                                <h3>{{totalAccessEsteticas}}</h3>
+                            </div>
+                        </div>
+                        <div class="dash-widget-info">
+
+                            <h6 class="text-muted">Esteticas</h6>
+                            <div class="progress progress-sm">
+                                <div class="progress-bar bg-warning w-50"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-12 col-lg-6">
-            
+
                 <!-- Sales Chart -->
                 <div class="card card-chart">
                     <div class="card-header">
@@ -115,10 +245,10 @@
                     </div>
                 </div>
                 <!-- /Sales Chart -->
-                
+
             </div>
             <div class="col-md-12 col-lg-6">
-            
+
                 <!-- Invoice Chart -->
                 <div class="card card-chart">
                     <div class="card-header">
@@ -129,11 +259,11 @@
                     </div>
                 </div>
                 <!-- /Invoice Chart -->
-                
-            </div>	
+
+            </div>
         </div>
-        
-        
-        
-    </div>			
+
+
+
+    </div>
 </div>
