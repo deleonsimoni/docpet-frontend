@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CommonServiceService } from '../common-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { BlogService } from './../services/blog.service';
+import { EspecialidadeService } from 'src/app/services/especialidades.service';
 
 @Component({
   selector: 'app-blog-details',
@@ -18,8 +20,14 @@ export class BlogDetailsComponent implements OnInit {
   name = '';
   email = '';
   usercomment = '';
+  urlatual: any = [];
+  pathImage;
+  especialidadeId;
+  nomeEspecialidade;
   constructor(
     private toastr: ToastrService,
+    private blogService: BlogService,
+    private especialidadeSevice: EspecialidadeService,
     public commonService: CommonServiceService,
     private route: ActivatedRoute,
     public router: Router
@@ -27,6 +35,12 @@ export class BlogDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.titulo = this.route.snapshot.queryParams['titulo'];
+    
+    var urls  = window.location.href; 
+    this.pathImage = "http://www.gugaweigert.com.br/vetzcoImagens/";
+    this.urlatual = urls.split('/');
+    this.titulo = this.urlatual[4];
+    console.log('titulo: '+this.urlatual[4]);
     this.getBlogdetails();
     this.getCategories();
     this.getComments();
@@ -34,118 +48,28 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   getBlogdetails() {
-    this.blogs = [{
-      
-        id: 1,
-        title: "Fazendo a sua visita clínica indolor?",
-        link_blog: "fazendo-a-sua-visita-clinica-indolor",
-        link_author: "gustavo-weigert/anestesiologia/rio-de-janeiro",
-        especialidade: "Clínica Geral",
-        doctor_name: "Gustavo Weigert",
-        doctor_pic: "http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-3.jpg",
-        description: "Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.",
-        img: "http://www.gugaweigert.com.br/vetzcoImagens/imagem1.png",
-        reviews:[
-          {
-            name: "Regina Weigert",
-            email: "reginaweigert@gmail.com",
-            comment: "Achei interessante a matéria!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
-            data: "2022-01-15"
-          },
-          {
-            name: "João Silva",
-            email: "reginaweigert@gmail.com",
-            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
-            data: "2022-02-15"
-          },
-          {
-            name: "Maria F Vargas",
-            email: "reginaweigert@gmail.com",
-            comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
-            data: "2022-02-20"
-          }
-        ],
-        type: "",
-        createdAt: "2022-02-15"
-      
-    }];
-    this.blogdetails = this.blogs[0];
-    console.log(this.blogdetails);
+    this.blogService.getByTitle(this.titulo).subscribe(
+      (res) => {
+        this.blogdetails = res[0];
+        console.log(this.blogdetails);
+        
+      },
+      //(error) => (this.errorMessage = <any>error)
+    );
+    
+    
   }
 
   getCategories() {
-    this.categories = [
-      {
-        id: 1,
-        name: "Alergologie",
-        num_blog: "70",
-        link_author: "alergologie",
+    this.blogService.getAllTotalEspcBlog().subscribe(
+      (res) => {
+        this.categories = res;
+        console.log(res);
         
       },
-      {
-        id: 2,
-        name: "Cardiologia",
-        num_blog: "62",
-        link_author: "cardiologia",
-        
-      },
-      {
-        id: 3,
-        name: "Clínica Geral",
-        num_blog: "37",
-        link_author: "clinica-geral",
-        
-      },
-      {
-        id: 4,
-        name: "Dermatologia",
-        num_blog: "32",
-        link_author: "dermatologia",
-        
-      },
-      {
-        id: 5,
-        name: "Anestesiologia",
-        num_blog: "30",
-        link_author: "anestesiologia",
-        
-      },
-      {
-        id: 6,
-        name: "Medicina Preventiva",
-        num_blog: "28",
-        link_author: "medicina-preventiva",
-        
-      },
-      {
-        id: 7,
-        name: "Medicina Felina",
-        num_blog: "24",
-        link_author: "medicina-felina",
-        
-      },
-      {
-        id: 8,
-        name: "Nutrição",
-        num_blog: "19",
-        link_author: "Nutricao",
-        
-      },
-      {
-        id: 9,
-        name: "Oftalmologia",
-        num_blog: "11",
-        link_author: "oftalmologia",
-        
-      },
-      {
-        id: 10,
-        name: "Banho e Tosa",
-        num_blog: "5",
-        link_author: "banho-e-tosa",
-        
-      }
-    ];
+      //(error) => (this.errorMessage = <any>error)
+    );
+    
   }
 
   getComments() {
@@ -161,7 +85,7 @@ export class BlogDetailsComponent implements OnInit {
 
   comment() {
     if (this.name === '' || this.email === '' || this.usercomment === '') {
-      this.toastr.error('', 'Please enter mandatory field');
+      this.toastr.error('', 'Campo obrigatório');
     } else {
       let params = {
         id: this.reviews.length + 1,
@@ -177,5 +101,30 @@ export class BlogDetailsComponent implements OnInit {
         this.getComments();
       });
     }
+  }
+  formataUrldados(dado){
+    if(dado){
+      return dado.trim().split(' ').join('-').toLowerCase();
+      
+    }
+
+    return "";
+  }
+  
+  formataUrllink(autor){
+    if(autor){
+      let especial = this.nomeEspecialidade;
+      let uf = this.blogdetails.place;
+      let especFormat = especial.trim().split(' ').join('-');
+      let ufFormat = uf.trim().split(' ').join('-');
+      let autorFormat = autor.trim().split(' ').join('-');
+      let formatado = (autorFormat+"/"+especFormat+"/"+ufFormat).toLowerCase();
+      
+      return formatado;
+      
+      
+    }
+
+    return "";
   }
 }

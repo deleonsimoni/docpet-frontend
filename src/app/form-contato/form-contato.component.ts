@@ -9,6 +9,7 @@ import { EstabelecimentoService } from '../services/estabelecimento.service';
 import { UserService } from '../services/user.service';
 import { VeterinarioService } from '../services/veterinario.service';
 import { Globals } from '../global';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-form-contato',
@@ -27,6 +28,7 @@ export class FormContatoComponent implements OnInit {
   lat;
   lng;
   showMap = false;
+  habilitado = true;
   especialidade: any;
   estabelecimentos: FormArray;
   formacoes: FormArray;
@@ -160,7 +162,126 @@ export class FormContatoComponent implements OnInit {
     );
 
   }
-
+  verifyAllFields(role){
+    this.role= role;
+    if (role= 0){
+      this.verifyAllFieldsRole();
+    }else if (role= 1){
+      this.verifyAllFieldsRole1();
+    }else if (role= 2){
+      this.verifyAllFieldsRole2();
+    }else if (role= 3){
+      this.verifyAllFieldsRole3();
+    }else if (role= 4){
+      this.verifyAllFieldsRole4();
+    }
+  }
+  verifyAllFieldsRole(){
+    
+    
+      if (!this.form.get('nome').value){
+        this.habilitado = true;
+      } else if (!this.form.get('email').value) {
+        this.habilitado = true; 
+      }else if (!this.form.get('password').value) {
+        this.habilitado = true; 
+      }else if (!this.form.get('confirmpassword').value) {
+        this.habilitado = true; 
+      }
+      else if (this.form.get('password').value != this.form.get('confirmpassword').value) {
+        this.habilitado = true; 
+      }else{
+        this.habilitado = false;
+      }
+      
+    
+  }
+  verifyAllFieldsRole1(){
+    
+      if (!this.form.get('nome').value){
+        this.habilitado = true;
+      } else if (!this.form.get('email').value) {
+        this.habilitado = true; 
+      } else if (!this.form.get('password').value) {
+        this.habilitado = true; 
+      } else if (!this.form.get('confirmpassword').value) {
+        this.habilitado = true; 
+      } else if (this.form.get('password').value != this.form.get('confirmpassword').value) {
+        this.habilitado = true; 
+      } else if (!this.form.get('crmv').value) {
+        this.habilitado = true; 
+      } else if (!this.form.get('uf').value) {
+        this.habilitado = true; 
+      } else if (!this.form.get('celular').value) {
+        this.habilitado = true; 
+      }else{
+        this.habilitado = false;
+      }
+      
+  }
+  verifyAllFieldsRole2(){
+    
+    if (!this.form.get('nome').value){
+      this.habilitado = true;
+    } else if (!this.form.get('email').value) {
+      this.habilitado = true; 
+    } else if (!this.form.get('password').value) {
+      this.habilitado = true; 
+    } else if (!this.form.get('confirmpassword').value) {
+      this.habilitado = true; 
+    } else if (this.form.get('password').value != this.form.get('confirmpassword').value) {
+      this.habilitado = true; 
+    } else if (!this.form.get('cnpj').value) {
+      this.habilitado = true; 
+    } else if (!this.form.get('celular').value) {
+      this.habilitado = true; 
+    } else{
+      this.habilitado = false;
+    }
+    
+}
+verifyAllFieldsRole3(){
+    
+  if (!this.form.get('nome').value){
+    this.habilitado = true;
+  } else if (!this.form.get('email').value) {
+    this.habilitado = true; 
+  } else if (!this.form.get('password').value) {
+    this.habilitado = true; 
+  } else if (!this.form.get('confirmpassword').value) {
+    this.habilitado = true; 
+  } else if (this.form.get('password').value != this.form.get('confirmpassword').value) {
+    this.habilitado = true; 
+  } else if (!this.form.get('rg').value) {
+    this.habilitado = true; 
+  } else if (!this.form.get('celular').value) {
+    this.habilitado = true; 
+  }else{
+    this.habilitado = false;
+  }
+  
+}
+verifyAllFieldsRole4(){
+    
+  if (!this.form.get('nome').value){
+    this.habilitado = true;
+  } else if (!this.form.get('email').value) {
+    this.habilitado = true; 
+  } else if (!this.form.get('password').value) {
+    this.habilitado = true; 
+  } else if (!this.form.get('confirmpassword').value) {
+    this.habilitado = true; 
+  } else if (this.form.get('password').value != this.form.get('confirmpassword').value) {
+    this.habilitado = true; 
+  } else if (!this.form.get('rg').value) {
+    this.habilitado = true; 
+  } else if (!this.form.get('celular').value) {
+    this.habilitado = true; 
+  }else{
+    this.habilitado = false;
+  }
+  
+}
   salvar() {
 
     if (this.role == 1) {
@@ -337,7 +458,7 @@ export class FormContatoComponent implements OnInit {
         console.log(error);
       })
   }
-
+  
   createContatoFormGroup(): FormGroup {
     return this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(4)]],

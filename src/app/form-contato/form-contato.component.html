@@ -56,7 +56,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group form-focus">
                                                     <label>Nome<span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" formControlName="nome">
+                                                    <input type="text" class="form-control" formControlName="nome" (blur)="verifyAllFieldsRole()">
                                                     <app-mensagem *ngIf="
                                       form.get('nome')?.errors?.required &&
                                       form.get('nome')?.touched" mensagem="O nome é obrigatório">
@@ -66,7 +66,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group form-focus">
                                                     <label>Email<span class="text-danger">*</span></label>
-                                                    <input type="email" class="form-control" formControlName="email">
+                                                    <input type="email" class="form-control" formControlName="email" (blur)="verifyAllFieldsRole()">
                                                     <app-mensagem *ngIf="
                                         form.get('email')?.errors?.required &&
                                         form.get('email')?.touched
@@ -136,7 +136,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group form-focus">
                                             <label>Senha<span class="text-danger">*</span></label>
-                                            <input type="password" class="form-control" formControlName="password" #crmv>
+                                            <input type="password" class="form-control" formControlName="password" (blur)="verifyAllFieldsRole()" #crmv>
                                             <app-mensagem *ngIf="
                                 form.get('password')?.errors?.required &&
                                 form.get('password')?.touched" mensagem="A senha é obrigatório">
@@ -146,7 +146,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group form-focus">
                                             <label>Confirme a Senha<span class="text-danger">*</span></label>
-                                            <input type="password" class="form-control" formControlName="confirmpassword">
+                                            <input type="password" class="form-control" formControlName="confirmpassword" (blur)="verifyAllFieldsRole()">
                                             <app-mensagem *ngIf="
                                   form.get('confirmpassword')?.errors?.required &&
                                   form.get('confirmpassword')?.touched
@@ -162,20 +162,20 @@
                                                 <label>Tipo de Conta<span class="text-danger">*</span></label><br />
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role" [value]="0"> Tutor de Pet
+                                                        <input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role" [value]="0" (click)="verifyAllFieldsRole()"> Tutor de Pet
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role" [value]="1"> Veterinário
+                                                        <input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role" [value]="1" (click)="verifyAllFieldsRole1()"> Veterinário
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role" [value]="2"> Cliníca
+                                                        <input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role" [value]="2" (click)="verifyAllFieldsRole2()"> Cliníca
                                                     </div>
 
                                                     <div class="col-md-4">
-                                                        <input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role" [value]="3"> Adestrador
+                                                        <input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role" [value]="3" (click)="verifyAllFieldsRole3()"> Adestrador
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role" [value]="4"> Estética
+                                                        <input type="radio" [ngModelOptions]="{standalone: true}" name="options" [(ngModel)]="role" [value]="4" (click)="verifyAllFieldsRole4()"> Estética
                                                     </div>
                                                 </div>
                                             </div>
@@ -195,7 +195,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>CRMV<span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" formControlName="crmv" #crmv>
+                                                        <input type="text" class="form-control" formControlName="crmv" (blur)="verifyAllFieldsRole1()" #crmv>
                                                         <app-mensagem *ngIf="
                                   form.get('crmv')?.errors?.required &&
                                   form.get('crmv')?.touched" mensagem="CRMV é obrigatório">
@@ -205,7 +205,7 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>UF<span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" formControlName="uf" maxlength="2" minlength="2" style="text-transform: uppercase;">
+                                                        <input type="text" class="form-control" formControlName="uf" maxlength="2" minlength="2" style="text-transform: uppercase;" (blur)="verifyAllFieldsRole2()">
                                                         <app-mensagem *ngIf="
                             form.get('uf')?.errors?.required &&
                             form.get('uf')?.touched" mensagem="UF é obrigatório">
@@ -215,7 +215,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Celular</label>
-                                                        <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000">
+                                                        <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" (blur)="verifyAllFieldsRole1()">
                                                     </div>
                                                 </div>
                                             </div>
@@ -232,7 +232,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>CNPJ<span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" #cnpj formControlName="cnpj" mask="00.000.000/0000-00">
+                                                <input type="text" class="form-control" #cnpj formControlName="cnpj" mask="00.000.000/0000-00" (blur)="verifyAllFieldsRole2()">
                                                 <app-mensagem *ngIf="
                               form.get('cnpj')?.errors?.required &&
                               form.get('cnpj')?.touched" mensagem="CNPJ é obrigatório">
@@ -242,7 +242,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Celular</label>
-                                                <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000">
+                                                <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" (blur)="verifyAllFieldsRole2()">
                                             </div>
                                         </div>
                                     </div>
@@ -260,7 +260,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>RG<span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" formControlName="rg" #rg>
+                                                        <input type="text" class="form-control" formControlName="rg" (blur)="verifyAllFieldsRole3()" #rg>
                                                         <app-mensagem *ngIf="
                                   form.get('rg')?.errors?.required &&
                                   form.get('rg')?.touched" mensagem="RG é obrigatório">
@@ -270,7 +270,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Celular</label>
-                                                        <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000">
+                                                        <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" (blur)="verifyAllFieldsRole3()">
                                                     </div>
                                                 </div>
                                             </div>
@@ -290,7 +290,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>RG<span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" formControlName="rg" #rg>
+                                                        <input type="text" class="form-control" formControlName="rg" (blur)="verifyAllFieldsRole4()" #rg>
                                                         <app-mensagem *ngIf="
                                   form.get('rg')?.errors?.required &&
                                   form.get('rg')?.touched" mensagem="RG é obrigatório">
@@ -300,7 +300,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Celular</label>
-                                                        <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000">
+                                                        <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" (blur)="verifyAllFieldsRole4()" placeholder="(00) 00000-0000">
                                                     </div>
                                                 </div>
                                             </div>
@@ -314,10 +314,10 @@
                                             <a class="forgot-link" [routerLink]="'/login'">Já tem uma conta?</a>
                                         </div>
                                         <div class="submit-section submit-btn-bottom col-md-12 text-right">
-                                            <button *ngIf="!isLoading" class="btn submit-btn btn-primary btn-block btn-lg login-btn" (click)="salvar()">Registrar</button>
+                                            <button id="registrar-cadastro"  *ngIf="!isLoading" [disabled]="habilitado" class="btn submit-btn btn-primary btn-block btn-lg login-btn" (click)="salvar()">Registrar</button>
                                             <button *ngIf="isLoading" type="button" class="btn submit-btn btn-primary">
-                                <span class="spinner-border spinner-border-sm mr-2" role="status"></span>Aguarde
-                            </button>
+                                                <span class="spinner-border spinner-border-sm mr-2" role="status"></span>Aguarde
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

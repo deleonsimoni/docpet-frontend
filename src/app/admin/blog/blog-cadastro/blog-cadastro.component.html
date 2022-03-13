@@ -176,7 +176,7 @@
                     </div>
                     
                     <div class="submit-section submit-btn-bottom text-left">
-                        <button type="submit" [class]="blogForm.invalid ? 'btn submit-btn btn-light' : 'btn submit-btn btn-primary'">Salvar</button>
+                        <button type="submit"  class="btn submit-btn btn-primary" [disabled]="blogForm.invalid ? true : false">Salvar</button>
                         <button type="submit" [routerLink]="'/admin/list-blog'" class="btn btn-success submit-btn">Voltar</button>
                     </div>
                 </div>

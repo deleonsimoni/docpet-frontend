@@ -183,18 +183,7 @@ export class BlogCadastroComponent implements OnInit {
 
           console.log(this.blog);
           this.bt_salvar = true;
-            /*  this.var_id = data._id;
-          this.var_title = data.title;
-          this.var_link_blog = data['link_blog'];
-          this.var_link_author = data['link_author'];
-          this.var_especialidade = data['especialidade'];
-          this.var_doctor_name = data['doctor_name'];
-          this.var_doctor_pic = data['doctor_pic'];
-          this.var_short_description = data['short_description'];
-          this.var_description = data['description'];
-          this.var_img = data['img'];
-          this.var_place = data['place'];
-          */
+          
           if(estblogb.img){
             this.url = this.pathImage+estblogb.img;
           }
@@ -260,31 +249,6 @@ export class BlogCadastroComponent implements OnInit {
     if (this.blogForm.valid) {
       const novoBlog = this.blogForm.getRawValue() as Blog;
       console.log(novoBlog);
-     /* let vtitle = this.blogForm.get('title').value;
-      let vlinkblog = this.blogForm.get('link_blog').value;
-      let vlinkauthor = this.blogForm.get('link_author').value;
-      let vespecialidade = this.blogForm.get('especialidade').value;
-      let vdoctorname = this.blogForm.get('doctor_name').value;
-      let vdoctorpic = this.blogForm.get('doctor_pic').value;
-      let vshortdescription = this.blogForm.get('short_description').value;
-      let vdescription = this.blogForm.get('description').value;
-      let vimg = this.blogForm.get('img').value;
-          //  const novoblog = this.blogForm.getRawValue() as Blog;
-            
-       */     
-        /*   const novoBlog = {
-              "title": vtitle,
-              "link_blog" : vlinkblog,
-              "link_author" : vlinkauthor,
-              "especialidade" : vespecialidade,
-              "doctor_name" : vdoctorname,
-              "doctor_pic" : vdoctorpic,
-              "short_description" : vshortdescription,
-              "description" : vdescription,
-              "img" : vimg,
-            };
-            console.log(novoBlog);
-            */
       if(this.id){
         novoBlog.img = this.var_img;
         this.blogService.update(this.id, novoBlog).subscribe(
@@ -300,7 +264,6 @@ export class BlogCadastroComponent implements OnInit {
           }
         );
       }else{
-        //const novoBlog = this.blogForm.getRawValue() as Blog;
         this.blogService.create(novoBlog).subscribe(
           () => {
             this.toastService.success('Blog cadastrado com sucesso', 'Sucesso');
@@ -329,7 +292,8 @@ export class BlogCadastroComponent implements OnInit {
   doSomethingWhenScriptIsLoaded() {}
   formataUrldados(dado){
     if(dado){
-      let formatado = dado.trim().split(' ').join('-').toLowerCase();
+      let semacento = this.removerAcentos(dado);
+      let formatado = semacento.trim().split(' ').join('-').toLowerCase();
       this.blogForm.get('link_blog').setValue(formatado);
     }
 
@@ -338,11 +302,12 @@ export class BlogCadastroComponent implements OnInit {
   
   formataUrllink(autor){
     if(autor){
-      let espec = this.nomeEspecialidade;
-      let uf = this.var_place;
+      let nomeautor = this.removerAcentos(autor);
+      let espec = this.removerAcentos(this.nomeEspecialidade);
+      let uf = this.removerAcentos(this.var_place);
       let especFormat = espec.trim().split(' ').join('-');
       let ufFormat = uf.trim().split(' ').join('-');
-      let autorFormat = autor.trim().split(' ').join('-');
+      let autorFormat = nomeautor.trim().split(' ').join('-');
       let formatado = (autorFormat+"/"+especFormat+"/"+ufFormat).toLowerCase();
       
       this.blogForm.get('link_author').setValue(formatado);
@@ -352,6 +317,22 @@ export class BlogCadastroComponent implements OnInit {
 
     return "";
   }
+  public removerAcentos(texto)
+{
+    let comAcentos = ['Ä','Å','Á','Â','À','Ã','ä','á','â','à','ã','É','Ê','Ë','È','é','ê','ë','è','Í','Î','Ï','Ì','í','î','ï','ì','Ö','Ó','Ô','Ò','Õ','ö','ó','ô','ò','õ','Ü','Ú','Û','ü','ú','û','ù','Ç','ç'];
+   /* let semAcentos = ['A','A','A','A','A','A','a','a','a','a','a','E','E','E','E','e','e','e','e','I','I','I','I','i','i','i','i','O','O','O','O','O','o','o','o','o','o','U','U','U','u','u','u','u','C','c'];
+    let i = 0;
+    let textosemacento = "";
+    for (i = 0; i < comAcentos.length; i++)
+    {
+        textosemacento = texto.Replace(comAcentos[i], semAcentos[i]);
+    }
+    return textosemacento;
+    */
+    var semAcento = texto.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    console.log(semAcento);
+    return semAcento.normalize('NFD').replace(/[^\w\s]/gi, ' ');
+}
   onGetEspecialidade(){ // Função que foi chamada
     this.especialidadeId = this.blogForm.get('especialidade').value;
     this.especialidadeSevice.get(this.especialidadeId)
@@ -368,8 +349,7 @@ export class BlogCadastroComponent implements OnInit {
   }
   onGetlocal(){
     this.placeId = this.blogForm.get('place').value;
-    alert(this.placeId);
-    this.var_place = this.places.find(x=>x.placeId == this.placeId).description;
+    this.var_place = this.removerAcentos(this.places.find(x=>x.placeId == this.placeId).description);
     console.log(this.var_place);
   }
   

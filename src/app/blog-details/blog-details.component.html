@@ -24,7 +24,7 @@
 							<div class="blog-view">
 								<div class="blog blog-single-post" *ngIf="blogdetails">
 									<div class="blog-image">
-										<a href="javascript:void(0);"><img src="{{blogdetails.img}}" *ngIf="blogdetails.img" class="img-fluid"></a>
+										<a href="javascript:void(0);"><img src="{{pathImage+blogdetails.img}}" *ngIf="blogdetails.img" class="img-fluid"></a>
 									</div>
 									<h3 class="blog-title">{{blogdetails.title}}</h3>								
 									<div class="blog-info clearfix">
@@ -32,7 +32,7 @@
 											<ul>
 												<li>
 													<div class="post-author">
-														<a [routerLink]="'/patients/doctor-profile'"><img *ngIf="blogdetails.doctor_pic" src="{{blogdetails.doctor_pic}}" alt="Post Author"> <span>{{blogdetails.doctor_name}}</span></a>
+														<img *ngIf="blogdetails.doctor_pic" src="{{pathImage+blogdetails.doctor_pic}}" alt="Post Author"> <span>{{blogdetails.doctor_name}}</span>
 													</div>
 												</li>
 												<li *ngIf="blogdetails.createdAt"><i class="far fa-clock"></i>{{blogdetails.createdAt | date: "d MMM yyyy"}}</li>
@@ -47,9 +47,9 @@
 									</div>
 								</div>
 								
-								<div class="card blog-share clearfix">
+								<!--<div class="card blog-share clearfix">
 									<div class="card-header">
-										<h4 class="card-title">Share the post</h4>
+										<h4 class="card-title">Compartilhe</h4>
 									</div>
 									<div class="card-body">
 										<ul class="social-share">
@@ -60,8 +60,8 @@
 											<li><a  title="Youtube"><i class="fab fa-youtube"></i></a></li>
 										</ul>
 									</div>
-								</div>
-								<div class="card author-widget clearfix">
+								</div>-->
+								<!--<div class="card author-widget clearfix">
 								<div class="card-header">
 									<h4 class="card-title">Sobre o Autor</h4>
 									</div>
@@ -69,7 +69,7 @@
 									<div class="about-author">
 										<div class="about-author-img">
 											<div class="author-img-wrap">
-												<a [routerLink]="'/doctor/{{blogdetails.link_author}}'"><img class="img-fluid rounded-circle" alt="" src="{{blogdetails.doctor_pic}}"></a>
+												<a [routerLink]="'/doctor/{{blogdetails.link_author}}'"><img class="img-fluid rounded-circle" alt="" src="{{pathImage+blogdetails.doctor_pic}}"></a>
 											</div>
 										</div>
 										<div class="author-details">
@@ -78,10 +78,10 @@
 										</div>
 									</div>
 								</div>
-								</div>
+								</div>-->
 								<div class="card blog-comments clearfix">
 									<div class="card-header">
-										<h4 class="card-title">Comments (12)</h4>
+										<h4 class="card-title">Comentários ()</h4>
 									</div>
 									<div class="card-body pb-0">
 									<ul class="comments-list">
@@ -109,24 +109,24 @@
 								
 								<div class="card new-comment clearfix">
 									<div class="card-header">
-										<h4 class="card-title">Leave Comment</h4>
+										<h4 class="card-title">Deixe seu comentário</h4>
 									</div>
 									<div class="card-body">
 										<form>
 											<div class="form-group">
-												<label>Name <span class="text-danger">*</span></label>
+												<label>Nome <span class="text-danger">*</span></label>
 												<input type="text" class="form-control" name="name" [(ngModel)]="name">
 											</div>
 											<div class="form-group">
-												<label>Your Email Address <span class="text-danger">*</span></label>
+												<label>Seu Email <span class="text-danger">*</span></label>
 												<input type="email" class="form-control" name="email"  [(ngModel)]="email">
 											</div>
 											<div class="form-group">
-												<label>Comments <span class="text-danger">*</span></label>
+												<label>Comentário <span class="text-danger">*</span></label>
 												<textarea rows="4" class="form-control" name="usercomment" [(ngModel)]="usercomment"></textarea>
 											</div>
 											<div class="submit-section">
-												<button class="btn btn-primary submit-btn" type="submit" (click)="comment()">Submit</button>
+												<button class="btn btn-primary submit-btn" type="submit" (click)="comment()">Enviar</button>
 											</div>
 										</form>
 									</div>
@@ -162,13 +162,13 @@
 									<ul class="latest-posts">
 										<li *ngFor="let blog of blogs | slice:0:5">
 											<div class="post-thumb">
-												<a style="cursor: pointer;" (click)="navigate(blog)">
+												<a style="cursor: pointer;" [routerLink]="'/blog/'+blog.link_blog">
 													<img class="img-fluid" [src]="blog.img" alt="">
 												</a>
 											</div>
 											<div class="post-info">
 												<h4>
-													<a style="cursor: pointer;" (click)="navigate(blog)">{{blog.title}}</a>
+													<a style="cursor: pointer;" [routerLink]="'/blog/'+blog.link_blog">{{blog.title}}</a>
 												</h4>
 												<p>{{blog.createdAt | date : "dd MMM yyyy"}}</p>
 											</div>
@@ -185,7 +185,7 @@
 								</div>
 								<div class="card-body">
 									<ul class="categories">
-										<li *ngFor="let categorie of categories"><a [routerLink]="'/blog/'+categorie.link_author">{{categorie.name}} <span>({{categorie.num_blog}})</span></a></li>
+										<li *ngFor="let categorie of categories"><a [routerLink]="'/blog/'+formataUrldados(categorie.nomeFormated)">{{categorie.nome}} <span>({{categorie.num_blog}})</span></a></li>
 										
 									</ul>
 								</div>
