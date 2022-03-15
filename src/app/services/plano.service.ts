@@ -20,7 +20,9 @@ export class PlanoService {
   get(id): Observable<any> {
     return this.http.get(`${baseUrl}/${id}`);
   }
-
+  getByName(nomeFormated): Observable<any> {
+    return this.http.get(`${baseUrl}/nome/${nomeFormated}`);
+  }
   create(data): Observable<any> {
     return this.http.post(baseUrl, data);
   }

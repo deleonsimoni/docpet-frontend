@@ -1,0 +1,237 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="''">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                    </ol>
+                </nav>
+                <h1 class="breadcrumb-title">Checkout</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+<!-- Page Content -->
+<div class="content">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6 col-lg-7">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Detalhes do Pagamento</h2>
+                    </div>
+                    <div class="card-body">
+                    
+                        <!-- Checkout Form -->
+                        <form>
+                        
+                            <!-- Personal Information -->
+                            <div class="info-widget">
+                                <h4 class="card-title">Dados Pessoais</h4>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group card-label">
+                                            <label>Nome</label>
+                                            <input class="form-control" [value]="nomeUser" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group card-label">
+                                            <label>Último Nome</label>
+                                            <input class="form-control" [value]="sobrenome" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group card-label">
+                                            <label>Email</label>
+                                            <input class="form-control" type="email">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group card-label">
+                                            <label>Celular</label>
+                                            <input class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="exist-customer">Já tem uma conta? <a href="javascript:void(0)">Clique aqui para login</a></div>
+                            </div>
+                            <!-- /Personal Information -->
+
+                            <!-- Shipping Details -->
+                            <!--<div class="info-widget">
+                                <h4 class="card-title">Detalhes da Entrega</h4>
+                                <div class="terms-accept">
+                                    <div class="custom-checkbox">
+                                       <input type="checkbox" id="terms_accept">
+                                       <label for="terms_accept">Enviar para um endereço diferente different address?</label>
+                                    </div>
+                                </div>
+                                <div class="form-group card-label">
+                                    <label class="pl-0 ml-0 mb-2">Order notes (Optional)</label>
+                                    <textarea rows="5" class="form-control" name="shipping"></textarea>
+                                </div>
+                            </div>-->
+                            <!-- /Shipping Details -->
+                            <div *ngIf="free" class="payment-widget">
+                                
+                            <!-- Terms Accept -->
+                                <div class="terms-accept">
+                                    <div class="custom-checkbox">
+                                       <input type="checkbox" id="terms_accept1">
+                                       <label for="terms_accept1">&nbsp;Eu li e aceito os termos <a href="javascript:void(0)">Termos e Condições</a></label>
+                                    </div>
+                                </div>
+                                <!-- /Terms Accept -->
+                                
+                                <!-- Submit Section -->
+                                <div class="submit-section mt-4">
+                                    <a type="button" [routerLink]="'/pagamento/gratis'" class="btn btn-primary submit-btn">Contratar</a>
+                                </div>
+                                <!-- /Submit Section -->
+                                
+                            </div>
+                            <div *ngIf="!free" class="payment-widget">
+                                <h4 class="card-title">Formas de Pagamento</h4>
+                                
+                                <!-- Credit Card Payment -->
+                                <div class="payment-list">
+                                    <label class="payment-radio credit-card-option">
+                                        <input type="radio" name="radio" checked>
+                                        <span class="checkmark"></span>
+                                        Cartão de Crédito
+                                    </label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group card-label">
+                                                <label for="card_name">Nome no Cartão</label>
+                                                <input class="form-control" id="card_name" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group card-label">
+                                                <label for="card_number">Numero do cartão</label>
+                                                <input class="form-control" id="card_number" placeholder="1234  5678  9876  5432" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group card-label">
+                                                <label for="expiry_month">Mês de vencimento</label>
+                                                <input class="form-control" id="expiry_month" placeholder="MM" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group card-label">
+                                                <label for="expiry_year">Ano de vencimento</label>
+                                                <input class="form-control" id="expiry_year" placeholder="YY" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group card-label">
+                                                <label for="cvv">CVV</label>
+                                                <input class="form-control" id="cvv" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Credit Card Payment -->
+                                
+                                <!-- Paypal Payment -->
+                                <div class="payment-list">
+                                    <label class="payment-radio paypal-option">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>
+                                        Paypal
+                                    </label>
+                                </div>
+                                <!-- /Paypal Payment -->
+
+                                <!-- Terms Accept -->
+                                <div class="terms-accept">
+                                    <div class="custom-checkbox">
+                                       <input type="checkbox" id="terms_accept1">
+                                       <label for="terms_accept1">&nbsp;Eu li e aceito os termos <a href="javascript:void(0)">Termos e Condições</a></label>
+                                    </div>
+                                </div>
+                                <!-- /Terms Accept -->
+                                
+                                <!-- Submit Section -->
+                                <div class="submit-section mt-4">
+                                    <a type="button" [routerLink]="'/pagamento/success'" class="btn btn-primary submit-btn">Confirma e Paga</a>
+                                </div>
+                                <!-- /Submit Section -->
+                                
+                            </div>
+                        </form>
+                        <!-- /Checkout Form -->
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="col-md-6 col-lg-5 theiaStickySidebar">
+            
+                <!-- Booking Summary -->
+                <div class="card booking-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Pedido</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-center mb-0">
+                                <tr>
+                                    <th>Plano {{planos.nome}}</th>
+                                    <th class="text-right">Total</th>
+                                    
+                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">{{planos.descricao}}</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><h4><strong>Características</strong></h4></td>
+                                        
+                                    </tr>
+                                    <tr *ngFor="let caracteristica of planos.caracteristicas">
+                                        <td colspan="2">{{caracteristica.descricao}}</td>
+                                        
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="booking-summary pt-5">
+                            <div class="booking-item-wrap">
+                                
+                                
+                                <div class="booking-total">
+                                    <ul class="booking-total-list">
+                                        <li>
+                                            <span>Total (R$)</span>
+                                            <span *ngIf="free" class="total-cost">GRÁTIS</span>
+                                            <span *ngIf="!free" class="total-cost">{{planos.cobranca.valor.toLocaleString('pt-br', {minimumFractionDigits: 2})}}</span>
+                                        </li>
+                                        <li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Booking Summary -->
+                
+            </div>
+        </div>
+
+    </div>
+
+</div>		
+<!-- /Page Content -->

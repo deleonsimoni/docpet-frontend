@@ -76,6 +76,10 @@ const routes: Routes = [
     path: 'planos',
     loadChildren: () => import('./plan/plan.module').then((m) => m.PlanModule),
   },
+  {
+    path: 'plano-pagamento/:nome',
+    loadChildren: () => import('./checkout/checkout.module').then((m) => m.CheckoutModule),
+  },
 ];
 
 @NgModule({
