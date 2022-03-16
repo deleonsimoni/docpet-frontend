@@ -3,6 +3,7 @@ import { CommonServiceService } from '../../common-service.service'
 import * as $ from 'jquery';
 import { UserService } from 'src/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-patients',
@@ -17,51 +18,56 @@ export class PatientsComponent implements OnInit {
   constructor(
     public commonService: CommonServiceService,
     private toastrService: ToastrService,
-
+    private spinner: NgxSpinnerService,
     private userService: UserService) { }
 
   ngOnInit(): void {
     this.user = this.userService.getUser()
 
-    if(this.user.isAdmin){
+    if (this.user.isAdmin) {
       this.getUsers();
     }
   }
 
 
-  changeAdmin(user, isAdmin){
+  changeAdmin(user, isAdmin) {
 
     this.userService.changeAdmin(user._id, isAdmin)
-    .subscribe((res: any) => {
+      .subscribe((res: any) => {
 
-      this.getUsers();
+        this.getUsers();
 
-      if (isAdmin) {
-        this.toastrService.success('Usuário tornou-se administrador', 'Sucesso', {
+        if (isAdmin) {
+          this.toastrService.success('Usuário tornou-se administrador', 'Sucesso', {
+            timeOut: 3000
+          });
+        } else {
+          this.toastrService.warning('Usuário deixou de ser administrador', 'Sucesso', {
+            timeOut: 3000
+          });
+        }
+
+      }, error => {
+        this.toastrService.error('Erro', 'Ops!', {
           timeOut: 3000
         });
-      } else {
-        this.toastrService.warning('Usuário deixou de ser administrador', 'Sucesso', {
-          timeOut: 3000
-        });
-      }
-
-    }, error => {
-      this.toastrService.error('Erro', 'Ops!', {
-        timeOut: 3000
       });
-    });
 
 
 
   }
 
   getUsers() {
+    this.spinner.show();
     this.userService.getUsers()
       .subscribe(res => {
         this.users = res.users;
+        this.spinner.hide();
       },
-        error => this.errorMessage = <any>error);
+        error => {
+          this.spinner.hide();
+          this.errorMessage = <any>error
+        });
   }
 
 }

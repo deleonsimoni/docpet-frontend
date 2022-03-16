@@ -1,7 +1,11 @@
 <div class="main-wrapper">
-<app-header [hidden]="!show"></app-header>
-<router-outlet></router-outlet>
-<app-footer *ngIf="loadFooter" [hidden]="hideFooter"></app-footer>
+	<ngx-spinner bdColor="rgba(39, 182, 188,0.3)"
+		template="<img src='https://1.bp.blogspot.com/-H9tntAgr54s/YUP36-gy_rI/AAAAAAAACd8/-eUsQ5GBJUYiH4425d92DbSh7O_HyzklQCLcBGAsYHQ/s370/cachorro%2BThankfulPlushAtlanticspadefish-size_restricted.gif' />">
+	</ngx-spinner>
+
+	<app-header [hidden]="!show"></app-header>
+	<router-outlet></router-outlet>
+	<app-footer *ngIf="loadFooter" [hidden]="hideFooter"></app-footer>
 </div>
 <!-- Voice Call Modal -->
 <div class="modal fade call-modal" id="voice_call">
@@ -19,8 +23,10 @@
 								<span>Connecting...</span>
 							</div>
 							<div class="call-items">
-								<a href="javascript:void(0);" class="btn call-item call-end" data-dismiss="modal" aria-label="Close"><i class="material-icons">call_end</i></a>
-								<a [routerLink]="'/voice-call'" class="btn call-item call-start"  data-dismiss="modal" aria-label="Close"><i class="material-icons">call</i></a>
+								<a href="javascript:void(0);" class="btn call-item call-end" data-dismiss="modal"
+									aria-label="Close"><i class="material-icons">call_end</i></a>
+								<a [routerLink]="'/voice-call'" class="btn call-item call-start" data-dismiss="modal"
+									aria-label="Close"><i class="material-icons">call</i></a>
 							</div>
 						</div>
 					</div>
@@ -49,8 +55,10 @@
 								<span>Calling ...</span>
 							</div>
 							<div class="call-items">
-								<a href="javascript:void(0);" class="btn call-item call-end" data-dismiss="modal" aria-label="Close"><i class="material-icons">call_end</i></a>
-								<a [routerLink]="'/video-call'" class="btn call-item call-start"  data-dismiss="modal" aria-label="Close"><i class="material-icons">videocam</i></a>
+								<a href="javascript:void(0);" class="btn call-item call-end" data-dismiss="modal"
+									aria-label="Close"><i class="material-icons">call_end</i></a>
+								<a [routerLink]="'/video-call'" class="btn call-item call-start" data-dismiss="modal"
+									aria-label="Close"><i class="material-icons">videocam</i></a>
 							</div>
 						</div>
 					</div>
@@ -112,7 +120,8 @@
 						<a href="javascript:void(0);" class="add-hours"><i class="fa fa-plus-circle"></i> Add More</a>
 					</div>
 					<div class="submit-section text-center">
-						<button type="submit" class="btn btn-primary submit-btn" data-dismiss="modal" aria-label="Close">Save Changes</button>
+						<button type="submit" class="btn btn-primary submit-btn" data-dismiss="modal"
+							aria-label="Close">Save Changes</button>
 					</div>
 				</form>
 			</div>
@@ -195,7 +204,9 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-12 col-md-2"><label class="d-md-block d-sm-none d-none">&nbsp;</label><a href="javascript:void(0);" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a></div>
+							<div class="col-12 col-md-2"><label class="d-md-block d-sm-none d-none">&nbsp;</label><a
+									href="javascript:void(0);" class="btn btn-danger trash"><i
+										class="far fa-trash-alt"></i></a></div>
 						</div>
 
 						<div class="row form-row hours-cont">
@@ -227,7 +238,9 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-12 col-md-2"><label class="d-md-block d-sm-none d-none">&nbsp;</label><a href="javascript:void(0);" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a></div>
+							<div class="col-12 col-md-2"><label class="d-md-block d-sm-none d-none">&nbsp;</label><a
+									href="javascript:void(0);" class="btn btn-danger trash"><i
+										class="far fa-trash-alt"></i></a></div>
 						</div>
 
 					</div>
@@ -247,119 +260,124 @@
 
 <!-- Add Medical Records Modal -->
 <div class="modal fade custom-modal" id="add_medical_records">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Medical Records</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <form>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input type="text" class="form-control datetimepicker" value="31-10-2019">
-                    </div>
-                    <div class="form-group">
-                        <label>Description ( Optional )</label>
-                        <textarea class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Upload File</label>
-                        <input type="file" class="form-control">
-                    </div>
-                    <div class="submit-section text-center">
-                        <button type="submit" class="btn btn-primary submit-btn">Submit</button>
-                        <button type="button" class="btn btn-secondary submit-btn" data-dismiss="modal">Cancel</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title">Medical Records</h3>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+						aria-hidden="true">&times;</span></button>
+			</div>
+			<form>
+				<div class="modal-body">
+					<div class="form-group">
+						<label>Date</label>
+						<input type="text" class="form-control datetimepicker" value="31-10-2019">
+					</div>
+					<div class="form-group">
+						<label>Description ( Optional )</label>
+						<textarea class="form-control"></textarea>
+					</div>
+					<div class="form-group">
+						<label>Upload File</label>
+						<input type="file" class="form-control">
+					</div>
+					<div class="submit-section text-center">
+						<button type="submit" class="btn btn-primary submit-btn">Submit</button>
+						<button type="button" class="btn btn-secondary submit-btn" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
 <!-- /Add Medical Records Modal -->
 
 <!-- Add Event Modal -->
 <div id="add_event" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Add Event</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label>Event Name <span class="text-danger">*</span></label>
-                        <input class="form-control" type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Event Date <span class="text-danger">*</span></label>
-                        <div class="cal-icon">
-                            <input class="form-control datetimepicker" type="text">
-                        </div>
-                    </div>
-                    <div class="submit-section">
-                        <button class="btn btn-primary submit-btn">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Add Event</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label>Event Name <span class="text-danger">*</span></label>
+						<input class="form-control" type="text">
+					</div>
+					<div class="form-group">
+						<label>Event Date <span class="text-danger">*</span></label>
+						<div class="cal-icon">
+							<input class="form-control datetimepicker" type="text">
+						</div>
+					</div>
+					<div class="submit-section">
+						<button class="btn btn-primary submit-btn">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- /Add Event Modal -->
 
 <!-- Add Event Modal -->
 <div class="modal fade none-border" id="my_event">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Add Event</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body"></div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-success save-event submit-btn">Create event</button>
-                <button type="button" class="btn btn-danger delete-event submit-btn" data-dismiss="modal">Delete</button>
-            </div>
-        </div>
-    </div>
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Add Event</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body"></div>
+			<div class="modal-footer justify-content-center">
+				<button type="button" class="btn btn-success save-event submit-btn">Create event</button>
+				<button type="button" class="btn btn-danger delete-event submit-btn"
+					data-dismiss="modal">Delete</button>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- /Add Event Modal -->
 
 <!-- Add Category Modal -->
 <div class="modal fade" id="add_new_event">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Add Category</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label>Category Name</label>
-                        <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name" />
-                    </div>
-                    <div class="form-group mb-0">
-                        <label>Choose Category Color</label>
-                        <select class="form-control form-white" data-placeholder="Choose a color..." name="category-color">
-                            <option value="success">Success</option>
-                            <option value="danger">Danger</option>
-                            <option value="info">Info</option>
-                            <option value="primary">Primary</option>
-                            <option value="warning">Warning</option>
-                            <option value="inverse">Inverse</option>
-                        </select>
-                    </div>
-                    <div class="submit-section">
-                        <button type="button" class="btn btn-primary save-category submit-btn" data-dismiss="modal">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Add Category</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label>Category Name</label>
+						<input class="form-control form-white" placeholder="Enter name" type="text"
+							name="category-name" />
+					</div>
+					<div class="form-group mb-0">
+						<label>Choose Category Color</label>
+						<select class="form-control form-white" data-placeholder="Choose a color..."
+							name="category-color">
+							<option value="success">Success</option>
+							<option value="danger">Danger</option>
+							<option value="info">Info</option>
+							<option value="primary">Primary</option>
+							<option value="warning">Warning</option>
+							<option value="inverse">Inverse</option>
+						</select>
+					</div>
+					<div class="submit-section">
+						<button type="button" class="btn btn-primary save-category submit-btn"
+							data-dismiss="modal">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- /Add Category Modal -->
 
@@ -369,14 +387,16 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h3 class="modal-title">Payment Request</h3>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+						aria-hidden="true">×</span></button>
 			</div>
 			<div class="modal-body">
 				<form id="payment_request_form" method="post">
 					<input type="hidden" name="payment_type" id="payment_type" value="1">
 					<div class="form-group">
 						<label>Request Amount</label>
-						<input type="text" name="request_amount" id="request_amount" class="form-control" maxlength="6" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+						<input type="text" name="request_amount" id="request_amount" class="form-control" maxlength="6"
+							oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 						<span class="help-block"></span>
 					</div>
 					<div class="form-group">
@@ -400,7 +420,8 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h3 class="modal-title">Account Details</h3>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+						aria-hidden="true">×</span></button>
 			</div>
 			<div class="modal-body">
 				<form id="accounts_form" method="post">
@@ -408,7 +429,8 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label class="control-label">Bank Name</label>
-								<input type="text" name="bank_name" class="form-control bank_name" value="Wells Fargo & Co">
+								<input type="text" name="bank_name" class="form-control bank_name"
+									value="Wells Fargo & Co">
 								<span class="help-block"></span>
 							</div>
 						</div>
@@ -426,7 +448,8 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label class="control-label">Account Number</label>
-								<input type="text" name="account_no" class="form-control account_no" value="5396 5250 1908 3838">
+								<input type="text" name="account_no" class="form-control account_no"
+									value="5396 5250 1908 3838">
 								<span class="help-block"></span>
 							</div>
 						</div>
@@ -435,7 +458,8 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label class="control-label">Account Name</label>
-								<input type="text" name="account_name" class="form-control acc_name" value="Dr. Darren Elder">
+								<input type="text" name="account_name" class="form-control acc_name"
+									value="Dr. Darren Elder">
 								<span class="help-block"></span>
 							</div>
 						</div>
@@ -462,19 +486,11 @@
 			</div>
 			<div class="modal-body">
 				<div id="bmi-status">
-					<apx-chart
-					  [series]="chartOptions.series"
-					  [chart]="chartOptions.chart"
-					  [xaxis]="chartOptions.xaxis"
-					  [stroke]="chartOptions.stroke"
-					  [colors]="chartOptions.colors"
-					  [dataLabels]="chartOptions.dataLabels"
-					  [legend]="chartOptions.legend"
-					  [markers]="chartOptions.markers"
-					  [grid]="chartOptions.grid"
-					  [yaxis]="chartOptions.yaxis"
-					  [title]="chartOptions.title"
-					></apx-chart>
+					<apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+						[stroke]="chartOptions.stroke" [colors]="chartOptions.colors"
+						[dataLabels]="chartOptions.dataLabels" [legend]="chartOptions.legend"
+						[markers]="chartOptions.markers" [grid]="chartOptions.grid" [yaxis]="chartOptions.yaxis"
+						[title]="chartOptions.title"></apx-chart>
 				</div>
 			</div>
 		</div>
@@ -494,17 +510,11 @@
 			</div>
 			<div class="modal-body">
 				<div id="heartrate-status">
-					<apx-chart
-					  [series]="chartOptionsheartrate.series"
-					  [chart]="chartOptionsheartrate.chart"
-					  [xaxis]="chartOptionsheartrate.xaxis"
-					  [stroke]="chartOptionsheartrate.stroke"
-					  [dataLabels]="chartOptionsheartrate.dataLabels"
-					  [markers]="chartOptionsheartrate.markers"
-					  [yaxis]="chartOptionsheartrate.yaxis"
-					  [title]="chartOptionsheartrate.title"
-					  [fill]="chartOptionsheartrate.fill"
-					></apx-chart>
+					<apx-chart [series]="chartOptionsheartrate.series" [chart]="chartOptionsheartrate.chart"
+						[xaxis]="chartOptionsheartrate.xaxis" [stroke]="chartOptionsheartrate.stroke"
+						[dataLabels]="chartOptionsheartrate.dataLabels" [markers]="chartOptionsheartrate.markers"
+						[yaxis]="chartOptionsheartrate.yaxis" [title]="chartOptionsheartrate.title"
+						[fill]="chartOptionsheartrate.fill"></apx-chart>
 				</div>
 			</div>
 		</div>
@@ -524,16 +534,10 @@
 			</div>
 			<div class="modal-body">
 				<div id="fbc-status">
-					<apx-chart
-					  [series]="chartOptionsfbc.series"
-					  [chart]="chartOptionsfbc.chart"
-					  [xaxis]="chartOptionsfbc.xaxis"
-					  [dataLabels]="chartOptionsfbc.dataLabels"
-					  [plotOptions]="chartOptionsfbc.plotOptions"
-					  [yaxis]="chartOptionsfbc.yaxis"
-					  [title]="chartOptionsfbc.title"
-					  [fill]="chartOptionsfbc.fill"
-					></apx-chart>
+					<apx-chart [series]="chartOptionsfbc.series" [chart]="chartOptionsfbc.chart"
+						[xaxis]="chartOptionsfbc.xaxis" [dataLabels]="chartOptionsfbc.dataLabels"
+						[plotOptions]="chartOptionsfbc.plotOptions" [yaxis]="chartOptionsfbc.yaxis"
+						[title]="chartOptionsfbc.title" [fill]="chartOptionsfbc.fill"></apx-chart>
 				</div>
 			</div>
 		</div>
@@ -553,14 +557,9 @@
 			</div>
 			<div class="modal-body">
 				<div id="weight-status">
-					<apx-chart
-					  [series]="chartOptionsweight.series"
-					  [chart]="chartOptionsweight.chart"
-					  [markers]="chartOptionsweight.markers"
-					  [dataLabels]="chartOptionsweight.dataLabels"
-					  [stroke]="chartOptionsweight.stroke"
-					  [title]="chartOptionsweight.title"
-					></apx-chart>
+					<apx-chart [series]="chartOptionsweight.series" [chart]="chartOptionsweight.chart"
+						[markers]="chartOptionsweight.markers" [dataLabels]="chartOptionsweight.dataLabels"
+						[stroke]="chartOptionsweight.stroke" [title]="chartOptionsweight.title"></apx-chart>
 				</div>
 			</div>
 		</div>
@@ -590,7 +589,7 @@
 					</div>
 					<div class="form-group">
 						<label class="control-label mb-10">Gender </label>
-						<select class="form-control" >
+						<select class="form-control">
 							<option value="">Select</option>
 							<option value="Male">Male</option>
 							<option value="Female">Female</option>
@@ -636,7 +635,7 @@
 					</div>
 					<div class="form-group">
 						<label class="control-label mb-10">Gender </label>
-						<select class="form-control" >
+						<select class="form-control">
 							<option value="">Select</option>
 							<option value="Male" selected>Male</option>
 							<option value="Female">Female</option>
@@ -644,7 +643,8 @@
 					</div>
 					<div class="form-group">
 						<label class="control-label mb-10">DOB </label>
-						<input type="text" name="dob" id="dep-editdob" value="01/12/2021" readonly="" class="form-control">
+						<input type="text" name="dob" id="dep-editdob" value="01/12/2021" readonly=""
+							class="form-control">
 					</div>
 					<div class="form-group">
 						<label class="control-label mb-10">Photo </label>
@@ -666,7 +666,8 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h3 class="modal-title">Account Details</h3>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+						aria-hidden="true">×</span></button>
 			</div>
 			<div class="modal-body">
 				<form id="patient_accounts_form" method="post">
@@ -674,7 +675,8 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label class="control-label">Bank Name</label>
-								<input type="text" name="bank_name" class="form-control bank_name" value="Goldman Sachs">
+								<input type="text" name="bank_name" class="form-control bank_name"
+									value="Goldman Sachs">
 								<span class="help-block"></span>
 							</div>
 						</div>
@@ -683,7 +685,8 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label class="control-label">Branch Name</label>
-								<input type="text" name="branch_name" class="form-control branch_name" value="Alpharetta">
+								<input type="text" name="branch_name" class="form-control branch_name"
+									value="Alpharetta">
 								<span class="help-block"></span>
 							</div>
 						</div>
@@ -692,7 +695,8 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label class="control-label">Account Number</label>
-								<input type="text" name="account_no" class="form-control account_no" value="4916 0606 4635 5064">
+								<input type="text" name="account_no" class="form-control account_no"
+									value="4916 0606 4635 5064">
 								<span class="help-block"></span>
 							</div>
 						</div>
@@ -701,7 +705,8 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label class="control-label">Account Name</label>
-								<input type="text" name="account_name" class="form-control acc_name" value="Richard Wilson">
+								<input type="text" name="account_name" class="form-control acc_name"
+									value="Richard Wilson">
 								<span class="help-block"></span>
 							</div>
 						</div>
@@ -717,7 +722,8 @@
 <!-- /Patient Account Details Modal -->
 
 <!-- Medical Records Modal -->
-<div class="modal fade custom-modal custom-medicalrecord-modal" id="add_medical_records_modal" style="display: none;" data-select2-id="add_medical_records_modal" aria-hidden="true">
+<div class="modal fade custom-modal custom-medicalrecord-modal" id="add_medical_records_modal" style="display: none;"
+	data-select2-id="add_medical_records_modal" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -732,18 +738,19 @@
 						<div class="col-12 col-md-6">
 							<div class="form-group">
 								<label>Title Name</label>
-								<input type="text" name="description" class="form-control" placeholder="Enter Title Name">
+								<input type="text" name="description" class="form-control"
+									placeholder="Enter Title Name">
 							</div>
 						</div>
 						<div class="col-12 col-md-6">
 							<div class="form-group">
 								<label>Patient</label>
 								<ng-select2 width="100%">
-                                    <option>Select</option>
+									<option>Select</option>
 									<option>Myself</option>
 									<option>Child_1</option>
 									<option>Self</option>
-                                </ng-select2>
+								</ng-select2>
 							</div>
 						</div>
 					</div>
@@ -763,7 +770,8 @@
 									<input class="form-control" type="file" name="user_file" id="user_files_mr">
 									<div class="upload-content dropzone">
 										<div class="text-center">
-											<div class="upload-icon mb-2"><img src="assets/img/upload-icon.png" alt=""></div>
+											<div class="upload-icon mb-2"><img src="assets/img/upload-icon.png" alt="">
+											</div>
 											<h5>Drag &amp; Drop</h5>
 											<h6>or <span class="text-danger">Browse</span></h6>
 										</div>
@@ -776,7 +784,8 @@
 						<div class="col-12">
 							<div class="form-group">
 								<label>Symptoms</label>
-								<input type="text" data-role="tagsinput" class="input-tags form-control" value="Fever, Fatigue" name="services" id="services">
+								<input type="text" data-role="tagsinput" class="input-tags form-control"
+									value="Fever, Fatigue" name="services" id="services">
 							</div>
 						</div>
 					</div>
@@ -803,7 +812,8 @@
 <!-- /Medical Records Modal -->
 
 <!-- Add Medical Detail -->
-<div id="modal_medical_form" class="modal fade custom-modal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+<div id="modal_medical_form" class="modal fade custom-modal" tabindex="-1" role="dialog" style="display: none;"
+	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<form action="#" enctype="multipart/form-data" autocomplete="off" method="post">
@@ -847,7 +857,8 @@
 <!-- /Add Medical Detail -->
 
 <!-- Edit Medical Detail -->
-<div id="edit_medical_form" class="modal fade custom-modal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+<div id="edit_medical_form" class="modal fade custom-modal" tabindex="-1" role="dialog" style="display: none;"
+	aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<form action="#" enctype="multipart/form-data" autocomplete="off" method="post">

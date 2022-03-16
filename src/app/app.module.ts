@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { InterceptorService } from './services/interceptor.service';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -41,6 +42,7 @@ import { InterceptorService } from './services/interceptor.service';
     NgApexchartsModule,
     NgxMaskModule.forRoot({ dropSpecialCharacters: false }),
     LeafletModule,
+    NgxSpinnerModule
   ],
   providers: [
     {
@@ -49,6 +51,7 @@ import { InterceptorService } from './services/interceptor.service';
       multi: true
     }
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
