@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
 import { FooterComponent } from './common/footer/footer.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -18,9 +18,10 @@ import { Daterangepicker } from 'ng2-daterangepicker';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgSelect2Module } from 'ng-select2';
 import { NgApexchartsModule } from "ng-apexcharts";
-import { NgxMaskModule} from 'ngx-mask';
+import { NgxMaskModule } from 'ngx-mask';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { InterceptorService } from './services/interceptor.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -38,10 +39,16 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     Daterangepicker,
     NgSelect2Module,
     NgApexchartsModule,
-    NgxMaskModule.forRoot({dropSpecialCharacters:false}),
+    NgxMaskModule.forRoot({ dropSpecialCharacters: false }),
     LeafletModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
