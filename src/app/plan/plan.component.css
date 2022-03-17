@@ -2,8 +2,9 @@
     color: red;
     padding-left: 3px;
 }
-
-
+.set-category.lighter {
+    background-color: #00bcd1;
+}
 .content {
     min-height: 400px;
     background-size: 130%;

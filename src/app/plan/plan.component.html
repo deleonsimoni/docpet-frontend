@@ -42,9 +42,9 @@
                             <div *ngFor="let caracteristica of plano.caracteristicas">
                                 <ins _ngcontent-kyr-c283="" style="margin-bottom:15px;color:#ffffff;">{{caracteristica.titulo}} </ins><br />
                             </div>
-
+                            <div *ngIf="plano.nome == 'Básico'" style="height:55px;"><p>&nbsp;</p></div>
                             <p>&nbsp;</p>
-                            <a style="text-align:center;color:#ffffff;" [routerLink]="'/patients/booking'" [ngClass]="odd ? 'btn btn-block btn-outline-dark active' : 'btn btn-block btn-outline-primary active'">Começar agora </a>
+                            <a style="text-align:center;color:#ffffff;" [routerLink]="'/plano-pagamento/'+formataUrldados(plano.nomeFormated)" [ngClass]="odd ? 'btn btn-block btn-outline-dark active' : 'btn btn-block btn-outline-primary active'">Começar agora </a>
                         </div>
                     </div>
 

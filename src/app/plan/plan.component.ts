@@ -32,7 +32,7 @@ export class PlanComponent implements OnInit {
   ngOnInit(): void {
     this.listarPlanos();
   }
-
+  
   listarPlanos() {
     this.planosService.getAll().subscribe(
         (res) => {
@@ -180,6 +180,13 @@ export class PlanComponent implements OnInit {
     position: 'CEO of VoidCoders',
   },
 ];
+formataUrldados(dado){
+  if(dado){
+    return dado.trim().split(' ').join('-').toLowerCase();
+  }
+
+  return "";
+}
   next() {
     this.slickModal1.slickNext();
   }
