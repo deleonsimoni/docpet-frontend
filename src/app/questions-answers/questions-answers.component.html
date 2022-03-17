@@ -174,7 +174,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 col-lg-12 col-sm-12">
-                    <div class="card">
+                    <div id="card1" class="card">
                         <div class="card-body">
                             <div class="doctor-question-body">
                                 <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</h4>
@@ -200,13 +200,13 @@
                                     <div class="doctor-answer-content">
                                     Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum
                                     </div>
-                                    <button type="button" class="btn btn-info btn-sm mt10" style="float:right;" (click)="getMais()">+ 5 respostas</button>
+                                    <button type="button" class="btn btn-info btn-sm mt10" style="float:right;" (click)="getMais(1)">+ 5 respostas</button>
                                 </div>
                                 
                             </div>
-                            <div *ngIf="vermais" class="mais" style="clear:both;display:block;margin-top:10px;">
+                            <div id="mais1" class="mais">
                                 <p>&nbsp;</p><hr />
-                                <div  class="pergunta-resposta" style="clear:both;display:block;padding:10px 0 0 0;">
+                                <div  class="resposta" style="clear:both;display:block;padding:10px 0 0 0;">
                                     
                                     <div class="col-md-3 profile-info-widget">
                                             <div class="col-md-4 booking-doc-img">
@@ -231,7 +231,7 @@
                                     </div>
                                     
                                 </div>
-                                <div  class="pergunta-resposta" style="clear:both;display:block;padding:10px 0 0 0;">
+                                <div  class="resposta" style="clear:both;display:block;padding:10px 0 0 0;">
                                 
                                     <div class="col-md-3 profile-info-widget">
                                             <div class="col-md-4 booking-doc-img">
@@ -256,7 +256,7 @@
                                     </div>
                                     
                                 </div>
-                                <div  class="pergunta-resposta" style="clear:both;display:block;padding:10px 0 0 0;">
+                                <div  class="resposta" style="clear:both;display:block;padding:10px 0 0 0;">
                                 
                                     <div class="col-md-3 profile-info-widget">
                                             <div class="col-md-4 booking-doc-img">
@@ -281,14 +281,17 @@
                                     </div>
                                     
                                 </div>
+                                
 
                                 <div class="col-md-12 text-center" style="margin-top:20px;clear:both;display:block;">
-                                    <button type="button" class="btn btn-info btn-sm mt10" style="float:right;">Mais..</button>
+                                    <button type="button" class="btn btn-warning btn-sm mt10 ml10" style="float:right;" (click)="getMinus(1)">Fechar</button>
+                                    <button type="button" class="btn btn-info btn-sm mt10" style="float:right;" (click)="getMore(5)">Exibir mais..</button>
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div id="card2" class="card">
                         <div class="card-body">
                             <div class="doctor-question-body">
                                 <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</h4>
@@ -314,13 +317,73 @@
                                     <div class="doctor-answer-content">
                                     Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum
                                     </div>
-                                    <button type="button" class="btn btn-info btn-sm mt10" style="float:right;">+ 2 respostas</button>
+                                    <button type="button" class="btn btn-info btn-sm mt10" style="float:right;" (click)="getMais(2)">+ 2 respostas</button>
                                 </div>
                                 
                             </div>
+                            <div id="mais2" class="mais">
+                                <p>&nbsp;</p><hr />
+                                <div  class="resposta" style="clear:both;display:block;padding:10px 0 0 0;">
+                                
+                                    <div class="col-md-3 profile-info-widget">
+                                            <div class="col-md-4 booking-doc-img">
+                                                <img src="http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-3.jpg" alt="Especialidade">
+                                                <button type="button" class="btn btn-primary btn-sm mt10">&nbsp;Agendar&nbsp;</button>
+                                            </div>
+                                            <div class="col-md-8 profile-det-info">
+                                                <div class="patient-details">
+                                                    <h5><i class="far fa-clock"></i> especialidade</h5>
+                                                    <h5><i class="fas fa-map-marker-alt"></i> endereço</h5>
+                                                    <h5><i class="fas fa-envelope"></i> email</h5>
+                                                    <h5 class="mb-0"><i class="fas fa-phone"></i> telefone</h5>
+                                                </div>
+                                            </div>
+                                            
+                                    </div>
+                                    <div class="col-md-9" style="float:right;">
+                                        <div class="doctor-answer-content">
+                                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                                <div  class="resposta" style="clear:both;display:block;padding:10px 0 0 0;">
+                                
+                                    <div class="col-md-3 profile-info-widget">
+                                            <div class="col-md-4 booking-doc-img">
+                                                <img src="http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-4.jpg" alt="Especialidade">
+                                                <button type="button" class="btn btn-primary btn-sm mt10">&nbsp;Agendar&nbsp;</button>
+                                            </div>
+                                            <div class="col-md-8 profile-det-info">
+                                                <div class="patient-details">
+                                                    <h5><i class="far fa-clock"></i> especialidade</h5>
+                                                    <h5><i class="fas fa-map-marker-alt"></i> endereço</h5>
+                                                    <h5><i class="fas fa-envelope"></i> email</h5>
+                                                    <h5 class="mb-0"><i class="fas fa-phone"></i> telefone</h5>
+                                                </div>
+                                            </div>
+                                            
+                                    </div>
+                                    <div class="col-md-9" style="float:right;">
+                                        <div class="doctor-answer-content">
+                                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                                
+
+                                <div class="col-md-12 text-center" style="margin-top:20px;clear:both;display:block;">
+                                    <button type="button" class="btn btn-warning btn-sm mt10 ml10" style="float:right;" (click)="getMinus(2)">Fechar</button>
+                                    <button type="button" class="btn btn-info btn-sm mt10" style="float:right;" (click)="getMore(2)">Exibir mais..</button>
+                                    
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div id="card3" class="card">
                         <div class="card-body">
                             <div class="doctor-question-body">
                                 <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</h4>
@@ -346,7 +409,7 @@
                                     <div class="doctor-answer-content">
                                     Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum
                                     </div>
-                                    <button type="button" class="btn btn-info btn-sm mt10" style="float:right;">+ 2 respostas</button>
+                                    <button type="button" class="btn btn-info btn-sm mt10" style="float:right;">+ 0 respostas</button>
                                 </div>
                             </div>
                         </div>

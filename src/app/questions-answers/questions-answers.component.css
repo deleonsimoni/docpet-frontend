@@ -72,6 +72,9 @@
     .mt10 {
         margin-top: 10px;
     }
+    .ml10 {
+        margin-left: 10px;
+    }
     .profile-det-info {
         overflow: hidden;
         display: flex;
@@ -81,6 +84,9 @@
         float:left;  
         margin-left: 10px;
         margin-top: 15px;
+    }
+    .mais{
+        clear:both;display:block;margin-top:10px;display:none;
     }
 }
 @media (min-width: 901px) and (max-width: 1800px) {
@@ -160,6 +166,9 @@
     .mt10 {
         margin-top: 10px;
     }
+    .ml10 {
+        margin-left: 10px;
+    }
     .profile-det-info {
         overflow: hidden;
         display: flex;
@@ -169,5 +178,8 @@
         float:left;  
         margin-left: 10px;
         margin-top: 15px;
+    }
+    .mais{
+        clear:both;display:block;margin-top:10px;display:none;
     }
 }
