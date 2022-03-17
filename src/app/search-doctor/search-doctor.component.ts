@@ -6,6 +6,7 @@ import { CommonServiceService } from '../common-service.service'
 import { FormsModule } from '@angular/forms';
 import { latLng, tileLayer } from 'leaflet';
 import { Globals } from '../global';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class SearchDoctorComponent implements OnInit {
   specialitiesDoctors: any = [];
   municipioDoctors: any = [];
   urlatual: any = [];
+  exibeResult = true;
   type;
   specialist = "";
   speciality;
@@ -41,7 +43,7 @@ export class SearchDoctorComponent implements OnInit {
 
 
 
-  constructor(private route: ActivatedRoute, public veterinarioService: VeterinarioService, public router: Router) { }
+  constructor(private route: ActivatedRoute, public veterinarioService: VeterinarioService, public router: Router,  private spinner: NgxSpinnerService,) { }
   images = [
     {
       path: 'assets/img/features/feature-01.jpg',
@@ -63,20 +65,30 @@ export class SearchDoctorComponent implements OnInit {
     
   }
   getEstabelecimentos(especialidade, municipio) {
+    this.spinner.show();
     this.veterinarioService.getByNoEspecialidadeMunicipio(especialidade, municipio).subscribe(
       (res) => {
         this.doctors = res;
-        console.log(this.doctors);
-        this.specialitiesDoctors = this.doctors[0].especialidades;
-        this.getNomeEspecialidade(this.specialitiesDoctors);
+        
         if(this.doctors.length > 0){
+
+          this.specialitiesDoctors = this.doctors[0].especialidades;
+          this.getNomeEspecialidade(this.specialitiesDoctors);
 
           this.lat = this.doctors[0].location.coordinates[1];
           this.lng = this.doctors[0].location.coordinates[0];
 
+        }else{
+          this.exibeResult = false;
         }
 
+        this.spinner.hide();
       },
+      error => {
+        this.exibeResult = false;
+        this.spinner.hide();
+       console.log(error);
+      }
     );
     
   }
@@ -144,6 +156,106 @@ export class SearchDoctorComponent implements OnInit {
     // } else {
     //   this.router.navigate(['/']);
     // }
+  }
+  getStar(doctorDetails){
+    if (doctorDetails.reviews.length > 0) {
+
+      let total = 0;
+      let rates = [0,0,0,0,0];
+      let totalStar =0;
+      let totalStarFormated = 0;
+
+      for (let item of doctorDetails.reviews) {
+        if (item.score) {
+          total += 1;
+
+          if(item.score == 1){
+            rates[0] += 1;
+          } else if (item.score == 2) {
+            rates[1] += 1;
+          } else if (item.score == 3) {
+            rates[2] += 1;
+          } else if (item.score == 4) {
+            rates[3] += 1;
+          } else if (item.score == 5) {
+            rates[4] += 1;
+          }
+
+        }
+      }
+
+      if (total > 0) {
+
+          totalStar = (rates[0]*1 + rates[1]*2 + rates[2]*3 + rates[3]*4 + rates[4]*5) / total
+          totalStarFormated = Math.round(totalStar);
+
+        if (totalStar >= 5) {
+          totalStar = 5;
+          totalStarFormated = 5;
+        }
+
+      }
+      return totalStarFormated;
+    }
+  }
+
+  getTotalStar(doctorDetails){
+    if (doctorDetails.reviews.length > 0) {
+
+      let total = 0;
+      let rates = [0,0,0,0,0];
+      let totalStar =0;
+
+      for (let item of doctorDetails.reviews) {
+        if (item.score) {
+          total += 1;
+          if(item.score == 1){
+            rates[0] += 1;
+          } else if (item.score == 2) {
+            rates[1] += 1;
+          } else if (item.score == 3) {
+            rates[2] += 1;
+          } else if (item.score == 4) {
+            rates[3] += 1;
+          } else if (item.score == 5) {
+            rates[4] += 1;
+          }
+        }
+      }
+
+      if (total > 0) {
+          totalStar = (rates[0]*1 + rates[1]*2 + rates[2]*3 + rates[3]*4 + rates[4]*5) / total
+        if (totalStar >= 5) {
+          totalStar = 5;    
+        }
+
+      }
+      return totalStar;
+    }
+  }
+
+  totalLike(doctorDetails){
+
+    let totalLike = 0;
+    let totalDislike = 0;
+
+    for (let item of doctorDetails.reviews) {
+      if (item.like === true) {
+        totalLike+=1;
+      } else if (item.like === false){
+        totalDislike+=1;
+      }
+    }
+
+    totalLike = (totalLike/(totalLike + totalDislike)) * 100;
+
+    if(isNaN(totalLike) || totalLike < 0){
+      totalLike = 0;
+    } else {
+      totalLike = Math.round(totalLike);
+    }
+
+    return totalLike;
   }
 
 }

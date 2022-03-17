@@ -172,7 +172,6 @@ export class HomeComponent implements OnInit {
     this.veterinarioService.getListReviews().subscribe(
         (res) => {
           this.doctors = res;
-          console.log(this.doctors);
           this.countScore(this.doctors);
           
           //this.dtTrigger.next();
@@ -456,7 +455,7 @@ export class HomeComponent implements OnInit {
 
   formataUrlEspec(especialidade, municipio){
     if(especialidade && municipio){
-      return (especialidade.normalize('NFD').replace(/[\u0300-\u036f]/g, "").trim().split(' ').join('-')+"/"+municipio.trim().split(' ').join('-')).toLowerCase();
+      return (especialidade.normalize('NFD').replace(/[\u0300-\u036f]/g, "").trim().split(' ').join('-')+"/"+municipio.normalize('NFD').replace(/[\u0300-\u036f]/g, "").trim().split(' ').join('-')).toLowerCase();
     }
 
     return "";
