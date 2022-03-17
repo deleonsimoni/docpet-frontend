@@ -22,6 +22,7 @@ export class CheckoutComponent implements OnInit {
   dadosUser;
   planos: any = [];
   free : boolean;
+  valor = 0;
 
   constructor(
     public router: Router,
@@ -42,18 +43,20 @@ export class CheckoutComponent implements OnInit {
     }else{
       this.free = false;
     }
-    this.dadosUser = this.userLogged.login.split(' ');
-    console.log("nome: "+this.titulo);
-    for (let i = 0; i < this.dadosUser.length; i++) {
-      if (i == (this.dadosUser.length - 1)){
-        this.sobrenome = this.dadosUser[i];
-      }else{
-        if (i == 0){
-          this.nomeUser = this.dadosUser[i];
+    if (this.userLogged){
+      this.dadosUser = this.userLogged.login.split(' ');
+      console.log("nome: "+this.titulo);
+      for (let i = 0; i < this.dadosUser.length; i++) {
+        if (i == (this.dadosUser.length - 1)){
+          this.sobrenome = this.dadosUser[i];
         }else{
-          this.nomeUser = this.nomeUser +' '+this.dadosUser[i];
+          if (i == 0){
+            this.nomeUser = this.dadosUser[i];
+          }else{
+            this.nomeUser = this.nomeUser +' '+this.dadosUser[i];
+          }
+          
         }
-        
       }
     }
     this.getDataPlano(this.titulo);
@@ -63,7 +66,9 @@ export class CheckoutComponent implements OnInit {
     this.planosService.getByName(titulo).subscribe(
       (res) => {
         this.planos = res[0];
+        this.valor = this.planos.cobranca['valor'];
         console.log(res[0]);
+        console.log(this.valor);
       },
       error => {
         console.log(error);

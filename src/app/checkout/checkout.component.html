@@ -217,7 +217,7 @@
                                         <li>
                                             <span>Total (R$)</span>
                                             <span *ngIf="free" class="total-cost">GRÁTIS</span>
-                                            <span *ngIf="!free" class="total-cost">{{planos.cobranca.valor.toLocaleString('pt-br', {minimumFractionDigits: 2})}}</span>
+                                            <span *ngIf="!free" class="total-cost">{{valor.toLocaleString('pt-br', {minimumFractionDigits: 2})}}</span>
                                         </li>
                                         <li>
                                     </ul>
