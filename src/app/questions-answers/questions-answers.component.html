@@ -31,10 +31,11 @@
                         <div class="row">
                             <div class="col-12 col-md-12">
                                 <div class="form-group">
-                                    <label>Especialidade/Profissional</label>
+                                    <label>Especialidade/Profissional <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" value="">
                                 </div>
                             </div>
+                     
                             <div class="col-12 col-md-12">
                                 <div class="form-group form-focus">
                                     <textarea class="form-control bg-grey floating" style="height:150px;" name="pergunta"  ></textarea>
@@ -42,8 +43,31 @@
                                     
                                 </div>
                             </div>
+                            <div class="col-12 col-md-12">
+                            <h5>Caso queira receber a resposta, deixe seu nome e um contato de preferência</h5>
+                            <p>Não enviaremos mensagens promocionais, o contato será utilizado apenas para enviar as respostas dos veterinários.</p>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class="form-group">
+                                    <label>Nome</label>
+                                    <input type="text" name="nome" class="form-control" value="">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class="form-group">
+                                    <label>E-mail</label>
+                                    <input type="text" name="email" class="form-control" value="">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class="form-group">
+                                    <label>Whatsapp</label>
+                                    <input type="text" name="whatsapp" class="form-control" value="">
+                                </div>
+                            </div>
                             
                         </div>
+                        
                         <div class="submit-section">
                             <button type="submit" class="btn btn-primary search-btn submit-btn">Enviar</button>
                         </div>
@@ -69,8 +93,7 @@
                         </div>
                         <div>
                             <h2>Serviço Gratuíto</h2>
-                            <p>The service allows you to get maximum visibility online and to manage 
-                                appointments and contacts coming from the site, in a simple and fast way.</p>
+                            <p>Tire suas dúvidas de maneira rápida, fácil e sem custo! Os veterinários especialistas estão aqui para te ajudar a cuidar cada vez melhor do seu pet.</p>
                             
                         </div>
                     </div>
@@ -86,8 +109,7 @@
                         </div>
                         <div>
                             <h2>Tempo de Resposta</h2>
-                            <p>Choosing a specialist has never been so fast! You can filter search 
-                                results by location and medical specialization, and book medical examination online.</p>
+                            <p>Nosso time de veterinários especializados está pronto para receber e responder a sua dúvida com experiência e rapidez. Uma resposta será postada em até 48h.</p>
                             
                         </div>
                     </div>
@@ -184,14 +206,14 @@
                                 <div class="col-md-3 profile-info-widget">
                                         <div class="col-md-4 booking-doc-img">
                                             <img src="http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini.jpg" alt="Especialidade">
-                                            <button type="button" class="btn btn-primary btn-sm mt10">&nbsp;Agendar&nbsp;</button>
+                                            
                                         </div>
                                         <div class="col-md-8 profile-det-info">
                                             <div class="patient-details">
                                                 <h5><i class="far fa-clock"></i> especialidade</h5>
-                                                <h5><i class="fas fa-map-marker-alt"></i> endereço</h5>
-                                                <h5><i class="fas fa-envelope"></i> email</h5>
-                                                <h5 class="mb-0"><i class="fas fa-phone"></i> telefone</h5>
+                                                <button type="button" class="btn btn-primary btn-sm tam100">&nbsp;Perfil&nbsp;</button>
+                                                <!--<button type="button" disabled class="btn btn-primary btn-sm mt10 tam100">&nbsp;Agendar&nbsp;</button>-->
+                                                
                                             </div>
                                         </div>
                                         
@@ -200,7 +222,7 @@
                                     <div class="doctor-answer-content">
                                     Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum
                                     </div>
-                                    <button type="button" class="btn btn-info btn-sm mt10" style="float:right;" (click)="getMais(1)">+ 5 respostas</button>
+                                    <button type="button" class="btn btn-info btn-sm mt10 ml10" style="float:right;" (click)="getMais(1)">+ 5 respostas</button>
                                 </div>
                                 
                             </div>
@@ -211,14 +233,13 @@
                                     <div class="col-md-3 profile-info-widget">
                                             <div class="col-md-4 booking-doc-img">
                                                 <img src="http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-2.jpg" alt="Especialidade">
-                                                <button type="button" class="btn btn-primary btn-sm mt10">&nbsp;Agendar&nbsp;</button>
+                                                
                                             </div>
                                             <div class="col-md-8 profile-det-info">
                                                 <div class="patient-details">
                                                     <h5><i class="far fa-clock"></i> especialidade</h5>
-                                                    <h5><i class="fas fa-map-marker-alt"></i> endereço</h5>
-                                                    <h5><i class="fas fa-envelope"></i> email</h5>
-                                                    <h5 class="mb-0"><i class="fas fa-phone"></i> telefone</h5>
+                                                    <button type="button" class="btn btn-primary btn-sm tam100">&nbsp;Perfil&nbsp;</button>
+                                                    <!--<button type="button" disabled class="btn btn-primary btn-sm mt10 tam100">&nbsp;Agendar&nbsp;</button>-->
                                                 </div>
                                             </div>
                                             
@@ -236,14 +257,13 @@
                                     <div class="col-md-3 profile-info-widget">
                                             <div class="col-md-4 booking-doc-img">
                                                 <img src="http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-3.jpg" alt="Especialidade">
-                                                <button type="button" class="btn btn-primary btn-sm mt10">&nbsp;Agendar&nbsp;</button>
+                                                
                                             </div>
                                             <div class="col-md-8 profile-det-info">
                                                 <div class="patient-details">
                                                     <h5><i class="far fa-clock"></i> especialidade</h5>
-                                                    <h5><i class="fas fa-map-marker-alt"></i> endereço</h5>
-                                                    <h5><i class="fas fa-envelope"></i> email</h5>
-                                                    <h5 class="mb-0"><i class="fas fa-phone"></i> telefone</h5>
+                                                    <button type="button" class="btn btn-primary btn-sm tam100">&nbsp;Perfil&nbsp;</button>
+                                                    <!--<button type="button" disabled class="btn btn-primary btn-sm mt10 tam100">&nbsp;Agendar&nbsp;</button>-->
                                                 </div>
                                             </div>
                                             
@@ -261,14 +281,13 @@
                                     <div class="col-md-3 profile-info-widget">
                                             <div class="col-md-4 booking-doc-img">
                                                 <img src="http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-4.jpg" alt="Especialidade">
-                                                <button type="button" class="btn btn-primary btn-sm mt10">&nbsp;Agendar&nbsp;</button>
+                                                
                                             </div>
                                             <div class="col-md-8 profile-det-info">
                                                 <div class="patient-details">
                                                     <h5><i class="far fa-clock"></i> especialidade</h5>
-                                                    <h5><i class="fas fa-map-marker-alt"></i> endereço</h5>
-                                                    <h5><i class="fas fa-envelope"></i> email</h5>
-                                                    <h5 class="mb-0"><i class="fas fa-phone"></i> telefone</h5>
+                                                    <button type="button" class="btn btn-primary btn-sm tam100">&nbsp;Perfil&nbsp;</button>
+                                                    <!--<button type="button" disabled class="btn btn-primary btn-sm mt10 tam100">&nbsp;Agendar&nbsp;</button>-->
                                                 </div>
                                             </div>
                                             
@@ -301,14 +320,13 @@
                                 <div class="col-md-3 profile-info-widget">
                                         <div class="col-md-4 booking-doc-img">
                                             <img src="http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-2.jpg" alt="Especialidade">
-                                            <button type="button" class="btn btn-primary btn-sm mt10">&nbsp;Agendar&nbsp;</button>
+                                            
                                         </div>
                                         <div class="col-md-8 profile-det-info">
                                             <div class="patient-details">
                                                 <h5><i class="far fa-clock"></i> especialidade</h5>
-                                                <h5><i class="fas fa-map-marker-alt"></i> endereço</h5>
-                                                <h5><i class="fas fa-envelope"></i> email</h5>
-                                                <h5 class="mb-0"><i class="fas fa-phone"></i> telefone</h5>
+                                                <button type="button" class="btn btn-primary btn-sm tam100">&nbsp;Perfil&nbsp;</button>
+                                                <!--<button type="button" disabled class="btn btn-primary btn-sm mt10 tam100">&nbsp;Agendar&nbsp;</button>-->
                                             </div>
                                         </div>
                                         
@@ -328,14 +346,13 @@
                                     <div class="col-md-3 profile-info-widget">
                                             <div class="col-md-4 booking-doc-img">
                                                 <img src="http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-3.jpg" alt="Especialidade">
-                                                <button type="button" class="btn btn-primary btn-sm mt10">&nbsp;Agendar&nbsp;</button>
+                                                
                                             </div>
                                             <div class="col-md-8 profile-det-info">
                                                 <div class="patient-details">
                                                     <h5><i class="far fa-clock"></i> especialidade</h5>
-                                                    <h5><i class="fas fa-map-marker-alt"></i> endereço</h5>
-                                                    <h5><i class="fas fa-envelope"></i> email</h5>
-                                                    <h5 class="mb-0"><i class="fas fa-phone"></i> telefone</h5>
+                                                    <button type="button" class="btn btn-primary btn-sm mt10 tam100">&nbsp;Perfil&nbsp;</button>
+                                                    <!--<button type="button" disabled class="btn btn-primary btn-sm mt10 tam100">&nbsp;Agendar&nbsp;</button>-->
                                                 </div>
                                             </div>
                                             
@@ -353,14 +370,13 @@
                                     <div class="col-md-3 profile-info-widget">
                                             <div class="col-md-4 booking-doc-img">
                                                 <img src="http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-4.jpg" alt="Especialidade">
-                                                <button type="button" class="btn btn-primary btn-sm mt10">&nbsp;Agendar&nbsp;</button>
+                                                
                                             </div>
                                             <div class="col-md-8 profile-det-info">
                                                 <div class="patient-details">
                                                     <h5><i class="far fa-clock"></i> especialidade</h5>
-                                                    <h5><i class="fas fa-map-marker-alt"></i> endereço</h5>
-                                                    <h5><i class="fas fa-envelope"></i> email</h5>
-                                                    <h5 class="mb-0"><i class="fas fa-phone"></i> telefone</h5>
+                                                    <button type="button" class="btn btn-primary btn-sm mt10 tam100">&nbsp;Perfil&nbsp;</button>
+                                                    <!--<button type="button" disabled class="btn btn-primary btn-sm mt10 tam100">&nbsp;Agendar&nbsp;</button>-->
                                                 </div>
                                             </div>
                                             
@@ -393,14 +409,13 @@
                                 <div class="col-md-3 profile-info-widget">
                                         <div class="col-md-4 booking-doc-img">
                                             <img src="http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-3.jpg" alt="Especialidade">
-                                            <button type="button" class="btn btn-primary btn-sm mt10">&nbsp;Agendar&nbsp;</button>
+                                            
                                         </div>
                                         <div class="col-md-8 profile-det-info">
                                             <div class="patient-details">
                                                 <h5><i class="far fa-clock"></i> especialidade</h5>
-                                                <h5><i class="fas fa-map-marker-alt"></i> endereço</h5>
-                                                <h5><i class="fas fa-envelope"></i> email</h5>
-                                                <h5 class="mb-0"><i class="fas fa-phone"></i> telefone</h5>
+                                                <button type="button" class="btn btn-primary btn-sm tam100">&nbsp;Perfil&nbsp;</button>
+                                                <!--<button type="button" disabled class="btn btn-primary btn-sm mt10 tam100">&nbsp;Agendar&nbsp;</button>-->
                                             </div>
                                         </div>
                                         

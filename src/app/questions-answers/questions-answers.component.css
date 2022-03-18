@@ -169,6 +169,9 @@
     .ml10 {
         margin-left: 10px;
     }
+    .tam100{
+        width: 100%;
+    }
     .profile-det-info {
         overflow: hidden;
         display: flex;
