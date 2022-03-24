@@ -61,7 +61,11 @@ export class PatientsComponent implements OnInit {
     this.spinner.show();
     this.userService.getUsers()
       .subscribe(res => {
-        this.users = res.users;
+        this.users = res.users.sort(function (a, b) {
+          var dateA: any = new Date(a.createdAt);
+          var dateB: any = new Date(b.createdAt);
+          return (dateB - dateA)
+        });
         this.spinner.hide();
       },
         error => {

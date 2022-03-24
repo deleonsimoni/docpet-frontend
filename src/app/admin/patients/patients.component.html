@@ -1,91 +1,81 @@
 <div class="page-wrapper">
-	<div class="content container-fluid">
-		<!-- Page Header -->
-		<div class="page-header">
-			<div class="row">
-				<div class="col-sm-12">
-					<h3 class="page-title">Lista de Usuários</h3>
-					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a [routerLink]="''">Dashboard</a></li>
-						<li class="breadcrumb-item"><a href="javascript:(0);">Usuários</a></li>
-						<li class="breadcrumb-item active">Lista</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- /Page Header -->
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">Lista de Usuários</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="''">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:(0);">Usuários</a></li>
+                        <li class="breadcrumb-item active">Lista</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
 
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="card">
-					<div class="card-body">
-						<div class="table-responsive">
-							<div class="table-responsive">
-								<table class="datatable table table-hover table-center mb-0">
-									<thead>
-										<tr>
-											<th>Nome</th>
-											<th>Email</th>
-											<th>Perfil</th>
-											<th>Data de Criação</th>
-											<th>Último Login</th>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="table-responsive">
+                                <table class="datatable table table-hover table-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Email</th>
+                                            <th>Perfil</th>
+                                            <th>Data de Criação</th>
+                                            <th>Último Login</th>
 
-											<th class="text-right">Administrador</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr *ngFor="let user of users">
-											<td>
-												<h2 class="table-avatar">
-													<a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img
-															class="avatar-img rounded-circle"
-															[src]="user.img ? user.img : 'assets/img/addphoto.jpg'"
-															alt="User Image"></a>
-													<a>{{user.nome}} </a>
-												</h2>
-											</td>
-											<td>{{user.email}}</td>
+                                            <th class="text-right">Administrador</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let user of users">
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <a href="javascript:void(0)" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" [src]="user.img ? user.img : 'assets/img/addphoto.jpg'" alt="User Image"></a>
+                                                    <a>{{user.nome}} </a>
+                                                </h2>
+                                            </td>
+                                            <td>{{user.email}}</td>
 
-											<td *ngIf="user.role == 0">Cliente</td>
-											<td *ngIf="user.role == 1">Veterinário</td>
-											<td *ngIf="user.role == 2">Clínica</td>
-											<td *ngIf="user.role == 3">Adestrador</td>
-											<td *ngIf="user.role == 4">Estética</td>
+                                            <td *ngIf="user.role == 0">Cliente</td>
+                                            <td *ngIf="user.role == 1">Veterinário</td>
+                                            <td *ngIf="user.role == 2">Clínica</td>
+                                            <td *ngIf="user.role == 3">Adestrador</td>
+                                            <td *ngIf="user.role == 4">Estética</td>
 
-											<td>{{user.createdAt | date : 'dd/MM/yyyy'}}</td>
-											<td>
-												<div *ngIf="user.lastLogin">{{user.lastLogin | date : 'dd/MM/yyyy
-													HH:mm'}}
-												</div>
-												<div *ngIf="!user.lastLogin">--------</div>
-											</td>
+                                            <td>{{user.createdAt | date : 'dd/MM/yyyy'}}</td>
+                                            <td>
+                                                <div *ngIf="user.lastLogin">{{user.lastLogin | date : 'dd/MM/yyyy HH:mm'}}
+                                                </div>
+                                                <div *ngIf="!user.lastLogin">--------</div>
+                                            </td>
 
-											<td class="text-right">
+                                            <td class="text-right">
 
-												<div>
-													<div class="btn-group" role="group">
-														<button (click)="changeAdmin(user, true)"
-															style="color: white; margin: 0" type="button"
-															[ngClass]="{'btn btn-success': user.isAdmin, 'btn btn-outline-success': !user.isAdmin}"
-															class="btn">Sim</button>
-														<button (click)="changeAdmin(user, false)"
-															style="color: white; margin: 0" type="button"
-															[ngClass]="{'btn btn-danger': !user.isAdmin, 'btn btn-outline-danger': user.isAdmin}"
-															class="btn">Não</button>
-													</div>
-												</div>
+                                                <div>
+                                                    <div class="btn-group" role="group">
+                                                        <button (click)="changeAdmin(user, true)" style="color: white; margin: 0" type="button" [ngClass]="{'btn btn-success': user.isAdmin, 'btn btn-outline-success': !user.isAdmin}" class="btn">Sim</button>
+                                                        <button (click)="changeAdmin(user, false)" style="color: white; margin: 0" type="button" [ngClass]="{'btn btn-danger': !user.isAdmin, 'btn btn-outline-danger': user.isAdmin}" class="btn">Não</button>
+                                                    </div>
+                                                </div>
 
-											</td>
-										</tr>
+                                            </td>
+                                        </tr>
 
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-	</div>
+    </div>
 </div>

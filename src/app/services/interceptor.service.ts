@@ -9,7 +9,10 @@ export class InterceptorService implements HttpInterceptor {
             next: HttpHandler): Observable<HttpEvent<any>> {
 
       const idToken = localStorage.getItem("vetz_token");
-
+      if(req.url.indexOf('localhost') == -1 && req.url.indexOf('vetzco') == -1){
+        return next.handle(req);
+      }
+      
       if (idToken) {
           const cloned = req.clone({
               headers: req.headers.set("Authorization",

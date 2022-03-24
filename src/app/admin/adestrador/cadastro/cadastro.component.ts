@@ -289,7 +289,7 @@ export class CadastroComponent implements OnInit {
       nome:[null, [Validators.required, Validators.minLength(4)]],
       email:[null, [Validators.required, Validators.email]],
       telefone:[''],
-      celular:[null, [Validators.required]]
+      celular:[null]
     });
   }
 
@@ -373,6 +373,13 @@ export class CadastroComponent implements OnInit {
 
   removeConquista(i:number) {
     this.conquistas.removeAt(i);
+  }
+
+  validaTelefone (){
+    if(!this.adestradorForm.get('contato')?.get('celular').value && !this.adestradorForm.get('contato')?.get('telefone').value){
+      return true;
+    }
+    return false;
   }
 
 

@@ -286,7 +286,7 @@ export class CadastroVeterinarioComponent implements OnInit {
     return this.formBuilder.group({
       email:[null, [Validators.required, Validators.email]],
       telefone:[''],
-      celular:[null, [Validators.required]]
+      celular:[null]
     });
   }
 

@@ -313,7 +313,7 @@
                                 <label>Telefone (Número de telefone com 8)
 
                                 </label>
-                                <input type="text" class="form-control" formControlName="telefone" mask="(00) 0000-0000" placeholder="(00) 0000-0000">
+                                <input type="text" class="form-control" formControlName="telefone" mask="(00) 0000-0000" placeholder="(00) 0000-0000" [required]=validaTelefone()>
                                 <app-mensagem *ngIf="veterinarioForm.get('contato')?.get('telefone')?.touched && validaTelefone()" mensagem="Telefone ou Celular é obrigatório">
                                 </app-mensagem>
                             </div>
@@ -321,7 +321,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Celular (Número de telefone com 9)</label>
-                                <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000">
+                                <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" [required]=validaTelefone()>
                                 <app-mensagem *ngIf="veterinarioForm.get('contato')?.get('celular')?.touched && validaTelefone()" mensagem="Telefone ou Celular é obrigatório"></app-mensagem>
                             </div>
                         </div>

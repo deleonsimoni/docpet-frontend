@@ -5,6 +5,7 @@ import { Event, NavigationStart, Router } from '@angular/router';
 import * as $ from 'jquery';
 import 'datatables.net';
 import { Subject } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-lista-veterinario',
   templateUrl: './lista-veterinario.component.html',
@@ -21,7 +22,9 @@ page = 'Lista de Veterinários';
 veterinarios: any = [];
 errorMessage: string;
 
-constructor(private router: Router, private veterinarioSevice: VeterinarioService) {
+
+
+constructor(private router: Router, private veterinarioSevice: VeterinarioService, private spinner: NgxSpinnerService) {
 
 }
 
@@ -30,7 +33,9 @@ ngOnInit(): void {
     pagingType: 'full_numbers',
     pageLength: 10,
     processing: true,
-    language:LanguageDataApp.pt_br
+    language:LanguageDataApp.pt_br,
+    "order": [[5, "asc"]],
+    'columnDefs': [ { 'type': 'date', 'targets': 5 } ],
   };
 
   this.getVeterinarios();
@@ -41,13 +46,17 @@ ngOnDestroy(): void {
 }
 
 getVeterinarios() {
+  this.spinner.show();
   this.veterinarioSevice.getAll().subscribe(
     (res) => {
-      console.log(res);
       this.veterinarios = res;
       this.dtTrigger.next();
+      this.spinner.hide();
     },
-    (error) => (this.errorMessage = <any>error)
+    (error) => {
+      this.spinner.hide();
+      this.errorMessage = <any>error
+    }
   );
 }
 

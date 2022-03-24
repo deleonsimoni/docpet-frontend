@@ -6,6 +6,9 @@ import * as $ from 'jquery';
 import 'datatables.net';
 import { Subject } from 'rxjs';
 import { AdestradorService } from 'src/app/services/adestrador.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+
+
 @Component({
   selector: 'app-lista',
   templateUrl: './lista.component.html',
@@ -22,7 +25,7 @@ page = 'Lista de Adestradores';
 adestradores: any = [];
 errorMessage: string;
 
-constructor(private router: Router, private adestradorService: AdestradorService) {
+constructor(private router: Router, private adestradorService: AdestradorService, private spinner: NgxSpinnerService) {
 
 }
 
@@ -31,7 +34,9 @@ ngOnInit(): void {
     pagingType: 'full_numbers',
     pageLength: 10,
     processing: true,
-    language:LanguageDataApp.pt_br
+    language:LanguageDataApp.pt_br,
+    "order": [[5, "asc"]],
+    'columnDefs': [ { 'type': 'date', 'targets': 5 } ],
   };
 
   this.getAdestradores();
@@ -42,12 +47,17 @@ ngOnDestroy(): void {
 }
 
 getAdestradores() {
+  this.spinner.show();
   this.adestradorService.getAll().subscribe(
     (res) => {
       this.adestradores = res;
       this.dtTrigger.next();
+      this.spinner.hide();
     },
-    (error) => (this.errorMessage = <any>error)
+    (error) => {
+      this.errorMessage = <any>error
+      this.spinner.hide();
+    }
   );
 }
 

@@ -5,6 +5,7 @@ import { Event, NavigationStart, Router } from '@angular/router';
 import * as $ from 'jquery';
 import 'datatables.net';
 import { Subject } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-lista',
@@ -24,7 +25,7 @@ export class ListaComponent implements OnInit, OnDestroy {
   estabelecimentos: any = [];
   errorMessage: string;
 
-  constructor(private router: Router,private estabelecimentosevice: EstabelecimentoService) {
+  constructor(private router: Router,private estabelecimentosevice: EstabelecimentoService, private spinner: NgxSpinnerService) {
 
   }
 
@@ -33,7 +34,9 @@ export class ListaComponent implements OnInit, OnDestroy {
       pagingType: 'full_numbers',
       pageLength: 10,
       processing: true,
-      language:LanguageDataApp.pt_br
+      language:LanguageDataApp.pt_br,
+      "order": [[6, "asc"]],
+      'columnDefs': [ { 'type': 'date', 'targets': 6 } ],
     };
 
     this.getEstabelecimentos();
@@ -44,12 +47,17 @@ export class ListaComponent implements OnInit, OnDestroy {
   }
 
   getEstabelecimentos() {
+    this.spinner.show();
     this.estabelecimentosevice.getAll().subscribe(
       (res) => {
         this.estabelecimentos = res;
         this.dtTrigger.next();
+        this.spinner.hide();
       },
-      (error) => (this.errorMessage = <any>error)
+      (error) => {
+        this.errorMessage = <any>error
+         this.spinner.hide();
+      }
     );
   }
 

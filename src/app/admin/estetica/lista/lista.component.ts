@@ -6,6 +6,8 @@ import * as $ from 'jquery';
 import 'datatables.net';
 import { Subject } from 'rxjs';
 import { EsteticaService } from 'src/app/services/estetica.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 @Component({
   selector: 'app-lista',
   templateUrl: './lista.component.html',
@@ -22,7 +24,7 @@ export class ListaComponent implements OnInit {
   esteticas: any = [];
   errorMessage: string;
   
-  constructor(private router: Router, private esteticaService: EsteticaService) {
+  constructor(private router: Router, private esteticaService: EsteticaService, private spinner: NgxSpinnerService) {
   
   }
   
@@ -31,7 +33,9 @@ export class ListaComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 10,
       processing: true,
-      language:LanguageDataApp.pt_br
+      language:LanguageDataApp.pt_br,
+      "order": [[5, "asc"]],
+      'columnDefs': [ { 'type': 'date', 'targets': 5 } ],
     };
   
     this.getEsteticas();
@@ -42,12 +46,17 @@ export class ListaComponent implements OnInit {
   }
   
   getEsteticas() {
+    this.spinner.show();
     this.esteticaService.getAll().subscribe(
       (res) => {
         this.esteticas = res;
         this.dtTrigger.next();
+        this.spinner.hide();
       },
-      (error) => (this.errorMessage = <any>error)
+      (error) => {
+        this.errorMessage = <any>error
+        this.spinner.hide();
+      }
     );
   }
   

@@ -384,5 +384,11 @@ export class CadastroComponent implements OnInit {
     this.conquistas.removeAt(i);
   }
 
+  validaTelefone (){
+    if(!this.esteticaForm.get('contato')?.get('celular').value && !this.esteticaForm.get('contato')?.get('telefone').value){
+      return true;
+    }
+    return false;
+  }
 
 }
