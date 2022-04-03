@@ -8,8 +8,7 @@ import { EspecialidadeService } from '../services/especialidades.service';
 import { EstabelecimentoService } from '../services/estabelecimento.service';
 import { UserService } from '../services/user.service';
 import { VeterinarioService } from '../services/veterinario.service';
-import { Globals } from '../global';
-import { ThrowStmt } from '@angular/compiler';
+import{UploadImagemService} from 'src/app/services/upload-imagen.service';
 
 @Component({
   selector: 'app-form-contato',
@@ -39,6 +38,7 @@ export class FormContatoComponent implements OnInit {
   veterinarios: FormArray;
   isLoading = false;
   pathImage;
+  formDataImg = null;
 
   listaAnos = [];
   meses = [{ id: 1, mes: 'Janeiro', abreviado: 'Jan' },
@@ -64,8 +64,7 @@ export class FormContatoComponent implements OnInit {
     private veterinarioService: VeterinarioService,
     private toastr: ToastrService,
     private userService: UserService,
-    
-
+    private uploadImagemService:  UploadImagemService,
   ) { }
 
   ngOnInit(): void {
@@ -116,8 +115,32 @@ export class FormContatoComponent implements OnInit {
 
   onFileChanged(event) {
     if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+      let maxSize = 2048;
+      let size = Math.ceil(event.target.files[0].size / 1024);
 
+      const allowedMimes = [
+        'image/jpg',
+        'image/jpeg',
+        'image/pjpeg',
+        'image/png',
+        'image/gif',
+        'image/webp'
+      ];
+
+      if (!allowedMimes.includes(event.target.files[0].type)) {
+        this.toastr.warning('Tipo da imagem não é aceito.', 'Atenção!');
+        return false;
+      }
+      
+      if(size > maxSize){
+        this.toastr.warning('Tamanho da imagem é maior que 2MB', 'Atenção!');
+        return false;
+      }
+
+      var reader = new FileReader();   
+
+      this.formDataImg = new FormData();
+      this.formDataImg.append('file', event.target.files[0]);
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
@@ -282,7 +305,22 @@ verifyAllFieldsRole4(){
   }
   
 }
-  salvar() {
+
+async salvarImagem(){
+  let avatar = null;
+    if(this.formDataImg){
+      
+      await this.uploadImagemService.createAwait(this.formDataImg).then((data)=>{
+        avatar = data;
+      }).catch((error)=>{
+        this.toastr.warning('Não foi possível enviar a imagem.', 'Atenção!');
+        console.log("Promise rejected with " + JSON.stringify(error));
+      });
+  }
+  return avatar;
+}
+async salvar() {
+  let avatarCad = null;
 
     if (this.role == 1) {
       //veterinario
@@ -331,6 +369,7 @@ verifyAllFieldsRole4(){
       this.toastr.warning('Preencha o campo endereco!', 'Atenção!');
       return;
     }*/
+    avatarCad = await this.salvarImagem();
 
     } else if (this.role == 2) {
       //clinica
@@ -387,7 +426,12 @@ verifyAllFieldsRole4(){
     this.isLoading = true;
     let req = this.form.value;
     req.role = this.role;
-    req.img = this.url;
+    if (this.role == 1) {
+      req.avatar = avatarCad;
+      
+    }else{
+      req.img = this.url;
+    }
 
     this.userService.create(req).subscribe(
       (data) => {
