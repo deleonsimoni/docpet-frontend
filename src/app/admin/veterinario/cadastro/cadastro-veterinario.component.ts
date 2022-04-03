@@ -8,8 +8,10 @@ import { Component, OnInit, Type } from '@angular/core';
 import { ActivatedRoute, Event, NavigationStart, Router } from '@angular/router';
 
 import { EspecialidadeService } from 'src/app/services/especialidades.service';
+import{UploadImagemService} from 'src/app/services/upload-imagen.service';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Veterinario } from 'src/app/models/veterinario';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cadastro-veterinario',
@@ -39,6 +41,8 @@ export class CadastroVeterinarioComponent implements OnInit {
   userLogged;
   hideFooter: boolean = true;
   listaAnos = [];
+  formDataImg = null;
+
   meses = [ {id:1, mes:'Janeiro', abreviado:'Jan'},
             {id:2, mes:'Fevereiro', abreviado:'Fev'},
             {id:3, mes:'Março', abreviado:'Mar'},
@@ -60,7 +64,9 @@ export class CadastroVeterinarioComponent implements OnInit {
               private estabelecimentoSevice: EstabelecimentoService,
               private cepService: CEPService,
               private veterinarioService: VeterinarioService,
-              private userService: UserService, ) {
+              private userService: UserService,
+              private uploadImagemService:  UploadImagemService,
+              private toastr: ToastrService,) {
 
   }
 
@@ -94,6 +100,7 @@ export class CadastroVeterinarioComponent implements OnInit {
         formacoes: new FormBuilder().array([this.createFormacao()]),
         experiencias: new FormBuilder().array([]),
         conquistas: new FormBuilder().array([]),
+        avatar: [null]
 
       }
     );
@@ -115,7 +122,31 @@ export class CadastroVeterinarioComponent implements OnInit {
 
   onFileChanged(event) {
     if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+      let maxSize = 2048;
+      let size = Math.ceil(event.target.files[0].size / 1024);
+
+      const allowedMimes = [
+        'image/jpg',
+        'image/jpeg',
+        'image/pjpeg',
+        'image/png',
+        'image/gif',
+        'image/webp'
+      ];
+
+      if (!allowedMimes.includes(event.target.files[0].type)) {
+        this.toastr.warning('Tipo da imagem não é aceito.', 'Atenção!');
+        return false;
+      }
+      
+      if(size > maxSize){
+        this.toastr.warning('Tamanho da imagem é maior que 2MB', 'Atenção!');
+        return false;
+      }
+      var reader = new FileReader();     
+
+      this.formDataImg = new FormData();
+      this.formDataImg.append('file', event.target.files[0]);
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
@@ -134,8 +165,8 @@ export class CadastroVeterinarioComponent implements OnInit {
 
       let vet = veterinario as Veterinario;
 
-      if(veterinario.img){
-        this.url = veterinario.img;
+      if(vet.avatar){
+        this.url = vet.avatar.url;
       }
 
       if(vet.location){
@@ -193,12 +224,29 @@ export class CadastroVeterinarioComponent implements OnInit {
 
   }
 
-  salvar(){
+  async salvarImagem(){
+    let avatar = null;
+      if(this.formDataImg){
+        
+        await this.uploadImagemService.createAwait(this.formDataImg).then((data)=>{
+          avatar = data;
+        }).catch((error)=>{
+          this.toastr.warning('Não foi possível enviar a imagem.', 'Atenção!');
+          console.log("Promise rejected with " + JSON.stringify(error));
+        });
+    }
+    return avatar;
+  }
+
+  async salvar(){
     if (this.veterinarioForm.valid) {
+     
+      const avatar = await this.salvarImagem();
+
       const novoVeterinario = this.veterinarioForm.getRawValue() as Veterinario;
 
-      if(this.url){
-        novoVeterinario.img = this.url;
+      if(avatar){
+        novoVeterinario.avatar = avatar;
       }
 
       if(this.id){
@@ -211,6 +259,7 @@ export class CadastroVeterinarioComponent implements OnInit {
             }
           },
           (error) => {
+            this.toastr.warning('Não foi possível atualizar.', 'Atenção!');
             console.log(error);
           }
         );
@@ -221,6 +270,7 @@ export class CadastroVeterinarioComponent implements OnInit {
             this.router.navigate(['/admin/list-veterinario']);
           },
           (error) => {
+            this.toastr.warning('Não foi possível salvar as informações.', 'Atenção!');
             console.log(error);
           }
         );
@@ -233,7 +283,6 @@ export class CadastroVeterinarioComponent implements OnInit {
       .subscribe(
         data => {
           this.listaEspecialidade = data;
-          console.log(data);
         },
         error => {
           console.log(error);
@@ -269,9 +318,9 @@ export class CadastroVeterinarioComponent implements OnInit {
     this.estabelecimentos['controls'][i].patchValue({'_id':'', 'nome':''});
 
     this.estabelecimentoSevice.getByCNPJ(estab.cnpj).subscribe(data=>{
-      console.log(data);
+
       if(data){
-        console.log(this.estabelecimentos['controls'][i]);
+
         this.estabelecimentos['controls'][i].patchValue(data);
         this.estabelecimentos['controls'][i].get('nome').disable();
       }

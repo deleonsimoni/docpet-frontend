@@ -171,10 +171,10 @@
                 </ul>
                 <div class="col-md-12 text-end">
                     <div class="view-all-more-home text-center">
-                        <button class="btn btn-primary" (click)="showMoreEspecialidade()" *ngIf="totalListaEspecialidade.length > especialidadesTotal.length">Veja Mais <i class="fas fa-arrow-right ms-2"></i></button>
+                        <button class="btn btn-primary" (click)="showMoreEspecialidade()" *ngIf="totalListaEspecialidade?.length > especialidadesTotal?.length">Veja Mais <i class="fas fa-arrow-right ms-2"></i></button>
 
                     </div>
-                    <div class="view-all-more-home text-center" *ngIf="totalListaEspecialidade.length == especialidadesTotal.length">
+                    <div class="view-all-more-home text-center" *ngIf="totalListaEspecialidade?.length == especialidadesTotal?.length">
                         <a (click)="showLessEspecialidade()" class="btn btn-primary">Fechar</a>
                     </div>
                 </div>
@@ -245,7 +245,7 @@
                                         </ul>
                                         <div class="row row-sm">
                                             <div class="col-6">
-                                                <a [routerLink]="'/doctor/'+formataUrldados(doctor.nome,doctor.especialidades[0]?.nome,doctor.endereco.municipio)"  class="btn view-btn" tabindex="-1">Veja</a>
+                                                <a [routerLink]="'/doctor/'+formataUrldados(doctor.nome,doctor.especialidades[0]?.nome,doctor.endereco.municipio)" class="btn view-btn" tabindex="-1">Veja</a>
                                             </div>
                                             <div class="col-6">
                                                 <!--<a [routerLink]="'/patients/booking'" [queryParams]="{id: doctor.id}" class="btn book-btn" tabindex="-1">Agendar</a>-->

@@ -14,6 +14,7 @@ export interface Veterinario {
   especialidade: [],
   estabelecimentos: [Estabelecimento],
   user:any,
+  avatar:any,
 
   sobre:{
     type:String,

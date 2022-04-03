@@ -75,10 +75,13 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Especialidade</label>
-                                        <ng-select [multiple]="true" formControlName="especialidades">
-                                            <ng-option *ngFor="let espc of listaEspecialidade" [value]="espc._id">{{espc.nome}}</ng-option>
-                                            <!--<ng-option [value]="'custom'">Custom</ng-option> -->
+                                        <ng-select [multiple]="true" [items]="listaEspecialidade" bindLabel="nome" formControlName="especialidades">
                                         </ng-select>
+
+                                        <!--- <ng-select [multiple]="true" formControlName="especialidades">
+                                            <ng-option *ngFor="let espc of listaEspecialidade" [value]="espc._id">{{espc.nome}}</ng-option>
+                                           
+                                        </ng-select> -->
                                     </div>
                                 </div>
                             </div>

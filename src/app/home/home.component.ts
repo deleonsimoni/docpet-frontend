@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
        console.log('access');
       },
       (error) => {
-        console.log(error);
+        //console.log(error);
       }
     );
     this.places=[
@@ -137,18 +137,17 @@ export class HomeComponent implements OnInit {
       this.starsRate.push(this.totalStarFormated);
       ind += 1;
     }
-     console.log(this.starsRate);
+     //console.log(this.starsRate);
   }
   pushDoctorsStar(stars,ind){
     this.doctors[ind].push({star:stars});
     
   }
   getImageDoctor(doctorDetails) {
-    return doctorDetails?.img ? doctorDetails.img : 'https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg'
+    return doctorDetails?.avatar ? doctorDetails.avatar.url : 'https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg'
   }
   inputTyped(text: string) {
     if (text.length) {
-      console.log(text);
       this.listarCompleto(text.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
     } else {
       this.listarEspecialidades();
@@ -313,7 +312,6 @@ export class HomeComponent implements OnInit {
       } else if (filtro.type == 2) {
         //Veterinario
         Globals['DOCTOR_URL'] = filtro.nome;
-        console.log(filtro);
         this.router.navigate([`/doctor/${filtro.nome}`]);
 
       } else if (filtro.type == 3) {

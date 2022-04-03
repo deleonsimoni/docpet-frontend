@@ -53,20 +53,7 @@ export class DoctorProfileComponent implements OnInit {
     public router: Router,
 
   ) { }
-  images = [
-    {
-      path: 'assets/img/features/feature-01.jpg',
-    },
-    {
-      path: 'assets/img/features/feature-02.jpg',
-    },
-    {
-      path: 'assets/img/features/feature-03.jpg',
-    },
-    {
-      path: 'assets/img/features/feature-04.jpg',
-    },
-  ];
+ 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.docNameFormated = this.formatarParamUrl(this.route.snapshot.params['nome']);
@@ -83,7 +70,7 @@ export class DoctorProfileComponent implements OnInit {
   }
 
   getImageDoctor(doctorDetails) {
-    return doctorDetails?.img ? doctorDetails.img : 'https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg'
+    return doctorDetails?.avatar ? doctorDetails.avatar.url : 'https://image.freepik.com/vetores-gratis/medico-icone-ou-avatar-em-branco_136162-58.jpg'
   }
 
   likeIt() {
