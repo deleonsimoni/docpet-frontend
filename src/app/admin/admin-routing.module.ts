@@ -18,12 +18,19 @@ const routes: Routes = [
         loadChildren: () =>
           import('./dashboard-admin/dashboard-admin.module').then((m) => m.DashboardAdminModule),
       },
+
+      {
+        path: 'perguntas',
+        loadChildren: () =>
+          import('./perguntas/perguntas.module').then((m) => m.PerguntasModule),
+      },
+
       {
         path: 'dashboard-clinica',
         loadChildren: () =>
           import('./estabelecimento/dashboard/dashboard.module').then((m) => m.DashboardModule),
       },
-      
+
       {
         path: 'list-user',
         loadChildren: () =>
@@ -107,6 +114,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./blog/blog-lista/blog-lista.module').then((m) => m.BlogListaModule),
       },
+
       {
         path: 'cadastro-blog',
         loadChildren: () =>
@@ -334,4 +342,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminRoutingModule {}
+export class AdminRoutingModule { }

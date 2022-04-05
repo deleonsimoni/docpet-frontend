@@ -33,14 +33,15 @@
 
         <!-- Notifications -->
         <li class="nav-item dropdown noti-dropdown">
-            <a href="javascript:void(0)" class="dropdown-toggle nav-link" (click)="bell()" [attr.aria-expanded]="!bellCollapsed" aria-controls="collapseExample1">
+            <a href="javascript:void(0)" class="dropdown-toggle nav-link" (click)="bell()"
+                [attr.aria-expanded]="!bellCollapsed" aria-controls="collapseExample1">
                 <i class="fe fe-bell"></i> <span class="badge badge-pill">3</span>
             </a>
             <div class="dropdown-menu notifications" id="collapseExample1" [ngbCollapse]="bellCollapsed">
                 <div class="topnav-dropdown-header">
                     <span class="notification-title">Notifications</span>
                     <a href="javascript:void(0)" class="clear-noti" (click)="bellCollapsed = !bellCollapsed"> Clear All
-					</a>
+                    </a>
                 </div>
                 <div class="noti-content">
                     <ul class="notification-list">
@@ -48,12 +49,13 @@
                             <a href="javascript:void(0)">
                                 <div class="media">
                                     <span class="avatar avatar-sm">
-										<img class="avatar-img rounded-circle" alt="User Image"
-											src="assets/img/doctors/doctor-thumb-02.jpg">
-									</span>
+                                        <img class="avatar-img rounded-circle" alt="User Image"
+                                            src="assets/img/doctors/doctor-thumb-02.jpg">
+                                    </span>
                                     <div class="media-body">
                                         <p class="noti-details"><span class="noti-title">Dr. Ruby Perrin</span> Schedule
-                                            <span class="noti-title">her appointment</span></p>
+                                            <span class="noti-title">her appointment</span>
+                                        </p>
                                         <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
                                     </div>
                                 </div>
@@ -63,11 +65,12 @@
                             <a href="javascript:void(0)">
                                 <div class="media">
                                     <span class="avatar avatar-sm">
-										<img class="avatar-img rounded-circle" alt="User Image"
-											src="assets/img/patients/patient1.jpg">
-									</span>
+                                        <img class="avatar-img rounded-circle" alt="User Image"
+                                            src="assets/img/patients/patient1.jpg">
+                                    </span>
                                     <div class="media-body">
-                                        <p class="noti-details"><span class="noti-title">Charlene Reed</span> has booked her appointment to <span class="noti-title">Dr. Ruby Perrin</span></p>
+                                        <p class="noti-details"><span class="noti-title">Charlene Reed</span> has booked
+                                            her appointment to <span class="noti-title">Dr. Ruby Perrin</span></p>
                                         <p class="noti-time"><span class="notification-time">6 mins ago</span></p>
                                     </div>
                                 </div>
@@ -77,11 +80,12 @@
                             <a href="javascript:void(0)">
                                 <div class="media">
                                     <span class="avatar avatar-sm">
-										<img class="avatar-img rounded-circle" alt="User Image"
-											src="assets/img/patients/patient2.jpg">
-									</span>
+                                        <img class="avatar-img rounded-circle" alt="User Image"
+                                            src="assets/img/patients/patient2.jpg">
+                                    </span>
                                     <div class="media-body">
-                                        <p class="noti-details"><span class="noti-title">Travis Trimble</span> sent a amount of $210 for his <span class="noti-title">appointment</span></p>
+                                        <p class="noti-details"><span class="noti-title">Travis Trimble</span> sent a
+                                            amount of $210 for his <span class="noti-title">appointment</span></p>
                                         <p class="noti-time"><span class="notification-time">8 mins ago</span></p>
                                     </div>
                                 </div>
@@ -91,11 +95,12 @@
                             <a href="javascript:void(0)">
                                 <div class="media">
                                     <span class="avatar avatar-sm">
-										<img class="avatar-img rounded-circle" alt="User Image"
-											src="assets/img/patients/patient3.jpg">
-									</span>
+                                        <img class="avatar-img rounded-circle" alt="User Image"
+                                            src="assets/img/patients/patient3.jpg">
+                                    </span>
                                     <div class="media-body">
-                                        <p class="noti-details"><span class="noti-title">Carl Kelly</span> send a message <span class="noti-title"> to his doctor</span></p>
+                                        <p class="noti-details"><span class="noti-title">Carl Kelly</span> send a
+                                            message <span class="noti-title"> to his doctor</span></p>
                                         <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
                                     </div>
                                 </div>
@@ -112,14 +117,16 @@
 
         <!-- User Menu -->
         <li class="nav-item dropdown has-arrow" id="dropdown">
-            <a href="javascript:void(0)" class="dropdown-toggle nav-link" class="dropdown-toggle nav-link" (click)="user()" [attr.aria-expanded]="!userCollapsed" aria-controls="collapseExample2">
+            <a href="javascript:void(0)" class="dropdown-toggle nav-link" class="dropdown-toggle nav-link"
+                (click)="user()" [attr.aria-expanded]="!userCollapsed" aria-controls="collapseExample2">
                 <span class="user-img"><img class="rounded-circle" src="assets/admin/img/profiles/avatar-01.jpg"
-						width="31" alt="Ryan Taylor"></span>
+                        width="31" alt="Ryan Taylor"></span>
             </a>
             <div class="dropdown-menu" id="collapseExample2" [ngbCollapse]="userCollapsed">
                 <div class="user-header">
                     <div class="avatar avatar-sm">
-                        <img src="assets/admin/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">
+                        <img src="assets/admin/img/profiles/avatar-01.jpg" alt="User Image"
+                            class="avatar-img rounded-circle">
                     </div>
                     <div class="user-text">
                         <h6>{{userLogged.login}}</h6>
@@ -153,68 +160,79 @@
                     <span>Administrador</span>
                 </li>
 
-                <li *ngIf="userLogged.isAdmin" [routerLink]="'/admin/dashboard-admin'" [class.active]="page === 'Dashboard-admin'">
+                <li *ngIf="userLogged.isAdmin" [routerLink]="'/admin/dashboard-admin'"
+                    [class.active]="page === 'Dashboard-admin'">
                     <a (click)="change('Dashboard-admin')"><i class="fe fe-home" style="color: #fff"></i>
-						<span style="color: #fff">Dashboard</span></a>
+                        <span style="color: #fff">Dashboard</span></a>
                 </li>
 
                 <li *ngIf="userLogged.isAdmin" [class.active]="page === 'Patients'">
-                    <a (click)="change('Patients')" [routerLink]="'/admin/patients'"><i class="fas fa-users"  style="font-size: 20px;"></i>
-						<span>Usuários</span></a>
+                    <a (click)="change('Patients')" [routerLink]="'/admin/patients'"><i class="fas fa-users"
+                            style="font-size: 20px;"></i>
+                        <span>Usuários</span></a>
                 </li>
 
                 <li *ngIf="userLogged.isAdmin" class="submenu">
                     <a href="javascript:void(0)"><i class="fas fa-user-md"></i> <span> Veterinários</span> <span
-							class="menu-arrow"></span></a>
+                            class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li [class.active]="page === 'veterinario'"><a (click)="change('veterinario')" [routerLink]="'/admin/list-veterinario'">Manter</a></li>
+                        <li [class.active]="page === 'veterinario'"><a (click)="change('veterinario')"
+                                [routerLink]="'/admin/list-veterinario'">Manter</a></li>
                     </ul>
                 </li>
 
                 <li *ngIf="userLogged.isAdmin" class="submenu">
-                    <a href="javascript:void(0)"><i class="fas fa-clinic-medical" style="font-size: 20px;"></i> <span> Clínicas</span> <span
-							class="menu-arrow"></span></a>
+                    <a href="javascript:void(0)"><i class="fas fa-clinic-medical" style="font-size: 20px;"></i> <span>
+                            Clínicas</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li [class.active]="page === 'clinica'"><a (click)="change('clinica')" [routerLink]="'/admin/list-estabelecimento'">Manter</a></li>
+                        <li [class.active]="page === 'clinica'"><a (click)="change('clinica')"
+                                [routerLink]="'/admin/list-estabelecimento'">Manter</a></li>
                     </ul>
                 </li>
 
                 <li *ngIf="userLogged.isAdmin" class="submenu">
-                    <a href="javascript:void(0)"><i class="fas fa-diagnoses" style="font-size: 20px;"></i> <span> Adestradores</span> <span
-							class="menu-arrow"></span></a>
+                    <a href="javascript:void(0)"><i class="fas fa-diagnoses" style="font-size: 20px;"></i> <span>
+                            Adestradores</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li [class.active]="page === 'adestrador'"><a (click)="change('adestrador')" [routerLink]="'/admin/list-adestrador'">Manter</a></li>
+                        <li [class.active]="page === 'adestrador'"><a (click)="change('adestrador')"
+                                [routerLink]="'/admin/list-adestrador'">Manter</a></li>
                     </ul>
                 </li>
 
                 <li *ngIf="userLogged.isAdmin" class="submenu">
-                    <a href="javascript:void(0)"><i class="fas fa-dog" style="font-size: 22px;"></i> <span> Esteticistas</span> <span
-							class="menu-arrow"></span></a>
+                    <a href="javascript:void(0)"><i class="fas fa-dog" style="font-size: 22px;"></i> <span>
+                            Esteticistas</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li [class.active]="page === 'estetica'"><a (click)="change('estetica')" [routerLink]="'/admin/list-estetica'">Manter</a></li>
+                        <li [class.active]="page === 'estetica'"><a (click)="change('estetica')"
+                                [routerLink]="'/admin/list-estetica'">Manter</a></li>
                     </ul>
                 </li>
 
                 <li *ngIf="userLogged.isAdmin" class="submenu">
                     <a href="javascript:void(0)"><i class="fas fa-award"></i> <span> Planos</span> <span
-							class="menu-arrow"></span></a>
+                            class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li [class.active]="page === 'plano'"><a (click)="change('plano')" [routerLink]="'/admin/list-plano'">Manter</a></li>
+                        <li [class.active]="page === 'plano'"><a (click)="change('plano')"
+                                [routerLink]="'/admin/list-plano'">Manter</a></li>
                     </ul>
                 </li>
                 <li *ngIf="userLogged.isAdmin" class="submenu">
                     <a href="javascript:void(0)"><i class="fas fa-blog"></i> <span> Blog</span> <span
-							class="menu-arrow"></span></a>
+                            class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li [class.active]="page === 'blog'"><a (click)="change('blog')" [routerLink]="'/admin/list-blog'">Manter</a></li>
+                        <li [class.active]="page === 'blog'"><a (click)="change('blog')"
+                                [routerLink]="'/admin/list-blog'">Manter</a></li>
                     </ul>
                 </li>
+
                 <li *ngIf="userLogged.isAdmin" class="submenu">
                     <a href="javascript:void(0)"><i class="fe fe-vector"></i> <span> Parâmetros</span> <span
-							class="menu-arrow"></span></a>
+                            class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li [class.active]="page === 'especialidades'"><a (click)="change('especialidades')" [routerLink]="'/admin/invoice-reports'">Especialidades</a></li>
-                        <li [class.active]="page === 'servicos'"><a (click)="change('servicos')" [routerLink]="'/admin/servicos'">Servicos</a></li>
+                        <li [class.active]="page === 'especialidades'"><a (click)="change('especialidades')"
+                                [routerLink]="'/admin/invoice-reports'">Especialidades</a></li>
+                        <li [class.active]="page === 'servicos'"><a (click)="change('servicos')"
+                                [routerLink]="'/admin/servicos'">Servicos</a></li>
                     </ul>
                 </li>
 
@@ -222,34 +240,48 @@
                 <li *ngIf="userLogged.role == 3" class="menu-title">
                     <span>Adestrador</span>
                 </li>
-                <li *ngIf="userLogged.role == 3" [routerLink]="['/admin/cadastro-adestrador/',userRole?._id]" [class.active]="page === 'Dashboard'">
+                <li *ngIf="userLogged.role == 3" [routerLink]="['/admin/cadastro-adestrador/',userRole?._id]"
+                    [class.active]="page === 'Dashboard'">
                     <a (click)="change('Dashboard')"><i class="fe fe-home" style="color: #fff"></i>
-						<span style="color: #fff">Perfil</span></a>
+                        <span style="color: #fff">Perfil</span></a>
                 </li>
 
 
                 <li *ngIf="userLogged.role == 4" class="menu-title">
                     <span>Esteticista</span>
                 </li>
-                <li *ngIf="userLogged.role == 4" [routerLink]="['/admin/cadastro-estetica/',userRole?._id]" [class.active]="page === 'Dashboard'">
+                <li *ngIf="userLogged.role == 4" [routerLink]="['/admin/cadastro-estetica/',userRole?._id]"
+                    [class.active]="page === 'Dashboard'">
                     <a (click)="change('Dashboard')"><i class="fe fe-home" style="color: #fff"></i>
-						<span style="color: #fff">Perfil</span></a>
+                        <span style="color: #fff">Perfil</span></a>
                 </li>
 
 
                 <li *ngIf="userLogged.role == 1" class="menu-title">
                     <span>Veterinário</span>
                 </li>
-                <li *ngIf="userLogged.role == 1" [routerLink]="['/admin/cadastro-veterinario/',veterinario?._id]" [class.active]="page === 'Dashboard'">
+                <li *ngIf="userLogged.role == 1" [routerLink]="['/admin/cadastro-veterinario/',veterinario?._id]"
+                    [class.active]="page === 'Dashboard'">
                     <a (click)="change('Dashboard')"><i class="fe fe-home" style="color: #fff"></i>
-						<span style="color: #fff">Perfil</span></a>
+                        <span style="color: #fff">Perfil</span></a>
                 </li>
                 <li *ngIf="userLogged.role == 2" class="menu-title">
                     <span>Clínica</span>
                 </li>
-                <li *ngIf="userLogged.role == 2" [routerLink]="['/admin/cadastro-estabelecimento/',estabelecimento?._id]" [class.active]="page === 'Dashboard'">
+                <li *ngIf="userLogged.role == 2"
+                    [routerLink]="['/admin/cadastro-estabelecimento/',estabelecimento?._id]"
+                    [class.active]="page === 'Dashboard'">
                     <a (click)="change('Dashboard')"><i class="fe fe-home" style="color: #fff"></i>
-						<span style="color: #fff">Perfil</span></a>
+                        <span style="color: #fff">Perfil</span></a>
+                </li>
+
+                <li class="submenu">
+                    <a href="javascript:void(0)"><i class="fe fe-question"></i> <span> Perguntas</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li [class.active]="page === 'perguntas'"><a (click)="change('perguntas')"
+                                [routerLink]="'/admin/perguntas'">Visualizar</a></li>
+                    </ul>
                 </li>
                 <!--
 				<li *ngIf="userLogged.role == 1" [routerLink]="'/admin/dashboard'" [class.active]="page === 'Dashboard'">

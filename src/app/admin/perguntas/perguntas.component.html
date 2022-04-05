@@ -1,0 +1,255 @@
+<div class="page-wrapper">
+
+    <div class="content container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Perguntas</h3>
+                        <div *ngIf="buscando">
+                            <i class="fas fa-spinner fa-pulse"></i>Aguarde...
+                        </div>
+
+                        <div *ngIf="!perguntas || perguntas.length == 0">
+                            Nenhuma pergunta para analisar
+                        </div>
+
+                        <div *ngIf="!buscando">
+                            <div *ngFor="let pergunta of perguntas; let i = index"
+                                [ngClass]="{'mb-3': perguntas.length > 1}">
+
+                                <div class="perguntas-works">
+                                    <div (click)="selectPergunta(pergunta);" class="row">
+                                        <div class="col-sm-12 border-right">
+                                            <h4>{{ pergunta.pergunta.toLowerCase() }}</h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div *ngIf="user.isAdmin" class="col-sm-4 border-right">
+                                            <small>Usuário</small>
+                                            <h4>{{ pergunta.anonimo ? pergunta.anonimo.nome.toLowerCase() :
+                                                pergunta.user.nome.toLowerCase() }}</h4>
+                                        </div>
+                                        <div class="col-sm-3 border-right">
+                                            <small>Especialidade</small>
+
+                                            <h4 *ngIf="!user.isAdmin">{{ pergunta.especialidade.nome }}</h4>
+
+                                            <h4 *ngIf="user.isAdmin">
+                                                <ngx-select [allowClear]="true" [items]="especialidades"
+                                                    optionValueField="_id" optionTextField="nomeFormated"
+                                                    [(ngModel)]="pergunta.especialidade._id"
+                                                    (select)="changeEspecialidade(pergunta, $event)"
+                                                    style="color: black;" (remove)="listarEspecialidades()"
+                                                    placeholder="Especialidade...">
+
+
+                                                    <ng-template ngx-select-option let-option>
+
+                                                        <span *ngIf="!option.data.type"><i class="fas fa-bone fa-lg"
+                                                                style="color: rgb(105, 105, 247); padding-right: 10px; "></i></span>
+                                                        <span *ngIf="option.data.type == 1"><i class="fas fa-bone fa-lg"
+                                                                style="color: rgb(105, 105, 247); padding-right: 10px;"></i></span>
+
+                                                        <span>
+                                                            {{option.data.nome}}
+                                                        </span>
+
+                                                        <span *ngIf="option.data.type == 1"
+                                                            style="float:right; color:gray">Especialidade
+                                                        </span>
+
+                                                    </ng-template>
+
+                                                    <ng-template ngx-select-option-not-found>
+                                                        Nenhum item encontrado
+                                                    </ng-template>
+
+                                                </ngx-select>
+                                            </h4>
+                                        </div>
+                                        <div class="col-sm-2 border-right">
+                                            <small>Data</small>
+                                            <h4>{{ pergunta.dtCriacao | date : 'dd/MM/yyyy' }}</h4>
+                                        </div>
+                                        <div *ngIf="user.isAdmin" class="col-sm-2 border-right">
+                                            <small>STATUS</small>
+                                            <h4>Liberada
+                                            </h4>
+                                            <button (click)="validarPergunta(pergunta, 1)"
+                                                [ngStyle]="{'background-color: green;color:white':  pergunta.status == 1, 'background-color: white;color: black': pergunta.status == 1}"
+                                                type="button" [ngClass]="{'btn btn-success': pergunta.status == 1}"
+                                                class="btn">Sim</button>
+                                            <button (click)="validarPergunta(pergunta, 0)"
+                                                [ngStyle]="{'background-color: red;color:white':  pergunta.status == 0, 'background-color: white;color: black': pergunta.status == 0}"
+                                                type="button" [ngClass]="{'btn btn-danger': pergunta.status == 0}"
+                                                class="btn">Não</button>
+                                        </div>
+                                        <div *ngIf="user.isAdmin" (click)="selectPergunta(pergunta);"
+                                            class="col-sm-1 text-center align-self-center pointer">
+                                            <i *ngIf="perguntaSelecionada?._id == pergunta._id"
+                                                class="fa fa-chevron-up"></i>
+                                            <i *ngIf="perguntaSelecionada?._id != pergunta._id"
+                                                class="fa fa-chevron-down"></i>
+                                        </div>
+                                        <div style="cursor: pointer;" *ngIf="!user.isAdmin"
+                                            (click)="selectPergunta(pergunta);"
+                                            class="col-sm-6 text-center align-self-center pointer">
+                                            <i *ngIf="perguntaSelecionada?._id == pergunta._id"
+                                                class="fa fa-chevron-up"> Esconder</i>
+                                            <i *ngIf="perguntaSelecionada?._id != pergunta._id"
+                                                class="fa fa-chevron-down"> Clique para responder</i>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+                                <div style="min-height: 400px;"
+                                    *ngIf="!user.isAdmin && perguntaSelecionada && perguntaSelecionada._id == pergunta._id"
+                                    class="work-content">
+                                    <div class="section first">
+                                        <h6>Responder <i class="fas fa-question ml-2"></i> </h6>
+                                    </div>
+                                    <div class="row align-items-center">
+                                        <div class="col-12 col-md-12">
+                                            <div class="form-group form-focus mb-6">
+                                                <textarea [(ngModel)]="request.resposta"
+                                                    class="form-control bg-grey floating" style="height:150px;"
+                                                    name="resposta"></textarea>
+                                                <label class="focus-label">Responda aqui.. <span
+                                                        class="text-danger">*</span></label>
+                                                <div class="submit-section">
+                                                    <button (click)="responder(perguntaSelecionada)"
+                                                        class="btn btn-primary search-btn submit-btn">Enviar</button>
+                                                </div>
+                                            </div>
+
+
+                                            <div style="margin-top: 230px;" class="section first">
+                                                <h6>Respostas </h6>
+                                            </div>
+                                            <div *ngFor="let respostas of perguntaSelecionada.respostas"
+                                                class="row align-items-center">
+
+                                                <p>&nbsp;</p>
+                                                <hr />
+                                                <div class="resposta"
+                                                    style="clear:both;display:block;padding:10px 0 0 0;">
+
+                                                    <div class="col-md-3 profile-info-widget">
+
+                                                        <div class="col-md-4 booking-doc-img">
+
+
+                                                            <img src="http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-2.jpg"
+                                                                alt="Especialidade">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-9" style="float:right;">
+                                                    <div class="doctor-answer-content">
+                                                        {{ respostas.user.nome }}
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-9" style="margin-top: 30px; float:right;">
+                                                    <div class="doctor-answer-content">
+                                                        {{ respostas.resposta }}
+                                                    </div>
+
+                                                </div>
+                                                <hr />
+                                            </div>
+
+
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div *ngIf="user.isAdmin && perguntaSelecionada && perguntaSelecionada._id == pergunta._id"
+                                    class="work-content">
+                                    <div class="section first">
+                                        <h6>Perguntou <i class="fas fa-question ml-2"></i> </h6>
+                                    </div>
+                                    <div class="row align-items-center">
+                                        <div class="col-sm-4 mb-2">
+                                            <strong>Usuario</strong>
+                                            <p>{{ perguntaSelecionada.anonimo ? perguntaSelecionada.anonimo.nome :
+                                                perguntaSelecionada.user.nome }}</p>
+                                        </div>
+                                        <div class="col-sm-4 mb-2">
+                                            <strong>Email</strong>
+                                            <p>{{ perguntaSelecionada.anonimo ? perguntaSelecionada.anonimo.email :
+                                                perguntaSelecionada.user.email }}</p>
+                                        </div>
+                                        <div class="col-sm-4 mb-2">
+                                            <strong>Whatsapp</strong>
+                                            <p>{{ perguntaSelecionada.anonimo ? perguntaSelecionada.anonimo.wpp :
+                                                '-----' }}</p>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="section first">
+                                        <h6>Respondeu </h6>
+                                    </div>
+                                    <div *ngFor="let respostas of perguntaSelecionada.respostas"
+                                        class="row align-items-center">
+
+                                        <p>&nbsp;</p>
+                                        <hr />
+                                        <div class="resposta" style="clear:both;display:block;padding:10px 0 0 0;">
+
+                                            <div class="col-md-3 profile-info-widget">
+
+                                                <div class="col-md-4 booking-doc-img">
+
+
+                                                    <img src="http://www.gugaweigert.com.br/vetzcoImagens/avatar-mini-2.jpg"
+                                                        alt="Especialidade">
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-9" style="float:right;">
+                                            <div class="doctor-answer-content">
+                                                {{ respostas.user.nome }}
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-9" style="margin-top: 30px; float:right;">
+                                            <div class="doctor-answer-content">
+                                                {{ respostas.resposta }}
+                                            </div>
+
+                                        </div>
+                                        <hr />
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
