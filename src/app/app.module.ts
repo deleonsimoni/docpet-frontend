@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Meta } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,10 +24,11 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { InterceptorService } from './services/interceptor.service';
 import { NgxSpinnerModule } from "ngx-spinner";
 
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
     SlickCarouselModule,
@@ -46,9 +47,10 @@ import { NgxSpinnerModule } from "ngx-spinner";
   ],
   providers: [
     {
-      provide: HTTP_INTERCEPTORS,
+      provide: [HTTP_INTERCEPTORS, Meta],
       useClass: InterceptorService,
-      multi: true
+      multi: true,
+     
     }
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

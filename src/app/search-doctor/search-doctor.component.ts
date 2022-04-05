@@ -8,6 +8,8 @@ import { latLng, tileLayer } from 'leaflet';
 import { Globals } from '../global';
 import { NgxSpinnerService } from 'ngx-spinner';
 
+import { Title, Meta } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-search-doctor',
@@ -43,7 +45,9 @@ export class SearchDoctorComponent implements OnInit {
 
 
 
-  constructor(private route: ActivatedRoute, public veterinarioService: VeterinarioService, public router: Router,  private spinner: NgxSpinnerService,) { }
+  constructor(private route: ActivatedRoute, public veterinarioService: VeterinarioService, public router: Router,  private spinner: NgxSpinnerService,
+    private titleService: Title,
+    private metaTagService: Meta) { }
   images = [
     {
       path: 'assets/img/features/feature-01.jpg',
@@ -59,11 +63,29 @@ export class SearchDoctorComponent implements OnInit {
     },
   ];
   ngOnInit(): void {
+    
     this.especialidade = this.route.snapshot.params['especialidade'];
     this.dsMunicipio = this.route.snapshot.params['municipio'] ?  this.route.snapshot.params['municipio'] : 'Brasil' ;
+    this.meta();
     this.getEstabelecimentos(this.especialidade, this.dsMunicipio);
     
   }
+
+  meta(){
+    console.log('Meta 123');
+     
+     let tit = 'Deseja consulta com a especialidade '+this.especialidade+' - '+this.dsMunicipio.trim().split('-').join(' ')+'. Agende hoje sua consulta! | VetzCo';
+     let dsc = 'Seu PET está com problemas? Precisa de uma consulta? Na VetzCo temos o(a) especialista '+this.especialidade.trim().split('-').join(' ')+'. Agende hoje sua consulta!';
+     let keywords = `${this.especialidade},${this.dsMunicipio}, 'Veterinários', 'Especialidade'`;
+
+      this.titleService.setTitle(tit);
+      this.metaTagService.updateTag({ name: 'title', content: tit });
+      this.metaTagService.updateTag({ name: 'description', content: dsc});
+      this.metaTagService.updateTag({ name: 'keywords', content: keywords});
+     
+      this.metaTagService.updateTag({ property: 'og:url', content: window.location.href });
+  }
+
   getEstabelecimentos(especialidade, municipio) {
     this.spinner.show();
     this.veterinarioService.getByNoEspecialidadeMunicipio(especialidade, municipio).subscribe(
