@@ -37,6 +37,7 @@ export class HeaderComponent implements OnInit {
   user;
   base;
   url1;
+  url;
   constructor(
     @Inject(DOCUMENT) private document,
     private cdr: ChangeDetectorRef,
@@ -86,9 +87,13 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.user = this.userService.getUser();
-    console.log(this.user);
+
+    if(this.user?.avatar){
+      console.log(this.user.avatar?.url);
+      this.url = this.user.avatar?.url;
+    }
+
     if (localStorage.getItem('auth') === 'true') {
       this.auth = true;
       this.isPatient =

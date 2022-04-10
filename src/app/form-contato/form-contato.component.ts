@@ -400,6 +400,8 @@ async salvar() {
         return;
       }
 
+    } else if(this.role == 0){
+      avatarCad = await this.salvarImagem();
     }
 
     if (!this.form.get('nome').value) {
@@ -426,7 +428,7 @@ async salvar() {
     this.isLoading = true;
     let req = this.form.value;
     req.role = this.role;
-    if (this.role == 1) {
+    if (this.role == 1 || this.role == 0) {
       req.avatar = avatarCad;
       
     }else{
