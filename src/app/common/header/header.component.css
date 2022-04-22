@@ -8,3 +8,46 @@
 .main-nav > li > a {
     color: #2E3842 !important;
 }*/
+@media (min-width: 320px) and (max-width: 900px) {
+    /* .navbar-header{ display:none;}*/
+    #user-bar {
+     display: block;
+     }
+     .bar-tutor{
+         display:block;
+     }
+     #bar-logado{
+        display:block;
+    }
+     .tutorIs{
+         display:block;  
+     }
+     .dash{
+         display:block;  
+     }
+     .nav-link {
+         display: block;
+         padding: .5rem 1rem;
+     }
+ }
+ @media (min-width: 901px) and (max-width: 1800px) {
+     #user-bar {
+         display: none;
+     }
+     #bar-tutor a{
+         display:none;
+     }
+     .bar-tutor{
+        display:none;
+    }
+    #bar-logado{
+        display:none;
+    }
+     .tutorIs{
+         display:none;  
+     }
+     .dash{
+         display:none;  
+     }
+     
+ }

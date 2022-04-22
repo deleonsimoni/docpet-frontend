@@ -27,6 +27,9 @@ export class HeaderComponent implements OnInit {
   auth: boolean = false;
   comrytmenu: boolean = false;
   isPatient: boolean = false;
+  isTutor: boolean = false;
+  isDisabledTutor: boolean = false;
+  
   comlogo: boolean = true;
   whitelogo: boolean = false;
   page;
@@ -88,7 +91,15 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.getUser();
-
+    console.log(this.user);
+    if (this.user.role == 0){
+      this.isTutor = true;
+      this.isDisabledTutor = true;
+    }else{
+      this.isTutor = false;
+      this.isDisabledTutor = true;
+    }
+    console.log(this.isTutor);
     if(this.user?.avatar){
       console.log(this.user.avatar?.url);
       this.url = this.user.avatar?.url;
@@ -128,6 +139,8 @@ export class HeaderComponent implements OnInit {
 
   sair(){
     this.userService.logout();
+    this.isTutor = false;
+    this.isDisabledTutor = false;
     window.location.href = '/home';
   }
 
@@ -214,6 +227,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+    this.isTutor = false;
+    this.isDisabledTutor = false;
     localStorage.clear();
     this.auth = false;
     this.isPatient = false;
@@ -221,6 +236,8 @@ export class HeaderComponent implements OnInit {
   }
   
   clickLogout() {
+    this.isTutor = false;
+    this.isDisabledTutor = false;
     localStorage.clear();
     this.userService.logout();
     window.location.href = '/home';
