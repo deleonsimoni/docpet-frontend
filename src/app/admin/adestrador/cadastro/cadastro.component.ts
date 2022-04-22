@@ -2,10 +2,10 @@ import { UserService } from './../../../services/user.service';
 import { Estabelecimento } from './../../../models/estabelecimento';
 import { CEPService } from './../../../services/cep.service';
 import { EstabelecimentoService } from '../../../services/estabelecimento.service';
-
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, Type } from '@angular/core';
 import { ActivatedRoute, Event, NavigationStart, Router } from '@angular/router';
-
+import{UploadImagemService} from 'src/app/services/upload-imagen.service';
 import { EspecialidadeService } from 'src/app/services/especialidades.service';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { AdestradorService } from 'src/app/services/adestrador.service';
@@ -36,7 +36,7 @@ export class CadastroComponent implements OnInit {
   experiencias: FormArray;
   conquistas: FormArray;
   userLogged;
-
+  formDataImg = null;
   listaAnos = [];
   meses = [ {id:1, mes:'Janeiro', abreviado:'Jan'},
             {id:2, mes:'Fevereiro', abreviado:'Fev'},
@@ -58,7 +58,9 @@ export class CadastroComponent implements OnInit {
               private formBuilder: FormBuilder,
               private estabelecimentoSevice: EstabelecimentoService,
               private cepService: CEPService,
+              private toastr: ToastrService,
               private adestradorService: AdestradorService,
+              private uploadImagemService:  UploadImagemService,
               private userService: UserService, ) {
 
   }
@@ -93,7 +95,7 @@ export class CadastroComponent implements OnInit {
         formacoes: new FormBuilder().array([this.createFormacao()]),
         experiencias: new FormBuilder().array([this.createExperiencias()]),
         conquistas: new FormBuilder().array([]),
-
+        avatar: [null]
       }
     );
 
@@ -111,10 +113,33 @@ export class CadastroComponent implements OnInit {
       }
     });
   }
-
   onFileChanged(event) {
     if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+      let maxSize = 2048;
+      let size = Math.ceil(event.target.files[0].size / 1024);
+
+      const allowedMimes = [
+        'image/jpg',
+        'image/jpeg',
+        'image/pjpeg',
+        'image/png',
+        'image/gif',
+        'image/webp'
+      ];
+
+      if (!allowedMimes.includes(event.target.files[0].type)) {
+        this.toastr.warning('Tipo da imagem não é aceito.', 'Atenção!');
+        return false;
+      }
+      
+      if(size > maxSize){
+        this.toastr.warning('Tamanho da imagem é maior que 2MB', 'Atenção!');
+        return false;
+      }
+      var reader = new FileReader();     
+
+      this.formDataImg = new FormData();
+      this.formDataImg.append('file', event.target.files[0]);
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
@@ -123,6 +148,7 @@ export class CadastroComponent implements OnInit {
       }
     }
   }
+  
 
   public delete(){
     this.url = null;
@@ -194,13 +220,26 @@ export class CadastroComponent implements OnInit {
 
 
   }
-
-  salvar(){
+  async salvarImagem(){
+    let avatar = null;
+      if(this.formDataImg){
+        
+        await this.uploadImagemService.createAwait(this.formDataImg).then((data)=>{
+          avatar = data;
+        }).catch((error)=>{
+          this.toastr.warning('Não foi possível enviar a imagem.', 'Atenção!');
+          console.log("Promise rejected with " + JSON.stringify(error));
+        });
+    }
+    return avatar;
+  }
+  async salvar(){
     if (this.adestradorForm.valid) {
+      const avatar = await this.salvarImagem();
       const novoAdestrador = this.adestradorForm.getRawValue();
 
-      if(this.url){
-        novoAdestrador.img = this.url;
+      if(avatar){
+        novoAdestrador.avatar = avatar;
       }
 
       if(this.id){
