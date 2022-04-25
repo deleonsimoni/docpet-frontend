@@ -141,10 +141,12 @@ export class FormContatoComponent implements OnInit {
 
       this.formDataImg = new FormData();
       this.formDataImg.append('file', event.target.files[0]);
+      console.log(event.target.files[0].name);
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
         this.url = event.target.result;
+        
       }
     }
   }
@@ -181,6 +183,7 @@ export class FormContatoComponent implements OnInit {
         //conquistas: new FormBuilder().array([this.createConquistas()]),
         veterinarios: new FormBuilder().array([this.createVeterinario()]),
         cnpj: [null, [Validators.minLength(11)]],
+        avatar: [null]
       }
     );
 
@@ -312,6 +315,7 @@ async salvarImagem(){
       
       await this.uploadImagemService.createAwait(this.formDataImg).then((data)=>{
         avatar = data;
+        console.log(avatar);
       }).catch((error)=>{
         this.toastr.warning('Não foi possível enviar a imagem.', 'Atenção!');
         console.log("Promise rejected with " + JSON.stringify(error));
@@ -321,7 +325,8 @@ async salvarImagem(){
 }
 async salvar() {
   let avatarCad = null;
-
+  const avatar = await this.salvarImagem();
+  
     if (this.role == 1) {
       //veterinario
       if (!this.form.get('crmv').value) {
@@ -370,6 +375,7 @@ async salvar() {
       return;
     }*/
     avatarCad = await this.salvarImagem();
+    console.log(avatarCad);
 
     } else if (this.role == 2) {
       //clinica
@@ -428,15 +434,19 @@ async salvar() {
     this.isLoading = true;
     let req = this.form.value;
     req.role = this.role;
-    if (this.role == 1 || this.role == 0) {
+    if(avatar){
+      req.avatar = avatar;
+    }
+   /* if (this.role == 1 || this.role == 0) {
       req.avatar = avatarCad;
       
     }else{
       req.img = this.url;
     }
-
+  */  
     this.userService.create(req).subscribe(
       (data) => {
+        console.log(data);
         this.isLoading = false;
         this.userService.setSession(data.token);
         let user = this.userService.getUser();
