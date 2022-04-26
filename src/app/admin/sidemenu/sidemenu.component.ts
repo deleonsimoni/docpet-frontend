@@ -25,7 +25,7 @@ export class SidemenuComponent implements OnInit {
   veterinario;
   estabelecimento;
   userRole;
-
+  urlImage = '';
   constructor(
     @Inject(DOCUMENT) private document,
     public router: Router,
@@ -41,7 +41,7 @@ export class SidemenuComponent implements OnInit {
   
   ngOnInit(): void {
     this.userLogged = this.userService.getUser();
-
+    this.urlImage = this.userLogged.avatar.url;
     if(this.userLogged.isAdmin){
       this.page = 'Dashboard-admin';
       this.router.navigate(['/admin/dashboard-admin']);
