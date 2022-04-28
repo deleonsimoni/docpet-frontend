@@ -20,7 +20,7 @@ export class FormContatoComponent implements OnInit {
   base = '';
   page = 'Cadastre-se';
   form: FormGroup;
-  role = 0;
+  role = 9;
   url;
   listaEspecialidade: any;
   isEstabelecimento: Boolean;
@@ -39,6 +39,7 @@ export class FormContatoComponent implements OnInit {
   isLoading = false;
   pathImage;
   formDataImg = null;
+  confirmaInfo = 'none';
 
   listaAnos = [];
   meses = [{ id: 1, mes: 'Janeiro', abreviado: 'Jan' },
@@ -100,7 +101,9 @@ export class FormContatoComponent implements OnInit {
         console.log(error);
       })
   }
-
+  confirmaDados(){
+    this.confirmaInfo = 'block';
+  }
   listarEspecialidades(): void {
     this.especialidadeSevice.getAll()
       .subscribe(
@@ -204,7 +207,7 @@ export class FormContatoComponent implements OnInit {
   }
   verifyAllFieldsRole(){
     
-    
+    this.confirmaInfo = 'none';
       if (!this.form.get('nome').value){
         this.habilitado = true;
       } else if (!this.form.get('email').value) {
@@ -219,11 +222,13 @@ export class FormContatoComponent implements OnInit {
       }else{
         this.habilitado = false;
       }
+     // alert(this.habilitado);
+      
       
     
   }
   verifyAllFieldsRole1(){
-    
+   // this.confirmaInfo = 'none';
       if (!this.form.get('nome').value){
         this.habilitado = true;
       } else if (!this.form.get('email').value) {
@@ -246,7 +251,7 @@ export class FormContatoComponent implements OnInit {
       
   }
   verifyAllFieldsRole2(){
-    
+   // this.confirmaInfo = 'none';
     if (!this.form.get('nome').value){
       this.habilitado = true;
     } else if (!this.form.get('email').value) {
@@ -267,7 +272,7 @@ export class FormContatoComponent implements OnInit {
     
 }
 verifyAllFieldsRole3(){
-    
+ // this.confirmaInfo = 'none';
   if (!this.form.get('nome').value){
     this.habilitado = true;
   } else if (!this.form.get('email').value) {
@@ -288,7 +293,7 @@ verifyAllFieldsRole3(){
   
 }
 verifyAllFieldsRole4(){
-    
+ // this.confirmaInfo = 'none'; 
   if (!this.form.get('nome').value){
     this.habilitado = true;
   } else if (!this.form.get('email').value) {
@@ -308,7 +313,15 @@ verifyAllFieldsRole4(){
   }
   
 }
-
+concorda(){
+  if (this.habilitado == true){
+    this.toastr.warning('Preencha todos os campos, por favor.', 'Atenção!');
+    return false;
+   // this.confirmaInfo = 'none';
+  }else{
+    this.confirmaInfo = 'block';
+  }
+}
 async salvarImagem(){
   let avatar = null;
     if(this.formDataImg){

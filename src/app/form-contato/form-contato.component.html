@@ -215,7 +215,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Celular</label>
-                                                        <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" (blur)="verifyAllFieldsRole1()">
+                                                        <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" (change)="confirmaDados()" (focus)="confirmaDados()" (blur)="verifyAllFieldsRole1()">
                                                     </div>
                                                 </div>
                                             </div>
@@ -242,7 +242,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Celular</label>
-                                                <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" (blur)="verifyAllFieldsRole2()">
+                                                <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" (change)="confirmaDados()"  (focus)="confirmaDados()" (blur)="verifyAllFieldsRole2()">
                                             </div>
                                         </div>
                                     </div>
@@ -270,7 +270,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Celular</label>
-                                                        <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" (blur)="verifyAllFieldsRole3()">
+                                                        <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" (change)="confirmaDados()"  (focus)="confirmaDados()" (blur)="verifyAllFieldsRole3()">
                                                     </div>
                                                 </div>
                                             </div>
@@ -300,7 +300,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Celular</label>
-                                                        <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" (blur)="verifyAllFieldsRole4()" placeholder="(00) 00000-0000">
+                                                        <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" (change)="confirmaDados()" (focus)="confirmaDados()" (blur)="verifyAllFieldsRole4()" placeholder="(00) 00000-0000">
                                                     </div>
                                                 </div>
                                             </div>
@@ -308,11 +308,29 @@
                                     </div>
                                 </div>
                                 <!-- FIM Estetica -->
+  
+  <div class="col-md-12" *ngIf="role != 0 && role != 9" [style]="'display:'+confirmaInfo+';'">
+                                    <div class="row form-row">
+                                        <div class="terms-accept">
+                                            <div class="custom-checkbox">
+                                                <input type="checkbox" id="terms_accept" (click)="concorda()">
+                                                <label for="terms_accept"> Confirmo que todas as informações são verídicas e assumo total responsabilidade pelos dados inseridos. 
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-md-12">
                                     <div class="row form-row">
                                         <div class="col-md-12 text-right">
                                             <a class="forgot-link" [routerLink]="'/login'">Já tem uma conta?</a>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row form-row">
+                                        
+                                        
                                         <div class="submit-section submit-btn-bottom col-md-12 text-right">
                                             <button id="registrar-cadastro"  *ngIf="!isLoading" [disabled]="habilitado" class="btn submit-btn btn-primary btn-block btn-lg login-btn" (click)="salvar()">Registrar</button>
                                             <button *ngIf="isLoading" type="button" class="btn submit-btn btn-primary">
