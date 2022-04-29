@@ -34,20 +34,20 @@
                                 <div class="row form-row">
                                     <div class="col-lg-3 col-md-3 col-sm-12">
                                         <!--<div class="row form-row">-->
-                                            <!--<div class="row form-row">-->
+                                        <!--<div class="row form-row">-->
 
-                                                <!--<div class="col-md-12 ">-->
-                                                    <label class="hoverable" for="fileInput">
+                                        <!--<div class="col-md-12 ">-->
+                                        <label class="hoverable" for="fileInput">
                                   <img class="img-avatar" [src]="url ? url : pathImage+'digital-camera-5771.png'">
                                   <div class="hover-text">Escolha sua Foto</div>
                                   <div class="background"></div>
                                 </label>
-                                                    
-                                                    <input id="fileInput" type='file' (change)="onFileChanged($event)">
-                                                    <button *ngIf="url" (click)="delete()">Excluir foto</button>
-                                                <!--</div>-->
 
-                                            <!--</div>-->
+                                        <input id="fileInput" type='file' (change)="onFileChanged($event)">
+                                        <button *ngIf="url" (click)="delete()">Excluir foto</button>
+                                        <!--</div>-->
+
+                                        <!--</div>-->
                                         <!--</div>-->
 
                                     </div>
@@ -132,7 +132,7 @@
                                     </div>
                                 </div>
                                 <div class="row form-row">
-                                    
+
                                     <div class="col-md-6">
                                         <div class="form-group form-focus">
                                             <label>Senha<span class="text-danger">*</span></label>
@@ -214,7 +214,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Celular</label>
+                                                        <label>Celular<span class="text-danger">*</span></label>
                                                         <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" (change)="confirmaDados()" (focus)="confirmaDados()" (blur)="verifyAllFieldsRole1()">
                                                     </div>
                                                 </div>
@@ -241,8 +241,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Celular</label>
-                                                <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" (change)="confirmaDados()"  (focus)="confirmaDados()" (blur)="verifyAllFieldsRole2()">
+                                                <label>Celular<span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" (change)="confirmaDados()" (focus)="confirmaDados()" (blur)="verifyAllFieldsRole2()">
                                             </div>
                                         </div>
                                     </div>
@@ -269,8 +269,8 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Celular</label>
-                                                        <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" (change)="confirmaDados()"  (focus)="confirmaDados()" (blur)="verifyAllFieldsRole3()">
+                                                        <label>Celular<span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" placeholder="(00) 00000-0000" (change)="confirmaDados()" (focus)="confirmaDados()" (blur)="verifyAllFieldsRole3()">
                                                     </div>
                                                 </div>
                                             </div>
@@ -299,7 +299,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Celular</label>
+                                                        <label>Celular<span class="text-danger">*</span></label>
                                                         <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" (change)="confirmaDados()" (focus)="confirmaDados()" (blur)="verifyAllFieldsRole4()" placeholder="(00) 00000-0000">
                                                     </div>
                                                 </div>
@@ -308,8 +308,8 @@
                                     </div>
                                 </div>
                                 <!-- FIM Estetica -->
-  
-  <div class="col-md-12" *ngIf="role != 0 && role != 9" [style]="'display:'+confirmaInfo+';'">
+
+                                <div class="col-md-12" *ngIf="role != 0 && role != 9" [style]="'display:'+confirmaInfo+';'">
                                     <div class="row form-row">
                                         <div class="terms-accept">
                                             <div class="custom-checkbox">
@@ -329,10 +329,10 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="row form-row">
-                                        
-                                        
+
+
                                         <div class="submit-section submit-btn-bottom col-md-12 text-right">
-                                            <button id="registrar-cadastro"  *ngIf="!isLoading" [disabled]="habilitado" class="btn submit-btn btn-primary btn-block btn-lg login-btn" (click)="salvar()">Registrar</button>
+                                            <button id="registrar-cadastro" *ngIf="!isLoading" [disabled]="habilitado" class="btn submit-btn btn-primary btn-block btn-lg login-btn" (click)="salvar()">Registrar</button>
                                             <button *ngIf="isLoading" type="button" class="btn submit-btn btn-primary">
                                                 <span class="spinner-border spinner-border-sm mr-2" role="status"></span>Aguarde
                                             </button>
