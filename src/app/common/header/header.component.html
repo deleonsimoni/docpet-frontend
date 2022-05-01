@@ -47,7 +47,7 @@
                         <p class="text-muted mb-0" *ngIf="!user.isAdmin">Usuário</p>
                     </div>
                 </div>
-                <a class="dropdown-item"  *ngIf="!isTutor"  [routerLink]="'/admin'" style="cursor: pointer;display:block;">Dashboard</a>
+                <a class="dropdown-item"  *ngIf="!isTutor"  [routerLink]="'/admin'" style="cursor: pointer;display:block;"> Dashboard</a>
                 <a class="dropdown-item" (click)="clickLogout()" style=" cursor: pointer; ">Sair</a>
             </div>
             <a (click)="home()" class="navbar-brand logo">
