@@ -54,6 +54,10 @@ const routes: Routes = [
     loadChildren: () => import('./privacy-policy/privacy-policy.module').then((m) => m.PrivacyPolicyModule),
   },
   {
+    path: 'termos-condicoes',
+    loadChildren: () => import('./terms-conditions/terms-conditions.module').then((m) => m.TermsConditionsModule),
+  },
+  {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule),
   },
