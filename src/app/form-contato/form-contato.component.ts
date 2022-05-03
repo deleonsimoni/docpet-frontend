@@ -324,24 +324,35 @@ verifyAllFieldsRole4(){
   
 }
 concorda(event){
+  const checkbox = document.getElementById(
+    'terms_accept',
+  ) as HTMLInputElement | null;
   if ( event.target.checked ) {
-    
     if (this.preenchido === true){
       this.confirmaInfo = 'block';
       this.habilitado = false;
     }else{
-      this.habilitado = true;
-      this.preenchido = false;
+      if (this.habilitado == true){
+        this.toastr.warning('Preencha todos os campos, por favor.', 'Atenção!');
+        
+        if (checkbox == null) {
+          checkbox.checked = false;
+        }
+        this.preenchido = false;
+       return false;
+       // this.confirmaInfo = 'none';
+      }
+      
     }
     
   }else{
+    //this.habilitado = true;
+    if (checkbox != null) {
+      checkbox.checked = false;
+    }
     this.habilitado = true;
   }
-  if (this.habilitado == true){
-    this.toastr.warning('Preencha todos os campos, por favor.', 'Atenção!');
-    return false;
-   // this.confirmaInfo = 'none';
-  }
+  
 }
 async salvarImagem(){
   let avatar = null;
