@@ -31,8 +31,12 @@
     margin-bottom: 30px;
 }
 .img-fluid {
-    max-width: 150%;
-    height: auto;
+    max-width: 228px;
+    height: 228px;
+}
+.img-fluid-sp {
+    max-width: 128px;
+    height: 128px;
 }
 .speicality-img img {
 	position: relative;

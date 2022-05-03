@@ -309,12 +309,12 @@
                                 </div>
                                 <!-- FIM Estetica -->
 
-                                <div class="col-md-12" *ngIf="role != 0 && role != 9" [style]="'display:'+confirmaInfo+';'">
+                                <div class="col-md-12" *ngIf="role != 9" [style]="'display:'+confirmaInfo+';'">
                                     <div class="row form-row">
                                         <div class="terms-accept">
                                             <div class="custom-checkbox">
-                                                <input type="checkbox" id="terms_accept" (click)="concorda()">
-                                                <label for="terms_accept"> Confirmo que todas as informações são verídicas e assumo total responsabilidade pelos dados inseridos. 
+                                                <input type="checkbox" id="terms_accept" formControlName="terms_accept" (click)="concorda($event)">
+                                                <label for="terms_accept" style="margin-left:10px;"> Confirmo que todas as informações são verídicas e aceito os <span><a target="_blank"  style="text-decoration:underline;" [routerLink]="'/termos-condicoes'">Termos de Uso</a></span> do site. 
                                                 </label>
                                             </div>
                                         </div>

@@ -40,7 +40,7 @@ export class FormContatoComponent implements OnInit {
   pathImage;
   formDataImg = null;
   confirmaInfo = 'none';
-
+  preenchido = false;
   listaAnos = [];
   meses = [{ id: 1, mes: 'Janeiro', abreviado: 'Jan' },
   { id: 2, mes: 'Fevereiro', abreviado: 'Fev' },
@@ -186,7 +186,8 @@ export class FormContatoComponent implements OnInit {
         //conquistas: new FormBuilder().array([this.createConquistas()]),
         veterinarios: new FormBuilder().array([this.createVeterinario()]),
         cnpj: [null, [Validators.minLength(11)]],
-        avatar: [null]
+        avatar: [null],
+        terms_accept: [null]
       }
     );
 
@@ -206,8 +207,8 @@ export class FormContatoComponent implements OnInit {
     }
   }
   verifyAllFieldsRole(){
-    
-    this.confirmaInfo = 'none';
+    this.preenchido = false;
+    //this.confirmaInfo = 'none';
       if (!this.form.get('nome').value){
         this.habilitado = true;
       } else if (!this.form.get('email').value) {
@@ -220,14 +221,17 @@ export class FormContatoComponent implements OnInit {
       else if (this.form.get('password').value != this.form.get('confirmpassword').value) {
         this.habilitado = true; 
       }else{
-        this.habilitado = false;
+        this.preenchido = true;
+        this.confirmaDados();
       }
      // alert(this.habilitado);
       
       
     
   }
+
   verifyAllFieldsRole1(){
+    this.preenchido = false;
    // this.confirmaInfo = 'none';
       if (!this.form.get('nome').value){
         this.habilitado = true;
@@ -246,11 +250,13 @@ export class FormContatoComponent implements OnInit {
       } else if (!this.form.get('celular').value) {
         this.habilitado = true; 
       }else{
-        this.habilitado = false;
+        this.preenchido = true;
+       // this.habilitado = false;
       }
       
   }
   verifyAllFieldsRole2(){
+    this.preenchido = false;
    // this.confirmaInfo = 'none';
     if (!this.form.get('nome').value){
       this.habilitado = true;
@@ -267,11 +273,13 @@ export class FormContatoComponent implements OnInit {
     } else if (!this.form.get('celular').value) {
       this.habilitado = true; 
     } else{
-      this.habilitado = false;
+      this.preenchido = true;
+    //  this.habilitado = false;
     }
     
 }
 verifyAllFieldsRole3(){
+  this.preenchido = false;
  // this.confirmaInfo = 'none';
   if (!this.form.get('nome').value){
     this.habilitado = true;
@@ -288,12 +296,14 @@ verifyAllFieldsRole3(){
   } else if (!this.form.get('celular').value) {
     this.habilitado = true; 
   }else{
-    this.habilitado = false;
+    this.preenchido = true;
+  //  this.habilitado = false;
   }
   
 }
 verifyAllFieldsRole4(){
  // this.confirmaInfo = 'none'; 
+ this.preenchido = false;
   if (!this.form.get('nome').value){
     this.habilitado = true;
   } else if (!this.form.get('email').value) {
@@ -309,17 +319,28 @@ verifyAllFieldsRole4(){
   } else if (!this.form.get('celular').value) {
     this.habilitado = true; 
   }else{
-    this.habilitado = false;
+    this.preenchido = true;
   }
   
 }
-concorda(){
+concorda(event){
+  if ( event.target.checked ) {
+    
+    if (this.preenchido === true){
+      this.confirmaInfo = 'block';
+      this.habilitado = false;
+    }else{
+      this.habilitado = true;
+      this.preenchido = false;
+    }
+    
+  }else{
+    this.habilitado = true;
+  }
   if (this.habilitado == true){
     this.toastr.warning('Preencha todos os campos, por favor.', 'Atenção!');
     return false;
    // this.confirmaInfo = 'none';
-  }else{
-    this.confirmaInfo = 'block';
   }
 }
 async salvarImagem(){

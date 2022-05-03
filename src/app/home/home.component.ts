@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
   public starsRate: any = [];
   isload = false;
   totalStar = 0;
-  
+  pathShapes = 'https://vetzco-site.s3.sa-east-1.amazonaws.com/shapes/';
   totalStarFormated = 0;
   isLikedComment = 0;
   totalLike = 100;
@@ -171,6 +171,7 @@ export class HomeComponent implements OnInit {
     this.veterinarioService.getListReviews().subscribe(
         (res) => {
           this.doctors = res;
+          console.log(this.doctors);
           this.countScore(this.doctors);
           
           //this.dtTrigger.next();
