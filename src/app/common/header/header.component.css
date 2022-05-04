@@ -29,8 +29,11 @@
          display: block;
          padding: .5rem 1rem;
      }
+     .main-nav{
+        display:block;
+    }
  }
- @media (min-width: 901px) and (max-width: 1800px) {
+ @media (min-width: 901px) and (max-width: 2500px) {
      #user-bar {
          display: none;
      }
@@ -49,5 +52,7 @@
      .dash{
          display:none;  
      }
-     
+     .main-nav{
+         display:none;
+     }
  }

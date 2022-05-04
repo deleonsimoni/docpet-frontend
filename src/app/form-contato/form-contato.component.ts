@@ -179,6 +179,7 @@ export class FormContatoComponent implements OnInit {
         //especialidades: [null],
         endereco: this.createEnderecoFormGroup(),
         contato: this.createContatoFormGroup(),
+       // especialidades: this.createEspecialidadesFormGroup(),
         estabelecimentos: new FormBuilder().array([this.createEstabelecimento()]),
         //sobre: [null],
         //formacoes: new FormBuilder().array([this.createFormacao()]),
@@ -187,7 +188,8 @@ export class FormContatoComponent implements OnInit {
         veterinarios: new FormBuilder().array([this.createVeterinario()]),
         cnpj: [null, [Validators.minLength(11)]],
         avatar: [null],
-        terms_accept: [null]
+        terms_accept: [null],
+        especialidades: ['61a3a4be7d543c361472c141']
       }
     );
 
@@ -249,6 +251,8 @@ export class FormContatoComponent implements OnInit {
         this.habilitado = true; 
       } else if (!this.form.get('celular').value) {
         this.habilitado = true; 
+      } else if (!this.form.get('especialidades').value) {
+          this.habilitado = true; 
       }else{
         this.preenchido = true;
        // this.habilitado = false;
@@ -271,6 +275,8 @@ export class FormContatoComponent implements OnInit {
     } else if (!this.form.get('cnpj').value) {
       this.habilitado = true; 
     } else if (!this.form.get('celular').value) {
+      this.habilitado = true; 
+    } else if (!this.form.get('especialidades').value) {
       this.habilitado = true; 
     } else{
       this.preenchido = true;
@@ -568,7 +574,7 @@ async salvar() {
       celular: ['']
     });
   }
-
+  
   createEnderecoFormGroup(): FormGroup {
     return this.formBuilder.group({
       cep: [null, [Validators.required, Validators.minLength(4)]],

@@ -97,7 +97,7 @@ export class CadastroVeterinarioComponent implements OnInit {
         contato: this.createContatoFormGroup(),
         estabelecimentos: new FormBuilder().array([this.createEstabelecimento()]),
         sobre: [null],
-        formacoes: new FormBuilder().array([this.createFormacao()]),
+        formacoes: new FormBuilder().array([]),
         experiencias: new FormBuilder().array([]),
         conquistas: new FormBuilder().array([]),
         avatar: [null]
