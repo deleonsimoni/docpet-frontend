@@ -19,7 +19,28 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="example-header">
+                            Selection:
+                            <span id="selectedRows"></span>
+                        </div>
+                        <ag-grid-angular
+                            style="width: 100%; height: 600px;"
+                            class="ag-theme-alpine"
+                            [rowData]="users"
+                            [columnDefs]="myColDefs"
+                            [defaultColDef]="defaultColDef"
+                            [pagination]="true"
+                            [paginationPageSize]="paginationPageSize"
+                            [rowSelection]="rowSelection"
+                            [suppressRowClickSelection]="true"
+                            [suppressAggFuncInHeader]="true"
+                            (selectionChanged)="onSelectionChanged($event)"
+                            (gridReady)="onGridReady($event)"
+    
+                        >
+                        </ag-grid-angular>
+
+                        <!--<div class="table-responsive">
                             <div class="table-responsive">
                                 <table class="datatable table table-hover table-center mb-0">
                                     <thead>
@@ -71,7 +92,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>

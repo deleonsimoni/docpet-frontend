@@ -6,6 +6,7 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [AdminComponent, SidemenuComponent],
@@ -13,6 +14,7 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
     CommonModule,
     AdminRoutingModule,
     NgbModule,
+    AgGridModule,
     ModalModule.forRoot(),
   ],
 })

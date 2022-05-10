@@ -3,3 +3,5 @@
 @import './../../assets/admin/css/font-awesome.min.css';
 
 @import './../../assets/admin/css/style.css';
+@import "ag-grid-community/dist/styles/ag-grid.css";
+@import "ag-grid-community/dist/styles/ag-theme-alpine.css";
